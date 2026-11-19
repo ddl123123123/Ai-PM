@@ -49,9 +49,9 @@ h1 span { color: #e5d6ff; }
 .horizon { position: absolute; left: 50%; bottom: -160px; z-index: -1; width: min(850px, 113vw); height: 260px; translate: -50% 0; border-top: 3px solid #c1a6ff; border-radius: 50% 50% 0 0 / 48% 48% 0 0; background: linear-gradient(180deg, #130b27, #08070b 33%); box-shadow: 0 -8px 13px #a98cffb0, 0 -17px 30px #7749faac, 0 -29px 66px #5d2cd77a, inset 0 9px 19px #7e54fa65; mask-image: linear-gradient(90deg, transparent 1%, #000 27% 73%, transparent 99%); }
 
 @media screen and (prefers-reduced-motion: no-preference) {
-  .hero::before { transform: translateY(calc(var(--hero-scroll, 0px) * .28)); }
-  .hero .horizon { transform: translateY(calc(var(--hero-scroll, 0px) * .16)); }
-  .hero h1 { transform: translateY(calc(var(--hero-scroll, 0px) * -.10)); }
+  .hero::before { transform: translateY(calc(var(--hero-scroll, 0px) * .48)); }
+  .hero .horizon { transform: translateY(calc(var(--hero-scroll, 0px) * .23)); }
+  .hero :is(.hero-label, h1) { transform: translateY(calc(var(--hero-scroll, 0px) * -.16)); }
 }
 
 .about { padding-block: 3rem 5rem; text-align: center; }
