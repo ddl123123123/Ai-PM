@@ -13,7 +13,7 @@
   <header class="masthead">
     <div class="shell header-inner">
       <a class="brand" href="#top"><span aria-hidden="true">✦</span> 李彤彤 <small>作品集</small></a>
-      <nav aria-label="作品集导航"><a href="#about">关于</a><a href="#experience">实践</a><a href="#projects">案例</a><a href="#contact">联系</a></nav>
+      <nav aria-label="作品集导航"><a href="#about">关于</a><a href="#experience">经历</a><a href="#projects">案例</a><a href="#demos">Demo</a><a href="#contact">联系</a></nav>
     </div>
   </header>
 
@@ -28,16 +28,30 @@
       <div class="horizon" aria-hidden="true"></div>
     </section>
 
-    <section id="about" class="shell about" aria-labelledby="about-title">
-      <p class="eyebrow">关于我</p>
-      <h2 id="about-title">我关注用户怎么做决定，<br class="desktop-break">也关注界面怎么帮他们迈出下一步。</h2>
-      <p>从 AI 解读是否值得生成，到地图上怎样看懂附近有什么，再到一次抽牌怎样在浏览器里顺畅完成。</p>
+    <section id="about" class="shell about profile" aria-labelledby="about-title">
+      <div class="profile-intro">
+        <div>
+          <p class="eyebrow">个人介绍</p>
+          <h2 id="about-title">李彤彤</h2>
+          <p class="profile-lede">我从用户的决定出发，把 AI 的能力边界变成产品规则，再用原型和评测检验方案。</p>
+          <dl class="profile-facts">
+            <div><dt>教育背景</dt><dd>中国美术学院 · 视觉传达设计本科<br>2023.09–2027.06（预计毕业）</dd></div>
+            <div><dt>相关实践</dt><dd>高德地图「附近与推荐」体验重构 · MoonBit 独立游戏核心美术</dd></div>
+          </dl>
+          <div class="profile-target"><h3>求职意向</h3><p>AI 产品经理 · AIGC 产品 · 多模态视频生成产品</p></div>
+        </div>
+        <figure class="profile-portrait"><img src="assets/profile.webp" width="323" height="514" loading="lazy" alt="李彤彤的个人照片"></figure>
+      </div>
+      <div class="profile-skills">
+        <article><h3>AI 产品能力</h3><ul><li>Prompt 工程体系设计</li><li>Schema 结构化输出</li><li>采样参数策略</li><li>上下文 / Token 管理</li><li>幻觉校验</li><li>评测集搭建</li><li>Agent 流程编排</li><li>多模态视频 / 图像生成</li></ul></article>
+        <article><h3>通用产品能力</h3><ul><li>用户调研</li><li>需求拆解</li><li>原型设计</li><li>漏斗分析</li><li>A/B 实验</li><li>B 端 SaaS 流程设计</li></ul></article>
+      </div>
     </section>
 
     <section id="experience" class="shell overview" aria-labelledby="experience-title">
       <header class="overview-heading"><h2 id="experience-title">项目经历</h2></header>
       <ol class="practice-list">
-        <li><a href="#orae"><strong>ORAE</strong><span>个人项目 · 已上线</span></a><p>设计和实现扇面选牌到解读的流程，以同题对照检查 AI 回答是否值得保留。</p></li>
+        <li><a href="#orae"><strong>ORAE</strong><span>个人项目 · 已上线</span></a><p>实现扇面选牌、流式解读与关系管理，并以同题对照检验 AI 回答。</p></li>
         <li><a href="#amap"><strong>高德地图附近与推荐</strong><span>体验设计 · 研究与原型</span></a><p>根据问卷、访谈和走查梳理找店断点，用地图与列表联动的四态设计回应定位和比较需求。</p></li>
         <li><a href="#arivo"><strong>Arivo</strong><span>视频团队工具 · 交互演示</span></a><p>把生成状态、失败重试和时间点审片做进浏览器，演示团队交接流程。</p></li>
       </ol>
@@ -62,7 +76,7 @@
       <div class="project-grid">
         <article class="project-card">
           <a class="project-image orae-cover" href="#orae" aria-label="阅读 ORAE 案例"><img src="assets/card-back.jpg" width="560" height="960" alt=""><img src="assets/world.jpg" width="480" height="823" alt=""></a>
-          <div class="project-content"><h3><a href="#orae">ORAE 塔罗解读体验</a></h3><p>从 AI 解读价值的同题对照，到选牌、翻牌和失败恢复的实现。</p><div class="project-jumps"><a class="text-link" href="#ai-pm" aria-label="阅读 ORAE 的 AI-PM 决策链">AI-PM</a><a class="text-link" href="#pde" aria-label="阅读 ORAE 的 PDE 章节">PDE</a></div></div>
+          <div class="project-content"><h3><a href="#orae">ORAE 塔罗解读体验</a></h3><p>用同题对照评估 AI 解读，并用关系账把单次问牌接入长期记录。</p><div class="project-jumps"><a class="text-link" href="#ai-pm" aria-label="阅读 ORAE 的 AI-PM 决策链">AI-PM</a><a class="text-link" href="#pde" aria-label="阅读 ORAE 的 PDE 章节">PDE</a></div></div>
         </article>
         <article class="project-card">
           <a class="project-image" href="#amap" aria-label="阅读高德地图案例"><img src="assets/amap-cover.webp" width="1100" height="724" alt=""></a>
@@ -108,37 +122,36 @@
         <section id="ai-pm" class="case-track" aria-labelledby="orae-pm-title">
           <p class="eyebrow">AI-PM</p>
           <h3 id="orae-pm-title">为塔罗新手设计 AI 解读体验</h3>
-          <p class="case-intro">个人项目 · 已上线。证据来自线上走查、仓库实现与回归用例。实际用户 Session、模型日志样本和群体效果待补。</p>
+          <p class="case-intro">个人项目 · 已上线。牌面解读和关系管理均有代码与产品证据，留存和模型质量待实测。</p>
+          <nav class="case-index" aria-label="案例页目录"><a href="#ai-pm-overview">项目概览</a><a href="#ai-pm-problem">背景与用户痛点</a><a href="#ai-pm-research">调研与竞品分析</a><a href="#ai-pm-goals">需求目标与约束边界</a><a href="#ai-pm-solution">方案设计</a><a href="#ai-pm-result">落地、验证与结果</a><a href="#ai-pm-reflection">复盘与迭代思考</a></nav>
           <div class="chapters">
-            <section class="chapter">
-              <h4>1. 用户与高频痛点</h4>
-              <p>目标用户是第一次用塔罗思考具体选择的人。任务是在抽牌后讲清楚牌义和自己的问题有什么关系。线上走查用跳槽问题验证了流程可走通。新手在这一步卡住的频率、原话和反馈仍需小范围访谈与任务观察。</p>
+            <section class="chapter case-page" id="ai-pm-overview" aria-labelledby="ai-pm-overview-title">
+              <h4 id="ai-pm-overview-title">01 · 项目概览</h4>
+              <p>让首次抽牌的用户理解牌义怎样关联当下的问题，也让反复关注同一段关系的人带着已确认的经历回看和追问。</p><dl class="success-metrics"><div><dt>周期与职责</dt><dd>仓库记录始于 2026.09。个人项目，覆盖 AI 产品设计与网页交互实现。</dd></div><div><dt>项目类型与底座</dt><dd>0→1 搭建与功能迭代。LLM、流式解读、关系账与来源校验。</dd></div><div><dt>核心产出</dt><dd>牌阵与解读链路、Prompt 上下文、记忆 Schema 与来源门禁、关系页面。</dd></div><div><dt>前置证据</dt><dd>1 条线上同题摘录、1 个流式中断回归场景。关系使用率与解读质量暂无实测值。</dd></div></dl>
             </section>
-            <section class="chapter">
-              <h4>2. 为什么用 AI 与首版范围</h4>
-              <p>固定牌义加通用反思问题作为基线。按牌名和正逆位查表就能解决牌义查询。具体问题可能用不同措辞表达同一种顾虑，关键词规则难以把牌义和用户的具体条件组织成自然、可追问的回应。生成的价值集中在这一步，是否划算由对照决定。首轮只测一张牌和一次回答。</p>
+            <section class="chapter case-page" id="ai-pm-problem" aria-labelledby="ai-pm-problem-title">
+              <h4 id="ai-pm-problem-title">02 · 背景与用户痛点</h4>
+              <p>单次解读解决「这张牌和我的问题有什么关系」。连续使用时，用户还要回看同一段关系、补记发生的事并继续思考。重复交代经历是业务痛点，模型把早期推测混成后续事实是 AI 特有风险。</p><p><strong>机会假设</strong> · 结构化关系账和明确的记忆确认步骤，能减少重复输入，并降低对错人、把猜测当事实的风险。需要实测触发频率与用户反馈。</p>
             </section>
-            <section class="chapter">
-              <h4>3. 产品规划、原型与推进</h4>
-              <p>体验流程为填写可选问题 → 推荐牌阵 → 抽牌并查看固定牌义 → 流式解读。线上已实现规则推荐兜底、取消和失败重试。计划把「牌义摘要 → 与问题的关联 → 一个反思问题」作为候选输出。下一轮推进交付包括设计确认失败态与文案，工程对齐请求和完成事件，测试共同验收超时、重试和回退。协作记录待补。</p><p><a href="https://tarot.anois.site/" target="_blank" rel="noopener">查看线上流程</a>。</p>
+            <section class="chapter case-page" id="ai-pm-research" aria-labelledby="ai-pm-research-title">
+              <h4 id="ai-pm-research-title">03 · 调研与竞品分析</h4>
+              <p>已走查线上抽牌流程，并采集一条关于跳槽的真实回答。下表是按公开定位做的桌面参照，提示词、Schema 和独立质检等内部实现需要另行实测。</p><div class="table-scroll" role="region" aria-label="ORAE 参照矩阵" tabindex="0"><table><thead><tr><th scope="col">参照</th><th scope="col">可借鉴能力</th><th scope="col">本任务的取舍</th></tr></thead><tbody><tr><th scope="row"><a href="https://labyrinthos.co/" target="_blank" rel="noopener">Labyrinthos</a></th><td>学习牌义与读牌</td><td>适合作为牌义学习参照。连续关系回看与来源治理需要分开验证。</td></tr><tr><th scope="row"><a href="https://dayoneapp.com/" target="_blank" rel="noopener">Day One</a></th><td>长期日记与历史回看</td><td>适合作为记事参照。牌位、用户问题和关系上下文仍需专门组织。</td></tr><tr><th scope="row">ORAE</th><td>问牌、记事与关系回看</td><td>用一次解读连接长期上下文。增加了确认和授权成本。</td></tr></tbody></table></div><p><strong>产品切入点</strong> · 关系管理把单次解读、用户确认的经历和后续回看放入同一条链路。</p>
             </section>
-            <section class="chapter" id="evaluation">
-              <h4>4. 成功指标与评估</h4>
-              <p>小范围盲评拟用五组同牌、同牌位、同正逆位、同题的两种输出，统一评分标准。以下是统计口径，结果待采集。</p><dl class="success-metrics"><div><dt>任务完成率</dt><dd>成功读完并能说出一个可核实因素的 Session ÷ 开始任务的 Session。</dd></div><div><dt>质量</dt><dd>人工盲评问题贴合度、牌义一致性和不确定性。“把推测写成定论”单独统计。</dd></div><div><dt>时延</dt><dd>请求到首段可见文本、请求到完成的 P50 和 P95，分开统计取消和重试。</dd></div><div><dt>成本</dt><dd>按模型日志累计 token 成本，除以完成的解读数，计入失败及重试开销。</dd></div></dl>
+            <section class="chapter case-page" id="ai-pm-goals" aria-labelledby="ai-pm-goals-title">
+              <h4 id="ai-pm-goals-title">04 · 需求目标与约束边界</h4>
+              <p>产品目标是让用户找到可核实的下一步，并能回来查看同一段关系。范围先覆盖单次解读、记事与当前关系召回。对跨关系串线、过度确定的回答和写入错误设门槛。事件档案与模型窗口分离，近期窗口最多 20 件。</p><dl class="success-metrics"><div><dt>业务指标</dt><dd>解读后进入关系回看与 7 日回访，按独立 Session 统计。</dd></div><div><dt>AI 质量</dt><dd>同题盲评贴合度、牌义一致性，单列无依据推断和错误写入。</dd></div><div><dt>体验指标</dt><dd>能指出一个可核实因素的会话比例，首次可见文本和完成时延的 P50/P95。</dd></div><div><dt>成本</dt><dd>成功解读的单次模型成本，计入重试，以日志中的 token 和费用汇总。</dd></div></dl>
             </section>
-            <section class="chapter">
-              <h4>5. 用反馈、Session 和日志定位 Bad Case</h4>
-              <div class="specimen" id="comparison">
-                <div class="specimen-head"><p class="eyebrow">线上走查 · 同题、同牌、同正逆位</p><h5>「这次跳槽的机会值得抓住吗？」 · 世界逆位</h5></div>
-                <div class="two-cols">
-                  <div><h5>固定牌义与拟用引导</h5><p>「事情尚未收尾」「距目标只差临门一脚」。拟用提问为「目前有哪些事还需要收尾？」。</p></div>
-                  <div><h5>线上 AI 解读摘录</h5><p>「先回答你的问题：这张牌给出的是偏‘否’的倾向……」</p></div>
-                </div>
-              </div><p>质量样例来自线上走查。“偏否”可能被当成求职结论。拟改文案为「牌义提醒你关注尚未确认的条件。哪些职责、资源或发展预期需要和对方核实？」。待收集读者原话并用脱敏的 Session 编号关联这次解读，再做复评。</p><p>服务失败有可复现证据。接口回归用例模拟流先输出一段文本、随后上游返回 502。实现会发出 <code>upstream_error</code>，保留重试入口，并避免持久化半段回答或扣配额。诊断可从反馈定位 <code>readingId</code>，再用请求日志的 <code>requestId</code>、错误类型与 <code>llm_log</code> 的耗时和成本定位。模型日志不含提示词和正文，线上日志样本未纳入案例。</p>
+            <section class="chapter case-page" id="ai-pm-solution" aria-labelledby="ai-pm-solution-title">
+              <h4 id="ai-pm-solution-title">05 · 方案设计</h4>
+              <ol class="case-flow"><li><strong>用户 · 填写与确认</strong><span>选择关系、问牌或手动记事</span></li><li><strong>模型 · 生成与提取</strong><span>流式解读，从用户原话提取候选</span></li><li><strong>程序 · 校验</strong><span>原文片段校验、Schema 与来源门禁</span></li><li><strong>用户 · 回看与撤销</strong><span>确认后允许召回，可暂停或删除</span></li></ol><figure class="case-figure case-doc-figure"><a href="assets/orae-relationships.webp" target="_blank" rel="noopener"><img loading="lazy" src="assets/orae-relationships.webp" width="960" height="960" alt="ORAE 关系管理设计稿展示关系总览、记事和问过的牌"></a><figcaption>ORAE 关系管理设计稿，页面内人数与条数为设计示例。</figcaption></figure><div class="table-scroll" role="region" aria-label="ORAE AI 方案与约束" tabindex="0"><table><thead><tr><th scope="col">策略</th><th scope="col">已实现的产品规则</th><th scope="col">为何这样做</th></tr></thead><tbody><tr><th scope="row">上下文与 Token</th><td>当前关系隔离、最近 20 件事件入窗口，档案独立保留。</td><td>控制上下文，让跨关系信息在进入模型前被隔离。</td></tr><tr><th scope="row">Prompt 与参数</th><td>按任务组装问题、牌位、正逆位等上下文；牌阵推荐默认 temperature 0.4，可配置。</td><td>推荐强调稳定，解读要处理具体语境。双采样模式和 Few-shot 对照待补。</td></tr><tr><th scope="row">Schema 与来源</th><td>候选带证据片段，来源由服务端写入；待确认条目不参与召回。</td><td>提取错误会在校验或用户确认阶段被拦截。</td></tr><tr><th scope="row">质检与异常</th><td>模型推断只可留在假设层；上游失败时采用规则推荐或提供重试。</td><td>分开检验接口成功、内容可靠和记忆写入。</td></tr></tbody></table></div><p>权衡过的两种做法是把所有历史都带入和用有限窗口召回。现有方案选择后者，代价是更早的细节不会默认进入当次解读。</p>
             </section>
-            <section class="chapter">
-              <h4>6. 改动前后与产品决策</h4>
-              <p>回归场景中，故障发生时已输出部分文本。现有处理的预期结果是显式失败、可重试、配额不变。语气改写仍待上线对照，暂无前后指标。只有当生成帮助更多读者发现可核实因素，且质量、时延和成本达标，再保留具体问题场景的 AI 解读。</p>
+            <section class="chapter case-page" id="ai-pm-result" aria-labelledby="ai-pm-result-title">
+              <h4 id="ai-pm-result-title">06 · 落地、验证与结果</h4>
+              <p id="evaluation">MVP 的线上解读可用，关系账与回看有实现。拟用固定牌、牌位、正逆位和问题做五组盲评，并向关系记忆评测集加入跨对象误召回、推断越权、未确认候选等反例。</p><div id="comparison"><div class="table-scroll" role="region" aria-label="ORAE 证据与结果" tabindex="0"><table><thead><tr><th scope="col">证据</th><th scope="col">观察或复现</th><th scope="col">下一步</th></tr></thead><tbody><tr><th scope="row">线上走查 · 同题世界逆位</th><td>固定牌义是「事情尚未收尾」。AI 摘录给出「偏否」，可能被读成求职结论。</td><td>拟改成先提示待核实条件，再问一个反思问题。改后结果待测。</td></tr><tr><th scope="row">接口回归 · 上游 502</th><td>先输出片段再中断。接口预期发出错误事件，不保存半段解读，不扣配额。</td><td>复查 Session、readingId、requestId 和模型错误类别。</td></tr><tr><th scope="row">用户反馈</th><td>Android 用户反馈「继续要点好几次」，模拟器复验修复后按钮两端均能一次响应。</td><td>该反馈支持操作可用性。内容质量的正负面反馈仍待收集。</td></tr></tbody></table></div></div>
+            </section>
+            <section class="chapter case-page" id="ai-pm-reflection" aria-labelledby="ai-pm-reflection-title">
+              <h4 id="ai-pm-reflection-title">07 · 复盘与迭代思考</h4>
+              <p>线上「偏否」容易压过牌义的不确定性。下轮把「是否回答得贴合」与「是否把推测写成结论」分开标注。关系样例则对比开关授权和一段历史被更正后的结果。长期可引入经审阅的检索知识库与用户自定义示例，先做可追溯评测再扩大召回。</p>
             </section>
           </div>
         </section>
@@ -204,31 +217,36 @@
         <section id="amap-ai-pm" class="case-track" aria-labelledby="amap-pm-title">
           <p class="eyebrow">AI-PM</p>
           <h3 id="amap-pm-title">让找店和比较在地图里完成</h3>
-          <p class="case-intro">体验设计项目 · 已有问卷、访谈与原型。AI 辅助比较是后续构想，上线与日志数据待补。</p>
+          <p class="case-intro">体验设计项目 · 研究与原型已完成。AI 辅助筛选为扩展方案，当前证据来自原稿。</p>
+          <nav class="case-index" aria-label="案例页目录"><a href="#amap-ai-pm-overview">项目概览</a><a href="#amap-ai-pm-problem">背景与用户痛点</a><a href="#amap-ai-pm-research">调研与竞品分析</a><a href="#amap-ai-pm-goals">需求目标与约束边界</a><a href="#amap-ai-pm-solution">方案设计</a><a href="#amap-ai-pm-result">落地、验证与结果</a><a href="#amap-ai-pm-reflection">复盘与迭代思考</a></nav>
           <div class="chapters">
-            <section class="chapter">
-              <h4>1. 用户与高频痛点</h4>
-              <p>周末探店者和差旅用户要在陌生地点附近快速选定一餐。原稿问卷、访谈及走查识别了三处断点：同类推荐过多、详情决策信息难扫读、收藏地点和行程的空间关系不清楚。</p><div class="research"><div class="metric"><strong>262</strong><span>问卷行为分群样本</span></div><div><h5>两类常见行为</h5><p>美学漫游型 124 人，占 47.3%。效率目标型 65 人，占 24.8%。这些比例描述问卷分群，单个痛点的发生频率待补。<a href="assets/amap-research.webp" target="_blank" rel="noopener">查看原稿问卷与分群</a>。</p></div></div>
+            <section class="chapter case-page" id="amap-ai-pm-overview" aria-labelledby="amap-ai-pm-overview-title">
+              <h4 id="amap-ai-pm-overview-title">01 · 项目概览</h4>
+              <p>让周末探店者和差旅用户在地图中完成发现、定位和比较，减少跨 App 核对。</p><dl class="success-metrics"><div><dt>周期与职责</dt><dd>原稿记录 2026.05 起。负责体验重构和信息架构。</dd></div><div><dt>项目类型与底座</dt><dd>功能与流程重构。基于 POI、地图点位、推荐内容和商家信息。</dd></div><div><dt>核心产出</dt><dd>用户分群、竞品研究、线框与高保真原型、四级面板。</dd></div><div><dt>前置数据</dt><dd>问卷分群 262 人。美学漫游型 124 人，效率目标型 65 人。比例为样本构成。</dd></div></dl>
             </section>
-            <section class="chapter">
-              <h4>2. 为什么用 AI 与首版范围</h4>
-              <p>有明确类别、距离和营业条件时，规则筛选和地图搜索足够。多重偏好用自然语言混在一起时，AI 可以把意图拆成可编辑条件，帮助解释条件冲突。先用「酒店附近找一顿晚餐」比较现有筛选与候选解释，地点查询和硬约束仍由有来源的地图字段执行。</p>
+            <section class="chapter case-page" id="amap-ai-pm-problem" aria-labelledby="amap-ai-pm-problem-title">
+              <h4 id="amap-ai-pm-problem-title">02 · 背景与用户痛点</h4>
+              <p>现有链路中，内容负责种草，地图负责定位，另一些页面负责核对营业和口碑。访谈与走查发现同类推荐堆叠、详情难扫读，以及收藏点和行程的关系不清。拟加入 AI 时，额外风险是把营业时间、距离或评价编成确定理由。核心任务收敛为在陌生地点附近选到符合条件的一餐。</p>
             </section>
-            <section class="chapter">
-              <h4>3. 产品规划、原型与推进</h4>
-              <p>原稿涵盖推荐主题卡、附近的地图与列表联动，以及商家详情。拟追加的 AI 流程是描述需求 → 确认筛选条件 → 对照地点与理由 → 进入详情。营业状态缺失则标注待确认，查询异常则回到地图列表。拟由设计交付交互原型，数据和工程对齐距离、营业与更新时间字段，测试验收误筛和回退。跨团队推进及上线记录待补。</p><p><a href="#amap-pde">查看原稿流程与交互原型</a>。</p>
+            <section class="chapter case-page" id="amap-ai-pm-research" aria-labelledby="amap-ai-pm-research-title">
+              <h4 id="amap-ai-pm-research-title">03 · 调研与竞品分析</h4>
+              <p>研究包含问卷、访谈、体验走查与竞品整理。问卷表明偏探索与偏效率的用户对信息密度的要求不同。</p><div class="table-scroll" role="region" aria-label="高德原稿竞品矩阵" tabindex="0"><table><thead><tr><th scope="col">原稿参照</th><th scope="col">优势</th><th scope="col">切入点</th></tr></thead><tbody><tr><th scope="row">百度地图</th><td>周边与导航衔接，地点信息标准化</td><td>把内容探索和空间联动放进同一条路径。</td></tr><tr><th scope="row">美团与大众点评</th><td>交易闭环、榜单与评价</td><td>将比较所需的距离、评分和状态提前展示。</td></tr><tr><th scope="row">抖音与小红书</th><td>短视频和图文有探索氛围</td><td>减少从种草内容跨应用回地图核对。</td></tr></tbody></table></div><p><a href="assets/amap-research.webp" target="_blank" rel="noopener">查看问卷原稿</a>。原稿比较的是体验链路，AI 内部技术能力尚未实测。</p>
             </section>
-            <section class="chapter">
-              <h4>4. 成功指标与评估</h4>
-              <p>拟用同一组地点和条件对比地图筛选与 AI 候选解释，先做小范围任务测试。以下指标暂无实测结果。</p><dl class="success-metrics"><div><dt>任务完成率</dt><dd>选到符合全部硬条件的参与者 ÷ 开始任务的参与者。</dd></div><div><dt>质量</dt><dd>核对距离、营业和类别字段，记录虚构理由、错误匹配和字段缺失的呈现。</dd></div><div><dt>时延</dt><dd>记录操作到可选候选的 P50、P95，以及从开始到做出决定的总耗时。</dd></div><div><dt>成本</dt><dd>每次成功推荐的地点检索与模型调用成本，计入重试。</dd></div></dl>
+            <section class="chapter case-page" id="amap-ai-pm-goals" aria-labelledby="amap-ai-pm-goals-title">
+              <h4 id="amap-ai-pm-goals-title">04 · 需求目标与约束边界</h4>
+              <p>目标是在同一地图体验内完成筛选和决策。明确条件用规则；输入为自然语言且含多项偏好时，才探索 AI 拆解意图。地点信息来自可追溯字段，缺失营业状态须标明待确认；限制候选数量与调用成本。</p><dl class="success-metrics"><div><dt>任务完成率</dt><dd>选中满足全部硬条件地点的参与者比例。</dd></div><div><dt>质量</dt><dd>硬条件命中、地点事实正确率、字段缺失时的处理。</dd></div><div><dt>体验</dt><dd>到候选列表的 P50/P95、确认地点的总耗时与返回次数。</dd></div><div><dt>成本</dt><dd>一次成功推荐的检索与模型费用，计入重试。</dd></div></dl>
             </section>
-            <section class="chapter">
-              <h4>5. 用反馈、Session 和日志定位 Bad Case</h4>
-              <p>原稿走查里的失败类型是列表与地图分离，用户需要反复对应店铺与位置。原型以卡片和点位双向联动回应。AI 方案拟重点排查营业信息过期或硬条件误筛。复测时按 Session 把反馈、筛选变更、候选、点选关联起来，再用地点字段来源、更新时间与被应用的规则区分数据过期和解析错误。目前无真实 AI 日志样本。</p>
+            <section class="chapter case-page" id="amap-ai-pm-solution" aria-labelledby="amap-ai-pm-solution-title">
+              <h4 id="amap-ai-pm-solution-title">05 · 方案设计</h4>
+              <ol class="case-flow"><li><strong>用户 · 说出需求</strong><span>周末探店或酒店附近晚餐</span></li><li><strong>系统 · 空间筛选</strong><span>用规则检索地点与硬约束</span></li><li><strong>模型 · 候选解释</strong><span>拟把多重偏好转成可编辑条件</span></li><li><strong>用户 · 确认地点</strong><span>半屏对比，点图钉或进入详情</span></li></ol><figure class="case-figure case-doc-figure"><a href="assets/amap-states.webp" target="_blank" rel="noopener"><img loading="lazy" src="assets/amap-states.webp" width="1500" height="1119" alt="高德地图列表面板的四种状态"></a><figcaption>原稿交付的四态高保真，AI 候选流程为后续构想。</figcaption></figure><div class="table-scroll" role="region" aria-label="高德规则与 AI 方案对比" tabindex="0"><table><thead><tr><th scope="col">路径</th><th scope="col">适用场景</th><th scope="col">取舍</th></tr></thead><tbody><tr><th scope="row">规则筛选</th><td>目标明确，按距离、类别和营业筛选</td><td>可控且便宜。作为原型主路径及异常回退。</td></tr><tr><th scope="row">AI 解释</th><td>条件较多或说法模糊</td><td>拟只将候选 ID、字段出处和理由交给输出层。字段缺失走列表，模型参数和评测待验证。</td></tr></tbody></table></div>
             </section>
-            <section class="chapter">
-              <h4>6. 改动前后与产品决策</h4>
-              <p>设计前的走查记录了跨界面核对和信息分散。新原型把点位和列表放进同一交互，并在详情重组决策信息。现有材料能展示流程差异。前后任务完成率、步骤和耗时待测。优先验证地图联动，只有 AI 候选说明进一步减少步骤且不引入地点事实错误，才推进试点。</p>
+            <section class="chapter case-page" id="amap-ai-pm-result" aria-labelledby="amap-ai-pm-result-title">
+              <h4 id="amap-ai-pm-result-title">06 · 落地、验证与结果</h4>
+              <p>现有方案以推荐、附近、详情三个原型模块交付。下一步用同一组地点和需求先测四态联动，再对照加入 AI 解释。标注地点硬条件，自动核验地点 ID 和引用字段，人工检查理由。</p><div class="table-scroll" role="region" aria-label="高德实施与验证" tabindex="0"><table><thead><tr><th scope="col">已有结果</th><th scope="col">验证范围</th><th scope="col">待补证据</th></tr></thead><tbody><tr><th scope="row">问卷 262 人</th><td>研究样本与行为分群</td><td>任务完成率、时延和成本的原型对照。</td></tr><tr><th scope="row">地图与列表四态</th><td>设计前跨页面核对，设计稿中点位与卡片双向关联</td><td>后测行为记录、正负面试用反馈、实际发布数据。</td></tr></tbody></table></div>
+            </section>
+            <section class="chapter case-page" id="amap-ai-pm-reflection" aria-labelledby="amap-ai-pm-reflection-title">
+              <h4 id="amap-ai-pm-reflection-title">07 · 复盘与迭代思考</h4>
+              <p>最关键的早期问题是信息密度与空间定位互相干扰。改用可切换的地图与列表面板后，先验收不同状态是否保留正确选中项。如果只能推进一项，先测规则版任务完成率，再判断 AI 解释能否减少筛选步骤。对营业信息过期与误筛须分开记为 Bad Case。</p>
             </section>
           </div>
         </section>
@@ -290,31 +308,51 @@
         <section id="arivo-ai-pm" class="case-track" aria-labelledby="arivo-pm-title">
           <p class="eyebrow">AI-PM</p>
           <h3 id="arivo-pm-title">让团队看得见生成进度与失败原因</h3>
-          <p class="case-intro">浏览器交互演示 · 使用本地模拟数据。演示站已部署，真实模型调用、团队访谈与生产监控数据待补。</p>
+          <p class="case-intro">React / Vite 交互演示 · 生成状态使用本地模拟数据。真实模型、独立质检和团队试点仍待接入。</p>
+          <nav class="case-index" aria-label="案例页目录"><a href="#arivo-ai-pm-overview">项目概览</a><a href="#arivo-ai-pm-problem">背景与用户痛点</a><a href="#arivo-ai-pm-research">调研与竞品分析</a><a href="#arivo-ai-pm-goals">需求目标与约束边界</a><a href="#arivo-ai-pm-solution">方案设计</a><a href="#arivo-ai-pm-result">落地、验证与结果</a><a href="#arivo-ai-pm-reflection">复盘与迭代思考</a></nav>
           <div class="chapters">
-            <section class="chapter">
-              <h4>1. 用户与高频痛点</h4>
-              <p>创作者提交带参考素材的镜头，编辑接收新版本，审阅人定位到需要修改的时刻。高频痛点假设是交接缺少提示词、版本和失败原因，参与者需要反复追问或重填。当前依据是原型任务与演示数据，实际频率待用团队访谈和任务观察确认。</p>
+            <section class="chapter case-page" id="arivo-ai-pm-overview" aria-labelledby="arivo-ai-pm-overview-title">
+              <h4 id="arivo-ai-pm-overview-title">01 · 项目概览</h4>
+              <p>给视频制作团队一个可追踪的生成与审片空间，让创作者、编辑和审阅人沿同一任务和版本交接。</p><dl class="success-metrics"><div><dt>周期与职责</dt><dd>演示仓库留有 2026.11 的迭代记录，起止待补。案例覆盖生成任务与审片链路的原型和前端演示，个人分工待补。</dd></div><div><dt>项目类型与底座</dt><dd>0→1 演示。React / Vite，浏览器数据与生成状态模拟。</dd></div><div><dt>核心产出</dt><dd>生成与参考素材面板、任务时间线、失败恢复、审片和版本意见。</dd></div><div><dt>前置证据</dt><dd>1 条可复现的素材读取超时演示任务。脚本通过率、模型时延和成本待实测。</dd></div></dl>
             </section>
-            <section class="chapter">
-              <h4>2. 为什么用 AI 与首版范围</h4>
-              <p>搜索和规则适合复用素材、分类、排队及权限控制。已有素材无法满足具体镜头需求时，才需要根据提示词和参考素材生成新内容。首轮对照用「素材复用或独立生成后手动交接」作为基线，验证项目内提交、查状态、失败恢复和带时间点的审片。</p>
+            <section class="chapter case-page" id="arivo-ai-pm-problem" aria-labelledby="arivo-ai-pm-problem-title">
+              <h4 id="arivo-ai-pm-problem-title">02 · 背景与用户痛点</h4>
+              <p>角色包括提交镜头的创作者、接收版本的编辑和留时间点意见的审阅人。手工交接容易缺提示词、参考和失败原因。接入模型后，还会出现上下文超限、镜头偏离要求、字段不齐和「生成完成但结果不可用」。MVP 聚焦一次失败恢复再交接审片。团队访谈和频率待采集。</p>
             </section>
-            <section class="chapter">
-              <h4>3. 产品规划、原型与推进</h4>
-              <p>演示流程为选择模型和输出类型 → 填写提示词和参考素材 → 入队 → 查看结果或重试 → 按时间点审片。拟交付给产品、设计、工程和测试共同评审的内容包括任务状态、失败原因、可重试参数、版本标识及审片权限。当前演示已部署，真实模型、计费与团队上线验收待补。</p><p><a href="https://arivo-studio-demo.anois-zhao208786.chatgpt.site/#/generate" target="_blank" rel="noopener">体验生成原型</a>。</p>
+            <section class="chapter case-page" id="arivo-ai-pm-research" aria-labelledby="arivo-ai-pm-research-title">
+              <h4 id="arivo-ai-pm-research-title">03 · 调研与竞品分析</h4>
+              <p>公开能力用于界定产品边界。提示词控制、严格 Schema、幻觉处置和独立质检链路需按实际入口测评。</p><div class="table-scroll" role="region" aria-label="Arivo 竞品与方案矩阵" tabindex="0"><table><thead><tr><th scope="col">参照</th><th scope="col">可借鉴能力</th><th scope="col">本任务的取舍</th></tr></thead><tbody><tr><th scope="row"><a href="https://runwayml.com/" target="_blank" rel="noopener">Runway</a></th><td>多模态内容生成</td><td>作为创作端参照，生成质量与交接成本实测待补。</td></tr><tr><th scope="row"><a href="https://frame.io/" target="_blank" rel="noopener">Frame.io</a></th><td>媒体审阅、时间点评论和版本协作</td><td>作为审片参照，生成失败参数的恢复链路需单独验证。</td></tr><tr><th scope="row">Arivo</th><td>在项目内串联请求、结果、重试和版本</td><td>交互演示可走通，模型与独立内容质检属于后续验证。</td></tr></tbody></table></div><p>差异化假设是让失败原因、生成参数与审核版本在交接时保持可追溯。</p>
             </section>
-            <section class="chapter">
-              <h4>4. 成功指标与评估</h4>
-              <p>小范围任务实验拟让参与者恢复同一个失败任务，再将结果交给另一人按时间点审阅。演示计时仅用于呈现状态。以下真实数据待采集。</p><dl class="success-metrics"><div><dt>任务完成率</dt><dd>完成恢复且审阅人找到正确版本和时间点的组数 ÷ 开始任务的组数。</dd></div><div><dt>质量</dt><dd>按镜头要素和参考素材一致性盲评生成结果，另记录误审版本和重复填写。</dd></div><div><dt>时延</dt><dd>分别统计排队到开始、执行到可预览，以及失败到恢复提交的 P50、P95。</dd></div><div><dt>成本</dt><dd>接入后累计真实生成与重试成本，除以团队接受的有效镜头数。</dd></div></dl>
+            <section class="chapter case-page" id="arivo-ai-pm-goals" aria-labelledby="arivo-ai-pm-goals-title">
+              <h4 id="arivo-ai-pm-goals-title">04 · 需求目标与约束边界</h4>
+              <p>用户目标是不用重填即可恢复失败任务，让审阅人打开正确版本。拟接入时限制镜头时长、素材尺寸与上下文；长视频先切镜头。广告脚本只可引用已核实卖点，未知卖点交给人确认。限制重试与校验开销。</p><dl class="success-metrics"><div><dt>业务指标</dt><dd>失败恢复并把正确版本交给审阅人的组数比例。</dd></div><div><dt>AI 质量</dt><dd>字段合规率、参考一致性、无依据卖点率和人工质检通过率。</dd></div><div><dt>体验</dt><dd>排队、生成可预览、失败到重试各自的 P50/P95。</dd></div><div><dt>成本</dt><dd>每个被接受镜头的生成、质检与重试费用。</dd></div></dl>
             </section>
-            <section class="chapter">
-              <h4>5. 用反馈、Session 和日志定位 Bad Case</h4>
-              <p>可复现的演示失败类型是「参考素材读取超时」。任务详情显示未生成结果，并保留原提示词和参数供重试。接入后拟用反馈中的任务 ID 关联提交 Session，查看素材读取、入队、执行的错误码与耗时，区分素材失效和真正的模型失败。目前只有演示数据。</p><p><a href="https://arivo-studio-demo.anois-zhao208786.chatgpt.site/#/tasks/72f0c241" target="_blank" rel="noopener">复现失败任务与恢复入口</a>。</p>
+            <section class="chapter case-page" id="arivo-ai-pm-solution" aria-labelledby="arivo-ai-pm-solution-title">
+              <h4 id="arivo-ai-pm-solution-title">05 · 方案设计</h4>
+              <ol class="case-flow"><li><strong>用户决定</strong><span>填 Brief、目标、素材与镜头条件</span></li><li><strong>模型生成</strong><span>拟分镜头输出结构化脚本，再生成镜头</span></li><li><strong>程序校验</strong><span>拟校验字段、时长、引用来源及双状态</span></li><li><strong>用户确认</strong><span>查看结果、恢复失败或交给审阅人</span></li></ol><figure class="case-figure case-doc-figure"><a href="assets/arivo-task.webp" target="_blank" rel="noopener"><img loading="lazy" src="assets/arivo-task.webp" width="1280" height="800" alt="Arivo 任务详情展示素材读取超时和重新生成"></a><figcaption>演示截图，保留原参数重试已可操作。</figcaption></figure><div class="table-scroll" role="region" aria-label="Arivo AI 方案与取舍" tabindex="0"><table><thead><tr><th scope="col">策略</th><th scope="col">方案</th><th scope="col">状态</th></tr></thead><tbody><tr><th scope="row">Brief 与 Token</th><td>保留目标、已核实卖点、素材 ID 和最近修改，使用历史摘要替代全量对话。摘要可能丢细节，支持回原记录核对。</td><td>拟验证</td></tr><tr><th scope="row">Prompt 与采样</th><td>系统指令、按镜头类型组织 Few-shot。拟比较合规低随机模式和创意模式，逐模型检查 temperature / top_p 的支持。</td><td>拟验证</td></tr><tr><th scope="row">Schema 与独立质检</th><td>程序校验必填项、时长和素材引用。任务执行与内容质检各有状态，质检拒绝时保留原因并交给用户处理。</td><td>拟验证</td></tr><tr><th scope="row">功能与信息架构</th><td>生成面板、任务中心、资产与审片。详情展示运行记录、请求参数和恢复入口。</td><td>浏览器演示</td></tr></tbody></table></div><p>以下为目标数据结构示例，当前仓库的模拟任务仍按原有字段运行。</p><pre class="case-code"><code>{
+  &quot;taskStatus&quot;: &quot;completed&quot;,
+  &quot;qualityStatus&quot;: &quot;needs_review&quot;,
+  &quot;shots&quot;: [
+    {
+      &quot;durationSec&quot;: 6,
+      &quot;visualBrief&quot;: &quot;沿桌边推进至产品特写&quot;,
+      &quot;referenceIds&quot;: [
+        &quot;asset_demo_01&quot;
+      ]
+    }
+  ],
+  &quot;warnings&quot;: [
+    &quot;卖点引用待人工确认&quot;
+  ]
+}</code></pre>
             </section>
-            <section class="chapter">
-              <h4>6. 改动前后与产品决策</h4>
-              <p>对照基线是失败后手动找回素材并重填参数。演示中的恢复流程显示失败原因，基于原参数创建一条新任务。现有证据是可操作的交互，对完成率、质量、时延和成本的影响仍待小范围对照。先验证交接闭环，再决定真实模型接入范围。</p>
+            <section class="chapter case-page" id="arivo-ai-pm-result" aria-labelledby="arivo-ai-pm-result-title">
+              <h4 id="arivo-ai-pm-result-title">06 · 落地、验证与结果</h4>
+              <p>现有演示可从提交到排队、失败详情和参数重试，再切到版本审片。真实模型接入后先做可恢复任务 MVP，再加入带来源的脚本 Schema 和独立内容质检。</p><div class="table-scroll" role="region" aria-label="Arivo 验证与结果" tabindex="0"><table><thead><tr><th scope="col">证据</th><th scope="col">现在可以复现</th><th scope="col">下一轮验证</th></tr></thead><tbody><tr><th scope="row">模拟失败任务 72f0c241</th><td>素材读取超时，任务未生成。可用原参数重新提交。</td><td>比对手填与保留参数的恢复成功率、重复填写次数与耗时。</td></tr><tr><th scope="row">版本审片</th><td>按时间点找意见，查看相应版本。</td><td>用标注样本校验版本和时间点匹配，收集真实用户正负反馈。</td></tr><tr><th scope="row">生成与质检</th><td>演示计时描述任务状态。</td><td>接入后以固定提示、素材、预期卖点的评测集做字段自动校验和人工质量盲评。</td></tr></tbody></table></div><p><a href="https://arivo-studio-demo.anois-zhao208786.chatgpt.site/#/tasks/72f0c241" target="_blank" rel="noopener">体验失败任务</a>。目前没有真实生成结果或团队使用指标。</p>
+            </section>
+            <section class="chapter case-page" id="arivo-ai-pm-reflection" aria-labelledby="arivo-ai-pm-reflection-title">
+              <h4 id="arivo-ai-pm-reflection-title">07 · 复盘与迭代思考</h4>
+              <p>任务失败样例说明「超时」需要定位到读取素材还是执行模型。项目接入后，先用任务 ID 对齐素材状态、Session 与运行日志。协作侧重点评估意见是否绑定正确版本。后续可实验可审查的知识库和 Few-shot 模板，失败样本先人工标注再进入新的评测集。</p>
             </section>
           </div>
         </section>
@@ -341,6 +379,24 @@
           </div>
         </section>
       </article>
+
+      <section id="demos" class="overview resource-block" aria-labelledby="demos-title">
+        <header class="overview-heading"><h2 id="demos-title">原型与 Demo</h2></header>
+        <div class="resource-grid">
+          <article><h3>ORAE</h3><p><a href="https://tarot.anois.site/" target="_blank" rel="noopener">在线抽牌与关系管理</a><br><a href="assets/orae-relationships.webp" target="_blank" rel="noopener">关系管理设计稿</a><br><a href="#comparison">同题解读与失败样例</a></p></article>
+          <article><h3>高德地图</h3><p><a href="assets/amap-wireframes.webp" target="_blank" rel="noopener">线框原型</a><br><a href="assets/amap-states.webp" target="_blank" rel="noopener">地图与列表四态</a><br><a href="assets/amap-research.webp" target="_blank" rel="noopener">调研原稿</a></p></article>
+          <article><h3>Arivo</h3><p><a href="https://arivo-studio-demo.anois-zhao208786.chatgpt.site/#/screens" target="_blank" rel="noopener">交互演示索引</a><br><a href="https://www.figma.com/design/oiZlD8DxTSVisTWEqwMarI/Arivo-ux-ui%E8%AE%BE%E8%AE%A1?node-id=591-604" target="_blank" rel="noopener">Figma 设计稿</a><br><a href="#arivo-ai-pm-solution">Schema 示例</a></p></article>
+        </div>
+      </section>
+
+      <section id="notes" class="overview resource-block" aria-labelledby="notes-title">
+        <header class="overview-heading"><h2 id="notes-title">AI 产品专题笔记</h2></header>
+        <div class="resource-grid">
+          <article><h3>上下文与采样</h3><p>Token 预算要留给系统指令、当轮输入和输出。Brief 保留不能丢的约束，摘要承接历史。采样参数按模型能力和任务风险调整，以盲评核对质量。</p></article>
+          <article><h3>结构化输出与边界</h3><p>传统规则负责硬约束和确定性校验，模型负责解释语境或生成候选。Schema 能检查类型与必填字段，内容事实还要查证据。</p></article>
+          <article><h3>幻觉治理与评测</h3><p>将流式中断、输出不合规、无证据推断分开标注。用固定输入做前后对照，保留来源、错误类别和人工判断，逐轮复评。</p></article>
+        </div>
+      </section>
 
       <section id="contact" class="case-header contact-section" aria-labelledby="contact-title">
         <h2 id="contact-title">简历与联系方式</h2>
