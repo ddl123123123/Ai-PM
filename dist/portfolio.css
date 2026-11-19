@@ -36,7 +36,8 @@ nav a:hover, .footer a:hover { color: white; }
 .ghost { border-color: #b89aff3d; background: #ae8afe16; }
 .ghost:hover { background: #ae8afe2a; }
 
-.hero { position: relative; isolation: isolate; display: grid; min-height: 540px; align-items: start; overflow: hidden; text-align: center; background: radial-gradient(ellipse at 50% 68%, #130b27, transparent 64%); }
+.hero { position: relative; isolation: isolate; display: grid; min-height: 540px; align-items: start; overflow: hidden; text-align: center; }
+.hero::before { content: ""; position: absolute; inset: 0; z-index: -2; background: radial-gradient(ellipse at 50% 68%, #130b27, transparent 64%); pointer-events: none; }
 .hero-content { position: relative; z-index: 1; padding-block: clamp(4.15rem, 9vw, 7.25rem) 10rem; }
 .hero-label { display: inline-flex; align-items: center; gap: .54rem; padding: .3rem .75rem; border: 1px solid #a177ff40; border-radius: 2rem; background: #2116338c; color: #d9caef; font-size: .76rem; font-weight: 650; }
 .hero-label span:first-child { color: #caadff; text-shadow: 0 0 10px #b082ff; }
@@ -46,6 +47,12 @@ h1 span { color: #e5d6ff; }
 .lede { max-width: 30rem; margin-inline: auto; font-size: clamp(.92rem, 2vw, 1.05rem); }
 .actions { display: flex; justify-content: center; flex-wrap: wrap; gap: .6rem; margin-top: 1.35rem; }
 .horizon { position: absolute; left: 50%; bottom: -160px; z-index: -1; width: min(850px, 113vw); height: 260px; translate: -50% 0; border-top: 3px solid #c1a6ff; border-radius: 50% 50% 0 0 / 48% 48% 0 0; background: linear-gradient(180deg, #130b27, #08070b 33%); box-shadow: 0 -8px 13px #a98cffb0, 0 -17px 30px #7749faac, 0 -29px 66px #5d2cd77a, inset 0 9px 19px #7e54fa65; mask-image: linear-gradient(90deg, transparent 1%, #000 27% 73%, transparent 99%); }
+
+@media screen and (prefers-reduced-motion: no-preference) {
+  .hero::before { transform: translateY(calc(var(--hero-scroll, 0px) * .28)); }
+  .hero .horizon { transform: translateY(calc(var(--hero-scroll, 0px) * .16)); }
+  .hero h1 { transform: translateY(calc(var(--hero-scroll, 0px) * -.10)); }
+}
 
 .about { padding-block: 3rem 5rem; text-align: center; }
 .eyebrow { color: var(--accent); font-size: .78rem; font-weight: 720; letter-spacing: .07em; }
