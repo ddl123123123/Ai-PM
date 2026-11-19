@@ -6,4 +6,4 @@
 - 高德案例依据用户提供的 PDF。个人照片取自第 2 页，案例图像摘自第 5、13、14、20、24、25 页。
 - Arivo 依据线上演示站与 [arivo-web 仓库](https://github.com/ddl123123123/arivo-web) 整理，注明本地模拟与待验证内容。
 
-在浏览器打开入口文件即可预览。本地也可运行 `python -m http.server --directory dist 4173`。Sites 托管配置位于 `.openai/hosting.json`。
+本地请使用 HTTP 服务预览交付工具。可运行 `python -m http.server --directory dist 4173`。Sites 托管配置位于 `.openai/hosting.json`。

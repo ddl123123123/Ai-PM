@@ -8,6 +8,7 @@
   <title>李彤彤 · 产品作品集</title>
   <link rel="stylesheet" href="portfolio.css">
   <script src="interactions.js" defer></script>
+  <script src="delivery.mjs" type="module"></script>
 </head>
 <body id="top">
   <a class="skip" href="#main">跳到正文</a>
@@ -97,6 +98,7 @@
             <p class="eyebrow">ORAE · 个人项目 · 已上线</p>
             <h2 id="orae-title">从一张牌到一次解读</h2>
             <p>为初次抽牌的用户设计网页体验。牌义可以直接查阅，AI 解读把用户的问题和抽到的牌联系起来。</p>
+            <dl class="contribution"><div><dt>我负责</dt><dd>个人项目，覆盖 AI 解读与关系管理的产品规则、网页交互。</dd></div><div><dt>交付</dt><dd>关系记忆由用户确认，按原话核验证据，按关系隔离上下文。</dd></div><div><dt>证据</dt><dd><a href="#ai-pm-solution">来源校验与关系设计稿</a> · <a href="#ai-pm-result">流式中断回归</a></dd></div></dl>
             <div class="case-links"><a class="button light" href="https://tarot.anois.site/" target="_blank" rel="noopener">体验线上 Demo</a><a class="button ghost" href="#ai-pm">项目分析</a><a class="button ghost" href="#pde">交互展示</a></div>
           </div>
           <figure class="case-preview orae-preview">
@@ -209,6 +211,7 @@
             <p class="eyebrow">高德地图 · 体验设计与原型</p>
             <h2 id="amap-title">附近与推荐体验设计</h2>
             <p>围绕周末探店和差旅找店，把内容推荐、地图位置和商家信息接到同一条决策路径。</p>
+            <dl class="contribution"><div><dt>我负责</dt><dd>附近与推荐的体验重构和信息架构。</dd></div><div><dt>交付</dt><dd>用户行为分群，高保真原型与地图、列表四态联动。</dd></div><div><dt>证据</dt><dd><a href="assets/amap-research.webp" target="_blank" rel="noopener">262 人问卷分群研究样本</a> · <a href="#amap-pde-demo">四态原型</a></dd></div></dl>
             <div class="case-links"><a class="button ghost" href="#amap-ai-pm">项目分析</a><a class="button ghost" href="#amap-pde">交互展示</a></div>
           </div>
           <figure class="case-preview">
@@ -322,6 +325,7 @@
             <p class="eyebrow">Arivo · 视频团队工具 · 本地数据演示</p>
             <h2 id="arivo-title">让生成任务能追踪，让审片意见能定位</h2>
             <p>创作者提交生成任务，编辑接手结果，审阅人用时间点标注意见。失败任务保留参数，可从详情重新提交。</p>
+            <dl class="contribution"><div><dt>个人交付</dt><dd>基于审片场景，与 Codex 共同迭代本作品集中的意见整理流程与验收约束。</dd></div><div><dt>交付</dt><dd>版本与时间点校验、异常隔离、人工确认与 CSV 导出。</dd></div><div><dt>证据</dt><dd><a href="#review-workflow">用原始演示样例运行</a> · <a href="#prd-acceptance">验收记录</a></dd></div></dl>
             <div class="case-links"><a class="button light" href="https://arivo-studio-demo.anois-zhao208786.chatgpt.site/#/screens" target="_blank" rel="noopener">打开演示索引</a><a class="button ghost" href="#arivo-ai-pm">项目分析</a><a class="button ghost" href="#arivo-pde">交互展示</a></div>
           </div>
           <figure class="case-preview">
@@ -353,7 +357,7 @@
           <div class="chapters">
             <section class="chapter case-page" id="arivo-ai-pm-overview" aria-labelledby="arivo-ai-pm-overview-title">
               <h4 id="arivo-ai-pm-overview-title">01 · 项目概览</h4>
-              <p>给视频制作团队一个可追踪的生成与审片空间，让创作者、编辑和审阅人沿同一任务和版本交接。</p><dl class="success-metrics"><div><dt>周期与职责</dt><dd>演示仓库留有 2026.11 的迭代记录，起止待补。案例覆盖生成任务与审片链路的原型和前端演示，个人分工待补。</dd></div><div><dt>项目类型与底座</dt><dd>0→1 演示。React / Vite，浏览器数据与生成状态模拟。</dd></div><div><dt>核心产出</dt><dd>生成与参考素材面板、任务时间线、失败恢复、审片和版本意见。</dd></div><div><dt>前置证据</dt><dd>1 条可复现的素材读取超时演示任务。脚本通过率、模型时延和成本待实测。</dd></div></dl>
+              <p>给视频制作团队一个可追踪的生成与审片空间，让创作者、编辑和审阅人沿同一任务和版本交接。</p><dl class="success-metrics"><div><dt>周期与职责</dt><dd>演示仓库留有 2026.11 的迭代记录，起止待补。案例覆盖生成任务与审片链路的原型和前端演示，原演示项目的个人分工待确认。本作品集新增的审片清单整理器有独立交付和验收记录。</dd></div><div><dt>项目类型与底座</dt><dd>0→1 演示。React / Vite，浏览器数据与生成状态模拟。</dd></div><div><dt>核心产出</dt><dd>生成与参考素材面板、任务时间线、失败恢复、审片和版本意见。</dd></div><div><dt>前置证据</dt><dd>1 条可复现的素材读取超时演示任务。脚本通过率、模型时延和成本待实测。</dd></div></dl>
             </section>
             <section class="chapter case-page" id="arivo-ai-pm-problem" aria-labelledby="arivo-ai-pm-problem-title">
               <h4 id="arivo-ai-pm-problem-title">02 · 背景与用户痛点</h4>
@@ -440,8 +444,103 @@
         </section>
       </article>
 
+      <section id="delivery" class="overview resource-block" aria-labelledby="delivery-title">
+        <header class="overview-heading"><h2 id="delivery-title">交付与验收</h2></header>
+
+        <article id="vibe-coding" class="case-page">
+          <h3>从静态案例到可操作作品集</h3>
+          <div class="table-scroll comparison-matrix" role="region" aria-label="Codex 协作迭代记录" tabindex="0">
+            <table><thead><tr><th scope="col">阶段</th><th scope="col">可核对的记录</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">给 Codex 的约束</th><td>保留原作品集站点、黑紫视觉和每个案例的章节。竞品和迭代用横向对照表，首页与入口用「项目分析」「交互展示」等名称。增加能操作的动画或状态切换。</td></tr>
+                <tr><th scope="row">模型初版</th><td>七章案例与原型图已完成，抽牌、地图和审片主要用静态图片呈现。<a href="https://github.com/ddl123123123/Ai-PM/commit/5f09e7fa2f5c808f28f74898c1d9ad69135f284b">初版提交</a></td></tr>
+                <tr><th scope="row">我指出的问题</th><td>我要求在截图之外提供可实际操作的演示，也要求将竞品按维度与产品并列，并把入口从岗位缩写改成读者能理解的名称。</td></tr>
+                <tr><th scope="row">Codex 修改与验收</th><td>新增翻牌、地图四态和审片状态演示，调整对照矩阵与入口。三组按钮状态逻辑、锚点和图片通过检查，随后推到 GitHub 并部署。<a href="https://github.com/ddl123123123/Ai-PM/commit/3d2682adaccebc46a1bf88934b5b333238e768fa">修订与交付提交</a></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article id="review-prd" class="case-page">
+          <h3>简版 PRD · Arivo 审片意见整理</h3>
+          <p>审阅人给出带时间点的意见，编辑需要拿到对应版本的待改清单。首版从有版本、时间点和处理状态的评论开始，输出保留原文与行号的 CSV。</p>
+          <ol class="case-flow"><li><strong>输入</strong><span>版本、时间点、来源状态、意见原文</span></li><li><strong>程序校验</strong><span>检查缺项，隔离重复，归档已处理项</span></li><li><strong>人工复核</strong><span>逐条检查版本与时间点并确认</span></li><li><strong>交付</strong><span>导出确认项，保留原文行号</span></li></ol>
+          <div class="table-scroll comparison-matrix" role="region" aria-label="审片整理交付契约" tabindex="0">
+            <table><thead><tr><th scope="col">对齐项</th><th scope="col">交付约定</th></tr></thead>
+            <tbody><tr><th scope="row">数据契约</th><td>版本和时间缺失时进入待核对。重复行不参与导出，已处理意见只回看。保留原评论。</td></tr>
+            <tr><th scope="row">人机边界</th><td>规则解析可核实字段。自由文本可先用下方模板整理，之后进入同一校验和人工确认流程。</td></tr>
+            <tr><th scope="row">验收口径</th><td>有效待确认能整理，缺项可定位到行，未确认不导出。耗时对照用同一输入，自动侧计入人工复核。</td></tr>
+            <tr><th scope="row">发布范围</th><td>作品集内的浏览器工具。真实团队试点和 Arivo 产品内集成是后续验证项。</td></tr></tbody></table>
+          </div>
+
+          <details class="delivery-details" id="review-prompt">
+            <summary>可复用提示模板</summary>
+            <pre class="case-code"><code>你是审片助理。把下面的意见整理成可校验的候选行。
+输入：视频版本、时间点、来源状态、意见原文。
+输出：每行 v版本 | MM:SS | 待确认/待修改/已处理 | 意见原文。
+规则：只用输入里明示的字段。保留原文，不合并跨版本意见。
+缺少版本、时间或来源状态时，保留缺项，交给程序拦截和人工核对。
+发给编辑之前须经过程序校验和逐条人工确认。
+审片意见：{{粘贴本次意见}}</code></pre>
+          </details>
+        </article>
+
+        <article id="review-workflow" class="case-page">
+          <h3>试用审片清单工作流</h3>
+          <p>预置三条来自 Arivo 演示站版本对比页的原始意见，含两条已处理旧版意见和一条待确认当前版意见。输入与计时在当前浏览器页面处理。<a href="https://arivo-studio-demo.anois-zhao208786.chatgpt.site/#/reviews/review-1/compare" target="_blank" rel="noopener">查看演示来源</a></p>
+          <template id="review-fixture">v3 | 00:08 | 已处理 | 转场略快，建议多留半秒。
+v3 | 00:19 | 已处理 | 片尾字幕安全区需调整。
+v4 | 00:12 | 待确认 | 检查人物动作与字幕是否同步。</template>
+          <form data-review-form class="delivery-form">
+            <label for="review-input">输入审片意见，每行一条</label>
+            <textarea id="review-input" rows="5" maxlength="12000" required aria-describedby="review-format" placeholder="v4 | 00:12 | 待确认 | 核对字幕同步"></textarea>
+            <p id="review-format" class="evidence-source">格式为「版本 | 时间点 | 原状态 | 原文」。状态可填「待确认」「待修改」或「已处理」。</p>
+            <div class="case-links">
+              <button type="button" class="button ghost" data-load-example>载入原始示例</button>
+              <button type="button" class="button ghost" data-manual-start>开始手工计时</button>
+              <button type="submit" class="button light">自动整理</button>
+              <button type="button" class="button ghost" data-review-download disabled>导出已确认项</button>
+            </div>
+            <p data-review-status role="status"></p>
+            <div data-review-output></div>
+            <p data-review-timing role="status">先固定同一份输入，再记录两种整理方式。</p>
+            <ol data-review-runs aria-label="本页耗时对照"></ol>
+          </form>
+          <p class="evidence-source">手工侧从开始整理到复核结束，自动侧从点击整理到确认并导出。用同一输入各做至少三轮，交替先后顺序。这里的历史只记录当前页面实际采集的配对耗时。</p>
+          <details class="delivery-details">
+            <summary>查看三轮程序计时与实测范围</summary>
+            <p>固定为上方 3 条源数据。开发机 Node v24.22.1 预热后每轮重复 1,000 次，表中是已确认输入的解析与生成 CSV 文本的单次平均耗时。浏览器渲染、下载和人工确认不计入，耗时差须以端到端配对试用为准。</p>
+            <div class="table-scroll comparison-matrix" role="region" aria-label="审片流程耗时表" tabindex="0"><table><thead><tr><th scope="col">轮次</th><th scope="col">程序处理</th><th scope="col">手工整理与复核</th><th scope="col">自动整理与复核</th></tr></thead><tbody><tr><th scope="row">第 1 轮</th><td>0.0051 ms / 次</td><td>待采集</td><td>待采集</td></tr><tr><th scope="row">第 2 轮</th><td>0.0060 ms / 次</td><td>待采集</td><td>待采集</td></tr><tr><th scope="row">第 3 轮</th><td>0.0060 ms / 次</td><td>待采集</td><td>待采集</td></tr></tbody></table></div>
+          </details>
+        </article>
+
+        <article id="knowledge-demo" class="case-page">
+          <h3>知识检索与引用原型</h3>
+          <p>用两篇示例资料验证「先按角色过滤，再检索并给出来源」的交互。试搜 <strong>v4</strong>，切换访客和项目成员。角色切换与资料为前端模拟，真实权限需在服务端执行。</p>
+          <form data-knowledge-form class="delivery-form">
+            <label for="knowledge-role">模拟身份</label>
+            <select id="knowledge-role" name="role"><option>访客</option><option>项目成员</option></select>
+            <label for="knowledge-query">检索关键词</label>
+            <input id="knowledge-query" name="query" value="v4" required>
+            <button type="submit" class="button light">检索资料</button>
+            <div data-knowledge-output role="status"></div>
+          </form>
+        </article>
+
+        <article id="prd-acceptance" class="case-page">
+          <h3>验收记录</h3>
+          <div class="table-scroll comparison-matrix" role="region" aria-label="工作流验收记录" tabindex="0">
+            <table><thead><tr><th scope="col">场景</th><th scope="col">实际检查</th><th scope="col">范围</th></tr></thead>
+            <tbody><tr><th scope="row">Arivo 原始示例</th><td>识别 3 条有效记录，过滤 2 条已处理记录，仅在确认后导出剩下 1 条。</td><td>程序样例验收</td></tr>
+            <tr><th scope="row">异常与安全导出</th><td>缺版本与非法时间可定位原文行，重复双方均隔离，未确认项不导出，防止评论被表格软件当公式执行。</td><td>程序样例验收</td></tr>
+            <tr><th scope="row">引用与模拟角色</th><td>同一关键词 v4，访客无匹配，项目成员能得到一条带引用结果。</td><td>本地示例资料</td></tr>
+            <tr><th scope="row">使用结果</th><td>页面可记录手工与自动加复核耗时。本人多轮基线、真实团队采用情况待采集。</td><td>指标未出</td></tr></tbody></table>
+          </div>
+        </article>
+      </section>
+
       <section id="demos" class="overview resource-block" aria-labelledby="demos-title">
-        <header class="overview-heading"><h2 id="demos-title">项目展示</h2></header>
+        <header class="overview-heading"><h2 id="demos-title">项目展示</h2><a class="text-link" href="#delivery">查看交付与验收</a></header>
         <div class="resource-grid">
           <article><h3>ORAE</h3><p><a href="#pde-demo">站内翻牌动效</a><br><a href="https://tarot.anois.site/" target="_blank" rel="noopener">在线抽牌与关系管理</a><br><a href="assets/orae-relationships.webp" target="_blank" rel="noopener">关系管理设计稿</a><br><a href="#comparison">同题解读与失败样例</a></p></article>
           <article><h3>高德地图</h3><p><a href="#amap-pde-demo">站内四态切换</a><br><a href="assets/amap-wireframes.webp" target="_blank" rel="noopener">线框原型</a><br><a href="assets/amap-states.webp" target="_blank" rel="noopener">地图与列表四态</a><br><a href="assets/amap-research.webp" target="_blank" rel="noopener">调研原稿</a></p></article>

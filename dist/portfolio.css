@@ -313,3 +313,23 @@ figcaption { margin-top: .45rem; color: var(--muted); font-size: .81rem; }
   .demo-controls { display: none !important; }
   .comparison-matrix table { min-width: 0; }
 }
+
+.contribution { display: grid; gap: .35rem; width: 100%; margin: 0; padding: .7rem .82rem; border: 1px solid #ae8afe33; border-radius: .5rem; background: #0e0a16; }
+.contribution > div { display: grid; grid-template-columns: 4.3rem minmax(0, 1fr); gap: .45rem; }
+.contribution dt { color: var(--accent); font-weight: 650; font-size: .83rem; }
+.contribution dd { margin: 0; color: var(--text); font-size: .87rem; }
+.contribution a, .delivery-form a { color: var(--accent); }
+.delivery-details { margin-top: .9rem; }
+.delivery-details summary { cursor: pointer; color: var(--accent); font-weight: 650; }
+.delivery-form { display: grid; gap: .6rem; max-width: 54rem; margin-top: 1rem; }
+.delivery-form :is(input:not([type="checkbox"]), textarea, select) { padding: .58rem .68rem; border: 1px solid #77608f; border-radius: .45rem; background: var(--base); color: var(--text); font: inherit; }
+.delivery-form textarea { resize: vertical; }
+.delivery-form button { cursor: pointer; font-family: inherit; }
+.delivery-form button:disabled { cursor: default; opacity: .45; }
+.delivery-form :is(button, input, textarea, select):focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.delivery-form > .button { justify-self: start; }
+.delivery-form > :is(p, ol):empty { display: none; }
+.review-output-list { margin: .15rem 0; padding-inline-start: 1.1rem; }
+.review-output-list label { display: flex; align-items: baseline; gap: .45rem; }
+.review-output-list li + li { margin-top: .3rem; }
+.review-issue { color: #efbd9c; }
