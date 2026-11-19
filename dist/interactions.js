@@ -140,3 +140,48 @@ if (tarot) {
 
   deal()
 }
+
+for (const sample of document.querySelectorAll('[data-motion-sample]')) {
+  const toggle = sample.querySelector('[data-motion-toggle]')
+  toggle.addEventListener('click', () => {
+    const active = toggle.getAttribute('aria-pressed') !== 'true'
+    toggle.setAttribute('aria-pressed', String(active))
+    sample.classList.toggle('is-active', active)
+  })
+}
+
+const viewer = document.querySelector('.image-viewer')
+if (viewer?.showModal) {
+  const image = viewer.querySelector('img')
+  const title = viewer.querySelector('h2')
+  const viewport = viewer.querySelector('.image-viewer-body')
+  const zoom = viewer.querySelector('[data-viewer-zoom]')
+
+  function setZoom(active) {
+    viewer.classList.toggle('is-zoomed', active)
+    zoom.setAttribute('aria-pressed', String(active))
+    zoom.textContent = active ? '适应窗口' : '放大'
+  }
+
+  document.addEventListener('click', event => {
+    const link = event.target.closest('[data-image-preview]')
+    if (!link || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+    event.preventDefault()
+
+    const caption = link.querySelector('img')?.alt || link.textContent.trim() || '图片预览'
+    title.textContent = caption
+    image.alt = caption
+    image.src = link.href
+    setZoom(false)
+    viewer.showModal()
+    viewport.scrollTo(0, 0)
+  })
+
+  zoom.addEventListener('click', () => {
+    setZoom(!viewer.classList.contains('is-zoomed'))
+    viewport.scrollTo(0, 0)
+  })
+  viewer.addEventListener('click', event => {
+    if (event.target === viewer) viewer.close()
+  })
+}
