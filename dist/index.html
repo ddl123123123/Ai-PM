@@ -13,57 +13,75 @@
   <header class="masthead">
     <div class="shell header-inner">
       <a class="brand" href="#top"><span aria-hidden="true">✦</span> 李彤彤 <small>作品集</small></a>
-      <nav aria-label="作品集导航"><a href="#projects">项目</a><a href="#ai-pm">AI-PM</a><a href="#pde">PDE</a><a href="#contact">联系</a></nav>
-      <a class="button header-cta" href="#about">关于我</a>
+      <nav aria-label="作品集导航"><a href="#about">关于</a><a href="#experience">实践</a><a href="#showcase">演示</a><a href="#projects">案例</a><a href="#contact">联系</a></nav>
     </div>
   </header>
 
   <main id="main">
     <section class="hero" aria-labelledby="title">
       <div class="shell hero-content">
-        <p class="hero-label"><span aria-hidden="true">✦</span> AI-PM <span class="separator">/</span> Product Design Engineer</p>
-        <h1 id="title">从产品判断<br>到<span>可用的体验</span></h1>
-        <p class="lede">李彤彤的产品作品集。记录如何定义用户问题、设计交互，以及把想法做到可以体验和验证。</p>
-        <div class="actions"><a class="button light" href="#projects">浏览项目</a><a class="button ghost" href="https://tarot.anois.site/" target="_blank" rel="noopener">体验 ORAE</a></div>
+        <div class="hero-intro">
+          <p class="hero-label">AI 产品 · 产品设计工程</p>
+          <h1 id="title">你好，我是 <span>李彤彤</span></h1>
+          <p class="lede">我关注 AI 能在哪一步真正帮助用户，也关注这个判断怎样落实到界面、交互和可运行的原型。</p>
+          <p class="hero-summary">作品集记录了三类实践：评估 ORAE 的 AI 解读、设计高德地图的附近探索体验，以及把 Arivo 的生成任务和团队审片串进同一个工作流。</p>
+          <div class="actions"><a class="button light" href="#showcase">体验 Demo</a><a class="button ghost" href="#projects">浏览项目</a></div>
+        </div>
+        <figure class="hero-preview">
+          <div class="preview-media">
+            <img class="preview-map" src="assets/amap-cover.webp" width="1100" height="724" alt="高德地图附近与推荐原型">
+            <img class="preview-phone" src="assets/pick.jpg" width="390" height="844" alt="ORAE 扇形手牌交互">
+          </div>
+          <figcaption>高德地图交互原型与 ORAE 网页抽牌</figcaption>
+        </figure>
       </div>
       <div class="horizon" aria-hidden="true"></div>
     </section>
 
-    <section id="about" class="shell about" aria-labelledby="about-title">
-      <p class="eyebrow">关于我</p>
-      <h2 id="about-title">我关注用户怎么做决定，<br class="desktop-break">也关注界面怎么帮他们迈出下一步。</h2>
-      <p>从 AI 解读是否值得生成，到地图上怎样看懂附近有什么，再到一次抽牌怎样在浏览器里顺畅完成。</p>
+    <section id="about" class="shell overview" aria-labelledby="about-title">
+      <header class="overview-heading">
+        <h2 id="about-title">专业方向</h2>
+        <p>从用户任务出发，给出能用原型和实际证据检验的产品判断。</p>
+      </header>
+      <div class="overview-grid">
+        <article class="overview-panel"><h3>AI-PM · 用证据做决策</h3><p>界定用户痛点与 AI 的使用范围，用规则或搜索作为对照。评估覆盖任务完成率、质量、时延和成本，并记录如何用反馈、Session 和日志继续排查。</p><a class="text-link" href="#ai-pm">阅读 ORAE 决策链</a></article>
+        <article class="overview-panel"><h3>PDE · 把交互做到能运行</h3><p>用原型明确页面状态和容错，再把触屏操作、动画、响应式布局与异常恢复纳入实现和验收。</p><a class="text-link" href="#pde">阅读抽牌实现</a></article>
+      </div>
     </section>
 
-    <section id="projects" class="shell projects" aria-labelledby="projects-title">
-      <div class="project-stage">
-        <div class="arc" aria-hidden="true">
-          <img class="arc-one" src="assets/result.jpg" width="390" height="844" alt="">
-          <img class="arc-two" src="assets/amap-detail.webp" width="1500" height="923" alt="">
-          <img class="arc-three" src="assets/world.jpg" width="480" height="823" alt="">
-          <img class="arc-four" src="assets/amap-states.webp" width="1500" height="1119" alt="">
-          <img class="arc-five" src="assets/pick.jpg" width="390" height="844" alt="">
-          <img class="arc-six" src="assets/amap-recommend.webp" width="1500" height="985" alt="">
-        </div>
-        <div class="center stage-copy">
-          <p class="eyebrow">项目</p>
-          <h2 id="projects-title">精选作品</h2>
-          <p>AI 解读、地图探索与视频团队协作。</p>
-        </div>
+    <section id="experience" class="shell overview" aria-labelledby="experience-title">
+      <header class="overview-heading"><h2 id="experience-title">项目实践</h2></header>
+      <ol class="practice-list">
+        <li><a href="#orae"><strong>ORAE</strong><span>个人项目 · 已上线</span></a><p>设计和实现扇面选牌到解读的流程，以同题对照检查 AI 回答是否值得保留。</p></li>
+        <li><a href="#amap"><strong>高德地图附近与推荐</strong><span>体验设计 · 研究与原型</span></a><p>根据问卷、访谈和走查梳理找店断点，用地图与列表联动的四态设计回应定位和比较需求。</p></li>
+        <li><a href="#arivo"><strong>Arivo</strong><span>视频团队工具 · 交互演示</span></a><p>把生成状态、失败重试和时间点审片做进浏览器，演示团队交接流程。</p></li>
+      </ol>
+    </section>
+
+    <section id="showcase" class="shell overview" aria-labelledby="showcase-title">
+      <header class="overview-heading"><h2 id="showcase-title">在线演示与原型</h2></header>
+      <div class="showcase-list">
+        <article class="showcase-item"><div><h3>ORAE · 网页抽牌</h3><p>从扇面选牌、翻面落位，到读牌与流式解读。</p></div><a class="button light" href="https://tarot.anois.site/" target="_blank" rel="noopener">打开 ORAE</a></article>
+        <article class="showcase-item"><div><h3>高德地图 · 四态交互</h3><p>查看全屏内容、半屏联动、全图和单店聚焦的设计原稿。</p></div><a class="button ghost" href="assets/amap-states.webp" target="_blank" rel="noopener">查看原型</a></article>
+        <article class="showcase-item"><div><h3>Arivo · 任务恢复</h3><p>在模拟的素材读取超时案例中，查看错误原因并用原参数重试。</p></div><a class="button ghost" href="https://arivo-studio-demo.anois-zhao208786.chatgpt.site/#/tasks/72f0c241" target="_blank" rel="noopener">打开失败任务</a></article>
       </div>
+    </section>
+
+    <section id="projects" class="shell overview" aria-labelledby="projects-title">
+      <header class="overview-heading"><h2 id="projects-title">精选案例</h2></header>
       <div class="project-grid">
-        <a class="project-card" href="#orae">
-          <div class="project-image orae-cover" aria-hidden="true"><img src="assets/card-back.jpg" width="560" height="960" alt=""><img src="assets/world.jpg" width="480" height="823" alt=""></div>
-          <div class="project-content"><p class="eyebrow">AI-PM / PDE</p><h3>ORAE 塔罗解读体验</h3><p>评估 AI 解读的价值，设计并实现从抽牌到读牌的网页体验。</p><span class="text-link">阅读案例 <span aria-hidden="true">↗</span></span></div>
-        </a>
-        <a class="project-card" href="#amap">
-          <div class="project-image"><img src="assets/amap-cover.webp" width="1100" height="724" alt=""></div>
-          <div class="project-content"><p class="eyebrow">AI-PM / PDE</p><h3>高德地图附近与推荐</h3><p>从跨 App 找店的断点出发，重设计内容推荐、地图联动和商家详情。</p><span class="text-link">阅读案例 <span aria-hidden="true">↗</span></span></div>
-        </a>
-        <a class="project-card" href="#arivo">
-          <div class="project-image arivo-cover" aria-hidden="true"><div class="video"><span>▶</span><i></i></div><div class="tracks"><i></i><i></i><i></i></div><div class="tracks second"><i></i><i></i></div></div>
-          <div class="project-content"><p class="eyebrow">AI-PM / PDE</p><h3>Arivo 视频生成团队管理</h3><p>串联生成任务、失败恢复和版本审片。</p><span class="text-link">查看项目 <span aria-hidden="true">↗</span></span></div>
-        </a>
+        <article class="project-card">
+          <a class="project-image orae-cover" href="#orae" aria-label="阅读 ORAE 案例"><img src="assets/card-back.jpg" width="560" height="960" alt=""><img src="assets/world.jpg" width="480" height="823" alt=""></a>
+          <div class="project-content"><h3><a href="#orae">ORAE 塔罗解读体验</a></h3><p>从 AI 解读价值的同题对照，到选牌、翻牌和失败恢复的实现。</p><div class="project-jumps"><a class="text-link" href="#ai-pm" aria-label="阅读 ORAE 的 AI-PM 决策链">AI-PM</a><a class="text-link" href="#pde" aria-label="阅读 ORAE 的 PDE 章节">PDE</a></div></div>
+        </article>
+        <article class="project-card">
+          <a class="project-image" href="#amap" aria-label="阅读高德地图案例"><img src="assets/amap-cover.webp" width="1100" height="724" alt=""></a>
+          <div class="project-content"><h3><a href="#amap">高德地图附近与推荐</a></h3><p>从跨 App 找店的断点出发，重设计内容推荐、地图联动和商家详情。</p><div class="project-jumps"><a class="text-link" href="#amap-ai-pm" aria-label="阅读高德地图的 AI-PM 决策链">AI-PM</a><a class="text-link" href="#amap-pde" aria-label="阅读高德地图的 PDE 章节">PDE</a></div></div>
+        </article>
+        <article class="project-card">
+          <a class="project-image arivo-cover" href="#arivo" aria-label="阅读 Arivo 案例"><div class="video" aria-hidden="true"><span>▶</span><i></i></div><div class="tracks" aria-hidden="true"><i></i><i></i><i></i></div><div class="tracks second" aria-hidden="true"><i></i><i></i></div></a>
+          <div class="project-content"><h3><a href="#arivo">Arivo 视频生成团队管理</a></h3><p>串联生成队列、失败任务恢复和带时间点的版本审片。</p><div class="project-jumps"><a class="text-link" href="#arivo-ai-pm" aria-label="阅读 Arivo 的 AI-PM 决策链">AI-PM</a><a class="text-link" href="#arivo-pde" aria-label="阅读 Arivo 的 PDE 章节">PDE</a></div></div>
+        </article>
       </div>
     </section>
 
