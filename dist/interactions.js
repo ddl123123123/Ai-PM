@@ -4,6 +4,7 @@ for (const demo of document.querySelectorAll('[data-demo]')) {
   const status = demo.querySelector('[data-demo-status]')
 
   controls.forEach((control, index) => {
+    control.disabled = false
     control.addEventListener('click', () => {
       if (control.getAttribute('aria-pressed') === 'true') return
 

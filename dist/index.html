@@ -48,6 +48,19 @@
         <article><h3>AI 产品能力</h3><ul><li>Prompt 工程体系设计</li><li>Schema 结构化输出</li><li>采样参数策略</li><li>上下文 / Token 管理</li><li>幻觉校验</li><li>评测集搭建</li><li>Agent 流程编排</li><li>多模态视频 / 图像生成</li></ul></article>
         <article><h3>通用产品能力</h3><ul><li>用户调研</li><li>需求拆解</li><li>原型设计</li><li>漏斗分析</li><li>A/B 实验</li><li>B 端 SaaS 流程设计</li></ul></article>
       </div>
+      <section class="profile-tools" aria-labelledby="tools-title">
+        <h3 id="tools-title">设计与开发工具</h3>
+        <ul class="tool-grid">
+          <li><a href="#demos"><img src="assets/tools/figma.png" width="72" height="72" alt="" loading="lazy"><div><strong>Figma</strong><span>交互原型</span></div></a></li>
+          <li><div class="tool-face"><img src="assets/tools/sketch.png" width="72" height="72" alt="" loading="lazy"><div><strong>Sketch</strong><span>界面设计</span></div></div></li>
+          <li><a href="#vibe-coding"><span class="tool-mark terminal" aria-hidden="true">&gt;_</span><div><strong>Codex</strong><span>交互实现</span></div></a></li>
+          <li><div class="tool-face"><span class="tool-mark photoshop" aria-hidden="true">Ps</span><div><strong>Photoshop</strong><span>图像处理</span></div></div></li>
+          <li><div class="tool-face"><span class="tool-mark illustrator" aria-hidden="true">Ai</span><div><strong>Illustrator</strong><span>视觉表达</span></div></div></li>
+          <li><div class="tool-face"><span class="tool-mark after-effects" aria-hidden="true">Ae</span><div><strong>After Effects</strong><span>交互动效</span></div></div></li>
+          <li><div class="tool-face"><img src="assets/tools/blender.png" width="72" height="72" alt="" loading="lazy"><div><strong>Blender</strong><span>三维原型</span></div></div></li>
+          <li><div class="tool-face"><img src="assets/tools/cinema4d.png" width="72" height="72" alt="" loading="lazy"><div><strong>Cinema 4D</strong><span>三维设计</span></div></div></li>
+        </ul>
+      </section>
     </section>
 
     <section id="experience" class="shell overview" aria-labelledby="experience-title">
@@ -120,6 +133,12 @@
             <h3 id="orae-evidence">一个问题，两种回答</h3>
             <div class="evidence-pair"><div><strong>固定牌义</strong><p>世界逆位提示「事情尚未收尾」。</p></div><div><strong>线上 AI 摘录</strong><p>针对同一个跳槽问题，回答给出「偏‘否’的倾向」。</p></div></div>
             <p class="evidence-source">来源为一次线上走查。读者是否认为 AI 更有帮助，仍需盲评。<a href="#comparison">查看完整对照</a>。</p>
+            <section id="orae-proof" class="data-evidence" data-demo aria-labelledby="orae-proof-title">
+          <h4 id="orae-proof-title">查看 ORAE 的验证证据</h4>
+          <div class="demo-controls" role="group" aria-label="查看 ORAE 的验证证据步骤"><button type="button" data-demo-step aria-pressed="true" aria-controls="orae-proof-0">同题观察</button><button type="button" data-demo-step aria-pressed="false" aria-controls="orae-proof-1">异常处理</button><button type="button" data-demo-step aria-pressed="false" aria-controls="orae-proof-2">操作复验</button></div>
+          <p class="sr-only" role="status" data-demo-status></p>
+          <div class="data-panel" id="orae-proof-0"><div class="data-number"><strong>1</strong><span>条线上样例</span></div><div><h4>同题观察</h4><p>同一跳槽问题下，对比世界逆位的固定牌义和生成解读。</p><a class="text-link" href="#comparison">查看同题对照</a></div></div><div class="data-panel" id="orae-proof-1" hidden><div class="data-number"><strong>502</strong><span>上游回归场景</span></div><div><h4>异常处理</h4><p>流式解读收到上游异常时，验证错误反馈与重试。</p><a class="text-link" href="#ai-pm-result">查看回归记录</a></div></div><div class="data-panel" id="orae-proof-2" hidden><div class="data-number"><strong>2</strong><span>个按钮边缘</span></div><div><h4>操作复验</h4><p>Android 模拟器复验按钮左、右两端均可一次响应。</p><a class="text-link" href="#ai-pm-result">查看操作复验</a></div></div>
+        </section>
           </section>
         </div>
         <section id="ai-pm" class="case-track" aria-labelledby="orae-pm-title">
@@ -229,13 +248,36 @@
               <li><strong>比较</strong><span>查看距离、评分与详情</span></li>
             </ol>
           </section>
-          <section class="case-evidence" aria-labelledby="amap-evidence">
-            <h3 id="amap-evidence">262 份问卷中的两类行为</h3>
-            <div class="survey-bars">
-              <div><label for="survey-explore">美学漫游型 <strong>124 人 · 47.3%</strong></label><meter id="survey-explore" min="0" max="262" value="124">124 / 262</meter></div>
-              <div><label for="survey-efficient">效率目标型 <strong>65 人 · 24.8%</strong></label><meter id="survey-efficient" min="0" max="262" value="65">65 / 262</meter></div>
+          <section class="case-evidence data-chart" aria-labelledby="amap-evidence" data-demo>
+            <h3 id="amap-evidence">262 份问卷的行为分群</h3>
+            <div class="data-layout">
+              <div class="survey-choices" role="group" aria-label="点击查看各类用户的设计启示">
+                <button type="button" class="survey-choice" data-demo-step aria-pressed="true" aria-controls="survey-profile-0" disabled>
+                  <span>美学漫游型</span><strong>124 人 · 47.3%</strong>
+                  <span class="survey-track" aria-hidden="true"><span style="--bar-share:47.3%"></span></span>
+                </button>
+                <button type="button" class="survey-choice" data-demo-step aria-pressed="false" aria-controls="survey-profile-1" disabled>
+                  <span>效率目标型</span><strong>65 人 · 24.8%</strong>
+                  <span class="survey-track" aria-hidden="true"><span style="--bar-share:24.8%"></span></span>
+                </button>
+                <button type="button" class="survey-choice" data-demo-step aria-pressed="false" aria-controls="survey-profile-2" disabled>
+                  <span>社交验证型</span><strong>59 人 · 22.5%</strong>
+                  <span class="survey-track" aria-hidden="true"><span style="--bar-share:22.5%"></span></span>
+                </button>
+                <button type="button" class="survey-choice" data-demo-step aria-pressed="false" aria-controls="survey-profile-3" disabled>
+                  <span>掌控观察型</span><strong>14 人 · 5.3%</strong>
+                  <span class="survey-track" aria-hidden="true"><span style="--bar-share:5.3%"></span></span>
+                </button>
+              </div>
+              <div class="data-details">
+                <div id="survey-profile-0" class="data-panel"><div class="data-number"><strong>124</strong><span>人 · 47.3%</span></div><div><h4>美学漫游型</h4><p>高探索、高审美。为推荐内容增加主题与氛围，让用户从图片和场景中发现想去的地点。</p></div></div>
+                <div id="survey-profile-1" class="data-panel" hidden><div class="data-number"><strong>65</strong><span>人 · 24.8%</span></div><div><h4>效率目标型</h4><p>高效率、高掌控。在地图与列表中前置距离、位置和评分，帮助用户快速比较。</p></div></div>
+                <div id="survey-profile-2" class="data-panel" hidden><div class="data-number"><strong>59</strong><span>人 · 22.5%</span></div><div><h4>社交验证型</h4><p>偏好安静浏览。设计上可优先提供可信的评价入口，再用原型验证此类用户的实际选择。</p></div></div>
+                <div id="survey-profile-3" class="data-panel" hidden><div class="data-number"><strong>14</strong><span>人 · 5.3%</span></div><div><h4>掌控观察型</h4><p>关注口碑与决策掌控。设计上可保留商家详情和筛选入口，让用户自己核对口碑与条件。</p></div></div>
+              </div>
             </div>
-            <p class="evidence-source">分母为原稿问卷行为分群的 262 人。此处展示其中两类。<a href="assets/amap-research.webp" target="_blank" rel="noopener">查看调研原稿</a>。</p>
+            <p class="sr-only" role="status" data-demo-status></p>
+            <p class="evidence-source">点击分群查看设计启示。比例沿用原稿四舍五入口径，分组样本用于研究分析。<a href="assets/amap-research.webp" target="_blank" rel="noopener">查看调研原稿</a>。</p>
           </section>
         </div>
         <section id="amap-ai-pm" class="case-track" aria-labelledby="amap-pm-title">
@@ -529,6 +571,12 @@ v4 | 00:12 | 待确认 | 检查人物动作与字幕是否同步。</template>
 
         <article id="prd-acceptance" class="case-page">
           <h3>验收记录</h3>
+          <section id="review-proof" class="data-evidence" data-demo aria-labelledby="review-proof-title">
+          <h4 id="review-proof-title">审片样例逐步验收</h4>
+          <div class="demo-controls" role="group" aria-label="审片样例逐步验收步骤"><button type="button" data-demo-step aria-pressed="true" aria-controls="review-proof-0">载入原始意见</button><button type="button" data-demo-step aria-pressed="false" aria-controls="review-proof-1">过滤已处理</button><button type="button" data-demo-step aria-pressed="false" aria-controls="review-proof-2">确认后导出</button></div>
+          <p class="sr-only" role="status" data-demo-status></p>
+          <div class="data-panel" id="review-proof-0"><div class="data-number"><strong>3</strong><span>条示例</span></div><div><h4>载入原始意见</h4><p>来自 Arivo 演示站的三条审片意见，保留原版本与时间点。</p><a class="text-link" href="#review-workflow">打开示例</a></div></div><div class="data-panel" id="review-proof-1" hidden><div class="data-number"><strong>2</strong><span>条旧版意见</span></div><div><h4>过滤已处理</h4><p>两条 v3 意见已经处理，留作回看。</p><a class="text-link" href="#review-workflow">查看过滤规则</a></div></div><div class="data-panel" id="review-proof-2" hidden><div class="data-number"><strong>1</strong><span>条待确认</span></div><div><h4>确认后导出</h4><p>v4 的字幕同步意见通过人工确认后进入 CSV。</p><a class="text-link" href="#review-workflow">校验并导出</a></div></div>
+        </section>
           <div class="table-scroll comparison-matrix" role="region" aria-label="工作流验收记录" tabindex="0">
             <table><thead><tr><th scope="col">场景</th><th scope="col">实际检查</th><th scope="col">范围</th></tr></thead>
             <tbody><tr><th scope="row">Arivo 原始示例</th><td>识别 3 条有效记录，过滤 2 条已处理记录，仅在确认后导出剩下 1 条。</td><td>程序样例验收</td></tr>

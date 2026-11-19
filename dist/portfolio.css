@@ -164,15 +164,9 @@ a.text-link:hover, .project-card:hover .text-link { text-decoration: underline; 
 .case-flow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .65rem; margin: .95rem 0 0; padding: 0; list-style: none; }
 .case-flow li { display: grid; align-content: start; gap: .24rem; padding: .65rem .75rem; border-inline-start: 2px solid var(--accent); background: var(--base); }
 .case-flow li span { color: var(--muted); font-size: .85rem; }
-.evidence-pair, .survey-bars { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem; margin-top: .9rem; }
-.evidence-pair > div, .survey-bars > div { padding: .74rem; border-radius: .45rem; background: var(--base); }
+.evidence-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem; margin-top: .9rem; }
+.evidence-pair > div { padding: .74rem; border-radius: .45rem; background: var(--base); }
 .evidence-pair p { margin-top: .18rem; }
-.survey-bars label { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .25rem .6rem; }
-.survey-bars strong { color: var(--accent); }
-.survey-bars meter { display: block; width: 100%; height: .7rem; margin-block: .55rem .18rem; appearance: none; background: var(--line); border-radius: .3rem; }
-.survey-bars meter::-webkit-meter-bar { background: var(--line); border: 0; }
-.survey-bars meter::-webkit-meter-optimum-value { background: var(--accent-bar); border-radius: .3rem; }
-.survey-bars meter::-moz-meter-bar { background: var(--accent-bar); border-radius: .3rem; }
 .evidence-source { margin-top: .7rem; font-size: .85rem; }
 .evidence-source a { color: var(--accent); }
 
@@ -263,7 +257,7 @@ figcaption { margin-top: .45rem; color: var(--muted); font-size: .81rem; }
   .profile-intro, .profile-skills, .resource-grid { grid-template-columns: 1fr; }
   .profile-portrait { width: min(9rem, 100%); justify-self: start; }
   .case-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .evidence-pair, .survey-bars { grid-template-columns: 1fr; }
+  .evidence-pair { grid-template-columns: 1fr; }
   .hero-content { padding-top: 4rem; }
   .about { padding-block: 2rem 3rem; }
   .arc-two { left: 14%; }
@@ -469,4 +463,52 @@ figcaption { margin-top: .45rem; color: var(--muted); font-size: .81rem; }
   .project-card.is-selected .project-image::after { animation: none; }
   .project-cta { transition: color .2s ease, background-color .2s ease, border-color .2s ease; }
   .project-select:active::after { transform: translateY(3%) scale(1.03); }
+}
+
+.profile-tools { margin-top: .85rem; padding: clamp(.9rem, 3vw, 1.35rem); border: 1px solid var(--line); border-radius: .78rem; background: var(--surface); }
+.tool-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .6rem; padding: 0; margin: .8rem 0 0; list-style: none; }
+.tool-grid > li { min-width: 0; }
+.tool-grid > li > :is(a, .tool-face) { height: 100%; display: flex; align-items: center; gap: .55rem; padding: .55rem; border: 1px solid var(--line); border-radius: .55rem; background: var(--base); text-decoration: none; }
+.tool-grid > li > a:hover { border-color: var(--accent); }
+.tool-grid > li > :is(a, .tool-face) > div { min-width: 0; display: grid; overflow-wrap: anywhere; font-size: .82rem; }
+.tool-grid > li > :is(a, .tool-face) > div > span { color: var(--muted); font-size: .75rem; }
+.tool-grid img, .tool-mark { flex: 0 0 2rem; width: 2rem; height: 2rem; object-fit: contain; }
+.tool-mark { display: grid; place-items: center; border-radius: .4rem; font: 700 .87rem ui-monospace, monospace; }
+.tool-mark.terminal { background: #33264f; color: #e8d6ff; }
+.tool-mark.photoshop { background: #162f53; color: #8ad5ff; }
+.tool-mark.illustrator { background: #472510; color: #ffc174; }
+.tool-mark.after-effects { background: #27254e; color: #c8b7ff; }
+
+.data-layout { display: grid; align-items: stretch; gap: .75rem; grid-template-columns: 1fr 1fr; margin-top: .78rem; }
+.survey-choices { display: grid; gap: .45rem; }
+.survey-choice { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: .3rem .5rem; padding: .48rem .58rem; border: 1px solid var(--line); border-radius: .42rem; background: var(--base); color: var(--text); font: inherit; text-align: left; }
+.survey-choice:not(:disabled) { cursor: pointer; }
+.survey-choice:not(:disabled):is(:hover, [aria-pressed="true"]) { border-color: var(--accent); }
+.survey-choice:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+.survey-choice strong { color: var(--accent); font-size: .8rem; }
+.survey-track { grid-column: 1 / -1; height: .28rem; background: var(--line); border-radius: 1rem; }
+.survey-track span { display: block; height: 100%; width: var(--bar-share); border-radius: inherit; background: var(--accent-bar); }
+.survey-choice[aria-pressed="true"] .survey-track span { background: var(--text-highlight); }
+.data-details { display: grid; align-content: center; padding: .6rem; border-radius: .5rem; background: var(--base); }
+.data-panel { display: grid; grid-template-columns: minmax(5.8rem, auto) 1fr; align-items: center; gap: .7rem; padding: .65rem; }
+.data-panel[hidden] { display: none; }
+.data-panel :is(h4, p) { margin: 0; }
+.data-panel p { margin-top: .28rem; font-size: .87rem; }
+.data-number { display: grid; color: var(--accent); white-space: nowrap; }
+.data-number strong { font-size: clamp(1.7rem, 5vw, 2.8rem); line-height: 1.06; font-variant-numeric: tabular-nums; }
+.data-number span { font-size: .8rem; }
+.data-evidence { margin-top: 1rem; padding: .8rem; border: 1px solid var(--line); border-radius: .58rem; background: var(--base); }
+
+@media screen and (prefers-reduced-motion: no-preference) {
+  .tool-grid a img, .tool-grid a .tool-mark { transition: transform .2s ease; }
+  .tool-grid a:is(:hover, :focus-visible) :is(img, .tool-mark) { transform: translateY(-3px) rotate(-5deg); }
+  .survey-track span { transition: background-color .22s ease; }
+  [data-ready] .data-panel:not([hidden]) .data-number { animation: reveal-demo .32s ease-out both; }
+  [data-ready] .data-panel:not([hidden]) .data-number + div { animation: reveal-demo .36s ease-out both; }
+}
+@media screen and (max-width: 48rem) {
+  .tool-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media screen and (max-width: 34rem) {
+  .data-layout { grid-template-columns: 1fr; }
 }
