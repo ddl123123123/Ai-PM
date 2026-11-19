@@ -75,3 +75,68 @@ if (projects) {
     }
   })
 }
+
+const tarot = document.querySelector('[data-tarot-play]')
+if (tarot) {
+  const choices = Array.from(tarot.querySelectorAll('[data-tarot-card]'))
+  const status = tarot.querySelector('[data-tarot-status]')
+  const actions = tarot.querySelector('[data-tarot-actions]')
+  const read = tarot.querySelector('[data-tarot-read]')
+  const reading = tarot.querySelector('[data-tarot-reading]')
+  const cards = [
+    { title: '愚者', image: 'orae-demo-fool.webp', meaning: '愚者象征起点与尝试。可以先做一次小实验，为下一步收集信息。', question: '有什么低成本的第一步可以先试？' },
+    { title: '星星', image: 'orae-demo-star.webp', meaning: '星星关联希望与恢复。把注意力放回手边能够积累的资源。', question: '眼下有哪些已经可以依靠的支持？' },
+    { title: '世界', image: 'world.jpg', meaning: '世界关联阶段完成与整合。回看已经走过的过程，再决定如何开启下一个阶段。', question: '有哪些经验值得整理下来，带进下一阶段？' },
+  ]
+  let hand = []
+  let selection = null
+
+  function deal() {
+    hand = cards.slice()
+    for (let index = hand.length - 1; index > 0; index--) {
+      const other = Math.floor(Math.random() * (index + 1))
+      const card = hand[index]
+      hand[index] = hand[other]
+      hand[other] = card
+    }
+    selection = null
+    choices.forEach((choice, index) => {
+      choice.disabled = false
+      choice.setAttribute('aria-pressed', 'false')
+      choice.querySelector('.tarot-face').src = `assets/${hand[index].image}`
+    })
+    reading.hidden = true
+    actions.hidden = true
+    read.setAttribute('aria-expanded', 'false')
+    status.textContent = '选择一张牌开始。'
+  }
+
+  choices.forEach((choice, index) => {
+    choice.addEventListener('click', () => {
+      if (selection) return
+      selection = hand[index]
+      choice.setAttribute('aria-pressed', 'true')
+      choices.forEach(button => { button.disabled = true })
+      status.textContent = `你翻开了「${selection.title}」。`
+      actions.hidden = false
+      read.focus({ preventScroll: true })
+    })
+  })
+
+  read.addEventListener('click', () => {
+    if (!selection) return
+    tarot.querySelector('[data-tarot-title]').textContent = selection.title
+    tarot.querySelector('[data-tarot-meaning]').textContent = selection.meaning
+    tarot.querySelector('[data-tarot-question]').textContent = selection.question
+    read.setAttribute('aria-expanded', 'true')
+    reading.hidden = false
+    reading.focus()
+  })
+
+  tarot.querySelector('[data-tarot-reset]').addEventListener('click', () => {
+    deal()
+    choices[0].focus({ preventScroll: true })
+  })
+
+  deal()
+}

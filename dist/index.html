@@ -169,7 +169,51 @@
             </section>
             <section class="chapter case-page" id="ai-pm-solution" aria-labelledby="ai-pm-solution-title">
               <h4 id="ai-pm-solution-title">05 · 方案设计</h4>
-              <ol class="case-flow"><li><strong>用户 · 填写与确认</strong><span>选择关系、问牌或手动记事</span></li><li><strong>模型 · 生成与提取</strong><span>流式解读，从用户原话提取候选</span></li><li><strong>程序 · 校验</strong><span>原文片段校验、Schema 与来源门禁</span></li><li><strong>用户 · 回看与撤销</strong><span>确认后允许召回，可暂停或删除</span></li></ol><figure class="case-figure case-doc-figure"><a href="assets/orae-relationships.webp" target="_blank" rel="noopener"><img loading="lazy" src="assets/orae-relationships.webp" width="960" height="960" alt="ORAE 关系管理设计稿展示关系总览、记事和问过的牌"></a><figcaption>ORAE 关系管理设计稿，页面内人数与条数为设计示例。</figcaption></figure><div class="table-scroll" role="region" aria-label="ORAE AI 方案与约束" tabindex="0"><table><thead><tr><th scope="col">策略</th><th scope="col">已实现的产品规则</th><th scope="col">为何这样做</th></tr></thead><tbody><tr><th scope="row">上下文与 Token</th><td>当前关系隔离、最近 20 件事件入窗口，档案独立保留。</td><td>控制上下文，让跨关系信息在进入模型前被隔离。</td></tr><tr><th scope="row">Prompt 与参数</th><td>按任务组装问题、牌位、正逆位等上下文；牌阵推荐默认 temperature 0.4，可配置。</td><td>推荐强调稳定，解读要处理具体语境。双采样模式和 Few-shot 对照待补。</td></tr><tr><th scope="row">Schema 与来源</th><td>候选带证据片段，来源由服务端写入；待确认条目不参与召回。</td><td>提取错误会在校验或用户确认阶段被拦截。</td></tr><tr><th scope="row">质检与异常</th><td>模型推断只可留在假设层；上游失败时采用规则推荐或提供重试。</td><td>分开检验接口成功、内容可靠和记忆写入。</td></tr></tbody></table></div><p>权衡过的两种做法是把所有历史都带入和用有限窗口召回。现有方案选择后者，代价是更早的细节不会默认进入当次解读。</p>
+              <p>方案有两条使用路径。一条完成当次问牌，另一条让用户围绕同一段关系记事、回看和继续提问。</p>
+              <div class="orae-solutions">
+                <section class="orae-module">
+                  <div class="orae-module-copy">
+                    <h5>问牌 · 从问题到牌位</h5>
+                    <p>用户可以输入问题，也可以跳过。系统推荐牌阵，用户从扇面选牌，牌落到对应牌位后才揭晓。「继续」在全部牌落位后出现。</p>
+                    <ul><li>有问题时，牌位需要关联这个问题的具体角度。</li><li>牌阵推荐失败时，用户仍可用规则推荐继续抽牌。</li></ul>
+                    <a class="text-link" href="#pde-demo">在站内试一次选牌</a>
+                  </div>
+                  <figure class="orae-phone-figure"><a href="assets/pick.jpg" target="_blank" rel="noopener"><img loading="lazy" src="assets/pick.jpg" width="390" height="844" alt="ORAE 扇面手牌与等待落位的牌位"></a><figcaption>扇面选牌与牌位</figcaption></figure>
+                </section>
+                <section class="orae-module">
+                  <div class="orae-module-copy">
+                    <h5>解读 · 牌义与生成内容分层</h5>
+                    <p>固定牌义可直接回看。AI 结合问题、牌位和正逆位，按牌位逐步输出，再给出总结。解读失败时保留牌面，允许重试。</p>
+                    <dl class="orae-rules"><div><dt>生成输入</dt><dd>问题、牌位、牌名、正逆位和对应牌义。</dd></div><div><dt>参数取舍</dt><dd>牌阵推荐优先稳定，默认 temperature 为 0.4，可配置。</dd></div><div><dt>质量检查</dt><dd>同题对照时核对牌义和问题是否对应，并记录是否把猜测说成结论。</dd></div></dl>
+                  </div>
+                  <figure class="orae-phone-figure"><a href="assets/result.jpg" target="_blank" rel="noopener"><img loading="lazy" src="assets/result.jpg" width="390" height="844" alt="结果页将已抽牌面和流式解读放在一起"></a><figcaption>已揭晓牌面与流式解读</figcaption></figure>
+                </section>
+                <section class="orae-module orae-relationship">
+                  <div class="orae-module-copy">
+                    <h5>关系管理 · 让问牌可以回看</h5>
+                    <p>先选一段关系，再查看它的最近经历、问过的牌与后续记事。这样新问题能接上已确认的背景，用户也可以单独记下真实经历。</p>
+                  </div>
+                  <div class="orae-relationship-grid">
+                    <figure><a href="assets/orae-relation-list.webp" target="_blank" rel="noopener"><img loading="lazy" src="assets/orae-relation-list.webp" width="223" height="813" alt="关系首页设计稿"></a><figcaption><strong>关系首页</strong>找到要记录的关系</figcaption></figure>
+                    <figure><a href="assets/orae-relation-overview.webp" target="_blank" rel="noopener"><img loading="lazy" src="assets/orae-relation-overview.webp" width="223" height="813" alt="关系总览设计稿"></a><figcaption><strong>关系总览</strong>看上次问牌和最近相处</figcaption></figure>
+                    <figure><a href="assets/orae-relation-events.webp" target="_blank" rel="noopener"><img loading="lazy" src="assets/orae-relation-events.webp" width="223" height="813" alt="相处记事时间线设计稿"></a><figcaption><strong>相处记事</strong>按时间记录真实事件</figcaption></figure>
+                    <figure><a href="assets/orae-relation-history.webp" target="_blank" rel="noopener"><img loading="lazy" src="assets/orae-relation-history.webp" width="223" height="813" alt="历史问牌记录设计稿"></a><figcaption><strong>问过的牌</strong>回看原问题、牌面与后续</figcaption></figure>
+                  </div>
+                  <p class="evidence-source">四张独立画面来自同一版关系设计稿。人名和记录量均为设计示例，点击任一画面可放大。</p>
+                </section>
+                <section class="orae-module orae-relationship">
+                  <div class="orae-module-copy">
+                    <h5>记忆治理 · 谁能进入下一次上下文</h5>
+                    <p>模型从用户原话提取候选，程序校验证据和来源，用户确认后才可召回。用户可暂停这段关系的写入和召回，或回看并删除记录。</p>
+                  </div>
+                  <dl class="success-metrics">
+                    <div><dt>证据校验</dt><dd>候选需要带用户原话中的证据片段。待确认条目不参与召回。</dd></div>
+                    <div><dt>来源门禁</dt><dd>服务端写入来源，模型推断只进入可修正的假设层。</dd></div>
+                    <div><dt>关系隔离</dt><dd>按当前关系取数，近期事件最多 20 件。其余事件仍在档案里可回看。</dd></div>
+                    <div><dt>范围取舍</dt><dd>用限定窗口替代全量历史，上下文更可控。更早的细节需在记录中回看。</dd></div>
+                  </dl>
+                </section>
+              </div>
             </section>
             <section class="chapter case-page" id="ai-pm-result" aria-labelledby="ai-pm-result-title">
               <h4 id="ai-pm-result-title">06 · 落地、验证与结果</h4>
@@ -192,16 +236,30 @@
         <section id="pde" class="case-track" aria-labelledby="orae-pde-title">
           <p class="eyebrow">交互展示</p>
           <h3 id="orae-pde-title">设计并实现一次网页抽牌</h3>
-          <section class="interaction-demo demo-phone" id="pde-demo" data-demo aria-labelledby="pde-demo-title">
-            <h4 id="pde-demo-title">体验翻牌动效</h4>
-            <p>点击步骤，查看从待选到读牌的状态变化。</p>
-            <div class="demo-controls" role="group" aria-label="体验翻牌动效步骤"><button type="button" data-demo-step aria-pressed="true" aria-controls="pde-step-1">待选</button><button type="button" data-demo-step aria-pressed="false" aria-controls="pde-step-2">翻面揭晓</button><button type="button" data-demo-step aria-pressed="false" aria-controls="pde-step-3">查看解读</button></div>
-            <p class="sr-only" role="status" data-demo-status></p>
-            <div class="demo-panel" id="pde-step-1"><div class="demo-card-stage" aria-hidden="true"><div class="demo-card"><img class="demo-image" src="assets/card-back.jpg" width="560" height="960" alt="牌背" loading="lazy"><img class="demo-image" src="assets/world.jpg" width="480" height="823" alt="世界牌牌面" loading="lazy"></div></div><div class="demo-copy"><h4>待选</h4><p>先看到牌背，保持牌面未知。</p></div></div><div class="demo-panel" id="pde-step-2" hidden><div class="demo-card-stage" aria-hidden="true"><div class="demo-card is-face"><img class="demo-image" src="assets/card-back.jpg" width="560" height="960" alt="牌背" loading="lazy"><img class="demo-image" src="assets/world.jpg" width="480" height="823" alt="世界牌牌面" loading="lazy"></div></div><div class="demo-copy"><h4>翻面揭晓</h4><p>牌从背面旋转到正面，揭晓后进入读牌。</p></div></div><div class="demo-panel" id="pde-step-3" hidden><img class="demo-image" src="assets/result.jpg" width="390" height="844" alt="ORAE 流式解读结果页" loading="lazy"><div class="demo-copy"><h4>查看解读</h4><p>结果页把抽到的牌和流式解读放在一起。</p></div></div>
-          </section>
           <div class="chapters">
             <section class="chapter">
-              <h4>1. 成品预览</h4><p><a href="https://tarot.anois.site/" target="_blank" rel="noopener">打开线上 Demo</a>，可按洗牌、切牌、扇面选牌、翻面落位、继续读牌的顺序体验。此处展示抽牌交互、动画状态与结果衔接。</p><div class="pde-frames">
+              <h4>1. 成品预览</h4>
+              <section class="interaction-demo tarot-play" id="pde-demo" data-tarot-play aria-labelledby="pde-demo-title">
+                <h5 id="pde-demo-title">站内试玩 · 抽一张牌</h5>
+                <p>选一张牌，翻开后读一段示例解读。此试玩使用本地牌面与示例文本。</p>
+                <div class="tarot-hand" role="group" aria-label="抽牌区">
+                  <button type="button" class="tarot-choice" data-tarot-card aria-label="选择左边的牌" aria-pressed="false" disabled><span class="tarot-flipper"><img src="assets/card-back.jpg" width="560" height="960" alt="" loading="lazy"><img class="tarot-face" src="assets/world.jpg" width="480" height="823" alt=""></span></button>
+                  <button type="button" class="tarot-choice" data-tarot-card aria-label="选择中间的牌" aria-pressed="false" disabled><span class="tarot-flipper"><img src="assets/card-back.jpg" width="560" height="960" alt="" loading="lazy"><img class="tarot-face" src="assets/world.jpg" width="480" height="823" alt=""></span></button>
+                  <button type="button" class="tarot-choice" data-tarot-card aria-label="选择右边的牌" aria-pressed="false" disabled><span class="tarot-flipper"><img src="assets/card-back.jpg" width="560" height="960" alt="" loading="lazy"><img class="tarot-face" src="assets/world.jpg" width="480" height="823" alt=""></span></button>
+                </div>
+                <p data-tarot-status role="status">选择一张牌开始。</p>
+                <div class="case-links" data-tarot-actions hidden>
+                  <button type="button" class="button light" data-tarot-read aria-controls="tarot-demo-reading" aria-expanded="false">查看示例解读</button>
+                  <button type="button" class="button ghost" data-tarot-reset>再抽一次</button>
+                </div>
+                <div id="tarot-demo-reading" class="tarot-reading" data-tarot-reading tabindex="-1" hidden>
+                  <h5 data-tarot-title></h5>
+                  <p data-tarot-meaning></p>
+                  <p><strong>留给自己的问题</strong> <span data-tarot-question></span></p>
+                </div>
+              </section>
+              <p><a href="https://tarot.anois.site/" target="_blank" rel="noopener">打开 ORAE 完整版</a>，可体验洗牌、切牌、多牌位与流式解读。下面是线上版本的三个关键帧。</p>
+              <div class="pde-frames">
               <figure><img loading="lazy" src="assets/pick.jpg" width="390" height="844" alt="ORAE 扇形手牌和待填牌位"><figcaption>扇面选牌</figcaption></figure>
               <figure><img loading="lazy" src="assets/selected.jpg" width="390" height="844" alt="牌面已落位，继续按钮出现"><figcaption>翻面落位</figcaption></figure>
               <figure><img loading="lazy" src="assets/result.jpg" width="390" height="844" alt="牌带与流式综合解读"><figcaption>读牌与解读</figcaption></figure>
@@ -213,7 +271,7 @@
               <h4>3. 设计到代码</h4><p><strong>待选 → 已选 → 飞行与翻面 → 落位揭晓 → 继续。</strong>实现分别记录已抽出、飞行中和已落位的牌。选牌时测量目标牌位，飞行中拦截再次选牌，保留 350 毫秒的点击间隔。全部落位后才显示「继续」。牌详情从原位放大，关闭时回到原位。</p>
             </section>
             <section class="chapter">
-              <h4>4. 真实使用条件</h4><p>390px Chromium 已走通至流式解读，1440px 桌面首页保持单列居中。窄屏的三个实拍关键帧见成品预览。完整键盘抽牌路径待验证，扇面当前缺少 Tab 焦点入口。现有版本始终播放完整动效，减少动效下的揭晓方案待补。</p>
+              <h4>4. 真实使用条件</h4><p>390px Chromium 已走通至流式解读，1440px 桌面首页保持单列居中。窄屏的三个实拍关键帧见成品预览。站内试玩可用键盘抽牌，并适配系统的减少动态效果设置。ORAE 完整版的键盘抽牌路径和减少动效适配仍待验证。</p>
             </section>
             <section class="chapter">
               <h4>5. 验证与打磨</h4><p>Android 用户反馈「继续要点好几次」。复现时文字能响应，胶囊边缘仍处于禁用态。修复在启用状态变化时重新挂载原生点击控件。提交记录显示，模拟器中点两端都可一次响应，QA 清单也补上了边缘点按。</p>
@@ -588,7 +646,7 @@ v4 | 00:12 | 待确认 | 检查人物动作与字幕是否同步。</template>
       <section id="demos" class="overview resource-block" aria-labelledby="demos-title">
         <header class="overview-heading"><h2 id="demos-title">项目展示</h2><a class="text-link" href="#delivery">查看交付与验收</a></header>
         <div class="resource-grid">
-          <article><h3>ORAE</h3><p><a href="#pde-demo">站内翻牌动效</a><br><a href="https://tarot.anois.site/" target="_blank" rel="noopener">在线抽牌与关系管理</a><br><a href="assets/orae-relationships.webp" target="_blank" rel="noopener">关系管理设计稿</a><br><a href="#comparison">同题解读与失败样例</a></p></article>
+          <article><h3>ORAE</h3><p><a href="#pde-demo">站内抽牌试玩</a><br><a href="https://tarot.anois.site/" target="_blank" rel="noopener">在线抽牌与关系管理</a><br><a href="#ai-pm-solution">关系管理分屏设计</a><br><a href="#comparison">同题解读与失败样例</a></p></article>
           <article><h3>高德地图</h3><p><a href="#amap-pde-demo">站内四态切换</a><br><a href="assets/amap-wireframes.webp" target="_blank" rel="noopener">线框原型</a><br><a href="assets/amap-states.webp" target="_blank" rel="noopener">地图与列表四态</a><br><a href="assets/amap-research.webp" target="_blank" rel="noopener">调研原稿</a></p></article>
           <article><h3>Arivo</h3><p><a href="#arivo-pde-demo">站内任务与审片演示</a><br><a href="https://arivo-studio-demo.anois-zhao208786.chatgpt.site/#/screens" target="_blank" rel="noopener">交互演示索引</a><br><a href="https://www.figma.com/design/oiZlD8DxTSVisTWEqwMarI/Arivo-ux-ui%E8%AE%BE%E8%AE%A1?node-id=591-604" target="_blank" rel="noopener">Figma 设计稿</a><br><a href="#arivo-ai-pm-solution">Schema 示例</a></p></article>
         </div>
