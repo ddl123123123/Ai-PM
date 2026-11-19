@@ -549,17 +549,38 @@ figcaption { margin-top: .45rem; color: var(--muted); font-size: .81rem; }
 
 [data-image-preview] img { cursor: zoom-in; }
 .preview-pair > a { min-width: 0; }
-.orae-relation-panel { display: grid; grid-template-columns: minmax(0, 11.5rem) 1fr; gap: .95rem; align-items: start; padding-top: .35rem; }
+.orae-relation-panel { display: grid; grid-template-columns: minmax(0, 9rem) minmax(0, 1fr); gap: 1rem; align-items: start; padding-top: .5rem; }
 .orae-relation-panel[hidden], .motion-pattern[hidden] { display: none; }
-.orae-relation-panel img { width: 100%; max-height: 29rem; object-fit: contain; }
+.orae-relation-panel img { width: 100%; height: auto; border-radius: .4rem; }
+.orae-relation-overview figure { padding: .5rem; border: 1px solid var(--line); border-radius: .65rem; background: var(--base); }
+.orae-relation-overview figcaption { text-align: center; }
+.orae-relation-content h6 { margin: 0; font-size: 1.12rem; }
+.orae-relation-content > p { margin: .35rem 0 .8rem; }
+.orae-relation-details { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .55rem; }
+.orae-relation-details figure { margin: 0; padding: .55rem; border: 1px solid var(--line); border-radius: .65rem; background: var(--base); }
+.orae-relation-details figure > a { display: grid; place-items: center; min-height: 10.5rem; border-radius: .45rem; background: var(--surface); }
+.orae-relation-details img { max-height: 10.5rem; object-fit: contain; }
+.orae-relation-panel figcaption { margin-top: .5rem; }
 .orae-relation-panel figcaption strong { font-size: .95rem; }
+.orae-relation-panel figcaption p { margin: .25rem 0 0; }
+@media (max-width: 60rem) {
+  .orae-relation-details { grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr)); }
+}
+@media (max-width: 33rem) {
+  .orae-relation-panel { grid-template-columns: minmax(0, 1fr); }
+  .orae-relation-overview { justify-self: center; width: min(100%, 9rem); }
+}
 .motion-pattern { margin-top: .65rem; padding: .75rem; border: 1px solid var(--line); border-radius: .65rem; background: var(--base); }
 .motion-pattern h5, #pde-demo-title { font-size: 1.08rem; }
 .motion-pattern > p { margin-top: .35rem; }
 .motion-pattern button { font-family: inherit; }
-.fan-preview { position: relative; display: grid; place-items: center; min-height: 16rem; overflow: hidden; }
-.fan-preview img { position: absolute; width: min(26%, 6.1rem); height: auto; border: 1px solid var(--accent); border-radius: .45rem; transform-origin: center 94%; transform: rotate(calc(var(--fan-step) * 2deg)); }
-.motion-pattern.is-active .fan-preview img { transform: translateX(calc(var(--fan-step) * 1.4rem)) rotate(calc(var(--fan-step) * 13deg)); }
+.fan-preview { position: relative; isolation: isolate; min-height: 15rem; margin: .65rem 0; overflow: hidden; border: 1px solid var(--line); border-radius: .65rem; background: radial-gradient(ellipse at 50% 72%, var(--hero-shade), transparent 69%), var(--surface); cursor: grab; touch-action: pan-y pinch-zoom; user-select: none; }
+.fan-preview.is-dragging { cursor: grabbing; }
+.fan-cards { position: absolute; inset: 0; pointer-events: none; }
+.fan-cards img { position: absolute; top: 2.2rem; left: 50%; width: clamp(3.75rem, 22%, 5.25rem); height: auto; translate: -50% 0; border: 1px solid var(--line); border-radius: .25rem; box-shadow: 0 .35rem .75rem #07050aa0; }
+.fan-controls { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: .45rem; }
+.fan-controls output { min-width: 8rem; color: var(--text); text-align: center; font-size: .9rem; }
+.fan-controls button[aria-disabled="true"] { opacity: .45; }
 .lift-preview { display: grid; min-height: 18rem; place-items: center; }
 .lift-preview button { padding: 0; width: 6.4rem; border: 1px solid var(--line); border-radius: .5rem; overflow: hidden; background: var(--surface); cursor: zoom-in; }
 .lift-preview button:focus-visible { outline: 2px solid var(--focus); outline-offset: 4px; }
@@ -577,7 +598,6 @@ body:has(.image-viewer[open]) { overflow: hidden; }
 
 @media screen and (prefers-reduced-motion: no-preference) {
   [data-ready] .orae-relation-panel:not([hidden]) { animation: reveal-demo .27s ease-out; }
-  .fan-preview img { transition: transform .44s cubic-bezier(.2,.75,.35,1); transition-delay: calc((var(--fan-step) + 2) * 30ms); }
   .lift-preview button { transition: transform .36s ease, box-shadow .36s ease; }
 }
 @media print {

@@ -141,6 +141,119 @@ if (tarot) {
   deal()
 }
 
+const fan = document.querySelector('[data-fan]')
+if (fan) {
+  const position = document.querySelector('[data-fan-position]')
+  const buttons = [...document.querySelectorAll('[data-fan-step]')]
+  const track = fan.querySelector('.fan-cards')
+  const count = Number(fan.getAttribute('aria-valuemax'))
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)')
+  const step = 6.4
+  const cards = Array.from({ length: count }, () => {
+    const card = new Image(560, 960)
+    card.alt = ''
+    card.src = 'assets/card-back.jpg'
+    track.append(card)
+    return card
+  })
+  let phase = Number(fan.getAttribute('aria-valuenow')) - 1
+  let selected = phase
+  let radius = 360
+  let spacing = 40
+  let frame = 0
+  let drag
+  const limit = value => Math.max(0, Math.min(count - 1, value))
+
+  function paint() {
+    cards.forEach((card, index) => {
+      const relative = index - phase
+      const angle = relative * step * Math.PI / 180
+      const lift = Math.max(0, 1 - Math.abs(relative))
+      const distance = radius + lift * 19
+      const x = Math.sin(angle) * distance
+      const y = radius - Math.cos(angle) * distance
+      card.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${relative * step}deg) scale(${1 + lift * .09})`
+      card.style.zIndex = String(Math.round((count - Math.abs(relative)) * 100))
+      card.style.visibility = Math.abs(relative) > 8 ? 'hidden' : ''
+    })
+  }
+
+  function settle(next) {
+    cancelAnimationFrame(frame)
+    selected = limit(Math.round(next))
+    const label = `第 ${selected + 1} 张`
+    position.textContent = `${label} / 共 ${count} 张`
+    fan.setAttribute('aria-valuenow', String(selected + 1))
+    fan.setAttribute('aria-valuetext', `${label}，共 ${count} 张`)
+    for (const button of buttons) {
+      const available = selected + Number(button.dataset.fanStep)
+      button.setAttribute('aria-disabled', String(available !== limit(available)))
+    }
+
+    const start = phase
+    const duration = reducedMotion.matches ? 0 : Math.min(520, 220 + 45 * Math.abs(selected - start))
+    if (!duration || start === selected) {
+      phase = selected
+      paint()
+      return
+    }
+    const began = performance.now()
+    function glide(now) {
+      const progress = Math.min(1, (now - began) / duration)
+      phase = start + (selected - start) * (1 - (1 - progress) ** 3)
+      paint()
+      if (progress < 1) frame = requestAnimationFrame(glide)
+    }
+    frame = requestAnimationFrame(glide)
+  }
+
+  fan.addEventListener('pointerdown', event => {
+    if (!event.isPrimary || event.button !== 0) return
+    cancelAnimationFrame(frame)
+    fan.setPointerCapture(event.pointerId)
+    drag = { id: event.pointerId, startPhase: phase, startX: event.clientX, x: event.clientX, time: event.timeStamp, velocity: 0 }
+    fan.classList.add('is-dragging')
+  })
+  fan.addEventListener('pointermove', event => {
+    if (event.pointerId !== drag?.id) return
+    const elapsed = Math.max(1, event.timeStamp - drag.time)
+    drag.velocity = (event.clientX - drag.x) / elapsed
+    drag.x = event.clientX
+    drag.time = event.timeStamp
+    phase = limit(drag.startPhase + (drag.startX - drag.x) / spacing)
+    paint()
+  })
+  function endDrag(event) {
+    if (event.pointerId !== drag?.id) return
+    const fling = event.type === 'pointerup' && event.timeStamp - drag.time < 90 && !reducedMotion.matches
+    const glide = fling ? Math.max(-3, Math.min(3, -drag.velocity * 135 / spacing)) : 0
+    drag = undefined
+    fan.classList.remove('is-dragging')
+    settle(phase + glide)
+  }
+  for (const event of ['pointerup', 'pointercancel', 'lostpointercapture']) {
+    fan.addEventListener(event, endDrag)
+  }
+
+  fan.addEventListener('keydown', event => {
+    const shift = { ArrowLeft: -1, ArrowDown: -1, ArrowRight: 1, ArrowUp: 1 }[event.key]
+    if (!shift && event.key !== 'Home' && event.key !== 'End') return
+    event.preventDefault()
+    settle(event.key === 'Home' ? 0 : event.key === 'End' ? count - 1 : selected + shift)
+  })
+  for (const button of buttons) {
+    button.addEventListener('click', () => settle(selected + Number(button.dataset.fanStep)))
+  }
+  const resize = new ResizeObserver(([entry]) => {
+    if (!entry.contentRect.width) return
+    radius = Math.min(390, Math.max(210, entry.contentRect.width * .64))
+    spacing = radius * step * Math.PI / 180
+    paint()
+  })
+  resize.observe(fan)
+  paint()
+}
+
 for (const sample of document.querySelectorAll('[data-motion-sample]')) {
   const toggle = sample.querySelector('[data-motion-toggle]')
   toggle.addEventListener('click', () => {
