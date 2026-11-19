@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111019">
+  <meta name="description" content="ORAE 的 AI 产品案例，以同题对照评估情境化塔罗解读。">
+  <title>AI-PM 作品集 · ORAE 案例</title>
+  <link rel="stylesheet" href="portfolio.css">
+</head>
+<body id="top">
+  <a class="skip" href="#main">跳到正文</a>
+  <header class="masthead">
+    <div class="shell header-inner">
+      <a class="brand" href="index.html" aria-label="AI-PM 作品集首页"><span class="brand-mark" aria-hidden="true">✦</span><strong>AI-PM</strong><span class="brand-caption">作品集</span></a>
+      <nav class="case-nav" aria-label="案例导航">
+        <a href="#comparison">同题样例</a>
+        <a href="#evaluation">评估方案</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero shell" aria-labelledby="title">
+      <div class="hero-copy">
+        <p class="eyebrow">ORAE <span aria-hidden="true">/</span> AI 产品案例</p>
+        <h1 id="title">抽到同一张牌，<br><em>AI 能多说什么？</em></h1>
+        <p class="lede">ORAE 将用户的问题与牌面结合，生成综合解读。这个案例追问的是，生成的回答能否比固定牌义更贴近当事人的处境。</p>
+        <div class="actions">
+          <a class="button primary" href="#comparison">看同题样例</a>
+          <a class="button secondary" href="https://tarot.anois.site/" target="_blank" rel="noopener">打开 ORAE</a>
+        </div>
+      </div>
+
+      <div class="hero-art card-art" aria-hidden="true">
+        <div class="orbit orbit-outer"></div><div class="orbit orbit-inner"></div>
+        <span class="art-star star-top">✦</span><span class="art-star star-bottom">✧</span>
+        <img class="hero-card back" src="assets/card-back.jpg" width="560" height="960" alt="">
+        <img class="hero-card face" src="assets/world.jpg" width="480" height="823" alt="">
+        <div class="art-label"><span>THE WORLD</span><span>世界 · 逆位</span></div>
+      </div>
+    </section>
+
+    <div class="shell">
+      <section class="section" id="comparison" aria-labelledby="comparison-title">
+        <div class="section-intro">
+          <p class="eyebrow">同题样例</p>
+          <h2 id="comparison-title">牌义和问题之间，差了哪一步？</h2>
+          <p>待验证的假设是，第一次读牌的人即使理解「事情尚未收尾」，也可能需要帮助，才能把这句话联系到眼下的选择。</p>
+        </div>
+        <div class="specimen">
+          <div class="specimen-heading">
+            <span class="meta">内置示例问题 · 单张牌 · 世界（逆位）</span>
+            <h3>这次跳槽的机会值得抓住吗？</h3>
+          </div>
+          <div class="compare">
+            <article>
+              <h4>固定牌义</h4>
+              <p>「事情尚未收尾」「距目标只差临门一脚」「缺乏完整闭环」。</p>
+              <p class="small">取自 ORAE 的固定牌义数据。</p>
+            </article>
+            <article>
+              <h4>AI 综合解读</h4>
+              <p>「先回答你的问题：这张牌给出的是偏‘否’的倾向……」</p>
+              <p class="small">本次线上体验的开头摘录。完整回答的评估待补。</p>
+            </article>
+          </div>
+          <aside class="specimen-note">
+            <strong>这条样例值得检查什么？</strong>
+            <p>「偏否」回应了问法。还要看整段是否解释了牌义与这次机会的关联，并帮助读者识别可以亲自核实的因素。</p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section split" id="product" aria-labelledby="product-title">
+        <div class="section-intro">
+          <p class="eyebrow">产品设计</p>
+          <h2 id="product-title">把牌阵推荐和综合解读分开</h2>
+          <p>前者帮用户进入抽牌，后者在牌面揭晓之后处理问题与牌义之间的关联。</p>
+        </div>
+        <dl class="line-items">
+          <div><dt>抽牌前 · 推荐</dt><dd>根据问题推荐牌阵，并给出每个牌位的阅读角度。模型调用失败时使用规则推荐，流程可以继续。</dd></div>
+          <div><dt>抽牌后 · 解读</dt><dd>把问题、牌阵、牌面正逆位和牌位角度送入解读。默认按牌位逐张展开，再给出整体总结与建议。</dd></div>
+          <div><dt>出错时 · 恢复</dt><dd>综合解读失败时可以重试，失败的解读流不扣配额。固定牌义可从牌详情独立查看。</dd></div>
+        </dl>
+      </section>
+
+      <section class="section" id="evaluation" aria-labelledby="evaluation-title">
+        <div class="section-intro">
+          <p class="eyebrow">评估方案 · 待执行</p>
+          <h2 id="evaluation-title">先定义什么算贴合，再比较回答</h2>
+          <p>选 5 个问题，固定牌、正逆位和牌位。让读者盲看「固定牌义＋通用反思提示」与「完整 AI 解读」，逐项记录评分理由。</p>
+        </div>
+        <div class="criteria">
+          <article><h3>问题贴合度</h3><p>有没有回应这个人正在权衡的选择？换个问题后，同一句话是否依然通用？</p></article>
+          <article><h3>牌义一致性</h3><p>能否指出观点来自哪张牌、哪个牌位和哪条正逆位含义？</p></article>
+          <article><h3>不确定性</h3><p>有没有区分象征性的解读和可以核实的事实？是否把推测写成了定论？</p></article>
+        </div>
+        <div class="closing">
+          <h3>这组对照要支撑的决定</h3>
+          <p>哪些问题会因加入用户语境而得到更具体的帮助？哪些问题读固定牌义就够？结论等成组对照与用户反馈完成后更新。</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer"><div class="shell footer-inner"><span>AI-PM 作品集 · ORAE 案例</span><a href="#top">回到顶部</a></div></footer>
+</body>
+</html>
