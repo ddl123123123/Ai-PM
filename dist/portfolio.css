@@ -14,9 +14,9 @@ body { margin: 0; background: var(--base); color: var(--text); line-height: 1.65
 a { color: inherit; text-underline-offset: .25em; }
 a:focus-visible { outline: 2px solid #c2a8ff; outline-offset: 4px; }
 img { display: block; max-width: 100%; height: auto; }
-p, h1, h2, h3, h4, figure { margin: 0; }
+p, h1, h2, h3, h4, h5, figure { margin: 0; }
 p { color: var(--muted); }
-h1, h2, h3, h4 { line-height: 1.2; }
+h1, h2, h3, h4, h5 { line-height: 1.2; }
 [id] { scroll-margin-top: 1.5rem; }
 .shell { width: min(1120px, calc(100% - 3.25rem)); margin-inline: auto; }
 .skip { position: absolute; top: .7rem; left: .7rem; z-index: 5; padding: .5rem .8rem; background: white; color: black; transform: translateY(-160%); }
@@ -67,7 +67,7 @@ h2 { font-size: clamp(2rem, 4.6vw, 3.35rem); letter-spacing: -.055em; }
 .arc-four { top: 9%; right: 32%; rotate: 13deg; object-position: center 42%; }
 .arc-five { top: 31%; right: 18%; rotate: 24deg; object-position: center 67%; }
 .arc-six { top: 57%; right: 8%; rotate: 34deg; object-position: 45% center; }
-.project-grid, .solution-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.project-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
 .project-grid { margin-top: 1rem; }
 .project-card { display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--line); border-radius: .82rem; background: var(--surface); text-decoration: none; }
 .project-card:hover { border-color: #8666be; }
@@ -94,18 +94,25 @@ a.text-link:hover, .project-card:hover .text-link { text-decoration: underline; 
 
 .case-header { display: grid; justify-items: start; gap: .8rem; margin-top: clamp(3.5rem, 8vw, 6.4rem); padding: 2rem clamp(1.2rem, 4vw, 2.6rem); border: 1px solid #8e60d650; border-radius: .85rem; background: radial-gradient(ellipse at 92% 0%, #4c228d80, transparent 67%), #140e21; }
 .case-header p:not(.eyebrow) { max-width: 44rem; }
-.case-section { padding: clamp(2rem, 5vw, 3.65rem) 0; border-bottom: 1px solid var(--line); }
-.case-section h3 { margin-top: .48rem; font-size: clamp(1.44rem, 3vw, 2.2rem); letter-spacing: -.04em; }
-.case-intro { max-width: 48rem; margin-top: .7rem; }
-.specimen, .case-note, .research, .solution-grid article { border: 1px solid var(--line); border-radius: .7rem; background: var(--surface); }
+.case-track { padding: clamp(2rem, 5vw, 3.65rem) 0; border-bottom: 1px solid var(--line); }
+.case-track h3 { margin-top: .48rem; font-size: clamp(1.44rem, 3vw, 2.2rem); letter-spacing: -.04em; }
+.case-links { display: flex; flex-wrap: wrap; gap: .55rem; }
+.chapter .case-links { margin-top: .85rem; }
+.chapters { margin-top: 1.55rem; }
+.chapter { padding-block: 1rem; border-top: 1px solid var(--line); }
+.chapter h4 { font-size: 1.04rem; }
+.chapter h5 { font-size: 1rem; }
+.chapter > p { max-width: 54rem; margin-top: .45rem; }
+.chapter strong { color: var(--text); }
+.chapter a:not(.button) { color: #cfb6ff; }
+.specimen, .research { border: 1px solid var(--line); border-radius: .7rem; background: var(--surface); }
 .specimen { margin-top: 1.4rem; overflow: hidden; }
 .specimen-head, .two-cols > div { padding: 1.15rem; }
-.specimen-head h4 { margin-top: .43rem; font-size: 1.18rem; }
+.specimen-head h5 { margin-top: .43rem; font-size: 1.18rem; }
 .two-cols, .figure-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
 .two-cols { gap: 0; border-top: 1px solid var(--line); }
 .two-cols > div + div { border-left: 1px solid var(--line); background: #20152c; }
-.two-cols p, .case-note p, .solution-grid p, .research p { margin-top: .4rem; }
-.case-note { margin-top: 1rem; padding: 1.15rem; }
+.two-cols p, .research p { margin-top: .4rem; }
 .pde-frames { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .8rem; max-width: 48rem; margin: 1.35rem auto 0; }
 .pde-frames figure { padding: .65rem; border: 1px solid var(--line); border-radius: .65rem; background: var(--surface); }
 .pde-frames img { width: 100%; border-radius: .35rem; }
@@ -117,20 +124,18 @@ figcaption { margin-top: .45rem; color: var(--muted); font-size: .81rem; }
 .metric strong { font-size: clamp(2.7rem, 6vw, 4.25rem); line-height: 1; letter-spacing: -.075em; color: #d5c0ff; }
 .metric span { color: var(--muted); font-size: .86rem; margin-top: .35rem; }
 .research a { margin-top: .5rem; }
-.solution-grid { margin-top: 1.25rem; }
-.solution-grid article { padding: 1rem; }
 .case-figure { margin-top: 1rem; }
 .case-figure a { display: block; overflow: hidden; border: 1px solid var(--line); border-radius: .6rem; }
 .case-figure img { width: 100%; }
 .case-figure a:hover { border-color: #9c7ee3; }
-.arivo-section { margin-block: 3.5rem; }
+.contact-section { margin-block: 3.5rem; }
 .footer { display: flex; justify-content: flex-end; align-items: center; gap: 1rem; padding-block: 1.5rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .85rem; }
 .footer span { margin-right: auto; }
 
 @media (max-width: 48rem) {
   .shell { width: calc(100% - 2rem); }
   .hero { min-height: 470px; }
-  .project-grid, .solution-grid { grid-template-columns: 1fr; }
+  .project-grid { grid-template-columns: 1fr; }
   .project-image { aspect-ratio: 2.25; }
   .project-stage { min-height: 250px; }
   .stage-copy { padding-top: 7.2rem; }
@@ -140,7 +145,7 @@ figcaption { margin-top: .45rem; color: var(--muted); font-size: .81rem; }
 @media (max-width: 34rem) {
   .header-inner { min-height: 3.7rem; gap: .55rem; }
   .brand small, .header-cta, .desktop-break { display: none; }
-  nav { gap: .85rem; }
+  nav { gap: clamp(.38rem, 2.25vw, .85rem); }
   .hero-content { padding-top: 4rem; }
   .about { padding-block: 2rem 3rem; }
   .arc-two { left: 14%; }
@@ -162,5 +167,5 @@ figcaption { margin-top: .45rem; color: var(--muted); font-size: .81rem; }
   h1 span { color: black; }
   .project-stage { min-height: auto; }
   .stage-copy { padding: 1rem; }
-  figure, .project-card, .specimen, .case-note { break-inside: avoid; }
+  figure, .project-card, .specimen { break-inside: avoid; }
 }

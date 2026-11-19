@@ -13,7 +13,7 @@
   <header class="masthead">
     <div class="shell header-inner">
       <a class="brand" href="#top"><span aria-hidden="true">✦</span> 李彤彤 <small>作品集</small></a>
-      <nav aria-label="作品集导航"><a href="#projects">项目</a><a href="#ai-pm">AI-PM</a><a href="#pde">PDE</a></nav>
+      <nav aria-label="作品集导航"><a href="#projects">项目</a><a href="#ai-pm">AI-PM</a><a href="#pde">PDE</a><a href="#contact">联系</a></nav>
       <a class="button header-cta" href="#about">关于我</a>
     </div>
   </header>
@@ -24,7 +24,7 @@
         <p class="hero-label"><span aria-hidden="true">✦</span> AI-PM <span class="separator">/</span> Product Design Engineer</p>
         <h1 id="title">从产品判断<br>到<span>可用的体验</span></h1>
         <p class="lede">李彤彤的产品作品集。记录如何定义用户问题、设计交互，以及把想法做到可以体验和验证。</p>
-        <div class="actions"><a class="button light" href="#projects">浏览项目</a><a class="button ghost" href="#ai-pm">探索 AI-PM 与 PDE</a></div>
+        <div class="actions"><a class="button light" href="#projects">浏览项目</a><a class="button ghost" href="https://tarot.anois.site/" target="_blank" rel="noopener">体验 ORAE</a></div>
       </div>
       <div class="horizon" aria-hidden="true"></div>
     </section>
@@ -58,83 +58,186 @@
         </a>
         <a class="project-card" href="#amap">
           <div class="project-image"><img src="assets/amap-cover.webp" width="1100" height="724" alt=""></div>
-          <div class="project-content"><p class="eyebrow">产品判断 / 交互设计</p><h3>高德地图附近与推荐</h3><p>从跨 App 找店的断点出发，重设计内容推荐、地图联动和商家详情。</p><span class="text-link">阅读案例 <span aria-hidden="true">↗</span></span></div>
+          <div class="project-content"><p class="eyebrow">AI-PM / PDE</p><h3>高德地图附近与推荐</h3><p>从跨 App 找店的断点出发，重设计内容推荐、地图联动和商家详情。</p><span class="text-link">阅读案例 <span aria-hidden="true">↗</span></span></div>
         </a>
         <a class="project-card" href="#arivo">
           <div class="project-image arivo-cover" aria-hidden="true"><div class="video"><span>▶</span><i></i></div><div class="tracks"><i></i><i></i><i></i></div><div class="tracks second"><i></i><i></i></div></div>
-          <div class="project-content"><p class="eyebrow">案例资料待补</p><h3>Arivo 视频生成团队管理</h3><p>面向视频生成团队的管理网站。</p><span class="text-link">查看项目 <span aria-hidden="true">↗</span></span></div>
+          <div class="project-content"><p class="eyebrow">AI-PM / PDE</p><h3>Arivo 视频生成团队管理</h3><p>串联生成任务、失败恢复和版本审片。</p><span class="text-link">查看项目 <span aria-hidden="true">↗</span></span></div>
         </a>
       </div>
     </section>
 
     <div class="shell">
-      <div id="orae" class="case-header">
-        <p class="eyebrow">ORAE</p>
-        <h2>从一张牌到一次解读</h2>
-        <a class="button ghost" href="https://tarot.anois.site/" target="_blank" rel="noopener">体验在线 Demo</a>
-      </div>
-      <section id="ai-pm" class="case-section" aria-labelledby="pm-title">
-        <p class="eyebrow">AI-PM · 产品价值与评估</p>
-        <h3 id="pm-title">抽到同一张牌，AI 能多说什么？</h3>
-        <p class="case-intro">待验证的假设是，新手读得懂通用牌义，却不一定能将它和自己的问题联系起来。ORAE 用问题、牌位和正逆位生成解读。牌阵推荐调用失败时走规则推荐，解读失败时可重试，固定牌义仍可从牌详情查看。</p>
-        <div class="specimen" id="comparison">
-          <div class="specimen-head"><p class="eyebrow">同题样例 · 世界逆位</p><h4>这次跳槽的机会值得抓住吗？</h4></div>
-          <div class="two-cols">
-            <div><h4>固定牌义</h4><p>「事情尚未收尾」「距目标只差临门一脚」「缺乏完整闭环」。</p></div>
-            <div><h4>AI 解读摘录</h4><p>「先回答你的问题：这张牌给出的是偏‘否’的倾向……」</p></div>
+      <article id="orae" aria-labelledby="orae-title">
+        <header class="case-header">
+          <p class="eyebrow">ORAE</p>
+          <h2 id="orae-title">从一张牌到一次解读</h2>
+          <div class="case-links"><a class="button light" href="https://tarot.anois.site/" target="_blank" rel="noopener">体验线上 Demo</a><a class="button ghost" href="#ai-pm">AI-PM 五章</a><a class="button ghost" href="#pde">PDE 五章</a></div>
+        </header>
+        <section id="ai-pm" class="case-track" aria-labelledby="orae-pm-title">
+          <p class="eyebrow">AI-PM</p>
+          <h3 id="orae-pm-title">为塔罗新手设计 AI 解读体验</h3>
+          <div class="chapters">
+            <section class="chapter">
+              <h4>1. 用户问题与机会</h4><p>任务场景是「抽完一张牌，试着理解它和我的问题有什么关系」。首个样例用内置问题「这次跳槽的机会值得抓住吗？」。新手能否从通用牌义自行建立关联是待验证的假设，目前的证据来自产品走查。</p>
+            </section>
+            <section class="chapter">
+              <h4>2. 方案选择与 MVP</h4><p>方案 A 是固定牌义加一个通用反思问题，输出稳定且无需生成。方案 B 结合用户问题、牌位和正逆位组织解读，能回应更具体的处境，也要处理错误和过度确信。首轮对照限定为单张牌、一次回答，无需把追问和多牌阵纳入。线上版本另有多牌阵和追问。</p>
+            </section>
+            <section class="chapter">
+              <h4>3. AI 产品设计</h4><p>输入有用户可选填写的问题、牌位、牌名及正逆位。线上结果按牌位流式输出，最后给出整体总结。推荐调用失败时走规则推荐，解读失败时可重试，原牌仍可点开查看固定牌义。待验证的输出结构为「牌意摘要 → 与问题的关联 → 一个反思问题」。</p>
+            </section>
+            <section class="chapter" id="evaluation">
+              <h4>4. 评估与迭代</h4>
+              <div class="specimen" id="comparison">
+                <div class="specimen-head"><p class="eyebrow">同题样例 · 世界逆位</p><h5>这次跳槽的机会值得抓住吗？</h5></div>
+                <div class="two-cols">
+                  <div><h5>固定牌义与引导</h5><p>固定牌义包含「事情尚未收尾」「距目标只差临门一脚」。拟用的通用问题是「目前有哪些事还需要收尾？」。</p></div>
+                  <div><h5>线上 AI 解读摘录</h5><p>「先回答你的问题：这张牌给出的是偏‘否’的倾向……」</p></div>
+                </div>
+              </div>
+              <p>摘录需要检查的问题是，读者会不会把「偏否」理解成求职结论。拟改写为「牌义提醒你留意还没确认的条件。决定之前，哪些职责、资源或发展预期需要和对方核实？」。这是待测写法。完整评估计划用五组同牌、同牌位、同正逆位、同题的配对输出盲评，记录贴合度、牌义一致性和不确定性表达。</p>
+            </section>
+            <section class="chapter">
+              <h4>5. 产品决策</h4><p>当前已有线上生成和一条实际摘录。下一步先补齐配对结果和用户反馈。若生成能帮助读者指出更多可核实的因素，并保持对不确定性的说明，就保留在具体问题场景。若差异有限，优先完善固定牌义引导。决策待评估。</p>
+            </section>
           </div>
-        </div>
-        <div class="case-note" id="evaluation"><h4>下一步评估</h4><p>选 5 个问题，固定牌、牌位和正逆位。让读者盲评「固定牌义＋通用反思提示」和完整 AI 解读，逐项检查问题贴合度、牌义一致性，以及有没有把推测写成定论。上线样例已采集，完整对照与用户反馈待补。</p></div>
-      </section>
+        </section>
 
-      <section id="pde" class="case-section" aria-labelledby="pde-title">
-        <p class="eyebrow">PDE · 交互与实现</p>
-        <h3 id="pde-title">让一张牌从手中飞到牌位</h3>
-        <p class="case-intro">现版用扇形手牌承接滑动、点按和上甩。实现区分「选中」与「落位」，飞行中限制重复选牌，全部落位后才显示「继续」。打开牌详情时，牌从原位置放大，关闭时沿原路放回。</p>
-        <div class="pde-frames">
-          <figure><img loading="lazy" src="assets/pick.jpg" width="390" height="844" alt="ORAE 扇形手牌和空牌位"><figcaption>扇面选牌</figcaption></figure>
-          <figure><img loading="lazy" src="assets/selected.jpg" width="390" height="844" alt="ORAE 翻牌已落位，继续按钮出现"><figcaption>翻面落位</figcaption></figure>
-          <figure><img loading="lazy" src="assets/result.jpg" width="390" height="844" alt="ORAE 牌带与流式综合解读"><figcaption>读牌与解读</figcaption></figure>
-        </div>
-        <div class="case-note"><h4>Android 点击修复</h4><p>根据「继续要点好几次」的反馈，定位到按钮变亮后原生点击区域仍有失效。修复后在模拟器复验，点按钮两端都能一次响应，并把边缘点按加入 QA 清单。</p></div>
-      </section>
+        <section id="pde" class="case-track" aria-labelledby="orae-pde-title">
+          <p class="eyebrow">PDE</p>
+          <h3 id="orae-pde-title">设计并实现一次网页抽牌</h3>
+          <div class="chapters">
+            <section class="chapter">
+              <h4>1. 成品预览</h4><p><a href="https://tarot.anois.site/" target="_blank" rel="noopener">打开线上 Demo</a>，可按洗牌、切牌、扇面选牌、翻面落位、继续读牌的顺序体验。此处展示抽牌交互、动画状态与结果衔接。</p><div class="pde-frames">
+              <figure><img loading="lazy" src="assets/pick.jpg" width="390" height="844" alt="ORAE 扇形手牌和待填牌位"><figcaption>扇面选牌</figcaption></figure>
+              <figure><img loading="lazy" src="assets/selected.jpg" width="390" height="844" alt="牌面已落位，继续按钮出现"><figcaption>翻面落位</figcaption></figure>
+              <figure><img loading="lazy" src="assets/result.jpg" width="390" height="844" alt="牌带与流式综合解读"><figcaption>读牌与解读</figcaption></figure>
+            </div></section>
+            <section class="chapter">
+              <h4>2. 交互与视觉探索</h4><p>早期方案用牌轮浏览，现版用底部扇形手牌承接滑动、点按和上甩。上方保留目标牌位，让牌的去向清楚可见。底部预留操作区，避免翻牌途中发生布局位移。<a href="assets/pick-archive.jpg" target="_blank" rel="noopener">查看早期牌轮画面</a>。</p>
+            </section>
+            <section class="chapter">
+              <h4>3. 设计到代码</h4><p><strong>待选 → 已选 → 飞行与翻面 → 落位揭晓 → 继续。</strong>实现分别记录已抽出、飞行中和已落位的牌。选牌时测量目标牌位，飞行中拦截再次选牌，保留 350 毫秒的点击间隔。全部落位后才显示「继续」。牌详情从原位放大，关闭时回到原位。</p>
+            </section>
+            <section class="chapter">
+              <h4>4. 真实使用条件</h4><p>390px Chromium 已走通至流式解读，1440px 桌面首页保持单列居中。窄屏的三个实拍关键帧见成品预览。完整键盘抽牌路径待验证，扇面当前缺少 Tab 焦点入口。现有版本始终播放完整动效，减少动效下的揭晓方案待补。</p>
+            </section>
+            <section class="chapter">
+              <h4>5. 验证与打磨</h4><p>Android 用户反馈「继续要点好几次」。复现时文字能响应，胶囊边缘仍处于禁用态。修复在启用状态变化时重新挂载原生点击控件。提交记录显示，模拟器中点两端都可一次响应，QA 清单也补上了边缘点按。</p>
+            </section>
+          </div>
+        </section>
+      </article>
 
-      <section id="amap" aria-labelledby="amap-title">
-        <div class="case-header"><p class="eyebrow">高德地图 · 体验设计案例</p><h2 id="amap-title">附近与推荐体验设计</h2><p>让用户在地图里发现想去的地方、看清地理关系，并找到足够的信息做决定。</p></div>
-        <div class="case-section">
-          <p class="eyebrow">产品判断</p>
-          <h3>从跨 App 找店，到在地图内完成判断</h3>
-          <p class="case-intro">案例围绕周末探店和差旅出行展开。结合问卷分群、访谈、现有体验走查和竞品比较，归纳出三个断点：同类推荐过多、详情中的决策信息难扫读、收藏地点与实际行程的空间关系不清楚。</p>
-          <div class="research">
-            <div class="metric"><strong>262</strong><span>问卷行为分群样本</span></div>
-            <div><h4>两类主要行为</h4><p>美学漫游型 124 人，占 47.3%，更关注探索感与审美。效率目标型 65 人，占 24.8%，偏向快速且精准地选出地点。两类需求分别对应更有场景感的内容，以及清楚、可比较的距离和口碑信息。</p><a class="text-link" href="assets/amap-research.webp" target="_blank" rel="noopener">查看原稿问卷与分群 <span aria-hidden="true">↗</span></a></div>
+      <article id="amap" aria-labelledby="amap-title">
+        <header class="case-header">
+          <p class="eyebrow">高德地图 · 体验设计案例</p><h2 id="amap-title">附近与推荐体验设计</h2>
+          <p>让用户在地图里发现想去的地方、看清地理关系，并找到足够的信息做决定。</p>
+          <div class="case-links"><a class="button ghost" href="#amap-ai-pm">AI-PM 五章</a><a class="button ghost" href="#amap-pde">PDE 五章</a></div>
+        </header>
+        <section id="amap-ai-pm" class="case-track" aria-labelledby="amap-pm-title">
+          <p class="eyebrow">AI-PM</p>
+          <h3 id="amap-pm-title">让找店和比较在地图里完成</h3>
+          <div class="chapters">
+            <section class="chapter">
+              <h4>1. 用户问题与机会</h4><p>原稿围绕周末探店和差旅出行做问卷、访谈、走查与竞品比较。主要断点包括同类推荐过多、商家详情中的决策信息难以扫读，以及收藏地点和行程的空间关系不清楚。</p>
+              <div class="research"><div class="metric"><strong>262</strong><span>问卷行为分群样本</span></div><div><h5>两类常见行为</h5><p>美学漫游型 124 人，占 47.3%，关注场景和审美。效率目标型 65 人，占 24.8%，希望快速选出地点。<a href="assets/amap-research.webp" target="_blank" rel="noopener">查看原稿问卷与分群</a>。</p></div></div>
+            </section>
+            <section class="chapter">
+              <h4>2. 方案选择与 MVP</h4><p>原稿提出三项改造。推荐用主题卡和图文让人发现地点，附近用地图与列表双向联动显示距离和位置，详情重组评分、优惠、推荐菜和评价。作为后续 AI 对照，基线采用固定标签与地图筛选，候选方案只加入「按条件比较附近餐饮地点」。先用一个找店任务评估这项增量。</p>
+            </section>
+            <section class="chapter">
+              <h4>3. AI 产品设计</h4><p>以下为后续概念。用户输入如「酒店附近步行可达的晚餐」，系统用地点、步行距离和营业状态等有来源的字段返回候选与理由。字段缺失时标记未知；查询失败时回到地图列表。现有设计稿覆盖推荐、地图联动和详情流程，AI 比较仍处于构想阶段。</p>
+            </section>
+            <section class="chapter">
+              <h4>4. 评估与迭代</h4><p>原稿的走查与研究支持对信息层级和切换成本的判断。后续计划固定一组地点和找店条件，对照地图筛选与候选说明，记录完成任务所需步骤、是否选中符合条件的地点，以及错误事实出现的位置。暂无 AI 对照结果。</p>
+            </section>
+            <section class="chapter">
+              <h4>5. 产品决策</h4><p>现阶段证据支持优先打磨地图与列表联动及商家详情。只有当对照显示候选说明减少筛选步骤且准确呈现营业、距离等信息，再考虑保留 AI 比较。当前交付为研究材料与设计原型。</p>
+            </section>
           </div>
-        </div>
-        <div class="case-section">
-          <p class="eyebrow">设计方案</p>
-          <h3>推荐、附近、详情，各解决一个决策问题</h3>
-          <div class="solution-grid">
-            <article><h4>推荐 · 去哪儿有意思</h4><p>用场景化主题卡和图文内容提供灵感，减少同类内容堆叠。</p></article>
-            <article><h4>附近 · 哪里顺路</h4><p>将列表卡片与地图点位双向联动，把距离、评分和所在位置放在同一个探索过程里。</p></article>
-            <article><h4>详情 · 这家值得去吗</h4><p>重组商家信息，把评分、优惠、推荐菜和评价放到对应区域，支持扫读与进一步比较。</p></article>
-          </div>
-        </div>
-        <div class="case-section">
-          <p class="eyebrow">PDE · 交互原型</p>
-          <h3>地图和列表通过四种状态衔接</h3>
-          <p class="case-intro">全屏内容适合快速浏览，半屏联动帮助定位列表里的地点，全图状态适合查看更大的范围，点击点位后进入单店聚焦。设计稿展示了面板与地图点位的联动逻辑。</p>
-          <figure class="case-figure"><a href="assets/amap-states.webp" target="_blank" rel="noopener" aria-label="放大查看附近地图与列表四级状态"><img loading="lazy" src="assets/amap-states.webp" width="1500" height="1119" alt="高德设计原稿，展示沉浸漫游、空间映射、宏观探索和决策转化四种地图与列表状态"></a><figcaption>附近 Tab · 地图与列表四级状态。点击放大。</figcaption></figure>
-          <div class="figure-grid">
-            <figure class="case-figure"><a href="assets/amap-recommend.webp" target="_blank" rel="noopener" aria-label="放大查看推荐面板原稿"><img loading="lazy" src="assets/amap-recommend.webp" width="1500" height="985" alt="推荐面板的全屏、半屏、全图与单点聚焦原型"></a><figcaption>推荐 Tab · 探索面板状态</figcaption></figure>
-            <figure class="case-figure"><a href="assets/amap-detail.webp" target="_blank" rel="noopener" aria-label="放大查看商家详情原稿"><img loading="lazy" src="assets/amap-detail.webp" width="1500" height="923" alt="商家详情原型，包含优惠、推荐菜和评价等入口"></a><figcaption>商家详情 · 优惠、推荐菜与评价</figcaption></figure>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <section id="arivo" class="case-header arivo-section" aria-labelledby="arivo-title">
-        <p class="eyebrow">Arivo · 案例资料待补</p>
-        <h2 id="arivo-title">视频生成团队管理网站</h2>
-        <p>团队协作流程、产品方案和实现材料待补充。</p>
+        <section id="amap-pde" class="case-track" aria-labelledby="amap-pde-title">
+          <p class="eyebrow">PDE</p>
+          <h3 id="amap-pde-title">让地图和列表在四种状态间衔接</h3>
+          <div class="chapters">
+            <section class="chapter">
+              <h4>1. 成品预览</h4><p>高保真原型覆盖推荐、附近和商家详情。下面是「附近」的四级面板状态设计稿。</p>
+              <figure class="case-figure"><a href="assets/amap-states.webp" target="_blank" rel="noopener" aria-label="放大查看附近地图与列表四级状态"><img loading="lazy" src="assets/amap-states.webp" width="1500" height="1119" alt="四个手机画面展示地图与列表的四种联动状态"></a><figcaption>沉浸漫游、空间映射、宏观探索与决策转化</figcaption></figure>
+            </section>
+            <section class="chapter">
+              <h4>2. 交互与视觉探索</h4><p>从交互线框到高保真，探索了全屏内容与半屏地图联动。前者突出连续浏览，后者把图钉和卡片放在同一视野，方便核对位置。全图适合查看更大范围，点选地点后聚焦单店。</p><p><a href="assets/amap-wireframes.webp" target="_blank" rel="noopener">放大查看交互线框</a>。</p>
+              <div class="figure-grid"><figure class="case-figure"><a href="assets/amap-recommend.webp" target="_blank" rel="noopener"><img loading="lazy" src="assets/amap-recommend.webp" width="1500" height="985" alt="推荐 Tab 四种探索面板状态"></a><figcaption>推荐 Tab 面板</figcaption></figure><figure class="case-figure"><a href="assets/amap-detail.webp" target="_blank" rel="noopener"><img loading="lazy" src="assets/amap-detail.webp" width="1500" height="923" alt="有优惠、推荐菜和评价入口的商家详情原型"></a><figcaption>商家详情</figcaption></figure></div>
+            </section>
+            <section class="chapter">
+              <h4>3. 设计到代码</h4><p>设计交付可以用两项状态描述：面板高度和当前选中的地点。拖动面板调整可见地图范围；点卡片或图钉共享同一个选中地点；清除选择后回到地图浏览。原稿给出了四态与联动规则，代码和线上实现证据待补。</p>
+            </section>
+            <section class="chapter">
+              <h4>4. 真实使用条件</h4><p>原型采用手机竖屏。半屏要同时显示地图与可扫读的距离、评分；全图将列表折叠到底部，避免遮挡主要点位。设备实测、长列表与屏幕阅读器验证待补。</p>
+            </section>
+            <section class="chapter">
+              <h4>5. 验证与打磨</h4><p>走查发现列表与地图分离时，读者需要反复对应地点。四态方案把点位与列表卡片关联。下一轮可用「找酒店附近的一家晚餐」对比原流程与新原型，记录返回次数和定位错误，复验数据待补。</p>
+            </section>
+          </div>
+        </section>
+      </article>
+
+      <article id="arivo" aria-labelledby="arivo-title">
+        <header class="case-header">
+          <p class="eyebrow">Arivo · 视频团队管理</p><h2 id="arivo-title">让生成任务能追踪，让审片意见能定位</h2>
+          <p>原型覆盖创作画布、生成队列、资产和版本审片。演示使用浏览器本地数据。</p>
+          <div class="case-links"><a class="button light" href="https://arivo-studio-demo.anois-zhao208786.chatgpt.site/#/screens" target="_blank" rel="noopener">打开演示索引</a><a class="button ghost" href="#arivo-ai-pm">AI-PM 五章</a><a class="button ghost" href="#arivo-pde">PDE 五章</a></div>
+        </header>
+        <section id="arivo-ai-pm" class="case-track" aria-labelledby="arivo-pm-title">
+          <p class="eyebrow">AI-PM</p>
+          <h3 id="arivo-pm-title">让团队看得见生成进度与失败原因</h3>
+          <div class="chapters">
+            <section class="chapter">
+              <h4>1. 用户问题与机会</h4><p>示例任务是一位创作者提交带参考素材的镜头，随后编辑要接手结果，审阅人要标注具体时刻。待验证的假设是，如果参数、结果和意见分散，交接时容易重复询问或丢失失败上下文。目前依据是原型流程与演示样例，团队访谈待补。</p>
+            </section>
+            <section class="chapter">
+              <h4>2. 方案选择与 MVP</h4><p>可对照「单次生成页＋手动交接」与「按项目组织的任务和审片」。前者适合个人快速试出结果，后者让团队可回看输入、状态和版本。首轮验证聚焦一个项目内的提交、查状态、失败重试和带时间点的审片意见。原型另有画布、资产、剧本和账单。</p>
+            </section>
+            <section class="chapter">
+              <h4>3. AI 产品设计</h4><p>生成面板收集提示词、输出类型、模型参数及可选参考素材。任务中心展示待处理、运行中、已完成或失败，失败详情保留提示词与参数，允许重新提交。演示用本地计时推进任务并展示示例结果，真实模型服务待接入验证。<a href="https://arivo-studio-demo.anois-zhao208786.chatgpt.site/#/generate" target="_blank" rel="noopener">查看生成面板</a>。</p>
+            </section>
+            <section class="chapter">
+              <h4>4. 评估与迭代</h4><p>可观察的演示失败样例是「参考素材读取超时」。原型展示未生成结果、保留参数和重试入口。对照计划让参与者分别用两种方案恢复同一失败任务，再把结果交给审阅人，记录恢复成功率、重复填写次数和时间点意见是否被正确接收。暂无模型效果或团队对照数据。</p>
+            </section>
+            <section class="chapter">
+              <h4>5. 产品决策</h4><p>当前用本地演示验证交接流程。优先验证任务状态和版本能否被团队正确理解，再决定模型接入和计费范围。真实生成的质量、耗时与成本需要在服务接入后单独度量。</p>
+            </section>
+          </div>
+        </section>
+
+        <section id="arivo-pde" class="case-track" aria-labelledby="arivo-pde-title">
+          <p class="eyebrow">PDE</p>
+          <h3 id="arivo-pde-title">把任务状态和审片时间轴做进浏览器</h3>
+          <div class="chapters">
+            <section class="chapter">
+              <h4>1. 成品预览</h4><p>React 与 Vite 演示可从生成面板提交任务，到任务中心看状态，再到审片中心查看意见和版本。数据保存在当前浏览器。</p>
+              <div class="case-links"><a class="button ghost" href="https://arivo-studio-demo.anois-zhao208786.chatgpt.site/#/tasks" target="_blank" rel="noopener">体验任务中心</a><a class="button ghost" href="https://arivo-studio-demo.anois-zhao208786.chatgpt.site/#/reviews" target="_blank" rel="noopener">体验审片中心</a></div></section>
+            <section class="chapter">
+              <h4>2. 交互与视觉探索</h4><p>视觉规范以石墨黑和银蓝为主，主操作和焦点使用银蓝，状态保留文字。任务列表负责扫读，详情展开时间线与恢复操作。审片在时间轴标出评论，并支持小组成员只读视图。<a href="https://arivo-studio-demo.anois-zhao208786.chatgpt.site/#/design-system" target="_blank" rel="noopener">查看视觉与动效规范</a>。</p>
+            </section>
+            <section class="chapter">
+              <h4>3. 设计到代码</h4><p><strong>提交 → 待处理 → 运行中 → 已完成。</strong>新任务使用独立 ID，保存提示词、参数和项目，浏览器计时推进演示状态。失败详情用原参数创建一次新任务。审片评论记录时间，点评论可定位到相应时刻。<a href="https://github.com/ddl123123123/arivo-web/blob/e90f679/src/main.jsx" target="_blank" rel="noopener">查看任务状态源码</a>。</p>
+            </section>
+            <section class="chapter">
+              <h4>4. 真实使用条件</h4><p>样式设有手机断点，窄屏收窄侧栏并让待处理区域单列。控件有键盘焦点样式，动效样式读取系统减少动态效果设置。刷新可恢复当前浏览器已保存的演示状态。完整键盘画布和真机走查记录待补。</p>
+            </section>
+            <section class="chapter">
+              <h4>5. 验证与打磨</h4><p>仓库迭代记录显示，生成进度已按任务状态调整配色，输入框与选择菜单也统一了焦点和禁用样式。原型可复现素材读取超时、确认错误及保留参数重试。正式复验可检查窄屏下的错误提示可见性、重试是否保留输入，以及键盘能否到达恢复操作。用户复验记录待补。</p>
+            </section>
+          </div>
+        </section>
+      </article>
+
+      <section id="contact" class="case-header contact-section" aria-labelledby="contact-title">
+        <h2 id="contact-title">简历与联系方式</h2>
+        <p>简历与联系链接待补充。</p>
       </section>
     </div>
   </main>
