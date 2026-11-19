@@ -104,6 +104,11 @@ a.text-link:hover, .project-card:hover .text-link { text-decoration: underline; 
 .chapter h5 { font-size: 1rem; }
 .chapter > p { max-width: 54rem; margin-top: .45rem; }
 .chapter strong { color: var(--text); }
+.success-metrics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem; max-width: 54rem; margin: .9rem 0 0; }
+.success-metrics > div { padding: .8rem .9rem; border: 1px solid var(--line); border-radius: .55rem; background: var(--surface); }
+.success-metrics dt { color: var(--accent); font-weight: 650; }
+.success-metrics dd { margin: .25rem 0 0; color: var(--muted); }
+
 .chapter a:not(.button) { color: #cfb6ff; }
 .specimen, .research { border: 1px solid var(--line); border-radius: .7rem; background: var(--surface); }
 .specimen { margin-top: 1.4rem; overflow: hidden; }
@@ -151,7 +156,7 @@ figcaption { margin-top: .45rem; color: var(--muted); font-size: .81rem; }
   .arc-two { left: 14%; }
   .arc-five { right: 14%; }
   .stage-copy { padding-top: 6.8rem; }
-  .two-cols, .figure-grid, .research { grid-template-columns: 1fr; }
+  .two-cols, .figure-grid, .research, .success-metrics { grid-template-columns: 1fr; }
   .two-cols > div + div { border-left: 0; border-top: 1px solid var(--line); }
   .metric { border: 0; }
   .pde-frames { gap: .35rem; }

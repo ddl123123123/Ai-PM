@@ -1,6 +1,6 @@
 # 李彤彤 · 产品作品集
 
-统一入口为 [dist/index.html](dist/index.html)。ORAE、高德地图「附近与推荐体验设计」和 Arivo 三个项目各有 AI-PM 与 PDE 五章。
+统一入口为 [dist/index.html](dist/index.html)。ORAE、高德地图「附近与推荐体验设计」和 Arivo 三个项目各有 AI-PM 六项决策证据和 PDE 五章。
 
 - ORAE 使用线上同题摘录、抽牌关键帧和 Android 修复记录。
 - 高德案例依据用户提供的 PDF。图像摘自第 5、13、14、20、24、25 页。

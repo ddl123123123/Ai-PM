@@ -72,34 +72,42 @@
         <header class="case-header">
           <p class="eyebrow">ORAE</p>
           <h2 id="orae-title">从一张牌到一次解读</h2>
-          <div class="case-links"><a class="button light" href="https://tarot.anois.site/" target="_blank" rel="noopener">体验线上 Demo</a><a class="button ghost" href="#ai-pm">AI-PM 五章</a><a class="button ghost" href="#pde">PDE 五章</a></div>
+          <div class="case-links"><a class="button light" href="https://tarot.anois.site/" target="_blank" rel="noopener">体验线上 Demo</a><a class="button ghost" href="#ai-pm">AI-PM 决策链</a><a class="button ghost" href="#pde">PDE 五章</a></div>
         </header>
         <section id="ai-pm" class="case-track" aria-labelledby="orae-pm-title">
           <p class="eyebrow">AI-PM</p>
           <h3 id="orae-pm-title">为塔罗新手设计 AI 解读体验</h3>
+          <p class="case-intro">个人项目 · 已上线。证据来自线上走查、仓库实现与回归用例。实际用户 Session、模型日志样本和群体效果待补。</p>
           <div class="chapters">
             <section class="chapter">
-              <h4>1. 用户问题与机会</h4><p>任务场景是「抽完一张牌，试着理解它和我的问题有什么关系」。首个样例用内置问题「这次跳槽的机会值得抓住吗？」。新手能否从通用牌义自行建立关联是待验证的假设，目前的证据来自产品走查。</p>
+              <h4>1. 用户与高频痛点</h4>
+              <p>目标用户是第一次用塔罗思考具体选择的人。任务是在抽牌后讲清楚牌义和自己的问题有什么关系。线上走查用跳槽问题验证了流程可走通。新手在这一步卡住的频率、原话和反馈仍需小范围访谈与任务观察。</p>
             </section>
             <section class="chapter">
-              <h4>2. 方案选择与 MVP</h4><p>方案 A 是固定牌义加一个通用反思问题，输出稳定且无需生成。方案 B 结合用户问题、牌位和正逆位组织解读，能回应更具体的处境，也要处理错误和过度确信。首轮对照限定为单张牌、一次回答，无需把追问和多牌阵纳入。线上版本另有多牌阵和追问。</p>
+              <h4>2. 为什么用 AI 与首版范围</h4>
+              <p>固定牌义加通用反思问题作为基线。按牌名和正逆位查表就能解决牌义查询。具体问题可能用不同措辞表达同一种顾虑，关键词规则难以把牌义和用户的具体条件组织成自然、可追问的回应。生成的价值集中在这一步，是否划算由对照决定。首轮只测一张牌和一次回答。</p>
             </section>
             <section class="chapter">
-              <h4>3. AI 产品设计</h4><p>输入有用户可选填写的问题、牌位、牌名及正逆位。线上结果按牌位流式输出，最后给出整体总结。推荐调用失败时走规则推荐，解读失败时可重试，原牌仍可点开查看固定牌义。待验证的输出结构为「牌意摘要 → 与问题的关联 → 一个反思问题」。</p>
+              <h4>3. 产品规划、原型与推进</h4>
+              <p>体验流程为填写可选问题 → 推荐牌阵 → 抽牌并查看固定牌义 → 流式解读。线上已实现规则推荐兜底、取消和失败重试。计划把「牌义摘要 → 与问题的关联 → 一个反思问题」作为候选输出。下一轮推进交付包括设计确认失败态与文案，工程对齐请求和完成事件，测试共同验收超时、重试和回退。协作记录待补。</p><p><a href="https://tarot.anois.site/" target="_blank" rel="noopener">查看线上流程</a>。</p>
             </section>
             <section class="chapter" id="evaluation">
-              <h4>4. 评估与迭代</h4>
-              <div class="specimen" id="comparison">
-                <div class="specimen-head"><p class="eyebrow">同题样例 · 世界逆位</p><h5>这次跳槽的机会值得抓住吗？</h5></div>
-                <div class="two-cols">
-                  <div><h5>固定牌义与引导</h5><p>固定牌义包含「事情尚未收尾」「距目标只差临门一脚」。拟用的通用问题是「目前有哪些事还需要收尾？」。</p></div>
-                  <div><h5>线上 AI 解读摘录</h5><p>「先回答你的问题：这张牌给出的是偏‘否’的倾向……」</p></div>
-                </div>
-              </div>
-              <p>摘录需要检查的问题是，读者会不会把「偏否」理解成求职结论。拟改写为「牌义提醒你留意还没确认的条件。决定之前，哪些职责、资源或发展预期需要和对方核实？」。这是待测写法。完整评估计划用五组同牌、同牌位、同正逆位、同题的配对输出盲评，记录贴合度、牌义一致性和不确定性表达。</p>
+              <h4>4. 成功指标与评估</h4>
+              <p>小范围盲评拟用五组同牌、同牌位、同正逆位、同题的两种输出，统一评分标准。以下是统计口径，结果待采集。</p><dl class="success-metrics"><div><dt>任务完成率</dt><dd>成功读完并能说出一个可核实因素的 Session ÷ 开始任务的 Session。</dd></div><div><dt>质量</dt><dd>人工盲评问题贴合度、牌义一致性和不确定性。“把推测写成定论”单独统计。</dd></div><div><dt>时延</dt><dd>请求到首段可见文本、请求到完成的 P50 和 P95，分开统计取消和重试。</dd></div><div><dt>成本</dt><dd>按模型日志累计 token 成本，除以完成的解读数，计入失败及重试开销。</dd></div></dl>
             </section>
             <section class="chapter">
-              <h4>5. 产品决策</h4><p>当前已有线上生成和一条实际摘录。下一步先补齐配对结果和用户反馈。若生成能帮助读者指出更多可核实的因素，并保持对不确定性的说明，就保留在具体问题场景。若差异有限，优先完善固定牌义引导。决策待评估。</p>
+              <h4>5. 用反馈、Session 和日志定位 Bad Case</h4>
+              <div class="specimen" id="comparison">
+                <div class="specimen-head"><p class="eyebrow">线上走查 · 同题、同牌、同正逆位</p><h5>「这次跳槽的机会值得抓住吗？」 · 世界逆位</h5></div>
+                <div class="two-cols">
+                  <div><h5>固定牌义与拟用引导</h5><p>「事情尚未收尾」「距目标只差临门一脚」。拟用提问为「目前有哪些事还需要收尾？」。</p></div>
+                  <div><h5>线上 AI 解读摘录</h5><p>「先回答你的问题：这张牌给出的是偏‘否’的倾向……」</p></div>
+                </div>
+              </div><p>质量样例来自线上走查。“偏否”可能被当成求职结论。拟改文案为「牌义提醒你关注尚未确认的条件。哪些职责、资源或发展预期需要和对方核实？」。待收集读者原话并用脱敏的 Session 编号关联这次解读，再做复评。</p><p>服务失败有可复现证据。接口回归用例模拟流先输出一段文本、随后上游返回 502。实现会发出 <code>upstream_error</code>，保留重试入口，并避免持久化半段回答或扣配额。诊断可从反馈定位 <code>readingId</code>，再用请求日志的 <code>requestId</code>、错误类型与 <code>llm_log</code> 的耗时和成本定位。模型日志不含提示词和正文，线上日志样本未纳入案例。</p>
+            </section>
+            <section class="chapter">
+              <h4>6. 改动前后与产品决策</h4>
+              <p>回归场景中，故障发生时已输出部分文本。现有处理的预期结果是显式失败、可重试、配额不变。语气改写仍待上线对照，暂无前后指标。只有当生成帮助更多读者发现可核实因素，且质量、时延和成本达标，再保留具体问题场景的 AI 解读。</p>
             </section>
           </div>
         </section>
@@ -134,27 +142,36 @@
         <header class="case-header">
           <p class="eyebrow">高德地图 · 体验设计案例</p><h2 id="amap-title">附近与推荐体验设计</h2>
           <p>让用户在地图里发现想去的地方、看清地理关系，并找到足够的信息做决定。</p>
-          <div class="case-links"><a class="button ghost" href="#amap-ai-pm">AI-PM 五章</a><a class="button ghost" href="#amap-pde">PDE 五章</a></div>
+          <div class="case-links"><a class="button ghost" href="#amap-ai-pm">AI-PM 决策链</a><a class="button ghost" href="#amap-pde">PDE 五章</a></div>
         </header>
         <section id="amap-ai-pm" class="case-track" aria-labelledby="amap-pm-title">
           <p class="eyebrow">AI-PM</p>
           <h3 id="amap-pm-title">让找店和比较在地图里完成</h3>
+          <p class="case-intro">体验设计项目 · 已有问卷、访谈与原型。AI 辅助比较是后续构想，上线与日志数据待补。</p>
           <div class="chapters">
             <section class="chapter">
-              <h4>1. 用户问题与机会</h4><p>原稿围绕周末探店和差旅出行做问卷、访谈、走查与竞品比较。主要断点包括同类推荐过多、商家详情中的决策信息难以扫读，以及收藏地点和行程的空间关系不清楚。</p>
-              <div class="research"><div class="metric"><strong>262</strong><span>问卷行为分群样本</span></div><div><h5>两类常见行为</h5><p>美学漫游型 124 人，占 47.3%，关注场景和审美。效率目标型 65 人，占 24.8%，希望快速选出地点。<a href="assets/amap-research.webp" target="_blank" rel="noopener">查看原稿问卷与分群</a>。</p></div></div>
+              <h4>1. 用户与高频痛点</h4>
+              <p>周末探店者和差旅用户要在陌生地点附近快速选定一餐。原稿问卷、访谈及走查识别了三处断点：同类推荐过多、详情决策信息难扫读、收藏地点和行程的空间关系不清楚。</p><div class="research"><div class="metric"><strong>262</strong><span>问卷行为分群样本</span></div><div><h5>两类常见行为</h5><p>美学漫游型 124 人，占 47.3%。效率目标型 65 人，占 24.8%。这些比例描述问卷分群，单个痛点的发生频率待补。<a href="assets/amap-research.webp" target="_blank" rel="noopener">查看原稿问卷与分群</a>。</p></div></div>
             </section>
             <section class="chapter">
-              <h4>2. 方案选择与 MVP</h4><p>原稿提出三项改造。推荐用主题卡和图文让人发现地点，附近用地图与列表双向联动显示距离和位置，详情重组评分、优惠、推荐菜和评价。作为后续 AI 对照，基线采用固定标签与地图筛选，候选方案只加入「按条件比较附近餐饮地点」。先用一个找店任务评估这项增量。</p>
+              <h4>2. 为什么用 AI 与首版范围</h4>
+              <p>有明确类别、距离和营业条件时，规则筛选和地图搜索足够。多重偏好用自然语言混在一起时，AI 可以把意图拆成可编辑条件，帮助解释条件冲突。先用「酒店附近找一顿晚餐」比较现有筛选与候选解释，地点查询和硬约束仍由有来源的地图字段执行。</p>
             </section>
             <section class="chapter">
-              <h4>3. AI 产品设计</h4><p>以下为后续概念。用户输入如「酒店附近步行可达的晚餐」，系统用地点、步行距离和营业状态等有来源的字段返回候选与理由。字段缺失时标记未知；查询失败时回到地图列表。现有设计稿覆盖推荐、地图联动和详情流程，AI 比较仍处于构想阶段。</p>
+              <h4>3. 产品规划、原型与推进</h4>
+              <p>原稿涵盖推荐主题卡、附近的地图与列表联动，以及商家详情。拟追加的 AI 流程是描述需求 → 确认筛选条件 → 对照地点与理由 → 进入详情。营业状态缺失则标注待确认，查询异常则回到地图列表。拟由设计交付交互原型，数据和工程对齐距离、营业与更新时间字段，测试验收误筛和回退。跨团队推进及上线记录待补。</p><p><a href="#amap-pde">查看原稿流程与交互原型</a>。</p>
             </section>
             <section class="chapter">
-              <h4>4. 评估与迭代</h4><p>原稿的走查与研究支持对信息层级和切换成本的判断。后续计划固定一组地点和找店条件，对照地图筛选与候选说明，记录完成任务所需步骤、是否选中符合条件的地点，以及错误事实出现的位置。暂无 AI 对照结果。</p>
+              <h4>4. 成功指标与评估</h4>
+              <p>拟用同一组地点和条件对比地图筛选与 AI 候选解释，先做小范围任务测试。以下指标暂无实测结果。</p><dl class="success-metrics"><div><dt>任务完成率</dt><dd>选到符合全部硬条件的参与者 ÷ 开始任务的参与者。</dd></div><div><dt>质量</dt><dd>核对距离、营业和类别字段，记录虚构理由、错误匹配和字段缺失的呈现。</dd></div><div><dt>时延</dt><dd>记录操作到可选候选的 P50、P95，以及从开始到做出决定的总耗时。</dd></div><div><dt>成本</dt><dd>每次成功推荐的地点检索与模型调用成本，计入重试。</dd></div></dl>
             </section>
             <section class="chapter">
-              <h4>5. 产品决策</h4><p>现阶段证据支持优先打磨地图与列表联动及商家详情。只有当对照显示候选说明减少筛选步骤且准确呈现营业、距离等信息，再考虑保留 AI 比较。当前交付为研究材料与设计原型。</p>
+              <h4>5. 用反馈、Session 和日志定位 Bad Case</h4>
+              <p>原稿走查里的失败类型是列表与地图分离，用户需要反复对应店铺与位置。原型以卡片和点位双向联动回应。AI 方案拟重点排查营业信息过期或硬条件误筛。复测时按 Session 把反馈、筛选变更、候选、点选关联起来，再用地点字段来源、更新时间与被应用的规则区分数据过期和解析错误。目前无真实 AI 日志样本。</p>
+            </section>
+            <section class="chapter">
+              <h4>6. 改动前后与产品决策</h4>
+              <p>设计前的走查记录了跨界面核对和信息分散。新原型把点位和列表放进同一交互，并在详情重组决策信息。现有材料能展示流程差异。前后任务完成率、步骤和耗时待测。优先验证地图联动，只有 AI 候选说明进一步减少步骤且不引入地点事实错误，才推进试点。</p>
             </section>
           </div>
         </section>
@@ -188,26 +205,36 @@
         <header class="case-header">
           <p class="eyebrow">Arivo · 视频团队管理</p><h2 id="arivo-title">让生成任务能追踪，让审片意见能定位</h2>
           <p>原型覆盖创作画布、生成队列、资产和版本审片。演示使用浏览器本地数据。</p>
-          <div class="case-links"><a class="button light" href="https://arivo-studio-demo.anois-zhao208786.chatgpt.site/#/screens" target="_blank" rel="noopener">打开演示索引</a><a class="button ghost" href="#arivo-ai-pm">AI-PM 五章</a><a class="button ghost" href="#arivo-pde">PDE 五章</a></div>
+          <div class="case-links"><a class="button light" href="https://arivo-studio-demo.anois-zhao208786.chatgpt.site/#/screens" target="_blank" rel="noopener">打开演示索引</a><a class="button ghost" href="#arivo-ai-pm">AI-PM 决策链</a><a class="button ghost" href="#arivo-pde">PDE 五章</a></div>
         </header>
         <section id="arivo-ai-pm" class="case-track" aria-labelledby="arivo-pm-title">
           <p class="eyebrow">AI-PM</p>
           <h3 id="arivo-pm-title">让团队看得见生成进度与失败原因</h3>
+          <p class="case-intro">浏览器交互演示 · 使用本地模拟数据。演示站已部署，真实模型调用、团队访谈与生产监控数据待补。</p>
           <div class="chapters">
             <section class="chapter">
-              <h4>1. 用户问题与机会</h4><p>示例任务是一位创作者提交带参考素材的镜头，随后编辑要接手结果，审阅人要标注具体时刻。待验证的假设是，如果参数、结果和意见分散，交接时容易重复询问或丢失失败上下文。目前依据是原型流程与演示样例，团队访谈待补。</p>
+              <h4>1. 用户与高频痛点</h4>
+              <p>创作者提交带参考素材的镜头，编辑接收新版本，审阅人定位到需要修改的时刻。高频痛点假设是交接缺少提示词、版本和失败原因，参与者需要反复追问或重填。当前依据是原型任务与演示数据，实际频率待用团队访谈和任务观察确认。</p>
             </section>
             <section class="chapter">
-              <h4>2. 方案选择与 MVP</h4><p>可对照「单次生成页＋手动交接」与「按项目组织的任务和审片」。前者适合个人快速试出结果，后者让团队可回看输入、状态和版本。首轮验证聚焦一个项目内的提交、查状态、失败重试和带时间点的审片意见。原型另有画布、资产、剧本和账单。</p>
+              <h4>2. 为什么用 AI 与首版范围</h4>
+              <p>搜索和规则适合复用素材、分类、排队及权限控制。已有素材无法满足具体镜头需求时，才需要根据提示词和参考素材生成新内容。首轮对照用「素材复用或独立生成后手动交接」作为基线，验证项目内提交、查状态、失败恢复和带时间点的审片。</p>
             </section>
             <section class="chapter">
-              <h4>3. AI 产品设计</h4><p>生成面板收集提示词、输出类型、模型参数及可选参考素材。任务中心展示待处理、运行中、已完成或失败，失败详情保留提示词与参数，允许重新提交。演示用本地计时推进任务并展示示例结果，真实模型服务待接入验证。<a href="https://arivo-studio-demo.anois-zhao208786.chatgpt.site/#/generate" target="_blank" rel="noopener">查看生成面板</a>。</p>
+              <h4>3. 产品规划、原型与推进</h4>
+              <p>演示流程为选择模型和输出类型 → 填写提示词和参考素材 → 入队 → 查看结果或重试 → 按时间点审片。拟交付给产品、设计、工程和测试共同评审的内容包括任务状态、失败原因、可重试参数、版本标识及审片权限。当前演示已部署，真实模型、计费与团队上线验收待补。</p><p><a href="https://arivo-studio-demo.anois-zhao208786.chatgpt.site/#/generate" target="_blank" rel="noopener">体验生成原型</a>。</p>
             </section>
             <section class="chapter">
-              <h4>4. 评估与迭代</h4><p>可观察的演示失败样例是「参考素材读取超时」。原型展示未生成结果、保留参数和重试入口。对照计划让参与者分别用两种方案恢复同一失败任务，再把结果交给审阅人，记录恢复成功率、重复填写次数和时间点意见是否被正确接收。暂无模型效果或团队对照数据。</p>
+              <h4>4. 成功指标与评估</h4>
+              <p>小范围任务实验拟让参与者恢复同一个失败任务，再将结果交给另一人按时间点审阅。演示计时仅用于呈现状态。以下真实数据待采集。</p><dl class="success-metrics"><div><dt>任务完成率</dt><dd>完成恢复且审阅人找到正确版本和时间点的组数 ÷ 开始任务的组数。</dd></div><div><dt>质量</dt><dd>按镜头要素和参考素材一致性盲评生成结果，另记录误审版本和重复填写。</dd></div><div><dt>时延</dt><dd>分别统计排队到开始、执行到可预览，以及失败到恢复提交的 P50、P95。</dd></div><div><dt>成本</dt><dd>接入后累计真实生成与重试成本，除以团队接受的有效镜头数。</dd></div></dl>
             </section>
             <section class="chapter">
-              <h4>5. 产品决策</h4><p>当前用本地演示验证交接流程。优先验证任务状态和版本能否被团队正确理解，再决定模型接入和计费范围。真实生成的质量、耗时与成本需要在服务接入后单独度量。</p>
+              <h4>5. 用反馈、Session 和日志定位 Bad Case</h4>
+              <p>可复现的演示失败类型是「参考素材读取超时」。任务详情显示未生成结果，并保留原提示词和参数供重试。接入后拟用反馈中的任务 ID 关联提交 Session，查看素材读取、入队、执行的错误码与耗时，区分素材失效和真正的模型失败。目前只有演示数据。</p><p><a href="https://arivo-studio-demo.anois-zhao208786.chatgpt.site/#/tasks/72f0c241" target="_blank" rel="noopener">复现失败任务与恢复入口</a>。</p>
+            </section>
+            <section class="chapter">
+              <h4>6. 改动前后与产品决策</h4>
+              <p>对照基线是失败后手动找回素材并重填参数。演示中的恢复流程显示失败原因，基于原参数创建一条新任务。现有证据是可操作的交互，对完成率、质量、时延和成本的影响仍待小范围对照。先验证交接闭环，再决定真实模型接入范围。</p>
             </section>
           </div>
         </section>
