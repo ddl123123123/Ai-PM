@@ -34,7 +34,7 @@
       <div class="profile-intro">
         <div>
           <p class="eyebrow">个人介绍</p>
-          <h2 id="about-title">李彤彤</h2>
+          <h2 id="about-title" data-directory-label="个人介绍" data-directory-keywords="李彤彤 关于我">李彤彤</h2>
           <p class="profile-lede">我从用户的决定出发，把 AI 的能力边界变成产品规则，再用原型和评测检验方案。</p>
           <dl class="profile-facts">
             <div><dt>教育背景</dt><dd>中国美术学院 · 视觉传达设计本科<br>2023.09–2027.06（预计毕业）</dd></div>
@@ -190,7 +190,7 @@
                 </section>
                 <section class="orae-module orae-relationship">
                   <div class="orae-module-copy">
-                    <h5>关系管理 · 让问牌可以回看</h5>
+                    <h5 id="orae-relationship-title" data-directory-keywords="关系首页 关系总览 相处记事 问过的牌">关系管理 · 让问牌可以回看</h5>
                     <p>先选一段关系，再查看它的最近经历、问过的牌与后续记事。这样新问题能接上已确认的背景，用户也可以单独记下真实经历。</p>
                   </div>
                   <div class="relation-switch" data-demo>
@@ -286,7 +286,7 @@
             <section class="chapter">
               <h4>1. 成品预览</h4>
               <section id="pde-demo" class="interaction-demo" data-demo aria-labelledby="pde-demo-title">
-                <h5 id="pde-demo-title">站内动效试玩</h5>
+                <h5 id="pde-demo-title" data-directory-keywords="抽牌 扇面滑动 翻牌揭晓 单牌放大 Demo">站内动效试玩</h5>
                 <div class="demo-controls" role="group" aria-label="ORAE 动效类型">
                   <button type="button" data-demo-step aria-pressed="false" aria-controls="orae-motion-fan">扇面滑动</button>
                   <button type="button" data-demo-step aria-pressed="true" aria-controls="orae-motion-flip">翻牌揭晓</button>
@@ -740,6 +740,19 @@ v4 | 00:12 | 待确认 | 检查人物动作与字幕是否同步。</template>
     </div>
   </main>
   <footer class="shell footer"><span>李彤彤 · 产品作品集</span><a href="#projects">返回项目</a><a href="#top">回到顶部</a></footer>
+  <button type="button" class="directory-trigger" data-directory-trigger aria-haspopup="dialog" aria-controls="site-directory" hidden><span class="directory-icon" aria-hidden="true"></span>目录</button>
+  <dialog id="site-directory" class="site-directory" aria-labelledby="site-directory-title">
+    <div class="directory-panel">
+      <div class="directory-heading">
+        <h2 id="site-directory-title">网站目录</h2>
+        <form method="dialog"><button type="submit" class="button ghost">关闭</button></form>
+      </div>
+      <label class="sr-only" for="directory-query">搜索项目或章节</label>
+      <input id="directory-query" type="search" placeholder="搜索项目或章节" autocomplete="off" autofocus>
+      <p class="sr-only" role="status" data-directory-status></p>
+      <nav class="directory-results" aria-label="目录结果"><div data-directory-list></div></nav>
+    </div>
+  </dialog>
   <dialog class="image-viewer" aria-labelledby="viewer-title">
     <header>
       <h2 id="viewer-title">图片预览</h2>

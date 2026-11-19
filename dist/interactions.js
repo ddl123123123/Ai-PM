@@ -298,3 +298,115 @@ if (viewer?.showModal) {
     if (event.target === viewer) viewer.close()
   })
 }
+
+const directory = document.querySelector('#site-directory')
+if (directory?.showModal) {
+  const trigger = document.querySelector('[data-directory-trigger]')
+  const query = directory.querySelector('input')
+  const status = directory.querySelector('[data-directory-status]')
+  const list = directory.querySelector('[data-directory-list]')
+  const ids = new Set([...document.querySelectorAll('[id]')].map(element => element.id))
+  const caseNames = new Map([...document.querySelectorAll('.project-content h3 a')].map(link => [
+    link.hash.slice(1), link.textContent.trim(),
+  ]))
+  const groups = []
+  let group
+  let track = ''
+
+  for (const heading of document.querySelectorAll('main :is(h2, h3, h4, h5, h6)')) {
+    const demo = heading.closest('[data-demo]')
+    if (heading.closest('[hidden]') || (demo && demo.getAttribute('aria-labelledby') !== heading.id)) continue
+    const label = heading.dataset.directoryLabel || heading.textContent.trim().replace(/^\d+\s*[.、·]\s*/u, '')
+    if (!label) continue
+    const labelledSection = heading.closest('[aria-labelledby][id]')
+    const target = labelledSection?.getAttribute('aria-labelledby') === heading.id ? labelledSection : heading
+    const level = Number(heading.tagName.slice(1))
+    if (!target.id) {
+      const ancestor = target.parentElement.closest('[id]')
+      const slug = label.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, '-').replace(/^-|-$/g, '')
+      const key = `${ancestor?.id || 'page'}-${slug}`
+      let id = key
+      for (let suffix = 2; ids.has(id); suffix++) id = `${key}-${suffix}`
+      target.id = id
+      ids.add(id)
+    }
+    if (level === 2) {
+      group = { name: caseNames.get(target.id) || label, entries: [] }
+      groups.push(group)
+      track = ''
+    }
+    if (!group) continue
+    if (level === 3) track = heading.closest('.case-track')?.querySelector('.eyebrow')?.textContent.trim() || ''
+    const keywords = `${group.name} ${track} ${label} ${heading.dataset.directoryKeywords || ''}`
+    group.entries.push({ label, target, level, track, keywords: keywords.normalize('NFKC').toLowerCase() })
+  }
+
+  function resultLink(entry, searching) {
+    const link = document.createElement('a')
+    link.href = `#${encodeURIComponent(entry.target.id)}`
+    link.textContent = entry.label
+    if (searching && entry.track) {
+      const context = document.createElement('small')
+      context.textContent = entry.track
+      link.append(context)
+    } else if (entry.level >= 4) {
+      link.classList.add('directory-subentry')
+    }
+    link.addEventListener('click', event => {
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+      directory.close()
+      entry.target.setAttribute('tabindex', '-1')
+      entry.target.focus({ preventScroll: true })
+    })
+    return link
+  }
+
+  function renderDirectory() {
+    const terms = query.value.normalize('NFKC').trim().toLowerCase().split(/\s+/).filter(Boolean)
+    const searching = terms.length > 0
+    list.replaceChildren()
+    let count = 0
+    for (const item of groups) {
+      const entries = item.entries.filter(entry => terms.every(term => entry.keywords.includes(term)))
+      if (!entries.length) continue
+      count += entries.length
+      if (!searching && entries.length === 1) {
+        list.append(resultLink(entries[0], false))
+        continue
+      }
+
+      const section = document.createElement(searching ? 'section' : 'details')
+      const label = document.createElement(searching ? 'h3' : 'summary')
+      label.textContent = item.name
+      section.append(label)
+      const links = document.createElement('div')
+      links.className = 'directory-links'
+      links.append(...entries.map(entry => resultLink(entry, searching)))
+      section.append(links)
+      list.append(section)
+    }
+    status.textContent = searching ? `找到 ${count} 个位置` : ''
+    if (!count) {
+      const empty = document.createElement('p')
+      empty.textContent = '没有匹配的项目或章节。'
+      list.append(empty)
+    }
+    directory.querySelector('.directory-results').scrollTop = 0
+  }
+
+  trigger.hidden = false
+  trigger.addEventListener('click', () => {
+    query.value = ''
+    renderDirectory()
+    directory.showModal()
+  })
+  query.addEventListener('input', renderDirectory)
+  query.addEventListener('keydown', event => {
+    if (event.key !== 'Enter' || event.isComposing || !query.value.trim()) return
+    event.preventDefault()
+    list.querySelector('a')?.click()
+  })
+  directory.addEventListener('click', event => {
+    if (event.target === directory) directory.close()
+  })
+}
