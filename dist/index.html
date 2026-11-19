@@ -6,7 +6,6 @@
   <meta name="theme-color" content="#08070b">
   <meta name="description" content="李彤彤的 AI 产品与交互设计作品集，收录 ORAE、高德地图附近与推荐体验设计，以及 Arivo 视频生成团队管理网站。">
   <title>李彤彤 · 产品作品集</title>
-  <script src="theme.js"></script>
   <link rel="stylesheet" href="portfolio.css">
   <script src="interactions.js" defer></script>
   <script src="delivery.mjs" type="module"></script>
@@ -17,7 +16,6 @@
     <div class="shell header-inner">
       <a class="brand" href="#top"><span aria-hidden="true">✦</span> 李彤彤 <small>作品集</small></a>
       <nav aria-label="作品集导航"><a href="#about">关于</a><a href="#experience">经历</a><a href="#projects">案例</a><a href="#demos">展示</a><a href="#contact">联系</a></nav>
-      <button type="button" class="theme-toggle" role="switch" aria-checked="false" aria-label="绿色主题"><span aria-hidden="true"></span><strong aria-hidden="true">紫色</strong></button>
     </div>
   </header>
 
@@ -77,18 +75,18 @@
           <p>AI 解读、地图探索与视频团队协作。</p>
         </div>
       </div>
-      <div class="project-grid">
-        <article class="project-card">
-          <a class="project-image orae-cover" href="#orae" aria-label="阅读 ORAE 案例"><img src="assets/card-back.jpg" width="560" height="960" alt=""><img src="assets/world.jpg" width="480" height="823" alt=""></a>
-          <div class="project-content"><h3><a href="#orae">ORAE 塔罗解读体验</a></h3><p>用同题对照评估 AI 解读，并用关系账把单次问牌接入长期记录。</p><div class="project-jumps"><a class="text-link" href="#ai-pm" aria-label="阅读 ORAE 的 项目分析">项目分析</a><a class="text-link" href="#pde" aria-label="阅读 ORAE 的 交互展示">交互展示</a></div></div>
+      <div class="project-grid" data-project-grid>
+        <article class="project-card is-selected">
+          <button type="button" class="project-image orae-cover project-select" data-project-select aria-label="选中ORAE项目" aria-pressed="true"><img src="assets/card-back.jpg" width="560" height="960" alt=""><img src="assets/world.jpg" width="480" height="823" alt=""></button>
+          <div class="project-content"><h3><a href="#orae">ORAE 塔罗解读体验</a></h3><p>用同题对照评估 AI 解读，并用关系账把单次问牌接入长期记录。</p><div class="project-jumps"><a class="text-link" href="#ai-pm" aria-label="阅读 ORAE 的 项目分析">项目分析</a><a class="text-link" href="#pde" aria-label="阅读 ORAE 的 交互展示">交互展示</a></div><a class="button ghost project-cta" href="#orae" aria-label="查看ORAE案例">查看案例</a></div>
         </article>
         <article class="project-card">
-          <a class="project-image" href="#amap" aria-label="阅读高德地图案例"><img src="assets/amap-cover.webp" width="1100" height="724" alt=""></a>
-          <div class="project-content"><h3><a href="#amap">高德地图附近与推荐</a></h3><p>从跨 App 找店的断点出发，重设计内容推荐、地图联动和商家详情。</p><div class="project-jumps"><a class="text-link" href="#amap-ai-pm" aria-label="阅读高德地图的 项目分析">项目分析</a><a class="text-link" href="#amap-pde" aria-label="阅读高德地图的 交互展示">交互展示</a></div></div>
+          <button type="button" class="project-image project-select" data-project-select aria-label="选中高德地图项目" aria-pressed="false"><img src="assets/amap-cover.webp" width="1100" height="724" alt=""></button>
+          <div class="project-content"><h3><a href="#amap">高德地图附近与推荐</a></h3><p>从跨 App 找店的断点出发，重设计内容推荐、地图联动和商家详情。</p><div class="project-jumps"><a class="text-link" href="#amap-ai-pm" aria-label="阅读高德地图的 项目分析">项目分析</a><a class="text-link" href="#amap-pde" aria-label="阅读高德地图的 交互展示">交互展示</a></div><a class="button ghost project-cta" href="#amap" aria-label="查看高德地图案例">查看案例</a></div>
         </article>
         <article class="project-card">
-          <a class="project-image" href="#arivo" aria-label="阅读 Arivo 案例"><img loading="lazy" src="assets/arivo-review.webp" width="1280" height="800" alt=""></a>
-          <div class="project-content"><h3><a href="#arivo">Arivo 视频生成团队管理</a></h3><p>串联生成队列、失败任务恢复和带时间点的版本审片。</p><div class="project-jumps"><a class="text-link" href="#arivo-ai-pm" aria-label="阅读 Arivo 的 项目分析">项目分析</a><a class="text-link" href="#arivo-pde" aria-label="阅读 Arivo 的 交互展示">交互展示</a></div></div>
+          <button type="button" class="project-image project-select" data-project-select aria-label="选中Arivo项目" aria-pressed="false"><img loading="lazy" src="assets/arivo-review.webp" width="1280" height="800" alt=""></button>
+          <div class="project-content"><h3><a href="#arivo">Arivo 视频生成团队管理</a></h3><p>串联生成队列、失败任务恢复和带时间点的版本审片。</p><div class="project-jumps"><a class="text-link" href="#arivo-ai-pm" aria-label="阅读 Arivo 的 项目分析">项目分析</a><a class="text-link" href="#arivo-pde" aria-label="阅读 Arivo 的 交互展示">交互展示</a></div><a class="button ghost project-cta" href="#arivo" aria-label="查看Arivo案例">查看案例</a></div>
         </article>
       </div>
     </section>

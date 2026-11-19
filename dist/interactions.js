@@ -57,3 +57,20 @@ if (hero) {
   motion.addEventListener('change', syncParallax)
   syncParallax()
 }
+
+const projects = document.querySelector('[data-project-grid]')
+if (projects) {
+  const covers = Array.from(projects.querySelectorAll('[data-project-select]'))
+
+  projects.addEventListener('click', event => {
+    if (event.target.closest('a')) return
+    const selected = event.target.closest('.project-card')?.querySelector('[data-project-select]')
+    if (!selected || selected.getAttribute('aria-pressed') === 'true') return
+
+    for (const cover of covers) {
+      const active = cover === selected
+      cover.setAttribute('aria-pressed', String(active))
+      cover.closest('.project-card').classList.toggle('is-selected', active)
+    }
+  })
+}
