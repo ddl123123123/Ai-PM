@@ -1,7 +1,7 @@
 for (const demo of document.querySelectorAll('[data-demo]')) {
-  const controls = [...demo.querySelectorAll('[data-demo-step]')]
+  const controls = [...demo.querySelectorAll('[data-demo-step]')].filter(control => control.closest('[data-demo]') === demo)
   const panels = controls.map(control => document.getElementById(control.getAttribute('aria-controls')))
-  const status = demo.querySelector('[data-demo-status]')
+  const status = [...demo.querySelectorAll('[data-demo-status]')].find(output => output.closest('[data-demo]') === demo)
 
   controls.forEach((control, index) => {
     control.disabled = false

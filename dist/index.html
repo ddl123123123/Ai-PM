@@ -294,7 +294,7 @@
               <section class="orae-ops" id="orae-ops" aria-labelledby="orae-ops-title" data-demo>
                 <header class="orae-ops-header">
                   <h5 id="orae-ops-title">ORAE 运营控制台</h5>
-                  <p>线上数据快照 · 只读展示</p>
+                  <p>交互预览 · 只读展示</p>
                 </header>
                 <div class="demo-controls" role="group" aria-label="运营控制台展示">
                   <button type="button" data-demo-step aria-pressed="true" aria-controls="orae-ops-overview">运营概览</button>
@@ -303,43 +303,143 @@
                 </div>
                 <p class="sr-only" role="status" data-demo-status></p>
                 <div id="orae-ops-overview" class="orae-ops-view">
-                  <section class="orae-console" aria-labelledby="orae-console-title">
-                    <aside class="orae-console-rail" aria-label="控制台菜单预览">
+                  <section class="orae-console" aria-label="ORAE 控制台页面预览" data-demo>
+                    <nav class="orae-console-rail" aria-label="控制台页面">
                       <div class="orae-console-brand">ORAE 控制台</div>
                       <ul>
-                        <li aria-current="page">概览</li>
-                        <li>用户</li>
-                        <li>成本</li>
-                        <li>兑换码</li>
-                        <li>模型</li>
-                        <li>限流</li>
-                        <li>管理员</li>
-                        <li>操作记录</li>
+                        <li><button type="button" data-demo-step aria-pressed="true" aria-controls="orae-console-overview" disabled>概览</button></li>
+                        <li><button type="button" data-demo-step aria-pressed="false" aria-controls="orae-console-users" disabled>用户</button></li>
+                        <li><button type="button" data-demo-step aria-pressed="false" aria-controls="orae-console-costs" disabled>成本</button></li>
+                        <li><button type="button" data-demo-step aria-pressed="false" aria-controls="orae-console-codes" disabled>兑换码</button></li>
+                        <li><button type="button" data-demo-step aria-pressed="false" aria-controls="orae-console-model" disabled>模型</button></li>
+                        <li><button type="button" data-demo-step aria-pressed="false" aria-controls="orae-console-limits" disabled>限流</button></li>
+                        <li><button type="button" data-demo-step aria-pressed="false" aria-controls="orae-console-admins" disabled>管理员</button></li>
+                        <li><button type="button" data-demo-step aria-pressed="false" aria-controls="orae-console-audit" disabled>操作记录</button></li>
                       </ul>
-                    </aside>
+                    </nav>
                     <div class="orae-console-main">
-                      <header class="orae-console-readout">
-                        <h6 id="orae-console-title">概览</h6>
-                        <p><time datetime="2026-11-20T13:57:06+08:00">2026 年 11 月 20 日 13:57:06</time> 北京时间</p>
-                      </header>
-                      <dl class="orae-ops-metrics">
-                        <div><dt>今日活跃</dt><dd><strong>13</strong><small>昨日 25 · 打开过 App 即计入</small></dd></div>
-                        <div><dt>周活</dt><dd><strong>102</strong><small>月活 218</small></dd></div>
-                        <div><dt>今日解读</dt><dd><strong>0</strong><small>0 人 · 昨日 6 次</small></dd></div>
-                        <div><dt>会员</dt><dd><strong>1</strong><small>已过期 0</small></dd></div>
-                        <div><dt>用户总数</dt><dd><strong>83</strong><small>账号 29 · 已占卜游客 54 · 未占卜游客 377 不计</small></dd></div>
-                        <div><dt>今日新增</dt><dd><strong>0</strong><small>注册 0 · 首次占卜 0</small></dd></div>
-                        <div><dt>今日撞墙</dt><dd><strong>0</strong><small>0 次 · 兑换 0 成功 / 0 失败</small></dd></div>
-                        <div><dt>待用礼品额度</dt><dd><strong>1,150</strong><small>在用兑换码 3</small></dd></div>
-                      </dl>
+                      <p class="sr-only" role="status" data-demo-status></p>
+                      <section class="orae-console-page" id="orae-console-overview" aria-labelledby="orae-console-title">
+                        <header class="orae-console-readout">
+                          <h6 id="orae-console-title">概览</h6>
+                          <p>线上快照 · <time datetime="2026-11-20T13:57:06+08:00">2026 年 11 月 20 日 13:57:06</time> 北京时间</p>
+                        </header>
+                        <dl class="orae-ops-metrics">
+                          <div><dt>今日活跃</dt><dd><strong>13</strong><small>昨日 25 · 打开过 App 即计入</small></dd></div>
+                          <div><dt>周活</dt><dd><strong>102</strong><small>月活 218</small></dd></div>
+                          <div><dt>今日解读</dt><dd><strong>0</strong><small>0 人 · 昨日 6 次</small></dd></div>
+                          <div><dt>会员</dt><dd><strong>1</strong><small>已过期 0</small></dd></div>
+                          <div><dt>用户总数</dt><dd><strong>83</strong><small>账号 29 · 已占卜游客 54 · 未占卜游客 377 不计</small></dd></div>
+                          <div><dt>今日新增</dt><dd><strong>0</strong><small>注册 0 · 首次占卜 0</small></dd></div>
+                          <div><dt>今日撞墙</dt><dd><strong>0</strong><small>0 次 · 兑换 0 成功 / 0 失败</small></dd></div>
+                          <div><dt>待用礼品额度</dt><dd><strong>1,150</strong><small>在用兑换码 3</small></dd></div>
+                        </dl>
+                        <figure class="orae-ops-composition">
+                          <figcaption>83 位计入统计的用户构成</figcaption>
+                          <div class="orae-ops-bar" aria-hidden="true"><span></span><span></span></div>
+                          <ul><li>账号 <strong>29</strong></li><li>已占卜游客 <strong>54</strong></li></ul>
+                        </figure>
+
+                        <p class="evidence-source">指标来自线上截图。「今日」截至截图时间，「昨日」为完整自然日。</p>
+                      </section>
+                      <section class="orae-console-page" id="orae-console-users" aria-labelledby="orae-console-users-title" hidden>
+                        <header class="orae-console-readout"><h6 id="orae-console-users-title">用户</h6><p>示例数据</p></header>
+                        <p class="orae-console-intro">按身份和使用阶段查看用户，并对照解读次数、礼品额度与最近活跃。</p>
+                        <div class="orae-console-table" role="region" aria-label="用户列表示例" tabindex="0">
+                          <table>
+                            <thead><tr><th scope="col">用户</th><th scope="col">身份</th><th scope="col">阶段</th><th scope="col">今日</th><th scope="col">礼品额度</th><th scope="col">解读</th><th scope="col">最近活跃</th></tr></thead>
+                            <tbody>
+                              <tr><th scope="row">示例账号 01</th><td>注册账号</td><td>活跃</td><td>1 次</td><td>6</td><td>12 次</td><td>今日</td></tr>
+                              <tr><th scope="row">示例游客 01</th><td>游客</td><td>新客</td><td>0 次</td><td>0</td><td>1 次</td><td>昨日</td></tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </section>
+                      <section class="orae-console-page" id="orae-console-costs" aria-labelledby="orae-console-costs-title" hidden>
+                        <header class="orae-console-readout"><h6 id="orae-console-costs-title">成本</h6><p>示例数据 · 近 7 天</p></header>
+                        <dl class="orae-console-fields">
+                          <div><dt>用户调用成本</dt><dd>¥1.26 · 30 次调用</dd></div>
+                          <div><dt>后台测试连接</dt><dd>¥0.02 · 1 次调用</dd></div>
+                        </dl>
+                        <div class="orae-console-table" role="region" aria-label="按用途统计的成本示例" tabindex="0">
+                          <table>
+                            <thead><tr><th scope="col">用途</th><th scope="col">调用</th><th scope="col">成本</th><th scope="col">单次平均</th></tr></thead>
+                            <tbody>
+                              <tr><th scope="row">解读</th><td>12</td><td>¥0.84</td><td>¥0.070</td></tr>
+                              <tr><th scope="row">问题分析</th><td>18</td><td>¥0.42</td><td>¥0.023</td></tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </section>
+                      <section class="orae-console-page" id="orae-console-codes" aria-labelledby="orae-console-codes-title" hidden>
+                        <header class="orae-console-readout"><h6 id="orae-console-codes-title">兑换码</h6><p>示例数据</p></header>
+                        <dl class="orae-console-fields">
+                          <div><dt>批次</dt><dd>内测邀请示例</dd></div>
+                          <div><dt>面值</dt><dd>每次兑换增加 10 次解读</dd></div>
+                        </dl>
+                        <div class="orae-console-table" role="region" aria-label="兑换码列表示例" tabindex="0">
+                          <table>
+                            <thead><tr><th scope="col">兑换码</th><th scope="col">面值</th><th scope="col">已用 / 名额</th><th scope="col">状态</th><th scope="col">备注</th><th scope="col">有效期</th></tr></thead>
+                            <tbody>
+                              <tr><th scope="row">•••• 01</th><td>10 次</td><td>3 / 10</td><td>可用</td><td>内测邀请示例</td><td>11 月 30 日</td></tr>
+                              <tr><th scope="row">•••• 02</th><td>10 次</td><td>10 / 10</td><td>已用完</td><td>内测邀请示例</td><td>11 月 30 日</td></tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </section>
+                      <section class="orae-console-page" id="orae-console-model" aria-labelledby="orae-console-model-title" hidden>
+                        <header class="orae-console-readout"><h6 id="orae-console-model-title">模型</h6><p>示例配置</p></header>
+                        <p class="orae-console-intro">流式解读和追问使用解读模型，问题分析使用独立模型。</p>
+                        <dl class="orae-console-fields">
+                          <div><dt>接口地址</dt><dd>https://api.example.com/v1</dd></div>
+                          <div><dt>API Key</dt><dd>已隐藏</dd></div>
+                          <div><dt>解读模型</dt><dd>示例解读模型</dd></div>
+                          <div><dt>分析模型</dt><dd>示例分析模型</dd></div>
+                          <div><dt>超时</dt><dd>30,000 毫秒</dd></div>
+                          <div><dt>温度</dt><dd>按任务默认</dd></div>
+                        </dl>
+                      </section>
+                      <section class="orae-console-page" id="orae-console-limits" aria-labelledby="orae-console-limits-title" hidden>
+                        <header class="orae-console-readout"><h6 id="orae-console-limits-title">限流</h6><p>示例配置</p></header>
+                        <p class="orae-console-intro">每日额度按北京时间重置。用完后才消耗礼品额度。</p>
+                        <dl class="orae-console-fields">
+                          <div><dt>游客每日解读</dt><dd>1 次</dd></div>
+                          <div><dt>注册用户每日解读</dt><dd>3 次</dd></div>
+                          <div><dt>Pro 用户每日解读</dt><dd>20 次</dd></div>
+                          <div><dt>每人每分钟模型调用</dt><dd>10 次</dd></div>
+                          <div><dt>每 IP 每分钟登录尝试</dt><dd>5 次</dd></div>
+                          <div><dt>每人可维护的关系数</dt><dd>10 段</dd></div>
+                        </dl>
+                      </section>
+                      <section class="orae-console-page" id="orae-console-admins" aria-labelledby="orae-console-admins-title" hidden>
+                        <header class="orae-console-readout"><h6 id="orae-console-admins-title">管理员</h6><p>示例数据</p></header>
+                        <p class="orae-console-intro">后台角色包括所有者、管理员与只读。只有所有者可以管理后台账号。</p>
+                        <div class="orae-console-table" role="region" aria-label="管理员权限示例" tabindex="0">
+                          <table>
+                            <thead><tr><th scope="col">用户名</th><th scope="col">角色</th><th scope="col">状态</th><th scope="col">创建</th><th scope="col">最近登录</th></tr></thead>
+                            <tbody>
+                              <tr><th scope="row">示例账号 A</th><td>所有者</td><td>启用</td><td>11 月 12 日</td><td>11 月 20 日</td></tr>
+                              <tr><th scope="row">示例账号 B</th><td>管理员</td><td>启用</td><td>11 月 18 日</td><td>11 月 19 日</td></tr>
+                              <tr><th scope="row">示例账号 C</th><td>只读</td><td>启用</td><td>11 月 19 日</td><td>—</td></tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </section>
+                      <section class="orae-console-page" id="orae-console-audit" aria-labelledby="orae-console-audit-title" hidden>
+                        <header class="orae-console-readout"><h6 id="orae-console-audit-title">操作记录</h6><p>示例数据</p></header>
+                        <p class="orae-console-intro">记录后台配置变更和兑换码操作，便于回看变更对象及操作人。</p>
+                        <div class="orae-console-table" role="region" aria-label="审计记录示例" tabindex="0">
+                          <table>
+                            <thead><tr><th scope="col">时间</th><th scope="col">操作人</th><th scope="col">动作</th><th scope="col">对象</th><th scope="col">详情</th><th scope="col">来源 IP</th></tr></thead>
+                            <tbody>
+                              <tr><th scope="row">11-20 10:20</th><td>示例账号 A</td><td>更新限流</td><td>每日解读次数</td><td>调整注册用户额度</td><td>已隐藏</td></tr>
+                              <tr><th scope="row">11-20 10:15</th><td>示例账号 B</td><td>签发兑换码</td><td>内测邀请示例</td><td>每次兑换 10 次解读</td><td>已隐藏</td></tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </section>
                     </div>
                   </section>
-                  <figure class="orae-ops-composition">
-                    <figcaption>83 位计入统计的用户构成</figcaption>
-                    <div class="orae-ops-bar" aria-hidden="true"><span></span><span></span></div>
-                    <ul><li>账号 <strong>29</strong></li><li>已占卜游客 <strong>54</strong></li></ul>
-                  </figure>
-                  <p class="evidence-source">页面根据控制台源码还原，指标来自线上截图。「今日」截至截图时间，「昨日」为完整自然日。</p>
                 </div>
                 <div id="orae-ops-scope" class="orae-ops-view" hidden>
                   <dl class="orae-ops-notes">
