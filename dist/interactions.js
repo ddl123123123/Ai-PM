@@ -46,9 +46,14 @@ for (const guide of document.querySelectorAll('[data-relation-guide]')) {
     image.setAttribute('role', 'button')
     const marker = document.createElement('button')
     marker.type = 'button'
-    marker.className = 'relation-marker'
-    marker.textContent = number
-    marker.style.insetBlockStart = `${top + height / 2}%`
+    marker.className = 'relation-hotspot'
+    marker.style.insetBlockStart = `${top}%`
+    marker.style.blockSize = `${height}%`
+    const badge = document.createElement('span')
+    badge.className = 'relation-marker'
+    badge.textContent = number
+    badge.setAttribute('aria-hidden', 'true')
+    marker.append(badge)
     marker.setAttribute('aria-label', button.textContent)
     marker.setAttribute('aria-controls', figure.id)
     const outline = document.createElement('span')

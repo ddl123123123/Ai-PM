@@ -559,7 +559,7 @@ figcaption { margin-top: .45rem; color: var(--muted); font-size: .81rem; }
 .orae-relation-overview { padding: .5rem; border: 1px solid var(--line); border-radius: .65rem; background: var(--base); }
 .orae-relation-overview figcaption { display: grid; justify-items: center; gap: .2rem; text-align: center; font-size: .875rem; }
 .orae-relation-overview figcaption a { color: var(--accent); text-underline-offset: .2em; }
-.relation-screen-art { position: relative; }
+.relation-screen-art { position: relative; isolation: isolate; }
 .orae-relation-content h6 { margin: 0; font-size: 1.12rem; }
 .orae-relation-content > p { margin: .35rem 0 .8rem; }
 .orae-relation-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.5rem), 1fr)); gap: .55rem; }
@@ -575,6 +575,7 @@ figcaption { margin-top: .45rem; color: var(--muted); font-size: .81rem; }
 .relation-focus-layer {
   position: absolute;
   inset: 0;
+  z-index: 0;
   overflow: hidden;
   border-radius: .4rem;
   pointer-events: none;
@@ -591,9 +592,21 @@ figcaption { margin-top: .45rem; color: var(--muted); font-size: .81rem; }
   border-color: var(--accent);
   box-shadow: 0 0 0 100vmax #05030aa0, inset 0 0 .7rem #8962cd45;
 }
+.relation-hotspot {
+  position: absolute;
+  z-index: 1;
+  inset-inline: .25rem;
+  padding: 0;
+  border: 0;
+  border-radius: .35rem;
+  overflow: visible;
+  background: transparent;
+  cursor: pointer;
+}
 .relation-marker {
   position: absolute;
-  inset-inline-end: -1.32rem;
+  inset-block-start: 50%;
+  inset-inline-end: -1.57rem;
   translate: 0 -50%;
   display: grid;
   place-items: center;
@@ -609,13 +622,13 @@ figcaption { margin-top: .45rem; color: var(--muted); font-size: .81rem; }
   font-weight: 700;
   cursor: pointer;
 }
-.relation-marker:is(:hover, [aria-pressed="true"]) { background: var(--active-control); }
-.relation-marker[aria-pressed="true"] { box-shadow: 0 0 0 3px var(--demo-glow); }
+.relation-hotspot:is(:hover, [aria-pressed="true"]) .relation-marker { background: var(--active-control); }
+.relation-hotspot[aria-pressed="true"] .relation-marker { box-shadow: 0 0 0 3px var(--demo-glow); }
 .relation-detail-trigger { min-height: 2rem; padding: 0 .35rem; border: 0; border-radius: .3rem; background: transparent; color: inherit; font: inherit; font-weight: 700; text-align: start; cursor: pointer; }
 .relation-detail-trigger:is(:hover, [aria-pressed="true"]) { background: var(--active-control); }
 .relation-detail-zoom { display: inline-flex; align-items: center; min-height: 2.25rem; margin-top: .25rem; color: var(--accent); font-size: .86rem; }
 .orae-relation-details a[role="button"] img { cursor: pointer; }
-:is(.relation-marker, .relation-detail-trigger):focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+:is(.relation-hotspot, .relation-detail-trigger):focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
 @container portfolio (max-width: 33rem) {
   .orae-relation-panel, .orae-relation-panel.is-linked { grid-template-columns: minmax(0, 1fr); }
   .orae-relation-overview { justify-self: center; width: min(100%, 11rem); }
