@@ -21,16 +21,25 @@ for (const demo of document.querySelectorAll('[data-demo]')) {
 }
 
 for (const guide of document.querySelectorAll('[data-relation-guide]')) {
-  const screen = guide.querySelector('[data-relation-screen]')
   const controls = guide.querySelector('[data-relation-points]')
+  const markers = guide.querySelector('[data-relation-markers]')
   const hint = guide.querySelector('[data-relation-hint]')
-  const points = [...guide.querySelectorAll('[data-relation-detail]')].map(figure => {
+  const points = [...guide.querySelectorAll('[data-relation-detail]')].map((figure, index) => {
     const [top, height] = figure.dataset.relationDetail.split(' ').map(Number)
+    const label = figure.querySelector('figcaption strong').textContent
+    const number = index + 1
     const button = document.createElement('button')
     button.type = 'button'
-    button.textContent = figure.querySelector('figcaption strong').textContent
+    button.textContent = `${number} · ${label}`
     button.setAttribute('aria-controls', figure.id)
-    return { figure, top, height, button }
+    const marker = document.createElement('button')
+    marker.type = 'button'
+    marker.className = 'relation-marker'
+    marker.textContent = number
+    marker.style.insetBlockStart = `${top + height / 2}%`
+    marker.setAttribute('aria-label', `${number} · ${label}`)
+    marker.setAttribute('aria-controls', figure.id)
+    return { figure, top, height, button, marker }
   })
   let active
 
@@ -41,36 +50,20 @@ for (const guide of document.querySelectorAll('[data-relation-guide]')) {
       const selected = item === point
       item.figure.hidden = !selected
       item.button.setAttribute('aria-pressed', String(selected))
+      item.marker.setAttribute('aria-pressed', String(selected))
     }
     guide.style.setProperty('--relation-top', `${point.top}%`)
     guide.style.setProperty('--relation-height', `${point.height}%`)
   }
 
-  function scrollTarget(point) {
-    const max = screen.scrollHeight - screen.clientHeight
-    return Math.max(0, Math.min(max, screen.scrollHeight * point.top / 100 - 24))
-  }
-
   for (const point of points) {
-    point.button.addEventListener('click', () => {
-      select(point)
-      screen.scrollTop = scrollTarget(point)
-    })
+    point.button.addEventListener('click', () => select(point))
+    point.marker.addEventListener('click', () => select(point))
   }
-  screen.addEventListener('scroll', () => {
-    if (!screen.clientHeight) return
-    const nearest = points.reduce((best, point) => (
-      Math.abs(scrollTarget(point) - screen.scrollTop) < Math.abs(scrollTarget(best) - screen.scrollTop)
-        ? point : best
-    ), active)
-    select(nearest)
-  }, { passive: true })
   controls.append(...points.map(point => point.button))
+  markers.append(...points.map(point => point.marker))
   controls.hidden = false
   hint.hidden = false
-  screen.tabIndex = 0
-  screen.setAttribute('role', 'region')
-  screen.setAttribute('aria-label', '可滚动的完整设计稿')
   guide.classList.add('is-linked')
   select(points[0])
 }
@@ -355,9 +348,11 @@ if (viewer?.showModal) {
 }
 
 const directory = document.querySelector('#site-directory')
-if (directory?.showModal) {
+if (directory) {
   const trigger = document.querySelector('[data-directory-trigger]')
   const query = directory.querySelector('input')
+  const close = directory.querySelector('[data-directory-close]')
+  const wideLayout = window.matchMedia('(min-width: 64rem)')
   const status = directory.querySelector('[data-directory-status]')
   const list = directory.querySelector('[data-directory-list]')
   const ids = new Set([...document.querySelectorAll('[id]')].map(element => element.id))
@@ -367,6 +362,7 @@ if (directory?.showModal) {
   const groups = []
   let group
   let track = ''
+  let readingPosition = 0
 
   for (const heading of document.querySelectorAll('main :is(h2, h3, h4, h5, h6)')) {
     const demo = heading.closest('[data-demo]')
@@ -409,7 +405,9 @@ if (directory?.showModal) {
     }
     link.addEventListener('click', event => {
       if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
-      directory.close()
+      if (!wideLayout.matches) setDirectoryOpen(false)
+      list.querySelector('[aria-current]')?.removeAttribute('aria-current')
+      link.setAttribute('aria-current', 'location')
       entry.target.setAttribute('tabindex', '-1')
       entry.target.focus({ preventScroll: true })
     })
@@ -449,19 +447,44 @@ if (directory?.showModal) {
     directory.querySelector('.directory-results').scrollTop = 0
   }
 
+  function setDirectoryOpen(open) {
+    directory.hidden = !open
+    trigger.setAttribute('aria-expanded', String(open))
+  }
+
+  function toggleDirectory() {
+    if (directory.hidden) {
+      readingPosition = window.scrollY
+      setDirectoryOpen(true)
+      if (wideLayout.matches) {
+        query.focus({ preventScroll: true })
+      } else {
+        directory.querySelector('h2').focus({ preventScroll: true })
+        directory.scrollIntoView({ block: 'start' })
+      }
+      return
+    }
+    const restorePosition = !wideLayout.matches && directory.getBoundingClientRect().bottom > 0
+    setDirectoryOpen(false)
+    if (restorePosition) window.scrollTo(0, readingPosition)
+    trigger.focus({ preventScroll: true })
+  }
+
+  renderDirectory()
   trigger.hidden = false
-  trigger.addEventListener('click', () => {
-    query.value = ''
-    renderDirectory()
-    directory.showModal()
-  })
+  trigger.addEventListener('click', toggleDirectory)
+  close.addEventListener('click', toggleDirectory)
   query.addEventListener('input', renderDirectory)
   query.addEventListener('keydown', event => {
     if (event.key !== 'Enter' || event.isComposing || !query.value.trim()) return
     event.preventDefault()
     list.querySelector('a')?.click()
   })
-  directory.addEventListener('click', event => {
-    if (event.target === directory) directory.close()
-  })
+  for (const element of [directory, trigger]) {
+    element.addEventListener('keydown', event => {
+      if (event.key !== 'Escape' || directory.hidden || event.defaultPrevented) return
+      event.preventDefault()
+      toggleDirectory()
+    })
+  }
 }

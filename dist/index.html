@@ -12,6 +12,20 @@
 </head>
 <body id="top">
   <a class="skip" href="#main">跳到正文</a>
+  <div class="site-layout">
+    <aside id="site-directory" class="site-directory" aria-labelledby="site-directory-title" hidden>
+      <div class="directory-panel">
+        <div class="directory-heading">
+          <h2 id="site-directory-title" tabindex="-1">网站目录</h2>
+          <button type="button" class="button ghost" data-directory-close>收起</button>
+        </div>
+        <label class="sr-only" for="directory-query">搜索项目或章节</label>
+        <input id="directory-query" type="search" placeholder="搜索项目或章节" autocomplete="off">
+        <p class="sr-only" role="status" data-directory-status></p>
+        <nav class="directory-results" aria-label="目录结果"><div data-directory-list></div></nav>
+      </div>
+    </aside>
+    <div class="site-content">
   <header class="masthead">
     <div class="shell header-inner">
       <a class="brand" href="#top"><span aria-hidden="true">✦</span> 李彤彤 <small>作品集</small></a>
@@ -198,10 +212,8 @@
                     <p class="sr-only" role="status" data-demo-status></p>
                     <section id="orae-relation-tab-list" class="orae-relation-panel" data-relation-guide aria-labelledby="orae-relation-title-list">
                       <figure class="orae-relation-overview">
-                        <div class="relation-screen" data-relation-screen>
-                          <div class="relation-screen-art"><img loading="lazy" src="assets/orae-relation-list.webp" width="291" height="1062" alt="关系首页完整设计稿"><div class="relation-highlight" aria-hidden="true"></div></div>
-                        </div>
-                        <figcaption><span data-relation-hint hidden>上下滑动查看设计点</span><a href="assets/orae-relation-list.webp" data-image-preview>放大关系首页全图</a></figcaption>
+                        <div class="relation-screen-art"><img loading="lazy" src="assets/orae-relation-list.webp" width="291" height="1062" alt="关系首页完整设计稿"><div class="relation-highlight" aria-hidden="true"></div><div data-relation-markers role="group" aria-label="总览图上的设计点"></div></div>
+                        <figcaption><span data-relation-hint hidden>点击图中编号查看细节</span><a href="assets/orae-relation-list.webp" data-image-preview>放大关系首页全图</a></figcaption>
                       </figure>
                       <div class="orae-relation-content">
                         <h6 id="orae-relation-title-list">关系首页</h6>
@@ -216,10 +228,8 @@
                     </section>
                     <section id="orae-relation-tab-overview" class="orae-relation-panel" data-relation-guide aria-labelledby="orae-relation-title-overview" hidden>
                       <figure class="orae-relation-overview">
-                        <div class="relation-screen" data-relation-screen>
-                          <div class="relation-screen-art"><img loading="lazy" src="assets/orae-relation-overview.webp" width="291" height="1062" alt="关系总览完整设计稿"><div class="relation-highlight" aria-hidden="true"></div></div>
-                        </div>
-                        <figcaption><span data-relation-hint hidden>上下滑动查看设计点</span><a href="assets/orae-relation-overview.webp" data-image-preview>放大关系总览全图</a></figcaption>
+                        <div class="relation-screen-art"><img loading="lazy" src="assets/orae-relation-overview.webp" width="291" height="1062" alt="关系总览完整设计稿"><div class="relation-highlight" aria-hidden="true"></div><div data-relation-markers role="group" aria-label="总览图上的设计点"></div></div>
+                        <figcaption><span data-relation-hint hidden>点击图中编号查看细节</span><a href="assets/orae-relation-overview.webp" data-image-preview>放大关系总览全图</a></figcaption>
                       </figure>
                       <div class="orae-relation-content">
                         <h6 id="orae-relation-title-overview">关系总览</h6>
@@ -234,10 +244,8 @@
                     </section>
                     <section id="orae-relation-tab-events" class="orae-relation-panel" data-relation-guide aria-labelledby="orae-relation-title-events" hidden>
                       <figure class="orae-relation-overview">
-                        <div class="relation-screen" data-relation-screen>
-                          <div class="relation-screen-art"><img loading="lazy" src="assets/orae-relation-events.webp" width="291" height="1062" alt="相处记事完整设计稿"><div class="relation-highlight" aria-hidden="true"></div></div>
-                        </div>
-                        <figcaption><span data-relation-hint hidden>上下滑动查看设计点</span><a href="assets/orae-relation-events.webp" data-image-preview>放大相处记事全图</a></figcaption>
+                        <div class="relation-screen-art"><img loading="lazy" src="assets/orae-relation-events.webp" width="291" height="1062" alt="相处记事完整设计稿"><div class="relation-highlight" aria-hidden="true"></div><div data-relation-markers role="group" aria-label="总览图上的设计点"></div></div>
+                        <figcaption><span data-relation-hint hidden>点击图中编号查看细节</span><a href="assets/orae-relation-events.webp" data-image-preview>放大相处记事全图</a></figcaption>
                       </figure>
                       <div class="orae-relation-content">
                         <h6 id="orae-relation-title-events">相处记事</h6>
@@ -252,10 +260,8 @@
                     </section>
                     <section id="orae-relation-tab-history" class="orae-relation-panel" data-relation-guide aria-labelledby="orae-relation-title-history" hidden>
                       <figure class="orae-relation-overview">
-                        <div class="relation-screen" data-relation-screen>
-                          <div class="relation-screen-art"><img loading="lazy" src="assets/orae-relation-history.webp" width="291" height="1062" alt="问过的牌完整设计稿"><div class="relation-highlight" aria-hidden="true"></div></div>
-                        </div>
-                        <figcaption><span data-relation-hint hidden>上下滑动查看设计点</span><a href="assets/orae-relation-history.webp" data-image-preview>放大问过的牌全图</a></figcaption>
+                        <div class="relation-screen-art"><img loading="lazy" src="assets/orae-relation-history.webp" width="291" height="1062" alt="问过的牌完整设计稿"><div class="relation-highlight" aria-hidden="true"></div><div data-relation-markers role="group" aria-label="总览图上的设计点"></div></div>
+                        <figcaption><span data-relation-hint hidden>点击图中编号查看细节</span><a href="assets/orae-relation-history.webp" data-image-preview>放大问过的牌全图</a></figcaption>
                       </figure>
                       <div class="orae-relation-content">
                         <h6 id="orae-relation-title-history">问过的牌</h6>
@@ -764,19 +770,9 @@ v4 | 00:12 | 待确认 | 检查人物动作与字幕是否同步。</template>
     </div>
   </main>
   <footer class="shell footer"><span>李彤彤 · 产品作品集</span><a href="#projects">返回项目</a><a href="#top">回到顶部</a></footer>
-  <button type="button" class="directory-trigger" data-directory-trigger aria-haspopup="dialog" aria-controls="site-directory" hidden><span class="directory-icon" aria-hidden="true"></span>目录</button>
-  <dialog id="site-directory" class="site-directory" aria-labelledby="site-directory-title">
-    <div class="directory-panel">
-      <div class="directory-heading">
-        <h2 id="site-directory-title">网站目录</h2>
-        <form method="dialog"><button type="submit" class="button ghost">关闭</button></form>
-      </div>
-      <label class="sr-only" for="directory-query">搜索项目或章节</label>
-      <input id="directory-query" type="search" placeholder="搜索项目或章节" autocomplete="off" autofocus>
-      <p class="sr-only" role="status" data-directory-status></p>
-      <nav class="directory-results" aria-label="目录结果"><div data-directory-list></div></nav>
     </div>
-  </dialog>
+  </div>
+  <button type="button" class="directory-trigger" data-directory-trigger aria-expanded="false" aria-controls="site-directory" hidden><span class="directory-icon" aria-hidden="true"></span>目录</button>
   <dialog class="image-viewer" aria-labelledby="viewer-title">
     <header>
       <h2 id="viewer-title">图片预览</h2>
