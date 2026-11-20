@@ -21,25 +21,30 @@ for (const demo of document.querySelectorAll('[data-demo]')) {
 }
 
 for (const guide of document.querySelectorAll('[data-relation-guide]')) {
-  const controls = guide.querySelector('[data-relation-points]')
   const markers = guide.querySelector('[data-relation-markers]')
   const hint = guide.querySelector('[data-relation-hint]')
   const points = [...guide.querySelectorAll('[data-relation-detail]')].map((figure, index) => {
     const [top, height] = figure.dataset.relationDetail.split(' ').map(Number)
-    const label = figure.querySelector('figcaption strong').textContent
+    const label = figure.querySelector('figcaption strong')
     const number = index + 1
     const button = document.createElement('button')
     button.type = 'button'
-    button.textContent = `${number} · ${label}`
-    button.setAttribute('aria-controls', figure.id)
+    button.className = 'relation-detail-trigger'
+    button.textContent = `${number} · ${label.textContent}`
+    label.replaceWith(button)
     const marker = document.createElement('button')
     marker.type = 'button'
     marker.className = 'relation-marker'
     marker.textContent = number
     marker.style.insetBlockStart = `${top + height / 2}%`
-    marker.setAttribute('aria-label', `${number} · ${label}`)
+    marker.setAttribute('aria-label', button.textContent)
     marker.setAttribute('aria-controls', figure.id)
-    return { figure, top, height, button, marker }
+    const outline = document.createElement('span')
+    outline.className = 'relation-highlight'
+    outline.style.insetBlockStart = `${top}%`
+    outline.style.blockSize = `${height}%`
+    outline.setAttribute('aria-hidden', 'true')
+    return { figure, button, marker, outline }
   })
   let active
 
@@ -48,21 +53,18 @@ for (const guide of document.querySelectorAll('[data-relation-guide]')) {
     active = point
     for (const item of points) {
       const selected = item === point
-      item.figure.hidden = !selected
+      item.figure.toggleAttribute('data-active', selected)
+      item.outline.toggleAttribute('data-active', selected)
       item.button.setAttribute('aria-pressed', String(selected))
       item.marker.setAttribute('aria-pressed', String(selected))
     }
-    guide.style.setProperty('--relation-top', `${point.top}%`)
-    guide.style.setProperty('--relation-height', `${point.height}%`)
   }
 
   for (const point of points) {
     point.button.addEventListener('click', () => select(point))
     point.marker.addEventListener('click', () => select(point))
   }
-  controls.append(...points.map(point => point.button))
-  markers.append(...points.map(point => point.marker))
-  controls.hidden = false
+  markers.append(...points.map(point => point.outline), ...points.map(point => point.marker))
   hint.hidden = false
   guide.classList.add('is-linked')
   select(points[0])
@@ -449,6 +451,7 @@ if (directory) {
 
   function setDirectoryOpen(open) {
     directory.hidden = !open
+    directory.inert = !open
     trigger.setAttribute('aria-expanded', String(open))
   }
 
