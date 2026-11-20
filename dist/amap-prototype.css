@@ -147,9 +147,10 @@
 .amap-scene-face { display: block; }
 .amap-scene-face img { width: 100%; aspect-ratio: 1.7; object-fit: cover; border-radius: .68rem; }
 .amap-scene-face > span { display: block; padding: .42rem .25rem; font-size: clamp(.86rem, 3.7cqi, 1rem); }
-.amap-story-panel { margin-top: 1rem; padding: .75rem; border: 1px solid var(--line); border-radius: .65rem; background: var(--surface); }
-.amap-story-panel h6 { margin: 0 0 .6rem; font-size: 1rem; }
-.amap-story-panel img { width: 100%; border-radius: .6rem; }
+.amap-story-carousel .amap-carousel-track { --amap-card-width: min(86cqi, 39rem); padding-bottom: .65rem; }
+.amap-story-slide { display: block; padding: 0; border: 0; border-radius: .7rem; overflow: hidden; background: transparent; cursor: pointer; }
+.amap-story-slide img { width: 100%; height: auto; }
+.amap-story-slide:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
 @media screen and (prefers-reduced-motion: no-preference) {
   .amap-scene-slide { transition: opacity .24s ease, background-color .24s ease; }
   .amap-carousel-track:not([data-dragging]) .amap-scene-slide { transition: opacity .24s ease, background-color .24s ease, translate .24s ease; }
@@ -198,10 +199,11 @@
 .amap-guide-details { min-width: 0; }
 .amap-guide-details h6 { margin: 0; font-size: 1rem; }
 .amap-guide-details > p { margin-block: .3rem .6rem; font-size: .88rem; }
-.amap-guide-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr)); gap: .55rem; }
+.amap-guide-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; gap: .65rem; }
 .amap-guide-tile { min-width: 0; padding: .5rem; border: 1px solid var(--line); border-radius: .55rem; background: var(--surface); }
 .amap-guide-tile[data-active] { border-color: var(--accent); background: var(--panel-tint); box-shadow: 0 0 .85rem var(--demo-glow); }
-.amap-guide-tile img { width: 100%; height: 6.7rem; object-fit: contain; border-radius: .3rem; background: var(--base); }
+.amap-guide-tile > a { display: block; }
+.amap-guide-tile img { width: 100%; height: auto; border-radius: .3rem; background: var(--base); }
 .amap-guide-tile figcaption p { font-size: .8rem; }
 .amap-guide-tile button { min-height: 2.15rem; padding: .15rem .32rem; border: 0; border-radius: .3rem; background: transparent; color: var(--text); font: inherit; font-weight: 650; cursor: pointer; }
 .amap-guide-tile button:is(:hover, [aria-pressed="true"]) { background: var(--active-control); }
@@ -213,6 +215,14 @@
 @container portfolio (max-width: 40rem) {
   .amap-merchant-guide { grid-template-columns: minmax(0, 1fr); }
   .amap-guide-phone { width: min(100%, 18rem); justify-self: center; }
+}
+@container portfolio (max-width: 29rem) {
+  .amap-guide-grid { grid-template-columns: minmax(0, 1fr); }
+}
+@media screen and (min-height: 43rem) {
+  @container portfolio (width > 40rem) {
+    .amap-guide-phone { position: sticky; top: 1rem; }
+  }
 }
 @media (prefers-reduced-motion: no-preference) {
   .amap-category-icon { transition: scale .22s cubic-bezier(.2,.72,.28,1); }

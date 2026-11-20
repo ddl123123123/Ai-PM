@@ -545,9 +545,20 @@
                     </div>
                     <p class="sr-only" role="status" data-amap-carousel-status></p>
                   </section>
-                  <section class="amap-story-panel" aria-labelledby="amap-story-carousel-title">
-                    <h6 id="amap-story-carousel-title">内容卡与地点信息</h6>
-                    <figure><a href="assets/amap-story-triptych.webp" data-image-preview><img loading="lazy" src="assets/amap-story-triptych.webp" width="3156" height="454" alt="三张内容卡从左到右为：浪漫约会，Top Lounge 天空海岸，19.5km；沉浸桌游，酸黄瓜俱乐部，7.4km；小众买手，Studio Doherty，13.5km。"></a></figure>
+                  <section class="amap-carousel amap-story-carousel" data-amap-carousel aria-labelledby="amap-story-carousel-title">
+                    <div class="amap-carousel-header">
+                      <div><h6 id="amap-story-carousel-title">内容卡与地点信息</h6><p>左右滑动查看不同主题的推荐地点。</p></div>
+                      <div class="amap-carousel-controls" role="group" aria-label="内容卡切换">
+                        <button type="button" class="button ghost" data-amap-step="-1" aria-label="上一张内容卡">上一张</button>
+                        <button type="button" class="button ghost" data-amap-step="1" aria-label="下一张内容卡">下一张</button>
+                      </div>
+                    </div>
+                    <div class="amap-carousel-track" data-amap-track tabindex="0" role="group" aria-label="内容卡，可用方向键切换">
+                      <button type="button" class="amap-story-slide" data-amap-slide aria-pressed="true" aria-label="浪漫约会，Top Lounge 天空海岸，西餐厅，19.5km"><img loading="lazy" src="assets/amap-story-equal-date.webp" width="1016" height="454" alt="" draggable="false"></button>
+                      <button type="button" class="amap-story-slide" data-amap-slide aria-pressed="false" aria-label="沉浸桌游，酸黄瓜俱乐部，桌游店，7.4km"><img loading="lazy" src="assets/amap-story-equal-boardgame.webp" width="1016" height="454" alt="" draggable="false"></button>
+                      <button type="button" class="amap-story-slide" data-amap-slide aria-pressed="false" aria-label="小众买手，Studio Doherty，服装店，13.5km"><img loading="lazy" src="assets/amap-story-equal-boutique.webp" width="1016" height="454" alt="" draggable="false"></button>
+                    </div>
+                    <p class="sr-only" role="status" data-amap-carousel-status></p>
                   </section>
                 </section>
                 <section class="amap-design-module" aria-labelledby="amap-design-nearby">
@@ -613,7 +624,7 @@
                             <section id="amap-guide-offers" data-guide-part="offers" aria-label="优惠与套餐"><img loading="lazy" src="assets/amap-merchant-guide-offers.webp" width="850" height="956" alt="优惠与套餐界面" draggable="false"></section>
                             <section id="amap-guide-menu" data-guide-part="menu" aria-label="推荐菜"><img loading="lazy" src="assets/amap-merchant-guide-menu.webp" width="850" height="495" alt="推荐菜界面" draggable="false"></section>
                             <section id="amap-guide-notes" data-guide-part="notes" aria-label="探店笔记"><img loading="lazy" src="assets/amap-merchant-guide-notes.webp" width="850" height="652" alt="探店笔记界面" draggable="false"></section>
-                            <section id="amap-guide-reviews" data-guide-part="reviews" aria-label="评价"><img loading="lazy" src="assets/amap-merchant-guide-reviews.webp" width="850" height="759" alt="评价界面" draggable="false"></section>
+                            <section id="amap-guide-reviews" data-guide-part="reviews" aria-label="评价"><img loading="lazy" src="assets/amap-merchant-guide-reviews-clean.webp" width="850" height="717" alt="评价界面" draggable="false"></section>
                           </div>
                         </div>
                       </div>
@@ -639,7 +650,7 @@
                           <figcaption><button type="button" data-guide-jump="notes" aria-controls="amap-guide-notes" aria-pressed="false">探店笔记</button><p>查看实拍内容，了解就餐氛围。</p></figcaption>
                         </figure>
                         <figure class="amap-guide-tile" data-guide-card="reviews">
-                          <a href="assets/amap-merchant-guide-reviews.webp" data-image-preview><img loading="lazy" src="assets/amap-merchant-guide-reviews.webp" width="850" height="759" alt="评价细节图"></a>
+                          <a href="assets/amap-merchant-guide-reviews-clean.webp" data-image-preview><img loading="lazy" src="assets/amap-merchant-guide-reviews-clean.webp" width="850" height="717" alt="评价细节图"></a>
                           <figcaption><button type="button" data-guide-jump="reviews" aria-controls="amap-guide-reviews" aria-pressed="false">评价</button><p>对照评分、口碑标签与评价正文。</p></figcaption>
                         </figure>
                       </div>
