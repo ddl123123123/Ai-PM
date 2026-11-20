@@ -156,11 +156,39 @@
   .amap-scene-slide[aria-pressed="true"] { translate: 0 -.16rem; }
 }
 
-.amap-merchant-entry { display: grid; grid-template-columns: minmax(0, 6rem) minmax(0, 1fr); align-items: center; gap: .9rem; width: fit-content; max-width: 100%; margin-block: .75rem; padding: .6rem; border: 1px solid var(--line); border-radius: .6rem; background: var(--surface); text-decoration: none; }
-.amap-merchant-entry:hover { border-color: var(--accent); }
-.amap-merchant-entry > img { width: 100%; border-radius: .45rem; }
-.amap-merchant-entry > span > span { display: block; margin-top: .3rem; color: var(--muted); font-size: .88rem; }
 .amap-phone .amap-focus-entry { display: inline-flex; align-items: center; gap: .4rem; margin-inline-end: .2rem; }
 .amap-focus-entry > img { width: 2.35rem; height: 1.45rem; object-fit: cover; border-radius: .25rem; }
 .amap-detail-screen .amap-detail-tabs { position: sticky; inset-block-start: 0; z-index: 2; padding-block: .35rem; background: #f5f7f9; }
 .amap-merchant-page > img { margin-block-end: .55rem; }
+
+.amap-nearby-entries img { height: auto; padding: .65rem; }
+.amap-nearby-results img { height: auto; max-height: 27rem; }
+.amap-merchant-guide { display: grid; grid-template-columns: minmax(0, 18rem) minmax(0, 1fr); align-items: start; gap: clamp(.75rem, 2.5cqw, 1.4rem); margin-block-start: .85rem; }
+.amap-guide-phone { display: flex; flex-direction: column; height: clamp(24rem, 64dvh, 33rem); overflow: hidden; border: .32rem solid #211a2b; border-radius: 1.3rem; background: #f5f7f9; color: #17263b; }
+.amap-guide-phone [hidden] { display: none; }
+.amap-guide-start { position: relative; display: grid; place-items: center; flex: 1; min-height: 0; background: #edf4f6; }
+.amap-guide-start img { width: 100%; height: 100%; min-height: 0; object-fit: contain; }
+.amap-guide-start > span { position: absolute; inset: auto .65rem .65rem; width: fit-content; max-width: calc(100% - 1.3rem); margin-inline: auto; padding: .4rem .75rem; border-radius: 1.3rem; background: #1556aa; color: #fff; font-size: .87rem; font-weight: 650; text-align: center; }
+.amap-guide-detail { display: flex; flex-direction: column; height: 100%; }
+.amap-guide-bar { display: flex; align-items: center; flex-wrap: wrap; gap: .45rem; padding: .45rem; border-bottom: 1px solid #dce3eb; background: #fff; font-size: .83rem; }
+.amap-guide-bar button { min-height: 2.15rem; padding-inline: .45rem; border: 1px solid #bfd6f2; border-radius: .35rem; background: #edf5ff; color: #154b88; font: inherit; cursor: pointer; }
+.amap-guide-scroll { position: relative; flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior-y: contain; scrollbar-width: thin; background: #fff; }
+.amap-guide-scroll img { width: 100%; height: auto; }
+.amap-guide-phone :focus-visible { outline: 2px solid #1556aa; outline-offset: -3px; }
+.amap-guide-details { min-width: 0; }
+.amap-guide-details h6 { margin: 0; font-size: 1rem; }
+.amap-guide-details > p { margin-block: .3rem .6rem; font-size: .88rem; }
+.amap-guide-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr)); gap: .55rem; }
+.amap-guide-tile { min-width: 0; padding: .5rem; border: 1px solid var(--line); border-radius: .55rem; background: var(--surface); }
+.amap-guide-tile[data-active] { border-color: var(--accent); background: var(--panel-tint); box-shadow: 0 0 .85rem var(--demo-glow); }
+.amap-guide-tile img { width: 100%; height: 6.7rem; object-fit: contain; border-radius: .3rem; background: var(--base); }
+.amap-guide-tile figcaption p { font-size: .8rem; }
+.amap-guide-tile button { min-height: 2.15rem; padding: .15rem .32rem; border: 0; border-radius: .3rem; background: transparent; color: var(--text); font: inherit; font-weight: 650; cursor: pointer; }
+.amap-guide-tile button:is(:hover, [aria-pressed="true"]) { background: var(--active-control); }
+@container portfolio (max-width: 40rem) {
+  .amap-merchant-guide { grid-template-columns: minmax(0, 1fr); }
+  .amap-guide-phone { width: min(100%, 18rem); justify-self: center; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .amap-guide-tile { transition: border-color .2s ease, background-color .2s ease, box-shadow .2s ease; }
+}

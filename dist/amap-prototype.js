@@ -85,11 +85,6 @@ if (prototype) {
     render()
   }
 
-  for (const entry of document.querySelectorAll('[data-map-merchant-entry]')) {
-    entry.addEventListener('click', event => {
-      if (!event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) openDetails()
-    })
-  }
   window.addEventListener('hashchange', () => {
     if (location.hash === '#amap-merchant-demo' && screen !== 'detail') openDetails()
   })
@@ -179,6 +174,77 @@ if (prototype) {
 
   if (location.hash === '#amap-merchant-demo') openDetails()
   else render()
+}
+
+for (const guide of document.querySelectorAll('[data-amap-merchant-guide]')) {
+  const entry = guide.querySelector('[data-guide-open]')
+  const back = guide.querySelector('[data-guide-back]')
+  const detail = guide.querySelector('[data-guide-detail]')
+  const scroll = guide.querySelector('[data-guide-scroll]')
+  const status = guide.querySelector('[data-guide-status]')
+  const parts = [...guide.querySelectorAll('[data-guide-part]')]
+  const tiles = [...guide.querySelectorAll('[data-guide-card]')]
+  const jumps = [...guide.querySelectorAll('[data-guide-jump]')]
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
+  let frame = 0
+  let active = ''
+
+  function highlight(key) {
+    if (active === key) return
+    active = key
+    for (const tile of tiles) tile.toggleAttribute('data-active', tile.dataset.guideCard === key)
+    for (const button of jumps) {
+      const selected = button.dataset.guideJump === key
+      button.setAttribute('aria-pressed', String(selected))
+      if (selected) status.textContent = button.textContent
+    }
+  }
+
+  function openGuide() {
+    entry.hidden = true
+    detail.hidden = false
+    scroll.scrollTop = 0
+    highlight(parts[0].dataset.guidePart)
+  }
+
+  function synchronize() {
+    frame = 0
+    if (detail.hidden) return
+    const { scrollTop, scrollHeight, clientHeight } = scroll
+    const readingLine = scrollTop + clientHeight * .32
+    const atEnd = scrollTop > 1 && scrollTop + clientHeight >= scrollHeight - 2
+    const current = atEnd
+      ? parts.at(-1)
+      : parts.reduce((visible, part) => scrollTop > 1 && part.offsetTop <= readingLine ? part : visible, parts[0])
+    highlight(current.dataset.guidePart)
+  }
+
+  entry.addEventListener('click', event => {
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+    event.preventDefault()
+    openGuide()
+    scroll.focus({ preventScroll: true })
+  })
+  back.addEventListener('click', () => {
+    detail.hidden = true
+    entry.hidden = false
+    highlight('')
+    status.textContent = ''
+    entry.focus({ preventScroll: true })
+  })
+  scroll.addEventListener('scroll', () => {
+    if (!frame) frame = window.requestAnimationFrame(synchronize)
+  }, { passive: true })
+  for (const button of jumps) {
+    button.addEventListener('click', () => {
+      if (detail.hidden) openGuide()
+      const key = button.dataset.guideJump
+      const part = parts.find(item => item.dataset.guidePart === key)
+      const top = part === parts[0] ? 0 : Math.max(0, part.offsetTop - scroll.clientHeight * .32 + 2)
+      highlight(key)
+      scroll.scrollTo({ top, behavior: reducedMotion.matches ? 'instant' : 'smooth' })
+    })
+  }
 }
 
 for (const carousel of document.querySelectorAll('[data-amap-carousel]')) {
