@@ -547,14 +547,49 @@
                   </section>
                   <section class="amap-story-panel" aria-labelledby="amap-story-carousel-title">
                     <h6 id="amap-story-carousel-title">内容卡与地点信息</h6>
-                    <figure><a href="assets/amap-story-triptych.webp" data-image-preview><img loading="lazy" src="assets/amap-story-triptych.webp" width="3156" height="484" alt="三张内容卡从左到右为：浪漫约会，Top Lounge 天空海岸，19.5km；沉浸桌游，酸黄瓜俱乐部，7.4km；小众买手，Studio Doherty，13.5km。"></a></figure>
+                    <figure><a href="assets/amap-story-triptych.webp" data-image-preview><img loading="lazy" src="assets/amap-story-triptych.webp" width="3156" height="454" alt="三张内容卡从左到右为：浪漫约会，Top Lounge 天空海岸，19.5km；沉浸桌游，酸黄瓜俱乐部，7.4km；小众买手，Studio Doherty，13.5km。"></a></figure>
                   </section>
                 </section>
                 <section class="amap-design-module" aria-labelledby="amap-design-nearby">
                   <h5 id="amap-design-nearby">附近 · 把列表与地图点位对上</h5>
                   <p>用分类带用户进入合适的商圈或品类，再用距离、评分与图文摘要缩小候选。全屏读列表，半屏对照位置，全图看分布，点选后聚焦单店。</p>
                   <div class="amap-design-grid">
-                    <figure class="amap-design-figure amap-nearby-entries"><a href="assets/amap-nearby-entry-row.webp" data-image-preview><img loading="lazy" src="assets/amap-nearby-entry-row.webp" width="660" height="104" alt="从左到右：美食、旅行、酒店、生活服务、休闲娱乐、出行"></a><ul class="amap-nearby-labels" aria-hidden="true"><li>美食</li><li>旅行</li><li>酒店</li><li>生活服务</li><li>休闲娱乐</li><li>出行</li></ul><figcaption><strong>品类入口</strong></figcaption></figure>
+                    <section class="amap-design-figure amap-nearby-entries" data-demo aria-labelledby="amap-category-title">
+                      <h6 id="amap-category-title">品类入口</h6>
+                      <div class="amap-category-buttons" role="group" aria-label="查看各品类用色与图形">
+                        <button type="button" data-demo-step aria-pressed="true" aria-controls="amap-category-food" style="--category-offset:0%"><span class="amap-category-icon" aria-hidden="true"></span>美食</button>
+                        <button type="button" data-demo-step aria-pressed="false" aria-controls="amap-category-travel" style="--category-offset:20%"><span class="amap-category-icon" aria-hidden="true"></span>旅行</button>
+                        <button type="button" data-demo-step aria-pressed="false" aria-controls="amap-category-hotel" style="--category-offset:40%"><span class="amap-category-icon" aria-hidden="true"></span>酒店</button>
+                        <button type="button" data-demo-step aria-pressed="false" aria-controls="amap-category-services" style="--category-offset:60%"><span class="amap-category-icon" aria-hidden="true"></span>生活服务</button>
+                        <button type="button" data-demo-step aria-pressed="false" aria-controls="amap-category-leisure" style="--category-offset:80%"><span class="amap-category-icon" aria-hidden="true"></span>休闲娱乐</button>
+                        <button type="button" data-demo-step aria-pressed="false" aria-controls="amap-category-transport" style="--category-offset:100%"><span class="amap-category-icon" aria-hidden="true"></span>出行</button>
+                      </div>
+                      <div class="amap-category-panel" id="amap-category-food">
+                        <p class="amap-category-name"><strong>美食</strong></p>
+                        <dl><div><dt>包含类型</dt><dd>餐厅、小吃、咖啡馆、甜品店。</dd></div><div><dt>颜色与图形</dt><dd>暖黄色呼应食物和用餐氛围，勺叉是辨识度高的餐饮符号。</dd></div></dl>
+                      </div>
+                      <div class="amap-category-panel" id="amap-category-travel" hidden>
+                        <p class="amap-category-name"><strong>旅行</strong></p>
+                        <dl><div><dt>包含类型</dt><dd>景点、公园、博物馆、城市地标。</dd></div><div><dt>颜色与图形</dt><dd>翡翠绿联想到户外和探索，传统门楼帮助用户认出景点入口。</dd></div></dl>
+                      </div>
+                      <div class="amap-category-panel" id="amap-category-hotel" hidden>
+                        <p class="amap-category-name"><strong>酒店</strong></p>
+                        <dl><div><dt>包含类型</dt><dd>酒店、民宿、青年旅舍。</dd></div><div><dt>颜色与图形</dt><dd>蓝色传达安静、整洁的住宿印象，楼体轮廓指向可入住的场所。</dd></div></dl>
+                      </div>
+                      <div class="amap-category-panel" id="amap-category-services" hidden>
+                        <p class="amap-category-name"><strong>生活服务</strong></p>
+                        <dl><div><dt>包含类型</dt><dd>商超、便利店、药店、洗衣店。</dd></div><div><dt>颜色与图形</dt><dd>粉色用于区分日常生活场景，购物车指向购买和补给。</dd></div></dl>
+                      </div>
+                      <div class="amap-category-panel" id="amap-category-leisure" hidden>
+                        <p class="amap-category-name"><strong>休闲娱乐</strong></p>
+                        <dl><div><dt>包含类型</dt><dd>桌游店、密室逃脱、影院、酒吧。</dd></div><div><dt>颜色与图形</dt><dd>紫色强调休闲和夜间体验，鸡尾酒杯提示社交与娱乐。</dd></div></dl>
+                      </div>
+                      <div class="amap-category-panel" id="amap-category-transport" hidden>
+                        <p class="amap-category-name"><strong>出行</strong></p>
+                        <dl><div><dt>包含类型</dt><dd>公交站、地铁站、停车场、打车点。</dd></div><div><dt>颜色与图形</dt><dd>青蓝色强化交通导视感，车辆正面轮廓便于快速识别。</dd></div></dl>
+                      </div>
+                      <p class="sr-only" data-demo-status role="status"></p>
+                    </section>
                     <figure class="amap-design-figure amap-nearby-results"><a href="assets/amap-nearby-results-list.webp" data-image-preview><img loading="lazy" src="assets/amap-nearby-results-list.webp" width="850" height="1107" alt="肉本家、袁记云饺、喜茶和达美乐比萨四张附近商家卡片"></a><figcaption><strong>附近商家卡片</strong><p>前置商家名、距离和口碑，减少进入详情前的来回确认。</p></figcaption></figure>
                   </div>
                   <p><a class="text-link" href="#amap-pde-demo">在交互原型里试四态联动</a></p>
@@ -564,28 +599,28 @@
                   <p>先给出地点判断所需的基本信息，再把优惠、菜品、笔记和评价分开，便于按需查看。</p>
                   <div class="amap-merchant-guide" data-amap-merchant-guide>
                     <div class="amap-guide-phone">
-                      <div class="amap-guide-statusbar"><img src="assets/amap-guide-status-art.webp" width="259" height="24" alt="9:41，信号与电量"></div>
+                      <div class="amap-guide-statusbar"><img src="assets/amap-guide-status-art.webp" width="259" height="24" alt="9:41，信号与电量" draggable="false"></div>
                       <div class="amap-guide-stage" data-guide-stage>
                         <div class="amap-guide-preview" data-guide-preview>
-                          <img class="amap-guide-map" src="assets/amap-guide-map-preview.webp" width="269" height="282" alt="附近地图">
+                          <img class="amap-guide-map" src="assets/amap-guide-map-preview.webp" width="269" height="282" alt="附近地图" draggable="false">
                           <button type="button" class="amap-guide-place" data-guide-open aria-label="展开肉本家商家详情">
                             <img src="assets/amap-guide-place-preview.webp" width="269" height="278" alt="" draggable="false">
                           </button>
                         </div>
                         <div class="amap-guide-detail" data-guide-detail hidden>
                           <div class="amap-guide-scroll" data-guide-scroll tabindex="0" role="region" aria-label="商家详情，可上下滚动，顶部下拉或按 Esc 收起">
-                            <section id="amap-guide-identity" data-guide-part="identity" aria-label="店铺信息"><img loading="lazy" src="assets/amap-merchant-guide-body.webp" width="850" height="625" alt="店铺信息界面"></section>
-                            <section id="amap-guide-offers" data-guide-part="offers" aria-label="优惠与套餐"><img loading="lazy" src="assets/amap-merchant-guide-offers.webp" width="850" height="956" alt="优惠与套餐界面"></section>
-                            <section id="amap-guide-menu" data-guide-part="menu" aria-label="推荐菜"><img loading="lazy" src="assets/amap-merchant-guide-menu.webp" width="850" height="495" alt="推荐菜界面"></section>
-                            <section id="amap-guide-notes" data-guide-part="notes" aria-label="探店笔记"><img loading="lazy" src="assets/amap-merchant-guide-notes.webp" width="850" height="652" alt="探店笔记界面"></section>
-                            <section id="amap-guide-reviews" data-guide-part="reviews" aria-label="评价"><img loading="lazy" src="assets/amap-merchant-guide-reviews.webp" width="850" height="759" alt="评价界面"></section>
+                            <section id="amap-guide-identity" data-guide-part="identity" aria-label="店铺信息"><img loading="lazy" src="assets/amap-merchant-guide-body.webp" width="850" height="625" alt="店铺信息界面" draggable="false"></section>
+                            <section id="amap-guide-offers" data-guide-part="offers" aria-label="优惠与套餐"><img loading="lazy" src="assets/amap-merchant-guide-offers.webp" width="850" height="956" alt="优惠与套餐界面" draggable="false"></section>
+                            <section id="amap-guide-menu" data-guide-part="menu" aria-label="推荐菜"><img loading="lazy" src="assets/amap-merchant-guide-menu.webp" width="850" height="495" alt="推荐菜界面" draggable="false"></section>
+                            <section id="amap-guide-notes" data-guide-part="notes" aria-label="探店笔记"><img loading="lazy" src="assets/amap-merchant-guide-notes.webp" width="850" height="652" alt="探店笔记界面" draggable="false"></section>
+                            <section id="amap-guide-reviews" data-guide-part="reviews" aria-label="评价"><img loading="lazy" src="assets/amap-merchant-guide-reviews.webp" width="850" height="759" alt="评价界面" draggable="false"></section>
                           </div>
                         </div>
                       </div>
                     </div>
                     <div class="amap-guide-details">
                       <h6>商家详情 · 细节展示</h6>
-                      <p>点按或上拉商家卡片打开详情。在手机内滑动时，右侧会高亮对应细节。回到详情顶部后，再向下拉即可收起。</p>
+                      <p>点按或上拉商家卡片打开详情。在手机内滑动时，右侧会高亮对应细节。回到详情顶部后，再向下拉即可收起。也可以用下方按钮切换。</p>
                       <div class="amap-guide-grid">
                         <figure class="amap-guide-tile" data-guide-card="identity">
                           <a href="assets/amap-merchant-guide-body.webp" data-image-preview><img loading="lazy" src="assets/amap-merchant-guide-body.webp" width="850" height="625" alt="店铺信息细节图"></a>
@@ -607,6 +642,10 @@
                           <a href="assets/amap-merchant-guide-reviews.webp" data-image-preview><img loading="lazy" src="assets/amap-merchant-guide-reviews.webp" width="850" height="759" alt="评价细节图"></a>
                           <figcaption><button type="button" data-guide-jump="reviews" aria-controls="amap-guide-reviews" aria-pressed="false">评价</button><p>对照评分、口碑标签与评价正文。</p></figcaption>
                         </figure>
+                      </div>
+                      <div class="amap-guide-actions" role="group" aria-label="商家演示操作">
+                        <button type="button" class="button light" data-guide-enter>进入详情页</button>
+                        <button type="button" class="button ghost" data-guide-return disabled>返回缩略图</button>
                       </div>
                       <p class="sr-only" data-guide-status role="status"></p>
                     </div>

@@ -181,6 +181,8 @@ for (const guide of document.querySelectorAll('[data-amap-merchant-guide]')) {
   const stage = guide.querySelector('[data-guide-stage]')
   const preview = guide.querySelector('[data-guide-preview]')
   const detail = guide.querySelector('[data-guide-detail]')
+  const enter = guide.querySelector('[data-guide-enter]')
+  const returnButton = guide.querySelector('[data-guide-return]')
   const scroll = guide.querySelector('[data-guide-scroll]')
   const status = guide.querySelector('[data-guide-status]')
   const parts = [...guide.querySelectorAll('[data-guide-part]')]
@@ -208,6 +210,8 @@ for (const guide of document.querySelectorAll('[data-amap-merchant-guide]')) {
     if (!detail.hidden) return
     preview.inert = true
     detail.hidden = false
+    enter.disabled = true
+    returnButton.disabled = false
     scroll.scrollTop = 0
     highlight(parts[0].dataset.guidePart)
   }
@@ -215,6 +219,8 @@ for (const guide of document.querySelectorAll('[data-amap-merchant-guide]')) {
   function closeGuide() {
     detail.hidden = true
     preview.inert = false
+    enter.disabled = false
+    returnButton.disabled = true
     highlight('')
     status.textContent = ''
     entry.focus({ preventScroll: true })
@@ -241,6 +247,8 @@ for (const guide of document.querySelectorAll('[data-amap-merchant-guide]')) {
     if (!skipTap || event.detail === 0) enterDetail()
     skipTap = false
   })
+  enter.addEventListener('click', enterDetail)
+  returnButton.addEventListener('click', closeGuide)
   scroll.addEventListener('keydown', event => {
     if (event.key !== 'Escape') return
     event.preventDefault()
@@ -260,28 +268,37 @@ for (const guide of document.querySelectorAll('[data-amap-merchant-guide]')) {
   stage.addEventListener('pointerdown', event => {
     if (!event.isPrimary || event.button !== 0) return
     const opening = detail.hidden && entry.contains(event.target)
-    const closing = !detail.hidden && event.pointerType === 'mouse' && scroll.scrollTop <= 1
-    if (!opening && !closing) return
+    const browsing = !detail.hidden && event.pointerType !== 'touch' && scroll.contains(event.target)
+    if (!opening && !browsing) return
     skipTap = false
-    pointer = { id: event.pointerId, x: event.clientX, y: event.clientY, delta: 0, opening, element: opening ? entry : detail }
+    pointer = { id: event.pointerId, x: event.clientX, y: event.clientY, top: scroll.scrollTop, delta: 0, opening }
   })
   stage.addEventListener('pointermove', event => {
     if (pointer?.id !== event.pointerId) return
     const y = event.clientY - pointer.y
-    if (Math.abs(y) < 7 && !pointer.delta) return
-    if (!pointer.delta && (Math.abs(event.clientX - pointer.x) > Math.abs(y) || (pointer.opening ? y > 0 : y < 0))) {
-      pointer = undefined
-      return
+    if (!pointer.action) {
+      if (Math.abs(y) < 7) return
+      if (Math.abs(event.clientX - pointer.x) > Math.abs(y) || (pointer.opening && y > 0)) {
+        pointer = undefined
+        return
+      }
+      stage.setPointerCapture(event.pointerId)
+      pointer.action = pointer.opening ? 'open' : pointer.top <= 1 && y > 0 ? 'close' : 'scroll'
+      stage.dataset.dragging = ''
     }
-    if (!pointer.delta) stage.setPointerCapture(event.pointerId)
-    pointer.delta = pointer.opening ? Math.min(0, y) : Math.max(0, y)
-    drawPull(pointer.element, Math.max(-110, Math.min(110, pointer.delta * .75)))
+    if (pointer.action === 'scroll') {
+      scroll.scrollTop = pointer.top - y
+    } else {
+      pointer.delta = pointer.opening ? Math.min(0, y) : Math.max(0, y)
+      drawPull(pointer.opening ? entry : detail, Math.max(-110, Math.min(110, pointer.delta * .75)))
+    }
   })
   function releasePointer(event) {
     if (pointer?.id !== event.pointerId) return
-    const { opening, delta, element } = pointer
+    const { opening, delta } = pointer
     pointer = undefined
-    resetPull(element)
+    delete stage.dataset.dragging
+    resetPull(opening ? entry : detail)
     if (opening) skipTap = Math.abs(delta) >= 7
     if (event.type !== 'pointerup' || Math.abs(delta) < 42) return
     if (opening) enterDetail()
@@ -289,8 +306,9 @@ for (const guide of document.querySelectorAll('[data-amap-merchant-guide]')) {
   }
   for (const event of ['pointerup', 'pointercancel', 'lostpointercapture']) stage.addEventListener(event, releasePointer)
   stage.addEventListener('pointerleave', () => {
-    if (pointer && !pointer.element.hasAttribute('data-pulling')) pointer = undefined
+    if (pointer && !pointer.action) pointer = undefined
   })
+  stage.addEventListener('dragstart', event => event.preventDefault())
 
   scroll.addEventListener('touchstart', event => {
     touch = scroll.scrollTop <= 1 && event.touches.length === 1
