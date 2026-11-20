@@ -181,7 +181,19 @@
 .amap-guide-phone { display: flex; flex-direction: column; width: 100%; max-width: 18rem; aspect-ratio: 430 / 932; overflow: hidden; border: .25rem solid #211a2b; border-radius: 1.3rem; background: #edf4f6; color: #17263b; }
 .amap-guide-phone [hidden] { display: none; }
 .amap-guide-statusbar { position: relative; z-index: 2; flex: 0 0 4.1%; min-height: 0; background: #edf4f6; }
-.amap-guide-statusbar img { width: 100%; height: 100%; object-fit: fill; }
+.amap-guide-map-status { width: 100%; height: 100%; object-fit: fill; }
+.amap-guide-detail-header { display: none; background: #fff; }
+.amap-guide-phone:has([data-guide-detail]:not([hidden])) .amap-guide-statusbar { flex-basis: auto; }
+.amap-guide-phone:has([data-guide-detail]:not([hidden])) .amap-guide-map-status { display: none; }
+.amap-guide-phone:has([data-guide-detail]:not([hidden])) .amap-guide-detail-header { display: block; }
+.amap-guide-detail-status { width: 100%; height: auto; }
+.amap-guide-search-row { display: grid; grid-template-columns: 9.5% 67% 1fr; align-items: center; aspect-ratio: 860 / 96; }
+.amap-guide-header-back { display: grid; place-items: center; align-self: stretch; border: 0; background: transparent; cursor: pointer; }
+.amap-guide-header-back::before { content: ""; width: .64rem; aspect-ratio: 1; border: solid #121212; border-width: 0 0 1.5px 1.5px; rotate: 45deg; }
+.amap-guide-search-label { position: relative; display: flex; align-items: center; gap: .3rem; height: 64%; padding-inline: .46rem; border-radius: 1rem; background: #f2f2f2; color: #646464; font-size: clamp(.59rem, 1.6cqw, .8rem); white-space: nowrap; }
+.amap-guide-search-label::before { content: ""; width: .55rem; aspect-ratio: 1; border: 1.5px solid; border-radius: 50%; }
+.amap-guide-search-label::after { content: ""; position: absolute; width: .23rem; height: 1.5px; inset-inline-start: 1rem; inset-block-start: 70%; border-radius: .2rem; background: currentColor; rotate: 45deg; }
+.amap-guide-header-pin { justify-self: end; width: 36%; height: auto; margin-inline-end: 13%; }
 .amap-guide-stage { position: relative; flex: 1; min-height: 0; overflow: hidden; isolation: isolate; }
 .amap-guide-preview, .amap-guide-detail { position: absolute; inset: 0; }
 .amap-guide-map { width: 100%; height: 51%; }
@@ -221,10 +233,29 @@
   .amap-merchant-guide { grid-template-columns: minmax(0, 1fr); }
   .amap-guide-phone { width: min(100%, 18rem); justify-self: center; }
 }
-@media screen and (min-height: 43rem) {
-  @container portfolio (width > 40rem) {
-    .amap-guide-phone { position: sticky; top: 1rem; }
+@container portfolio (width > 40rem) {
+  .amap-merchant-guide {
+    --amap-guide-height: clamp(28rem, calc(100svh - 7.5rem), 39rem);
+    grid-template-columns: minmax(0, calc(var(--amap-guide-height) * 430 / 932)) minmax(0, 1fr);
+    align-items: stretch;
+    height: var(--amap-guide-height);
   }
+  .amap-guide-phone { height: 100%; min-height: 0; }
+  .amap-guide-details {
+    display: grid;
+    grid-template-rows: auto auto auto minmax(0, 1fr) auto;
+    grid-template-areas: "heading" "copy" "thumbs" "preview" "actions";
+    gap: .42rem;
+    min-height: 0;
+  }
+  .amap-guide-details h6 { grid-area: heading; }
+  .amap-guide-details > p:not(.sr-only) { grid-area: copy; margin: 0; }
+  .amap-guide-thumbnails { grid-area: thumbs; }
+  .amap-guide-thumbnails img { height: clamp(2.5rem, 7svh, 4.4rem); }
+  .amap-guide-previews { grid-area: preview; min-height: 0; }
+  .amap-guide-tile:not([hidden]) { display: grid; grid-template-rows: minmax(0, 1fr) auto; height: 100%; margin-top: 0; }
+  .amap-guide-tile > a { height: 100%; min-height: 0; }
+  .amap-guide-actions { grid-area: actions; margin-top: 0; }
 }
 @media (prefers-reduced-motion: no-preference) {
   .amap-category-icon { transition: scale .22s cubic-bezier(.2,.72,.28,1); }

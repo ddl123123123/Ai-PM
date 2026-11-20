@@ -183,6 +183,7 @@ for (const guide of document.querySelectorAll('[data-amap-merchant-guide]')) {
   const detail = guide.querySelector('[data-guide-detail]')
   const enter = guide.querySelector('[data-guide-enter]')
   const returnButton = guide.querySelector('[data-guide-return]')
+  const headerBack = guide.querySelector('[data-guide-header-back]')
   const scroll = guide.querySelector('[data-guide-scroll]')
   const status = guide.querySelector('[data-guide-status]')
   const parts = [...guide.querySelectorAll('[data-guide-part]')]
@@ -260,6 +261,7 @@ for (const guide of document.querySelectorAll('[data-amap-merchant-guide]')) {
   })
   enter.addEventListener('click', enterDetail)
   returnButton.addEventListener('click', closeGuide)
+  headerBack.addEventListener('click', closeGuide)
   scroll.addEventListener('keydown', event => {
     if (event.key !== 'Escape') return
     event.preventDefault()
