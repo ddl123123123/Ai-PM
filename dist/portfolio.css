@@ -718,7 +718,36 @@ body:has(.image-viewer[open]) { overflow: hidden; }
 .directory-results p { padding: .65rem .45rem; color: var(--muted); }
 .case-index a:is(:hover, :focus-visible) { border-color: var(--accent); background: var(--panel-tint); }
 
+.orae-ops { margin-block: .95rem; padding: clamp(.7rem, 2cqw, 1.3rem); border: 1px solid var(--line); border-radius: .8rem; background: radial-gradient(ellipse at 0 0, #2a596232, transparent 64%), var(--base); }
+.orae-ops-header { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: .4rem 1.25rem; }
+.orae-ops-header h5 { font-size: 1.15rem; }
+.orae-ops-header p { font-size: .84rem; }
+.orae-ops-view[hidden] { display: none; }
+.orae-ops-metrics, .orae-ops-notes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; margin: .7rem 0 0; overflow: hidden; border: 1px solid var(--line); border-radius: .55rem; background: var(--line); }
+.orae-ops-metrics > div, .orae-ops-notes > div { padding: .65rem .75rem; background: var(--surface); }
+.orae-ops-metrics dd, .orae-ops-notes dd { margin: .2rem 0 0; }
+.orae-ops-metrics dt, .orae-ops-notes dt { color: var(--text-highlight); font-size: .875rem; font-weight: 650; }
+.orae-ops-metrics strong { display: block; font-size: clamp(1.5rem, 3.8cqw, 2.6rem); font-variant-numeric: tabular-nums; line-height: 1.2; }
+.orae-ops-metrics > :first-child strong { color: #7bd6ee; }
+.orae-ops-metrics small, .orae-ops-notes dd { display: block; margin-top: .25rem; color: var(--muted); font-size: .84rem; }
+.orae-ops-notes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.orae-ops-composition { margin-top: .8rem; }
+.orae-ops-composition figcaption { font-size: .88rem; }
+.orae-ops-bar { display: flex; height: .45rem; margin-top: .35rem; overflow: hidden; border-radius: .3rem; }
+.orae-ops-bar span:first-child { flex: 29; background: #7bd6ee; }
+.orae-ops-bar span:last-child { flex: 54; background: var(--accent-bar); }
+.orae-ops-composition ul { display: flex; flex-wrap: wrap; gap: .35rem 1.15rem; margin: .35rem 0 0; padding: 0; list-style: none; color: var(--muted); font-size: .84rem; }
+.orae-ops-composition li::before { content: ""; display: inline-block; width: .5rem; height: .5rem; margin-inline-end: .3rem; border-radius: 50%; background: #7bd6ee; }
+.orae-ops-composition li:last-child::before { background: var(--accent-bar); }
+@container portfolio (max-width: 53rem) {
+  .orae-ops-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@container portfolio (max-width: 30rem) {
+  .orae-ops-notes { grid-template-columns: minmax(0, 1fr); }
+}
+
 @media screen and (prefers-reduced-motion: no-preference) {
+  [data-ready] .orae-ops-view:not([hidden]) { animation: reveal-demo .26s ease-out; }
   [data-section-arrive] { animation: section-arrive .55s cubic-bezier(.22,.72,.28,1); }
   .practice-list > li:nth-child(2)[data-section-arrive], .resource-grid > article:nth-child(2)[data-section-arrive] { animation-delay: 45ms; }
   .practice-list > li:nth-child(3)[data-section-arrive], .resource-grid > article:nth-child(3)[data-section-arrive] { animation-delay: 90ms; }

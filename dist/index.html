@@ -125,7 +125,7 @@
             <p class="eyebrow">ORAE · 个人项目 · 已上线</p>
             <h2 id="orae-title">从一张牌到一次解读</h2>
             <p>为初次抽牌的用户设计网页体验。牌义可以直接查阅，AI 解读把用户的问题和抽到的牌联系起来。</p>
-            <dl class="contribution"><div><dt>我负责</dt><dd>个人项目，覆盖 AI 解读与关系管理的产品规则、网页交互。</dd></div><div><dt>交付</dt><dd>关系记忆由用户确认，按原话核验证据，按关系隔离上下文。</dd></div><div><dt>证据</dt><dd><a href="#ai-pm-solution">来源校验与关系设计稿</a> · <a href="#ai-pm-result">流式中断回归</a></dd></div></dl>
+            <dl class="contribution"><div><dt>我负责</dt><dd>个人项目，覆盖 AI 解读与关系管理的产品规则、网页交互。</dd></div><div><dt>交付</dt><dd>关系记忆由用户确认，按原话核验证据，按关系隔离上下文。</dd></div><div><dt>证据</dt><dd><a href="#ai-pm-solution">来源校验与关系设计稿</a> · <a href="#orae-ops">后台运营数据</a> · <a href="#ai-pm-result">流式中断回归</a></dd></div></dl>
             <div class="case-links"><a class="button light" href="https://tarot.anois.site/" target="_blank" rel="noopener">体验线上 Demo</a><a class="button ghost" href="#ai-pm">项目分析</a><a class="button ghost" href="#pde">交互展示</a></div>
           </div>
           <figure class="case-preview orae-preview">
@@ -291,6 +291,54 @@
             </section>
             <section class="chapter case-page" id="ai-pm-result" aria-labelledby="ai-pm-result-title">
               <h4 id="ai-pm-result-title">06 · 落地、验证与结果</h4>
+              <section class="orae-ops" id="orae-ops" aria-labelledby="orae-ops-title" data-demo>
+                <header class="orae-ops-header">
+                  <h5 id="orae-ops-title">ORAE 运营控制台</h5>
+                  <p><time datetime="2026-11-20T13:57:06+08:00">2026 年 11 月 20 日 13:57:06</time> · 北京时间 · 线上快照</p>
+                </header>
+                <div class="demo-controls" role="group" aria-label="运营控制台展示">
+                  <button type="button" data-demo-step aria-pressed="true" aria-controls="orae-ops-overview">运营概览</button>
+                  <button type="button" data-demo-step aria-pressed="false" aria-controls="orae-ops-scope">后台能力</button>
+                  <button type="button" data-demo-step aria-pressed="false" aria-controls="orae-ops-definitions">统计口径</button>
+                </div>
+                <p class="sr-only" role="status" data-demo-status></p>
+                <div id="orae-ops-overview" class="orae-ops-view">
+                  <dl class="orae-ops-metrics">
+                    <div><dt>今日活跃</dt><dd><strong>13</strong><small>昨日 25 · 打开过 App 即计入</small></dd></div>
+                    <div><dt>周活</dt><dd><strong>102</strong><small>月活 218</small></dd></div>
+                    <div><dt>今日解读</dt><dd><strong>0</strong><small>0 人 · 昨日 6 次</small></dd></div>
+                    <div><dt>会员</dt><dd><strong>1</strong><small>已过期 0</small></dd></div>
+                    <div><dt>用户总数</dt><dd><strong>83</strong><small>账号 29 · 已占卜游客 54 · 未占卜游客 377 不计</small></dd></div>
+                    <div><dt>今日新增</dt><dd><strong>0</strong><small>注册 0 · 首次占卜 0</small></dd></div>
+                    <div><dt>今日撞墙</dt><dd><strong>0</strong><small>0 次 · 兑换 0 成功 / 0 失败</small></dd></div>
+                    <div><dt>待用礼品额度</dt><dd><strong>1,150</strong><small>在用兑换码 3</small></dd></div>
+                  </dl>
+                  <figure class="orae-ops-composition">
+                    <figcaption>83 位计入统计的用户构成</figcaption>
+                    <div class="orae-ops-bar" aria-hidden="true"><span></span><span></span></div>
+                    <ul><li>账号 <strong>29</strong></li><li>已占卜游客 <strong>54</strong></li></ul>
+                  </figure>
+                  <p class="evidence-source">数据按原控制台截图录入。「今日」截至截图时间，昨日为完整自然日。当前是只读展示，未接入实时后台。</p>
+                </div>
+                <div id="orae-ops-scope" class="orae-ops-view" hidden>
+                  <dl class="orae-ops-notes">
+                    <div><dt>概览与用户</dt><dd>查看活跃、解读和会员概况，按账号与游客类型查看用户。</dd></div>
+                    <div><dt>模型与成本</dt><dd>按时间窗查看调用、失败与成本，可从模型配置页检查模型连接。</dd></div>
+                    <div><dt>兑换码与限流</dt><dd>管理兑换码批次与礼品额度，查看和调整每日配额与频率限制。</dd></div>
+                    <div><dt>管理员与操作记录</dt><dd>后台按角色区分权限，管理员管理页仅所有者可见，重要操作留有记录。</dd></div>
+                  </dl>
+                  <p class="evidence-source">后台模块与界面以 ORAE 项目仓库的实现为准。<a href="https://github.com/anois/tarot-v2/tree/9694faf53d4f7eb00c94b1dd7f1102b11e3b39da/apps/admin" target="_blank" rel="noopener">查看 GitHub 控制台源码（需仓库访问权限）</a></p>
+                </div>
+                <div id="orae-ops-definitions" class="orae-ops-view" hidden>
+                  <dl class="orae-ops-notes">
+                    <div><dt>活跃与用户总数</dt><dd>活跃由打开 App 的记录和模型调用日志汇总，按用户去重。周活与月活分别取近 7 天和 30 天。用户总数只计注册账号和已完成首次解读的游客。</dd></div>
+                    <div><dt>解读次数与人数</dt><dd>概览的「今日解读」读取当天用量汇总。「解读的人」和「昨日 6 次」来自成功解读日志，分别按用户和调用次数统计。</dd></div>
+                    <div><dt>新增与额度</dt><dd>今日新增在后台分列注册和首次占卜。「撞墙」记录额度耗尽后再次尝试解读的人与次数；待用礼品额度是剩余可用配额。</dd></div>
+                    <div><dt>数据读法</dt><dd>线上后台按北京时间汇总，约每十分钟更新，打开概览时也会补算当天数据。下午的快照适合记录当时的使用情况；判断转化与趋势需要完整日期和日级明细。</dd></div>
+                  </dl>
+                  <p class="evidence-source"><a href="https://github.com/anois/tarot-v2/blob/9694faf53d4f7eb00c94b1dd7f1102b11e3b39da/apps/admin/src/pages/Overview.tsx" target="_blank" rel="noopener">查看概览字段与统计说明</a></p>
+                </div>
+              </section>
               <p id="evaluation">MVP 的线上解读可用，关系账与回看有实现。拟用固定牌、牌位、正逆位和问题做五组盲评，并向关系记忆评测集加入跨对象误召回、推断越权、未确认候选等反例。</p><div id="comparison"><div class="table-scroll comparison-matrix" role="region" aria-label="ORAE 证据与结果" tabindex="0">
                 <table><thead><tr><th scope="col">迭代场景</th><th scope="col">改动 / 方案</th><th scope="col">现有证据</th><th scope="col">待补</th></tr></thead><tbody>
                   <tr><th scope="row">继续按钮边缘无响应</th><td>启用状态变化时重新挂载点击控件</td><td><span class="matrix-state verified">Android 模拟器复验，两端一次响应</span></td><td>真实使用反馈</td></tr>
