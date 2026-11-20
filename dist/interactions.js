@@ -20,18 +20,30 @@ for (const demo of document.querySelectorAll('[data-demo]')) {
   demo.dataset.ready = ''
 }
 
+const relationImages = []
+const isStudio = () => document.documentElement.dataset.edition === 'studio'
+
 for (const guide of document.querySelectorAll('[data-relation-guide]')) {
   const markers = guide.querySelector('[data-relation-markers]')
   const hint = guide.querySelector('[data-relation-hint]')
   const points = [...guide.querySelectorAll('[data-relation-detail]')].map((figure, index) => {
     const [top, height] = figure.dataset.relationDetail.split(' ').map(Number)
     const label = figure.querySelector('figcaption strong')
+    const image = figure.querySelector('[data-image-preview]')
     const number = index + 1
     const button = document.createElement('button')
     button.type = 'button'
     button.className = 'relation-detail-trigger'
     button.textContent = `${number} · ${label.textContent}`
     label.replaceWith(button)
+    const zoom = document.createElement('a')
+    zoom.className = 'relation-detail-zoom'
+    zoom.href = image.getAttribute('href')
+    zoom.dataset.imagePreview = ''
+    zoom.setAttribute('aria-label', `放大${label.textContent}`)
+    zoom.textContent = '放大'
+    figure.querySelector('figcaption').append(zoom)
+    relationImages.push(image)
     const marker = document.createElement('button')
     marker.type = 'button'
     marker.className = 'relation-marker'
@@ -44,7 +56,7 @@ for (const guide of document.querySelectorAll('[data-relation-guide]')) {
     outline.style.insetBlockStart = `${top}%`
     outline.style.blockSize = `${height}%`
     outline.setAttribute('aria-hidden', 'true')
-    return { figure, button, marker, outline }
+    return { figure, button, marker, outline, image }
   })
   let active
 
@@ -57,12 +69,29 @@ for (const guide of document.querySelectorAll('[data-relation-guide]')) {
       item.outline.toggleAttribute('data-active', selected)
       item.button.setAttribute('aria-pressed', String(selected))
       item.marker.setAttribute('aria-pressed', String(selected))
+      if (isStudio()) item.image.setAttribute('aria-pressed', String(selected))
     }
   }
 
   for (const point of points) {
-    point.button.addEventListener('click', () => select(point))
-    point.marker.addEventListener('click', () => select(point))
+    point.figure.addEventListener('click', event => {
+      const link = event.target.closest('a')
+      if ((link && link !== point.image) || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+      select(point)
+      if (!isStudio()) return
+      if (link) event.preventDefault()
+      point.marker.scrollIntoView({ block: 'nearest', inline: 'nearest' })
+    })
+    point.image.addEventListener('keydown', event => {
+      if (isStudio() && event.key === ' ') {
+        event.preventDefault()
+        point.image.click()
+      }
+    })
+    point.marker.addEventListener('click', () => {
+      select(point)
+      if (isStudio()) point.figure.scrollIntoView({ block: 'nearest', inline: 'nearest' })
+    })
   }
   markers.append(...points.map(point => point.outline), ...points.map(point => point.marker))
   hint.hidden = false
@@ -328,10 +357,10 @@ if (viewer?.showModal) {
 
   document.addEventListener('click', event => {
     const link = event.target.closest('[data-image-preview]')
-    if (!link || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+    if (!link || event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
     event.preventDefault()
 
-    const caption = link.querySelector('img')?.alt || link.textContent.trim() || '图片预览'
+    const caption = link.querySelector('img')?.alt || link.getAttribute('aria-label') || link.textContent.trim() || '图片预览'
     title.textContent = caption
     image.alt = caption
     image.src = link.href
@@ -347,6 +376,81 @@ if (viewer?.showModal) {
   viewer.addEventListener('click', event => {
     if (event.target === viewer) viewer.close()
   })
+}
+
+const editionSwitch = document.querySelector('[data-edition-switch]')
+if (editionSwitch) {
+  const root = document.documentElement
+  const choices = [...editionSwitch.querySelectorAll('[data-edition-choice]')]
+  const revealBlocks = document.querySelectorAll('.profile-intro, .profile-skills, .project-card, .case-lead, .case-brief > section, .case-track .chapter, .resource-block > header, .resource-block > article')
+  const observer = typeof IntersectionObserver === 'function' ? new IntersectionObserver(entries => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting || !isStudio()) continue
+      entry.target.classList.add('studio-entered')
+      observer.unobserve(entry.target)
+    }
+  }, { rootMargin: '0px 0px -36px 0px' }) : null
+
+  function updateEdition(edition) {
+    const studio = edition === 'studio'
+    root.dataset.edition = edition
+    for (const choice of choices) {
+      choice.setAttribute('aria-pressed', String(choice.dataset.editionChoice === edition))
+    }
+    for (const image of relationImages) {
+      if (studio) {
+        image.setAttribute('role', 'button')
+        image.setAttribute('aria-pressed', String(image.closest('figure').hasAttribute('data-active')))
+      } else {
+        image.removeAttribute('role')
+        image.removeAttribute('aria-pressed')
+      }
+    }
+    observer?.disconnect()
+    if (studio) {
+      for (const block of revealBlocks) {
+        if (!block.classList.contains('studio-entered')) observer?.observe(block)
+      }
+    }
+  }
+
+  function readEdition() {
+    return new URLSearchParams(location.search).get('edition') === 'studio' ? 'studio' : 'classic'
+  }
+
+  function editionWithPosition(edition) {
+    if (root.dataset.edition === edition) return
+    let anchor
+    let offset
+    if (window.scrollY > window.innerHeight / 2) {
+      const guide = window.innerHeight * .3
+      for (const heading of document.querySelectorAll('main h2, main h3, main h4')) {
+        if (!heading.getClientRects().length) continue
+        const { top } = heading.getBoundingClientRect()
+        if (!anchor || Math.abs(top - guide) < Math.abs(offset - guide)) {
+          anchor = heading
+          offset = top
+        }
+      }
+    }
+    updateEdition(edition)
+    if (anchor) window.scrollBy(0, anchor.getBoundingClientRect().top - offset)
+  }
+
+  updateEdition(readEdition())
+  editionSwitch.hidden = false
+  for (const choice of choices) {
+    choice.addEventListener('click', () => {
+      const edition = choice.dataset.editionChoice
+      if (root.dataset.edition === edition) return
+      const url = new URL(location.href)
+      if (edition === 'studio') url.searchParams.set('edition', 'studio')
+      else url.searchParams.delete('edition')
+      history.pushState(null, '', url)
+      editionWithPosition(edition)
+    })
+  }
+  window.addEventListener('popstate', () => editionWithPosition(readEdition()))
 }
 
 const directory = document.querySelector('#site-directory')
