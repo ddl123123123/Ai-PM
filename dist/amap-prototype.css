@@ -85,3 +85,92 @@
   .amap-sheet.is-dragging { transition: none; }
   .amap-focus-card:not([hidden]), .amap-detail-screen figure:not([hidden]) { animation: reveal-demo .25s ease-out; }
 }
+
+.amap-carousel {
+  container-type: inline-size;
+  min-width: 0;
+  margin-top: 1rem;
+  padding: .75rem;
+  border: 1px solid var(--line);
+  border-radius: .65rem;
+  background: var(--surface);
+}
+.amap-carousel-header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .6rem 1rem; }
+.amap-carousel-header h6 { margin: 0 0 .12rem; font-size: 1rem; }
+.amap-carousel-header p { font-size: .88rem; }
+.amap-carousel-controls { display: flex; gap: .35rem; }
+.amap-carousel-controls button { min-width: 3.75rem; padding: .15rem .45rem; color: inherit; font: inherit; font-size: .875rem; cursor: pointer; }
+.amap-carousel-controls [aria-disabled="true"] { opacity: .45; cursor: default; }
+.amap-carousel-track {
+  --amap-card-width: min(62cqi, 15rem);
+  display: flex;
+  gap: .7rem;
+  overflow-x: auto;
+  padding: .85rem max(.12rem, calc((100cqi - var(--amap-card-width)) / 2)) 1.4rem;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+  user-select: none;
+}
+.amap-carousel-track:focus-visible { outline: 2px solid var(--focus); outline-offset: -2px; }
+.amap-carousel-track[data-dragging] { scroll-snap-type: none; cursor: grabbing; }
+.amap-carousel-track > [data-amap-slide] { flex: 0 0 var(--amap-card-width); min-width: 0; scroll-snap-align: center; }
+.amap-scene-slide {
+  position: relative;
+  isolation: isolate;
+  align-self: start;
+  padding: .28rem .28rem 0;
+  border: 0;
+  border-radius: .95rem;
+  background: #eeeacb;
+  color: #522d10;
+  font: inherit;
+  font-weight: 720;
+  opacity: .72;
+  cursor: pointer;
+}
+.amap-scene-slide:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+.amap-scene-slide[aria-pressed="true"] { --amap-scene-selected: #fff3a4; background: var(--amap-scene-selected); opacity: 1; }
+.amap-scene-slide[aria-pressed="true"]::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset-inline-start: calc(50% - .55rem);
+  inset-block-end: -.38rem;
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 0 0 .27rem 0;
+  background: var(--amap-scene-selected);
+  transform: rotate(45deg) skew(-10deg, -10deg);
+}
+.amap-scene-face { display: block; }
+.amap-scene-face img { width: 100%; aspect-ratio: 1.7; object-fit: cover; border-radius: .68rem; }
+.amap-scene-face > span { display: block; padding: .42rem .25rem; font-size: clamp(.86rem, 3.7cqi, 1rem); }
+.amap-story-carousel .amap-carousel-track { --amap-card-width: min(88cqi, 34rem); align-items: stretch; padding-bottom: .6rem; }
+.amap-story-tabs { margin: .45rem 0 0; }
+.amap-story-slide {
+  --story-color: #f8f6da;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: .8rem;
+  background: var(--story-color);
+  color: #1d2029;
+  opacity: .7;
+}
+.amap-story-slide[data-active] { opacity: 1; }
+#amap-story-boutique { --story-color: #ffebcf; }
+#amap-story-boardgame { --story-color: #d6e5ff; }
+.amap-story-slide > img { width: 100%; aspect-ratio: 3 / 1; object-fit: cover; object-position: top; }
+.amap-story-info { padding: .55rem .75rem .65rem; }
+.amap-story-info p { color: inherit; font-size: .87rem; }
+.amap-story-info p:first-child { display: flex; flex-wrap: wrap; align-items: baseline; gap: .1rem .5rem; }
+.amap-story-info p span { color: #47505f; }
+.chapter .amap-story-info strong { color: inherit; font-size: 1rem; }
+.amap-story-info b { margin-inline-end: .35rem; padding: .08rem .28rem; border-radius: .3rem; background: #20233815; font-size: .72rem; }
+@media screen and (prefers-reduced-motion: no-preference) {
+  .amap-scene-slide, .amap-story-slide { transition: opacity .24s ease, background-color .24s ease; }
+  .amap-carousel-track:not([data-dragging]) .amap-scene-slide { transition: opacity .24s ease, background-color .24s ease, translate .24s ease; }
+  .amap-scene-slide[aria-pressed="true"] { translate: 0 -.16rem; }
+}

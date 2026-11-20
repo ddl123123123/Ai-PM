@@ -521,10 +521,68 @@
                 <section class="amap-design-module" aria-labelledby="amap-design-recommend">
                   <h5 id="amap-design-recommend">推荐 · 从情境找到想去的地方</h5>
                   <p>用场景卡帮助还没有明确目标的用户开始浏览，再通过带地点信息的内容卡把兴趣接到找店动作上。</p>
-                  <div class="amap-design-grid">
-                    <figure class="amap-design-figure"><a href="assets/amap-scene-cards.webp" data-image-preview><img loading="lazy" src="assets/amap-scene-cards.webp" width="1362" height="346" alt="情境式探索卡片"></a><figcaption><strong>情境式探索卡片</strong><p>按探店、休闲等氛围组织入口。</p></figcaption></figure>
-                    <figure class="amap-design-figure"><a href="assets/amap-scene-stories.webp" data-image-preview><img loading="lazy" src="assets/amap-scene-stories.webp" width="485" height="730" alt="内容卡与地点信息"></a><figcaption><strong>内容卡与地点信息</strong><p>在封面和标题后保留地点与距离。</p></figcaption></figure>
-                  </div>
+                  <section class="amap-carousel amap-scene-carousel" data-amap-carousel aria-labelledby="amap-scene-carousel-title">
+                    <div class="amap-carousel-header">
+                      <div><h6 id="amap-scene-carousel-title">情境式探索卡片</h6><p>左右滑动，或点一张卡片让它居中。</p></div>
+                      <div class="amap-carousel-controls" role="group" aria-label="情境卡切换">
+                        <button type="button" class="button ghost" data-amap-step="-1" aria-label="上一张情境卡">上一张</button>
+                        <button type="button" class="button ghost" data-amap-step="1" aria-label="下一张情境卡">下一张</button>
+                      </div>
+                    </div>
+                    <div class="amap-carousel-track" data-amap-track tabindex="0" role="group" aria-label="情境卡，可用方向键切换">
+                      <button type="button" class="amap-scene-slide" data-amap-slide aria-pressed="true" aria-label="颜值天花板西式简餐">
+                        <span class="amap-scene-face"><img src="assets/amap-scene-dining.webp" loading="lazy" width="846" height="507" alt="" draggable="false"><span>颜值天花板西式简餐</span></span>
+                      </button>
+                      <button type="button" class="amap-scene-slide" data-amap-slide aria-pressed="false" aria-label="商城寻宝乐">
+                        <span class="amap-scene-face"><img src="assets/amap-scene-shopping.webp" loading="lazy" width="803" height="475" alt="" draggable="false"><span>商城寻宝乐</span></span>
+                      </button>
+                      <button type="button" class="amap-scene-slide" data-amap-slide aria-pressed="false" aria-label="密室逃脱等你破局">
+                        <span class="amap-scene-face"><img src="assets/amap-scene-escape.webp" loading="lazy" width="800" height="414" alt="" draggable="false"><span>密室逃脱等你破局</span></span>
+                      </button>
+                      <button type="button" class="amap-scene-slide" data-amap-slide aria-pressed="false" aria-label="百玩不厌的电玩">
+                        <span class="amap-scene-face"><img src="assets/amap-scene-arcade.webp" loading="lazy" width="619" height="435" alt="" draggable="false"><span>百玩不厌的电玩</span></span>
+                      </button>
+                    </div>
+                    <p class="sr-only" role="status" data-amap-carousel-status></p>
+                  </section>
+                  <section class="amap-carousel amap-story-carousel" data-amap-carousel aria-labelledby="amap-story-carousel-title">
+                    <div class="amap-carousel-header">
+                      <div><h6 id="amap-story-carousel-title">内容卡与地点信息</h6><p>滑动或选择主题，查看推荐理由、地点类型与距离。</p></div>
+                      <div class="amap-carousel-controls" role="group" aria-label="内容卡切换">
+                        <button type="button" class="button ghost" data-amap-step="-1" aria-label="上一张内容卡">上一张</button>
+                        <button type="button" class="button ghost" data-amap-step="1" aria-label="下一张内容卡">下一张</button>
+                      </div>
+                    </div>
+                    <div class="amap-story-tabs demo-controls" role="group" aria-label="内容卡主题">
+                      <button type="button" class="button ghost" data-amap-jump="0" aria-controls="amap-story-date" aria-pressed="true">浪漫约会</button>
+                      <button type="button" class="button ghost" data-amap-jump="1" aria-controls="amap-story-boutique" aria-pressed="false">小众买手</button>
+                      <button type="button" class="button ghost" data-amap-jump="2" aria-controls="amap-story-boardgame" aria-pressed="false">沉浸桌游</button>
+                    </div>
+                    <div class="amap-carousel-track" data-amap-track tabindex="0" role="group" aria-label="内容卡，可用方向键切换">
+                      <article class="amap-story-slide" data-amap-slide="浪漫约会" id="amap-story-date">
+                        <img src="assets/amap-story-date.webp" loading="lazy" width="1000" height="318" alt="餐厅门面、露台座位与餐点" draggable="false">
+                        <div class="amap-story-info">
+                          <p><strong>Top Lounge 天空海岸</strong><span>西餐厅</span><span>19.5km</span></p>
+                          <p><b>推荐理由</b>吃饭打卡必去，约会圣地！</p>
+                        </div>
+                      </article>
+                      <article class="amap-story-slide" data-amap-slide="小众买手" id="amap-story-boutique">
+                        <img src="assets/amap-story-boutique.webp" loading="lazy" width="1000" height="339" alt="店铺外观、服装陈列与室内座位" draggable="false">
+                        <div class="amap-story-info">
+                          <p><strong>Studio Doherty</strong><span>服装店</span><span>13.5km</span></p>
+                          <p><b>推荐理由</b>主理人穿搭审美超绝，全都是不容易撞衫的精致孤品！</p>
+                        </div>
+                      </article>
+                      <article class="amap-story-slide" data-amap-slide="沉浸桌游" id="amap-story-boardgame">
+                        <img src="assets/amap-story-boardgame.webp" loading="lazy" width="1000" height="312" alt="桌游陈列和游玩空间" draggable="false">
+                        <div class="amap-story-info">
+                          <p><strong>酸黄瓜俱乐部</strong><span>桌游店</span><span>7.4km</span></p>
+                          <p><b>推荐理由</b>店内实景搭建非常带感，周末和朋友开黑面基的首选去处。</p>
+                        </div>
+                      </article>
+                    </div>
+                    <p class="sr-only" role="status" data-amap-carousel-status></p>
+                  </section>
                 </section>
                 <section class="amap-design-module" aria-labelledby="amap-design-nearby">
                   <h5 id="amap-design-nearby">附近 · 把列表与地图点位对上</h5>

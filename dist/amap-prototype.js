@@ -160,3 +160,101 @@ if (prototype) {
 
   render()
 }
+
+for (const carousel of document.querySelectorAll('[data-amap-carousel]')) {
+  const track = carousel.querySelector('[data-amap-track]')
+  const slides = [...track.querySelectorAll('[data-amap-slide]')]
+  const jumps = [...carousel.querySelectorAll('[data-amap-jump]')]
+  const steps = [...carousel.querySelectorAll('[data-amap-step]')]
+  const status = carousel.querySelector('[data-amap-carousel-status]')
+  const motion = window.matchMedia('(prefers-reduced-motion: reduce)')
+  let active = 0
+  let frame = 0
+  let drag
+
+  function displacement(slide) {
+    const rect = slide.getBoundingClientRect()
+    const viewport = track.getBoundingClientRect()
+    return rect.left + rect.width / 2 - (viewport.left + viewport.width / 2)
+  }
+
+  function nearest() {
+    return slides.reduce((best, slide, index) => (
+      Math.abs(displacement(slide)) < Math.abs(displacement(slides[best])) ? index : best
+    ), 0)
+  }
+
+  function select(index) {
+    active = index
+    slides.forEach((slide, i) => {
+      slide.toggleAttribute('data-active', i === index)
+      if (slide.tagName === 'BUTTON') slide.setAttribute('aria-pressed', String(i === index))
+    })
+    jumps.forEach((button, i) => button.setAttribute('aria-pressed', String(i === index)))
+    for (const button of steps) {
+      const next = index + Number(button.dataset.amapStep)
+      button.setAttribute('aria-disabled', String(next < 0 || next >= slides.length))
+    }
+    const label = slides[index].dataset.amapSlide || slides[index].getAttribute('aria-label')
+    const message = `${label}，第 ${index + 1} 张，共 ${slides.length} 张`
+    if (status.textContent !== message) status.textContent = message
+  }
+
+  function go(index, behavior = motion.matches ? 'instant' : 'smooth') {
+    const next = Math.max(0, Math.min(slides.length - 1, index))
+    track.scrollTo({ left: track.scrollLeft + displacement(slides[next]), behavior })
+    select(next)
+  }
+
+  function refresh() {
+    frame = 0
+    select(nearest())
+  }
+
+  track.addEventListener('scroll', () => {
+    if (!frame) frame = window.requestAnimationFrame(refresh)
+  }, { passive: true })
+  track.addEventListener('keydown', event => {
+    const step = { ArrowLeft: -1, ArrowRight: 1 }[event.key]
+    if (!step && event.key !== 'Home' && event.key !== 'End') return
+    event.preventDefault()
+    go(event.key === 'Home' ? 0 : event.key === 'End' ? slides.length - 1 : active + step)
+  })
+  for (const button of steps) {
+    button.addEventListener('click', () => go(active + Number(button.dataset.amapStep)))
+  }
+  jumps.forEach((button, index) => button.addEventListener('click', () => go(index)))
+  slides.forEach((slide, index) => {
+    if (slide.tagName === 'BUTTON') slide.addEventListener('click', () => go(index))
+  })
+
+  track.addEventListener('pointerdown', event => {
+    if (event.pointerType !== 'mouse' || event.button !== 0) return
+    drag = { id: event.pointerId, x: event.clientX, left: track.scrollLeft, moved: false }
+  })
+  track.addEventListener('pointermove', event => {
+    if (drag?.id !== event.pointerId) return
+    const delta = event.clientX - drag.x
+    if (!drag.moved && Math.abs(delta) < 6) return
+    if (!drag.moved) {
+      drag.moved = true
+      track.setPointerCapture(event.pointerId)
+      track.dataset.dragging = ''
+    }
+    track.scrollLeft = drag.left - delta
+  })
+  function endDrag(event) {
+    if (drag?.id !== event.pointerId) return
+    const moved = drag.moved
+    drag = undefined
+    if (!moved) return
+    const next = nearest()
+    delete track.dataset.dragging
+    go(next)
+  }
+  for (const event of ['pointerup', 'pointercancel', 'lostpointercapture']) track.addEventListener(event, endDrag)
+  track.addEventListener('pointerleave', () => {
+    if (drag && !drag.moved) drag = undefined
+  })
+  select(0)
+}
