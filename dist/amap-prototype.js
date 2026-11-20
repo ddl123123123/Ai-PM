@@ -241,8 +241,12 @@ for (const guide of document.querySelectorAll('[data-amap-merchant-guide]')) {
     const atEnd = scrollTop > 1 && scrollTop + clientHeight >= scrollHeight - 2
     const current = atEnd
       ? parts.at(-1)
-      : parts.reduce((visible, part) => scrollTop > 1 && part.offsetTop <= readingLine ? part : visible, parts[0])
+      : parts.reduce((visible, part) => scrollTop > 1 && positionInGuide(part) <= readingLine ? part : visible, parts[0])
     highlight(current.dataset.guidePart)
+  }
+
+  function positionInGuide(part) {
+    return part.getBoundingClientRect().top - scroll.getBoundingClientRect().top + scroll.scrollTop
   }
 
   function enterDetail() {
@@ -355,7 +359,7 @@ for (const guide of document.querySelectorAll('[data-amap-merchant-guide]')) {
       if (detail.hidden) openGuide()
       const key = button.dataset.guideJump
       const part = parts.find(item => item.dataset.guidePart === key)
-      const top = part === parts[0] ? 0 : Math.max(0, part.offsetTop - scroll.clientHeight * .32 + 2)
+      const top = part === parts[0] ? 0 : Math.max(0, positionInGuide(part) - scroll.clientHeight * .32 + 2)
       highlight(key)
       scroll.scrollTo({ top, behavior: reducedMotion.matches ? 'instant' : 'smooth' })
     })
