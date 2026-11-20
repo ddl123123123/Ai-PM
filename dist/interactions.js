@@ -119,6 +119,16 @@ if (hero || sections.length) {
   let lastOffset = 0
   const content = document.querySelector('.site-content')
   const resize = typeof ResizeObserver === 'function' ? new ResizeObserver(scheduleParallax) : null
+  const arrivals = document.querySelectorAll('.practice-list > li, .case-lead, .case-brief > section, .chapter, .resource-grid > article')
+  const visited = new WeakSet()
+  const reveal = typeof IntersectionObserver === 'function' ? new IntersectionObserver(entries => {
+    for (const { target, isIntersecting } of entries) {
+      if (!isIntersecting || !motion.matches || visited.has(target)) continue
+      visited.add(target)
+      reveal.unobserve(target)
+      target.dataset.sectionArrive = ''
+    }
+  }, { rootMargin: '0px 0px -8% 0px', threshold: .05 }) : null
 
   for (const { title, copy } of sections) {
     title.classList.add('parallax-heading')
@@ -128,6 +138,7 @@ if (hero || sections.length) {
   function paintParallax() {
     frame = 0
     const viewport = window.innerHeight
+    const travel = Math.min(26, viewport * .04)
     const heroRect = hero?.getBoundingClientRect()
     const heroOffset = heroRect ? Math.max(0, Math.min(-heroRect.top, heroRect.height, 420)) : 0
     // Read positions together, then update the layers without changing document flow.
@@ -135,7 +146,7 @@ if (hero || sections.length) {
       const rect = title.parentElement.getBoundingClientRect()
       if (rect.bottom < 0 || rect.top > viewport) return offset
       const progress = Math.max(0, Math.min(1, (rect.top - viewport * .24) / (viewport * .6)))
-      return Math.round(progress * 120) / 10
+      return Math.round(progress * travel * 10) / 10
     })
 
     if (heroOffset !== lastOffset) {
@@ -162,6 +173,11 @@ if (hero || sections.length) {
       window.addEventListener('scroll', scheduleParallax, { passive: true })
       window.addEventListener('resize', scheduleParallax)
       if (content) resize?.observe(content)
+      if (reveal) {
+        for (const section of arrivals) {
+          if (!visited.has(section)) reveal.observe(section)
+        }
+      }
       scheduleParallax()
       return
     }
@@ -169,6 +185,8 @@ if (hero || sections.length) {
     window.removeEventListener('scroll', scheduleParallax)
     window.removeEventListener('resize', scheduleParallax)
     resize?.disconnect()
+    reveal?.disconnect()
+    for (const section of arrivals) section.removeAttribute('data-section-arrive')
     if (frame) window.cancelAnimationFrame(frame)
     frame = 0
     lastOffset = 0

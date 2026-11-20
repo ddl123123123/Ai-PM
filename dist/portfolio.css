@@ -83,7 +83,7 @@ h1 span { color: var(--text-highlight); }
   .hero h1 { transform: translateY(calc(var(--hero-scroll, 0px) * -.10)); }
   .hero .lede { transform: translateY(calc(var(--hero-scroll, 0px) * -.035)); }
   .parallax-heading { translate: 0 var(--section-parallax); }
-  .parallax-copy { translate: 0 calc(var(--section-parallax) * .35); }
+  .parallax-copy { translate: 0 calc(var(--section-parallax) * .32); }
 }
 
 .about { padding-block: 3rem 5rem; text-align: center; }
@@ -716,12 +716,40 @@ body:has(.image-viewer[open]) { overflow: hidden; }
 .directory-results a:focus-visible { outline-offset: -2px; }
 .directory-results a small { display: block; margin-top: .15rem; color: var(--muted); font-size: .8rem; }
 .directory-results p { padding: .65rem .45rem; color: var(--muted); }
+.case-index a:is(:hover, :focus-visible) { border-color: var(--accent); background: var(--panel-tint); }
 
 @media screen and (prefers-reduced-motion: no-preference) {
+  [data-section-arrive] { animation: section-arrive .55s cubic-bezier(.22,.72,.28,1); }
+  .practice-list > li:nth-child(2)[data-section-arrive], .resource-grid > article:nth-child(2)[data-section-arrive] { animation-delay: 45ms; }
+  .practice-list > li:nth-child(3)[data-section-arrive], .resource-grid > article:nth-child(3)[data-section-arrive] { animation-delay: 90ms; }
+  .project-image > img { transition: scale .58s cubic-bezier(.22,.72,.28,1); }
+  .project-card:focus-within .project-image > img { scale: 1.045; }
+  @media (hover: hover) {
+    .project-card:hover .project-image > img { scale: 1.045; }
+  }
+  .project-select[aria-pressed="true"]::before { animation: selection-tap .34s cubic-bezier(.2,.7,.3,1); }
+  .case-index a, .demo-controls button { transition: background-color .22s ease, border-color .22s ease, scale .18s ease; }
+  .demo-controls button:active:not(:disabled) { scale: .975; }
   [data-ready] .orae-relation-panel:not([hidden]) { animation: reveal-demo .27s ease-out; }
+  .relation-hotspot[aria-pressed="true"] .relation-marker { animation: selection-tap .34s cubic-bezier(.2,.7,.3,1); }
   .orae-relation-details figure, .relation-highlight, .relation-marker, .relation-detail-trigger { transition: border-color .2s ease, background-color .2s ease; }
+  .image-viewer[open] { animation: viewer-arrive .28s cubic-bezier(.22,.72,.28,1); }
+  .image-viewer[open]::backdrop { animation: viewer-shade .24s ease-out; }
   .lift-preview button { transition: transform .36s ease, box-shadow .36s ease; }
 }
+@keyframes section-arrive {
+  from { opacity: .82; translate: 0 .55rem; }
+  to { opacity: 1; translate: 0 0; }
+}
+@keyframes selection-tap {
+  0%, 100% { scale: 1; }
+  48% { scale: 1.13; }
+}
+@keyframes viewer-arrive {
+  from { opacity: 0; scale: .98; }
+  to { opacity: 1; scale: 1; }
+}
+@keyframes viewer-shade { from { opacity: 0; } to { opacity: 1; } }
 @media screen and (width < 64rem) and (prefers-reduced-motion: no-preference) {
   .site-directory:not([hidden]) .directory-panel { animation: reveal-demo .3s ease-out; }
 }
