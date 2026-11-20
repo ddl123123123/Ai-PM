@@ -178,18 +178,19 @@
 .amap-category-panel dt { font-weight: 650; }
 .amap-category-panel dd { margin: .08rem 0 0; color: var(--muted); }
 .amap-merchant-guide { display: grid; grid-template-columns: minmax(0, 18rem) minmax(0, 1fr); align-items: start; gap: clamp(.75rem, 2.5cqw, 1.4rem); margin-block-start: .85rem; }
-.amap-guide-phone { display: flex; flex-direction: column; width: 100%; max-width: 18rem; aspect-ratio: 430 / 932; overflow: hidden; border: .25rem solid #211a2b; border-radius: 1.3rem; background: #edf4f6; color: #17263b; }
+.amap-guide-phone { position: relative; display: flex; flex-direction: column; width: 100%; max-width: 18rem; aspect-ratio: 430 / 932; overflow: hidden; border: .25rem solid #211a2b; border-radius: 1.3rem; background: #edf4f6; color: #17263b; }
 .amap-guide-phone [hidden] { display: none; }
 .amap-guide-statusbar { display: none; position: relative; z-index: 2; flex: none; background: #fff; }
-.amap-guide-phone:has([data-guide-detail]:not([hidden])) .amap-guide-statusbar { display: block; }
-.amap-guide-detail-status { width: 100%; height: auto; }
-.amap-guide-search-row { display: grid; grid-template-columns: 9.5% 67% 1fr; align-items: center; aspect-ratio: 860 / 96; }
+.amap-guide-phone:has([data-guide-detail]:not([hidden])) :is(.amap-guide-statusbar, .amap-guide-header-pin) { display: block; }
+.amap-guide-detail-status { display: block; width: 100%; height: auto; }
+.amap-guide-search-row { display: grid; grid-template-columns: 8.8% 67.2% 1fr; align-items: center; aspect-ratio: 860 / 96; container-type: inline-size; }
 .amap-guide-header-back { display: grid; place-items: center; align-self: stretch; border: 0; background: transparent; cursor: pointer; }
-.amap-guide-header-back::before { content: ""; width: .64rem; aspect-ratio: 1; border: solid #121212; border-width: 0 0 1.5px 1.5px; rotate: 45deg; }
-.amap-guide-search-label { position: relative; display: flex; align-items: center; gap: .3rem; height: 64%; padding-inline: .46rem; border-radius: 1rem; background: #f2f2f2; color: #646464; font-size: clamp(.59rem, 1.6cqw, .8rem); white-space: nowrap; }
-.amap-guide-search-label::before { content: ""; width: .55rem; aspect-ratio: 1; border: 1.5px solid; border-radius: 50%; }
-.amap-guide-search-label::after { content: ""; position: absolute; width: .23rem; height: 1.5px; inset-inline-start: 1rem; inset-block-start: 70%; border-radius: .2rem; background: currentColor; rotate: 45deg; }
-.amap-guide-header-pin { justify-self: end; width: 36%; height: auto; margin-inline-end: 13%; }
+.amap-guide-header-back::before { content: ""; width: 3.4cqi; aspect-ratio: 1; border: solid #121212; border-width: 0 0 .4cqi .4cqi; translate: 0 .7cqi; rotate: 45deg; }
+.amap-guide-search-label { position: relative; display: flex; align-items: center; gap: 1.65cqi; height: 60%; padding-inline: 2.65cqi; border-radius: 1rem; background: #f2f2f2; color: #767676; font-size: 3.15cqi; line-height: 1; white-space: nowrap; translate: 0 .7cqi; }
+.amap-guide-search-label::before { content: ""; width: 3.2cqi; aspect-ratio: 1; box-sizing: border-box; border: .45cqi solid; border-radius: 50%; }
+.amap-guide-search-label::after { content: ""; position: absolute; width: 1.45cqi; height: .45cqi; inset-inline-start: 5.15cqi; inset-block-start: calc(50% + 1.25cqi); border-radius: .2rem; background: currentColor; rotate: 45deg; }
+/* Keep the pin aligned with its bounds in the 1720 × 3728 map preview. */
+.amap-guide-header-pin { display: none; position: absolute; z-index: 3; inset-inline-start: calc(1462 / 1720 * 100%); inset-block-start: calc(238 / 3728 * 100%); width: calc(156 / 1720 * 100%); height: calc(156 / 3728 * 100%); }
 .amap-guide-stage { position: relative; flex: 1; min-height: 0; overflow: hidden; isolation: isolate; }
 .amap-guide-preview, .amap-guide-detail { position: absolute; inset: 0; }
 .amap-guide-preview { --guide-place-start: calc(1932 / 3728 * 100%); }
