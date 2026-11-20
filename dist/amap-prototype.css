@@ -180,7 +180,7 @@
 .amap-merchant-guide { display: grid; grid-template-columns: minmax(0, 18rem) minmax(0, 1fr); align-items: start; gap: clamp(.75rem, 2.5cqw, 1.4rem); margin-block-start: .85rem; }
 .amap-guide-phone { position: relative; display: flex; flex-direction: column; width: 100%; max-width: 18rem; aspect-ratio: 430 / 932; overflow: hidden; border: .25rem solid #211a2b; border-radius: 1.3rem; background: #edf4f6; color: #17263b; }
 .amap-guide-phone [hidden] { display: none; }
-.amap-guide-statusbar { position: absolute; z-index: 2; inset: 0 0 auto; pointer-events: none; container-type: inline-size; }
+.amap-guide-statusbar { position: absolute; z-index: 2; inset: 0 0 auto; opacity: var(--guide-hero-opacity); pointer-events: none; container-type: inline-size; }
 .amap-guide-detail-status { position: relative; z-index: 1; display: block; width: 100%; height: auto; background-color: rgb(255 255 255 / var(--guide-header-progress, 0)); }
 .amap-guide-search-row { display: grid; grid-template-columns: 8.8% 67.2% 1fr; align-items: center; aspect-ratio: 860 / 96; container-type: inline-size; }
 .amap-guide-search-row, .amap-guide-header-pin { opacity: var(--guide-header-progress, 0); translate: 0 var(--guide-header-travel, -1rem); }
@@ -198,18 +198,28 @@
 .amap-guide-header-tabs small { font-size: .78em; }
 /* Keep the pin aligned with its bounds in the 1720 × 3728 map preview. */
 .amap-guide-header-pin { position: absolute; z-index: 3; inset-inline-start: calc(1462 / 1720 * 100%); inset-block-start: calc(238 / 3728 * 100%); width: calc(156 / 1720 * 100%); height: calc(156 / 3728 * 100%); }
-.amap-guide-stage { position: relative; flex: 1; min-height: 0; overflow: hidden; isolation: isolate; }
+@property --guide-sheet-progress { syntax: "<number>"; inherits: true; initial-value: 0; }
+.amap-guide-stage {
+  --guide-card-top: calc(1932 / 3728 * 100%);
+  --guide-hero-opacity: clamp(0, calc((var(--guide-sheet-progress) - .78) / .22), 1);
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  isolation: isolate;
+  background: #fff;
+}
 .amap-guide-preview, .amap-guide-detail { position: absolute; inset: 0; }
-.amap-guide-map { display: block; width: 100%; height: 100%; }
-.amap-guide-place { position: absolute; inset: calc(1932 / 3728 * 100%) 0 auto; width: 100%; height: calc(1460 / 3728 * 100%); overflow: hidden; padding: 0; border: 0; border-radius: .5rem .5rem 0 0; background: #fff; cursor: pointer; touch-action: none; user-select: none; }
-.amap-guide-place img { width: 100%; height: 100%; }
-.amap-guide-map, .amap-guide-place img { object-fit: fill; }
-.amap-guide-bottom-bar { position: absolute; z-index: 2; inset-inline: calc(48 / 1720 * 100%); inset-block-end: calc(80 / 3728 * 100%); width: calc(1624 / 1720 * 100%); height: auto; filter: drop-shadow(0 .22rem .28rem #0003); }
-.amap-guide-detail { z-index: 1; display: flex; flex-direction: column; background: #fff; translate: 0 var(--guide-pull, 0px); }
-.amap-guide-scroll { position: relative; flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior-y: contain; touch-action: pan-y; scrollbar-width: none; background: #fff; user-select: none; }
-.amap-guide-scroll img { width: 100%; height: auto; }
-.amap-guide-long-art { position: relative; }
-.amap-guide-long-art::before { content: ""; position: absolute; inset: 0 0 auto; aspect-ratio: 860 / 169; background: linear-gradient(180deg, #ffc17b40, transparent); pointer-events: none; }
+.amap-guide-map { display: block; width: 100%; height: var(--guide-card-top); object-fit: fill; }
+.amap-guide-place { position: absolute; inset: var(--guide-card-top) 0 0; width: 100%; display: flex; align-items: flex-start; overflow: hidden; padding: 0; border: 0; border-radius: .5rem .5rem 0 0; background: #fff; cursor: pointer; touch-action: none; user-select: none; }
+.amap-guide-stage:has(.amap-guide-detail:not([hidden])) .amap-guide-place { opacity: 0; }
+.amap-guide-place img { width: 100%; height: auto; }
+.amap-guide-bottom-bar { position: absolute; z-index: 2; inset-inline: calc(48 / 1720 * 100%); inset-block-end: calc(80 / 3728 * 100%); width: calc(1624 / 1720 * 100%); height: auto; translate: 0 calc(175% * clamp(0, var(--guide-sheet-progress) / .36, 1)); filter: drop-shadow(0 .22rem .28rem #0003); }
+.amap-guide-detail { z-index: 1; display: flex; flex-direction: column; translate: 0 calc(var(--guide-sheet-origin, 0px) * (1 - var(--guide-sheet-progress))); }
+.amap-guide-scroll { position: relative; flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior-y: contain; touch-action: pan-y; scrollbar-width: none; user-select: none; }
+.amap-guide-scroll img { display: block; width: 100%; height: auto; border-radius: .5rem .5rem 0 0; }
+.amap-guide-long-art { position: relative; padding-block-start: calc(169 / 860 * 100%); }
+.amap-guide-long-art::before { content: ""; position: absolute; inset: 0 0 auto; aspect-ratio: 860 / 169; background: linear-gradient(180deg, #ffc17b40, transparent), url("assets/amap-guide-detail-hero.webp") center / cover; opacity: var(--guide-hero-opacity); pointer-events: none; }
 .amap-guide-section-marker { position: absolute; inset-block-start: var(--guide-section-top); inset-inline-start: 0; }
 .amap-guide-phone img { pointer-events: none; -webkit-user-drag: none; user-select: none; }
 .amap-guide-scroll { cursor: grab; }

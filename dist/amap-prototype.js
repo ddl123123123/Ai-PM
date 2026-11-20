@@ -186,7 +186,6 @@ for (const guide of document.querySelectorAll('[data-amap-merchant-guide]')) {
   const headerBack = guide.querySelector('[data-guide-header-back]')
   const headerTabs = guide.querySelector('[data-guide-header-tabs]')
   const tabs = [...headerTabs.querySelectorAll('[data-guide-tab]')]
-  const bottomBar = guide.querySelector('[data-guide-bottom-bar]')
   const scroll = guide.querySelector('[data-guide-scroll]')
   const status = guide.querySelector('[data-guide-status]')
   const parts = [...guide.querySelectorAll('[data-guide-part]')]
@@ -200,7 +199,7 @@ for (const guide of document.querySelectorAll('[data-amap-merchant-guide]')) {
   let touch
   let skipTap = false
   let opened = false
-  let pullOffset
+  let pullProgress
   let settling = false
 
   function highlight(key) {
@@ -241,39 +240,31 @@ for (const guide of document.querySelectorAll('[data-amap-merchant-guide]')) {
     headerBack.disabled = progress < .55
   }
 
-  function barPosition(offset, height) {
-    const visibility = height ? offset / height : 1
-    return {
-      opacity: visibility,
-      translate: `0 ${(1 - visibility) * 145}%`
-    }
-  }
-
-  function placeBar(offset, height) {
-    Object.assign(bottomBar.style, barPosition(offset, height))
+  function setSheetOrigin() {
+    const travel = Math.max(1, entry.offsetTop - stage.clientWidth * 169 / 860)
+    stage.style.setProperty('--guide-sheet-origin', `${travel}px`)
+    return travel
   }
 
   function settleSheet(nextOpen, focus = false) {
     if (settling) return
-    const height = stage.clientHeight
-    const start = pullOffset ?? (opened ? 0 : height)
-    const end = nextOpen ? 0 : height
+    const start = pullProgress ?? Number(opened)
+    const end = Number(nextOpen)
     const changing = opened !== nextOpen
-    pullOffset = undefined
+    pullProgress = undefined
     if (detail.hidden && !nextOpen) return
 
     revealSheet()
+    setSheetOrigin()
     settling = true
     preview.inert = opened || nextOpen
     detail.inert = !opened || !nextOpen
-    detail.style.setProperty('--guide-pull', `${end}px`)
-    placeBar(end, height)
+    stage.style.setProperty('--guide-sheet-progress', end)
     if (changing && nextOpen) highlight(parts[0].dataset.guidePart)
 
     function finish() {
       opened = nextOpen
       detail.hidden = !opened
-      detail.style.removeProperty('--guide-pull')
       detail.inert = !opened
       preview.inert = opened
       enter.disabled = opened
@@ -287,22 +278,20 @@ for (const guide of document.querySelectorAll('[data-amap-merchant-guide]')) {
       if (focus) (opened ? scroll : entry).focus({ preventScroll: true })
     }
 
-    if (reducedMotion.matches || Math.abs(start - end) < 1) {
+    if (reducedMotion.matches || start === end) {
       finish()
       return
     }
-    const timing = { duration: changing ? 560 : 340, easing: 'cubic-bezier(.22,.72,.26,1)' }
-    const animation = detail.animate(
-      [{ translate: `0 ${start}px` }, { translate: `0 ${end}px` }],
-      timing
+    const animation = stage.animate(
+      [{ '--guide-sheet-progress': start }, { '--guide-sheet-progress': end }],
+      { duration: changing ? 560 : 340, easing: 'cubic-bezier(.22,.72,.26,1)' }
     )
-    bottomBar.animate([barPosition(start, height), barPosition(end, height)], timing)
     animation.onfinish = finish
     animation.oncancel = finish
   }
 
   function closeGuide() {
-    if (opened && pullOffset === undefined) settleSheet(false, true)
+    if (opened && pullProgress === undefined) settleSheet(false, true)
   }
 
   function synchronize() {
@@ -323,7 +312,7 @@ for (const guide of document.querySelectorAll('[data-amap-merchant-guide]')) {
   }
 
   function enterDetail() {
-    if (!opened && pullOffset === undefined) settleSheet(true, true)
+    if (!opened && pullProgress === undefined) settleSheet(true, true)
   }
 
   entry.addEventListener('click', event => {
@@ -340,18 +329,16 @@ for (const guide of document.querySelectorAll('[data-amap-merchant-guide]')) {
   })
 
   function drawPull(distance, opening) {
-    const height = stage.clientHeight
-    const travel = Math.min(height, distance)
-    pullOffset = opening ? height - travel : travel
+    const fraction = Math.min(1, distance / setSheetOrigin())
+    pullProgress = opening ? fraction : 1 - fraction
     revealSheet()
-    detail.style.setProperty('--guide-pull', `${pullOffset}px`)
-    placeBar(pullOffset, height)
+    stage.style.setProperty('--guide-sheet-progress', pullProgress)
   }
 
-  function releasePull(distance, opening, completed) {
-    if (pullOffset === undefined) return
-    const threshold = Math.min(100, Math.max(52, stage.clientHeight * .15))
-    const shouldSwitch = completed && distance >= threshold
+  function releasePull(opening, completed) {
+    if (pullProgress === undefined) return
+    const moved = opening ? pullProgress : 1 - pullProgress
+    const shouldSwitch = completed && moved >= .25
     settleSheet(shouldSwitch ? opening : opened, shouldSwitch)
   }
 
@@ -361,7 +348,7 @@ for (const guide of document.querySelectorAll('[data-amap-merchant-guide]')) {
     const browsing = opened && event.pointerType !== 'touch' && scroll.contains(event.target)
     if (!opening && !browsing) return
     skipTap = false
-    pointer = { id: event.pointerId, x: event.clientX, y: event.clientY, top: scroll.scrollTop, delta: 0, opening }
+    pointer = { id: event.pointerId, x: event.clientX, y: event.clientY, top: scroll.scrollTop, opening }
   })
   stage.addEventListener('pointermove', event => {
     if (pointer?.id !== event.pointerId) return
@@ -379,17 +366,16 @@ for (const guide of document.querySelectorAll('[data-amap-merchant-guide]')) {
     if (pointer.action === 'scroll') {
       scroll.scrollTop = pointer.top - y
     } else {
-      pointer.delta = pointer.opening ? Math.min(0, y) : Math.max(0, y)
-      drawPull(Math.abs(pointer.delta), pointer.opening)
+      drawPull(Math.max(0, pointer.opening ? -y : y), pointer.opening)
     }
   })
   function releasePointer(event) {
     if (pointer?.id !== event.pointerId) return
-    const { opening, delta, action } = pointer
+    const { opening, action } = pointer
     pointer = undefined
     delete stage.dataset.dragging
     if (opening) skipTap = action === 'open'
-    releasePull(Math.abs(delta), opening, event.type === 'pointerup')
+    releasePull(opening, event.type === 'pointerup')
   }
   for (const event of ['pointerup', 'pointercancel', 'lostpointercapture']) stage.addEventListener(event, releasePointer)
   stage.addEventListener('pointerleave', () => {
@@ -407,7 +393,7 @@ for (const guide of document.querySelectorAll('[data-amap-merchant-guide]')) {
     const point = event.touches[0]
     if (event.touches.length !== 1 || !event.cancelable || scroll.scrollTop > 1) {
       touch = undefined
-      releasePull(0, false, false)
+      releasePull(false, false)
       return
     }
     const delta = point.clientY - touch.y
@@ -421,16 +407,15 @@ for (const guide of document.querySelectorAll('[data-amap-merchant-guide]')) {
   }, { passive: false })
   for (const type of ['touchend', 'touchcancel']) {
     scroll.addEventListener(type, event => {
-      const pull = touch?.delta ?? 0
       touch = undefined
-      releasePull(pull, false, event.type === 'touchend')
+      releasePull(false, event.type === 'touchend')
     }, { passive: true })
   }
   scroll.addEventListener('scroll', () => {
     if (!frame) frame = window.requestAnimationFrame(synchronize)
   }, { passive: true })
   function jumpTo(key) {
-    if (settling || pullOffset !== undefined) return
+    if (settling || pullProgress !== undefined) return
     if (!opened) settleSheet(true)
     const part = parts.find(item => item.dataset.guidePart === key)
     const top = part === parts[0] ? 0 : Math.max(0, positionInGuide(part) - scroll.clientHeight * .32 + 2)
