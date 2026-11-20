@@ -180,27 +180,36 @@
 .amap-merchant-guide { display: grid; grid-template-columns: minmax(0, 18rem) minmax(0, 1fr); align-items: start; gap: clamp(.75rem, 2.5cqw, 1.4rem); margin-block-start: .85rem; }
 .amap-guide-phone { position: relative; display: flex; flex-direction: column; width: 100%; max-width: 18rem; aspect-ratio: 430 / 932; overflow: hidden; border: .25rem solid #211a2b; border-radius: 1.3rem; background: #edf4f6; color: #17263b; }
 .amap-guide-phone [hidden] { display: none; }
-.amap-guide-statusbar { position: relative; z-index: 2; flex: none; background: #fff; }
-.amap-guide-detail-status { display: block; width: 100%; height: auto; }
+.amap-guide-statusbar { position: absolute; z-index: 2; inset: 0 0 auto; pointer-events: none; container-type: inline-size; }
+.amap-guide-detail-status { position: relative; z-index: 1; display: block; width: 100%; height: auto; background-color: rgb(255 255 255 / var(--guide-header-progress, 0)); }
 .amap-guide-search-row { display: grid; grid-template-columns: 8.8% 67.2% 1fr; align-items: center; aspect-ratio: 860 / 96; container-type: inline-size; }
+.amap-guide-search-row, .amap-guide-header-pin { opacity: var(--guide-header-progress, 0); translate: 0 var(--guide-header-travel, -1rem); }
+.amap-guide-search-row { background: #fff; }
 .amap-guide-header-back { display: grid; place-items: center; align-self: stretch; border: 0; background: transparent; cursor: pointer; }
+.amap-guide-header-back:enabled { pointer-events: auto; }
 .amap-guide-header-back::before { content: ""; width: 3.4cqi; aspect-ratio: 1; border: solid #121212; border-width: 0 0 .4cqi .4cqi; translate: 0 .7cqi; rotate: 45deg; }
 .amap-guide-search-label { position: relative; display: flex; align-items: center; gap: 1.65cqi; height: 60%; padding-inline: 2.65cqi; border-radius: 1rem; background: #f2f2f2; color: #767676; font-size: 3.15cqi; line-height: 1; white-space: nowrap; translate: 0 .7cqi; }
 .amap-guide-search-label::before { content: ""; width: 3.2cqi; aspect-ratio: 1; box-sizing: border-box; border: .45cqi solid; border-radius: 50%; }
 .amap-guide-search-label::after { content: ""; position: absolute; width: 1.45cqi; height: .45cqi; inset-inline-start: 5.15cqi; inset-block-start: calc(50% + 1.25cqi); border-radius: .2rem; background: currentColor; rotate: 45deg; }
+.amap-guide-header-tabs { display: flex; justify-content: center; gap: 9cqi; align-items: stretch; aspect-ratio: 860 / 72; background: #f3f3f3; opacity: var(--guide-tabs-progress, 0); }
+.amap-guide-header-tabs:not([inert]) { pointer-events: auto; }
+.amap-guide-header-tabs button { padding: 0; border: 0; background: transparent; color: #111; font: inherit; font-size: 3.8cqi; font-weight: 700; cursor: pointer; }
+.amap-guide-header-tabs button[aria-pressed="true"] { text-decoration: underline #f28e53 .75cqi; text-underline-offset: .45cqi; }
+.amap-guide-header-tabs small { font-size: .78em; }
 /* Keep the pin aligned with its bounds in the 1720 × 3728 map preview. */
 .amap-guide-header-pin { position: absolute; z-index: 3; inset-inline-start: calc(1462 / 1720 * 100%); inset-block-start: calc(238 / 3728 * 100%); width: calc(156 / 1720 * 100%); height: calc(156 / 3728 * 100%); }
 .amap-guide-stage { position: relative; flex: 1; min-height: 0; overflow: hidden; isolation: isolate; }
 .amap-guide-preview, .amap-guide-detail { position: absolute; inset: 0; }
-.amap-guide-preview { --guide-place-start: calc(1932 / 3728 * 100%); }
-.amap-guide-map { display: block; width: 100%; height: var(--guide-place-start); }
-.amap-guide-place { position: absolute; inset: var(--guide-place-start) 0 0; width: 100%; padding: 0; border: 0; background: #fff; cursor: pointer; touch-action: none; user-select: none; }
+.amap-guide-map { display: block; width: 100%; height: 100%; }
+.amap-guide-place { position: absolute; inset: calc(1932 / 3728 * 100%) 0 auto; width: 100%; height: calc(1460 / 3728 * 100%); overflow: hidden; padding: 0; border: 0; border-radius: .5rem .5rem 0 0; background: #fff; cursor: pointer; touch-action: none; user-select: none; }
 .amap-guide-place img { width: 100%; height: 100%; }
 .amap-guide-map, .amap-guide-place img { object-fit: fill; }
+.amap-guide-bottom-bar { position: absolute; z-index: 2; inset-inline: calc(48 / 1720 * 100%); inset-block-end: calc(80 / 3728 * 100%); width: calc(1624 / 1720 * 100%); height: auto; filter: drop-shadow(0 .22rem .28rem #0003); }
 .amap-guide-detail { z-index: 1; display: flex; flex-direction: column; background: #fff; translate: 0 var(--guide-pull, 0px); }
 .amap-guide-scroll { position: relative; flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior-y: contain; touch-action: pan-y; scrollbar-width: none; background: #fff; user-select: none; }
 .amap-guide-scroll img { width: 100%; height: auto; }
-.amap-guide-long-art { position: relative; margin-block-start: -14.4%; }
+.amap-guide-long-art { position: relative; }
+.amap-guide-long-art::before { content: ""; position: absolute; inset: 0 0 auto; aspect-ratio: 860 / 169; background: linear-gradient(180deg, #ffc17b40, transparent); pointer-events: none; }
 .amap-guide-section-marker { position: absolute; inset-block-start: var(--guide-section-top); inset-inline-start: 0; }
 .amap-guide-phone img { pointer-events: none; -webkit-user-drag: none; user-select: none; }
 .amap-guide-scroll { cursor: grab; }

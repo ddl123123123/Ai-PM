@@ -184,6 +184,9 @@ for (const guide of document.querySelectorAll('[data-amap-merchant-guide]')) {
   const enter = guide.querySelector('[data-guide-enter]')
   const returnButton = guide.querySelector('[data-guide-return]')
   const headerBack = guide.querySelector('[data-guide-header-back]')
+  const headerTabs = guide.querySelector('[data-guide-header-tabs]')
+  const tabs = [...headerTabs.querySelectorAll('[data-guide-tab]')]
+  const bottomBar = guide.querySelector('[data-guide-bottom-bar]')
   const scroll = guide.querySelector('[data-guide-scroll]')
   const status = guide.querySelector('[data-guide-status]')
   const parts = [...guide.querySelectorAll('[data-guide-part]')]
@@ -204,6 +207,8 @@ for (const guide of document.querySelectorAll('[data-amap-merchant-guide]')) {
     if (active === key) return
     active = key
     for (const tile of tiles) tile.hidden = tile.dataset.guideCard !== key
+    const selectedTab = { identity: 'offers', notes: 'menu' }[key] ?? key
+    for (const tab of tabs) tab.setAttribute('aria-pressed', String(tab.dataset.guideTab === selectedTab))
     for (const button of jumps) {
       const selected = button.dataset.guideJump === key
       button.setAttribute('aria-pressed', String(selected))
@@ -221,7 +226,31 @@ for (const guide of document.querySelectorAll('[data-amap-merchant-guide]')) {
     if (detail.hidden) {
       detail.hidden = false
       scroll.scrollTop = 0
+      updateHeader()
     }
+  }
+
+  function updateHeader() {
+    const distance = Math.max(1, scroll.clientWidth * .2)
+    const progress = Math.min(1, Math.max(0, scroll.scrollTop) / distance)
+    const tabProgress = Math.min(1, Math.max(0, (scroll.scrollTop - scroll.clientWidth * .64) / (distance * .28)))
+    detail.style.setProperty('--guide-header-progress', progress)
+    detail.style.setProperty('--guide-header-travel', reducedMotion.matches ? '0px' : `${-distance * .32 * (1 - progress)}px`)
+    detail.style.setProperty('--guide-tabs-progress', tabProgress)
+    headerTabs.inert = tabProgress < .55
+    headerBack.disabled = progress < .55
+  }
+
+  function barPosition(offset, height) {
+    const visibility = height ? offset / height : 1
+    return {
+      opacity: visibility,
+      translate: `0 ${(1 - visibility) * 145}%`
+    }
+  }
+
+  function placeBar(offset, height) {
+    Object.assign(bottomBar.style, barPosition(offset, height))
   }
 
   function settleSheet(nextOpen, focus = false) {
@@ -238,6 +267,7 @@ for (const guide of document.querySelectorAll('[data-amap-merchant-guide]')) {
     preview.inert = opened || nextOpen
     detail.inert = !opened || !nextOpen
     detail.style.setProperty('--guide-pull', `${end}px`)
+    placeBar(end, height)
     if (changing && nextOpen) highlight(parts[0].dataset.guidePart)
 
     function finish() {
@@ -261,10 +291,12 @@ for (const guide of document.querySelectorAll('[data-amap-merchant-guide]')) {
       finish()
       return
     }
+    const timing = { duration: changing ? 560 : 340, easing: 'cubic-bezier(.22,.72,.26,1)' }
     const animation = detail.animate(
       [{ translate: `0 ${start}px` }, { translate: `0 ${end}px` }],
-      { duration: changing ? 560 : 340, easing: 'cubic-bezier(.22,.72,.26,1)' }
+      timing
     )
+    bottomBar.animate([barPosition(start, height), barPosition(end, height)], timing)
     animation.onfinish = finish
     animation.oncancel = finish
   }
@@ -275,6 +307,7 @@ for (const guide of document.querySelectorAll('[data-amap-merchant-guide]')) {
 
   function synchronize() {
     frame = 0
+    if (!detail.hidden) updateHeader()
     if (!opened || settling) return
     const { scrollTop, scrollHeight, clientHeight } = scroll
     const readingLine = scrollTop + clientHeight * .32
@@ -312,6 +345,7 @@ for (const guide of document.querySelectorAll('[data-amap-merchant-guide]')) {
     pullOffset = opening ? height - travel : travel
     revealSheet()
     detail.style.setProperty('--guide-pull', `${pullOffset}px`)
+    placeBar(pullOffset, height)
   }
 
   function releasePull(distance, opening, completed) {
@@ -395,17 +429,16 @@ for (const guide of document.querySelectorAll('[data-amap-merchant-guide]')) {
   scroll.addEventListener('scroll', () => {
     if (!frame) frame = window.requestAnimationFrame(synchronize)
   }, { passive: true })
-  for (const button of jumps) {
-    button.addEventListener('click', () => {
-      if (settling || pullOffset !== undefined) return
-      if (!opened) settleSheet(true)
-      const key = button.dataset.guideJump
-      const part = parts.find(item => item.dataset.guidePart === key)
-      const top = part === parts[0] ? 0 : Math.max(0, positionInGuide(part) - scroll.clientHeight * .32 + 2)
-      highlight(key)
-      scroll.scrollTo({ top, behavior: reducedMotion.matches ? 'instant' : 'smooth' })
-    })
+  function jumpTo(key) {
+    if (settling || pullOffset !== undefined) return
+    if (!opened) settleSheet(true)
+    const part = parts.find(item => item.dataset.guidePart === key)
+    const top = part === parts[0] ? 0 : Math.max(0, positionInGuide(part) - scroll.clientHeight * .32 + 2)
+    highlight(key)
+    scroll.scrollTo({ top, behavior: reducedMotion.matches ? 'instant' : 'smooth' })
   }
+  for (const button of jumps) button.addEventListener('click', () => jumpTo(button.dataset.guideJump))
+  for (const tab of tabs) tab.addEventListener('click', () => jumpTo(tab.dataset.guideTab))
 }
 
 for (const carousel of document.querySelectorAll('[data-amap-carousel]')) {
