@@ -20,6 +20,61 @@ for (const demo of document.querySelectorAll('[data-demo]')) {
   demo.dataset.ready = ''
 }
 
+for (const guide of document.querySelectorAll('[data-relation-guide]')) {
+  const screen = guide.querySelector('[data-relation-screen]')
+  const controls = guide.querySelector('[data-relation-points]')
+  const hint = guide.querySelector('[data-relation-hint]')
+  const points = [...guide.querySelectorAll('[data-relation-detail]')].map(figure => {
+    const [top, height] = figure.dataset.relationDetail.split(' ').map(Number)
+    const button = document.createElement('button')
+    button.type = 'button'
+    button.textContent = figure.querySelector('figcaption strong').textContent
+    button.setAttribute('aria-controls', figure.id)
+    return { figure, top, height, button }
+  })
+  let active
+
+  function select(point) {
+    if (active === point) return
+    active = point
+    for (const item of points) {
+      const selected = item === point
+      item.figure.hidden = !selected
+      item.button.setAttribute('aria-pressed', String(selected))
+    }
+    guide.style.setProperty('--relation-top', `${point.top}%`)
+    guide.style.setProperty('--relation-height', `${point.height}%`)
+  }
+
+  function scrollTarget(point) {
+    const max = screen.scrollHeight - screen.clientHeight
+    return Math.max(0, Math.min(max, screen.scrollHeight * point.top / 100 - 24))
+  }
+
+  for (const point of points) {
+    point.button.addEventListener('click', () => {
+      select(point)
+      screen.scrollTop = scrollTarget(point)
+    })
+  }
+  screen.addEventListener('scroll', () => {
+    if (!screen.clientHeight) return
+    const nearest = points.reduce((best, point) => (
+      Math.abs(scrollTarget(point) - screen.scrollTop) < Math.abs(scrollTarget(best) - screen.scrollTop)
+        ? point : best
+    ), active)
+    select(nearest)
+  }, { passive: true })
+  controls.append(...points.map(point => point.button))
+  controls.hidden = false
+  hint.hidden = false
+  screen.tabIndex = 0
+  screen.setAttribute('role', 'region')
+  screen.setAttribute('aria-label', '可滚动的完整设计稿')
+  guide.classList.add('is-linked')
+  select(points[0])
+}
+
 const hero = document.querySelector('.hero')
 if (hero) {
   const motion = window.matchMedia('screen and (prefers-reduced-motion: no-preference)')

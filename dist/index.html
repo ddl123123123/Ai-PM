@@ -196,51 +196,75 @@
                   <div class="relation-switch" data-demo>
                     <div class="demo-controls" role="group" aria-label="关系管理页面"><button type="button" data-demo-step aria-pressed="true" aria-controls="orae-relation-tab-list">关系首页</button><button type="button" data-demo-step aria-pressed="false" aria-controls="orae-relation-tab-overview">关系总览</button><button type="button" data-demo-step aria-pressed="false" aria-controls="orae-relation-tab-events">相处记事</button><button type="button" data-demo-step aria-pressed="false" aria-controls="orae-relation-tab-history">问过的牌</button></div>
                     <p class="sr-only" role="status" data-demo-status></p>
-                    <section id="orae-relation-tab-list" class="orae-relation-panel" aria-labelledby="orae-relation-title-list">
-                      <div class="orae-relation-overview"><figure><a href="assets/orae-relation-list.webp" data-image-preview><img loading="lazy" src="assets/orae-relation-list.webp" width="291" height="1062" alt="关系首页完整设计稿"></a><figcaption><strong>完整页面</strong></figcaption></figure></div>
+                    <section id="orae-relation-tab-list" class="orae-relation-panel" data-relation-guide aria-labelledby="orae-relation-title-list">
+                      <figure class="orae-relation-overview">
+                        <div class="relation-screen" data-relation-screen>
+                          <div class="relation-screen-art"><img loading="lazy" src="assets/orae-relation-list.webp" width="291" height="1062" alt="关系首页完整设计稿"><div class="relation-highlight" aria-hidden="true"></div></div>
+                        </div>
+                        <figcaption><span data-relation-hint hidden>上下滑动查看设计点</span><a href="assets/orae-relation-list.webp" data-image-preview>放大关系首页全图</a></figcaption>
+                      </figure>
                       <div class="orae-relation-content">
                         <h6 id="orae-relation-title-list">关系首页</h6>
                         <p>找到要记录的关系，再从最近动态接着回看。</p>
+                        <div class="relation-points demo-controls" data-relation-points role="group" aria-label="设计点" hidden></div>
                         <div class="orae-relation-details">
-                          <figure><a href="assets/orae-relation-list-detail-1.webp" data-image-preview><img loading="lazy" src="assets/orae-relation-list-detail-1.webp" width="278" height="116" alt="关系首页设计稿 · 关系分类"></a><figcaption><strong>关系分类</strong><p>按关系类型筛选联系人。</p></figcaption></figure>
-                          <figure><a href="assets/orae-relation-list-detail-2.webp" data-image-preview><img loading="lazy" src="assets/orae-relation-list-detail-2.webp" width="278" height="210" alt="关系首页设计稿 · 关系摘要"></a><figcaption><strong>关系摘要</strong><p>在列表内回看上次问牌与近期动态。</p></figcaption></figure>
-                          <figure><a href="assets/orae-relation-list-detail-3.webp" data-image-preview><img loading="lazy" src="assets/orae-relation-list-detail-3.webp" width="278" height="134" alt="关系首页设计稿 · 新建入口"></a><figcaption><strong>新建入口</strong><p>从列表底部新建关系。</p></figcaption></figure>
+                          <figure id="relation-detail-list-1" data-relation-detail="4.4 10.9"><a href="assets/orae-relation-list-detail-1.webp" data-image-preview><img loading="lazy" src="assets/orae-relation-list-detail-1.webp" width="278" height="116" alt="关系首页设计稿 · 关系分类"></a><figcaption><strong>关系分类</strong><p>先用亲密关系、朋友、家人等分类缩小范围，再浏览对应记录。</p></figcaption></figure>
+                          <figure id="relation-detail-list-2" data-relation-detail="15.3 19.8"><a href="assets/orae-relation-list-detail-2.webp" data-image-preview><img loading="lazy" src="assets/orae-relation-list-detail-2.webp" width="278" height="210" alt="关系首页设计稿 · 关系摘要"></a><figcaption><strong>关系摘要</strong><p>把上次的问题和最新记事放进同一张卡片，进入详情前就能想起聊到了哪里。</p></figcaption></figure>
+                          <figure id="relation-detail-list-3" data-relation-detail="73.4 12.6"><a href="assets/orae-relation-list-detail-3.webp" data-image-preview><img loading="lazy" src="assets/orae-relation-list-detail-3.webp" width="278" height="134" alt="关系首页设计稿 · 新建入口"></a><figcaption><strong>新建入口</strong><p>新建入口放在列表末尾，先让已有关系占据主要浏览空间。</p></figcaption></figure>
                         </div>
                       </div>
                     </section>
-                    <section id="orae-relation-tab-overview" class="orae-relation-panel" aria-labelledby="orae-relation-title-overview" hidden>
-                      <div class="orae-relation-overview"><figure><a href="assets/orae-relation-overview.webp" data-image-preview><img loading="lazy" src="assets/orae-relation-overview.webp" width="291" height="1062" alt="关系总览完整设计稿"></a><figcaption><strong>完整页面</strong></figcaption></figure></div>
+                    <section id="orae-relation-tab-overview" class="orae-relation-panel" data-relation-guide aria-labelledby="orae-relation-title-overview" hidden>
+                      <figure class="orae-relation-overview">
+                        <div class="relation-screen" data-relation-screen>
+                          <div class="relation-screen-art"><img loading="lazy" src="assets/orae-relation-overview.webp" width="291" height="1062" alt="关系总览完整设计稿"><div class="relation-highlight" aria-hidden="true"></div></div>
+                        </div>
+                        <figcaption><span data-relation-hint hidden>上下滑动查看设计点</span><a href="assets/orae-relation-overview.webp" data-image-preview>放大关系总览全图</a></figcaption>
+                      </figure>
                       <div class="orae-relation-content">
                         <h6 id="orae-relation-title-overview">关系总览</h6>
                         <p>在一个页面接续上次提问，并了解最近相处。</p>
+                        <div class="relation-points demo-controls" data-relation-points role="group" aria-label="设计点" hidden></div>
                         <div class="orae-relation-details">
-                          <figure><a href="assets/orae-relation-overview-detail-1.webp" data-image-preview><img loading="lazy" src="assets/orae-relation-overview-detail-1.webp" width="279" height="262" alt="关系总览设计稿 · 上次问的事"></a><figcaption><strong>上次问的事</strong><p>把问题、牌面和后续记录串在一起。</p></figcaption></figure>
-                          <figure><a href="assets/orae-relation-overview-detail-2.webp" data-image-preview><img loading="lazy" src="assets/orae-relation-overview-detail-2.webp" width="279" height="257" alt="关系总览设计稿 · 相处观察"></a><figcaption><strong>相处观察</strong><p>从主动联系、约定和分歧等角度查看记录。</p></figcaption></figure>
-                          <figure><a href="assets/orae-relation-overview-detail-3.webp" data-image-preview><img loading="lazy" src="assets/orae-relation-overview-detail-3.webp" width="279" height="162" alt="关系总览设计稿 · 线索提示"></a><figcaption><strong>线索提示</strong><p>提示记录覆盖范围，并留一个反思入口。</p></figcaption></figure>
+                          <figure id="relation-detail-overview-1" data-relation-detail="16.9 24.7"><a href="assets/orae-relation-overview-detail-1.webp" data-image-preview><img loading="lazy" src="assets/orae-relation-overview-detail-1.webp" width="279" height="262" alt="关系总览设计稿 · 上次问的事"></a><figcaption><strong>上次问的事</strong><p>把原问题、牌面和后续记录放在同一卡片，回看时保留当时的语境。</p></figcaption></figure>
+                          <figure id="relation-detail-overview-2" data-relation-detail="53.9 24.2"><a href="assets/orae-relation-overview-detail-2.webp" data-image-preview><img loading="lazy" src="assets/orae-relation-overview-detail-2.webp" width="279" height="257" alt="关系总览设计稿 · 相处观察"></a><figcaption><strong>相处观察</strong><p>用主动联系、约定和分歧组织记事，便于从不同角度回看同一段关系。</p></figcaption></figure>
+                          <figure id="relation-detail-overview-3" data-relation-detail="78 15.3"><a href="assets/orae-relation-overview-detail-3.webp" data-image-preview><img loading="lazy" src="assets/orae-relation-overview-detail-3.webp" width="279" height="162" alt="关系总览设计稿 · 线索提示"></a><figcaption><strong>线索提示</strong><p>提示哪些线索还没有足够记录，再用反思问题引导用户补充自己的观察。</p></figcaption></figure>
                         </div>
                       </div>
                     </section>
-                    <section id="orae-relation-tab-events" class="orae-relation-panel" aria-labelledby="orae-relation-title-events" hidden>
-                      <div class="orae-relation-overview"><figure><a href="assets/orae-relation-events.webp" data-image-preview><img loading="lazy" src="assets/orae-relation-events.webp" width="291" height="1062" alt="相处记事完整设计稿"></a><figcaption><strong>完整页面</strong></figcaption></figure></div>
+                    <section id="orae-relation-tab-events" class="orae-relation-panel" data-relation-guide aria-labelledby="orae-relation-title-events" hidden>
+                      <figure class="orae-relation-overview">
+                        <div class="relation-screen" data-relation-screen>
+                          <div class="relation-screen-art"><img loading="lazy" src="assets/orae-relation-events.webp" width="291" height="1062" alt="相处记事完整设计稿"><div class="relation-highlight" aria-hidden="true"></div></div>
+                        </div>
+                        <figcaption><span data-relation-hint hidden>上下滑动查看设计点</span><a href="assets/orae-relation-events.webp" data-image-preview>放大相处记事全图</a></figcaption>
+                      </figure>
                       <div class="orae-relation-content">
                         <h6 id="orae-relation-title-events">相处记事</h6>
                         <p>把真实经历记入时间线，按主题回看。</p>
+                        <div class="relation-points demo-controls" data-relation-points role="group" aria-label="设计点" hidden></div>
                         <div class="orae-relation-details">
-                          <figure><a href="assets/orae-relation-events-detail-1.webp" data-image-preview><img loading="lazy" src="assets/orae-relation-events-detail-1.webp" width="282" height="100" alt="相处记事设计稿 · 添加与筛选"></a><figcaption><strong>添加与筛选</strong><p>从页面顶部记一件事，或通过标签筛选。</p></figcaption></figure>
-                          <figure><a href="assets/orae-relation-events-detail-2.webp" data-image-preview><img loading="lazy" src="assets/orae-relation-events-detail-2.webp" width="282" height="194" alt="相处记事设计稿 · 关联问牌"></a><figcaption><strong>关联问牌</strong><p>让一条相处记录与先前的问题建立关联。</p></figcaption></figure>
-                          <figure><a href="assets/orae-relation-events-detail-3.webp" data-image-preview><img loading="lazy" src="assets/orae-relation-events-detail-3.webp" width="282" height="315" alt="相处记事设计稿 · 跨月回顾"></a><figcaption><strong>跨月回顾</strong><p>在同一时间线回看不同月份的经历。</p></figcaption></figure>
+                          <figure id="relation-detail-events-1" data-relation-detail="11.1 9.4"><a href="assets/orae-relation-events-detail-1.webp" data-image-preview><img loading="lazy" src="assets/orae-relation-events-detail-1.webp" width="282" height="100" alt="相处记事设计稿 · 添加与筛选"></a><figcaption><strong>添加与筛选</strong><p>页面顶部同时提供记事入口和主题筛选，分别服务快速记录与回看。</p></figcaption></figure>
+                          <figure id="relation-detail-events-2" data-relation-detail="21 18.3"><a href="assets/orae-relation-events-detail-2.webp" data-image-preview><img loading="lazy" src="assets/orae-relation-events-detail-2.webp" width="282" height="194" alt="相处记事设计稿 · 关联问牌"></a><figcaption><strong>关联问牌</strong><p>在对应事件下展示相关问牌，让用户核对解读和后来真实发生的事。</p></figcaption></figure>
+                          <figure id="relation-detail-events-3" data-relation-detail="47.9 29.7"><a href="assets/orae-relation-events-detail-3.webp" data-image-preview><img loading="lazy" src="assets/orae-relation-events-detail-3.webp" width="282" height="315" alt="相处记事设计稿 · 跨月回顾"></a><figcaption><strong>跨月回顾</strong><p>用月份分组，页面往下滚就能回看更早的相处记录。</p></figcaption></figure>
                         </div>
                       </div>
                     </section>
-                    <section id="orae-relation-tab-history" class="orae-relation-panel" aria-labelledby="orae-relation-title-history" hidden>
-                      <div class="orae-relation-overview"><figure><a href="assets/orae-relation-history.webp" data-image-preview><img loading="lazy" src="assets/orae-relation-history.webp" width="291" height="1062" alt="问过的牌完整设计稿"></a><figcaption><strong>完整页面</strong></figcaption></figure></div>
+                    <section id="orae-relation-tab-history" class="orae-relation-panel" data-relation-guide aria-labelledby="orae-relation-title-history" hidden>
+                      <figure class="orae-relation-overview">
+                        <div class="relation-screen" data-relation-screen>
+                          <div class="relation-screen-art"><img loading="lazy" src="assets/orae-relation-history.webp" width="291" height="1062" alt="问过的牌完整设计稿"><div class="relation-highlight" aria-hidden="true"></div></div>
+                        </div>
+                        <figcaption><span data-relation-hint hidden>上下滑动查看设计点</span><a href="assets/orae-relation-history.webp" data-image-preview>放大问过的牌全图</a></figcaption>
+                      </figure>
                       <div class="orae-relation-content">
                         <h6 id="orae-relation-title-history">问过的牌</h6>
                         <p>沿时间回看原问题、当时的牌面和后续经历。</p>
+                        <div class="relation-points demo-controls" data-relation-points role="group" aria-label="设计点" hidden></div>
                         <div class="orae-relation-details">
-                          <figure><a href="assets/orae-relation-history-detail-1.webp" data-image-preview><img loading="lazy" src="assets/orae-relation-history-detail-1.webp" width="278" height="98" alt="问过的牌设计稿 · 继续问牌"></a><figcaption><strong>继续问牌</strong><p>从当前关系直接开始下一次问牌。</p></figcaption></figure>
-                          <figure><a href="assets/orae-relation-history-detail-2.webp" data-image-preview><img loading="lazy" src="assets/orae-relation-history-detail-2.webp" width="278" height="288" alt="问过的牌设计稿 · 牌阵与后续"></a><figcaption><strong>牌阵与后续</strong><p>保留原问题、三张牌与关联记事。</p></figcaption></figure>
-                          <figure><a href="assets/orae-relation-history-detail-3.webp" data-image-preview><img loading="lazy" src="assets/orae-relation-history-detail-3.webp" width="278" height="278" alt="问过的牌设计稿 · 补记后来"></a><figcaption><strong>补记后来</strong><p>没有后续记录时，可以补记真实经历。</p></figcaption></figure>
+                          <figure id="relation-detail-history-1" data-relation-detail="7 9.2"><a href="assets/orae-relation-history-detail-1.webp" data-image-preview><img loading="lazy" src="assets/orae-relation-history-detail-1.webp" width="278" height="98" alt="问过的牌设计稿 · 继续问牌"></a><figcaption><strong>继续问牌</strong><p>把问牌入口留在当前关系内，新一轮提问沿用已选关系。</p></figcaption></figure>
+                          <figure id="relation-detail-history-2" data-relation-detail="16.7 27.1"><a href="assets/orae-relation-history-detail-2.webp" data-image-preview><img loading="lazy" src="assets/orae-relation-history-detail-2.webp" width="278" height="288" alt="问过的牌设计稿 · 牌阵与后续"></a><figcaption><strong>牌阵与后续</strong><p>历史卡片同时保留原问题、牌阵和后续经历，便于回看这次提问的前因后果。</p></figcaption></figure>
+                          <figure id="relation-detail-history-3" data-relation-detail="44.4 26.2"><a href="assets/orae-relation-history-detail-3.webp" data-image-preview><img loading="lazy" src="assets/orae-relation-history-detail-3.webp" width="278" height="278" alt="问过的牌设计稿 · 补记后来"></a><figcaption><strong>补记后来</strong><p>缺少后续时提供补记入口，让用户在回看这次问牌时补上发生过的事。</p></figcaption></figure>
                         </div>
                       </div>
                     </section>
