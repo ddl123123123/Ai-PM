@@ -81,6 +81,9 @@ h1 span { color: var(--text-highlight); }
   .hero::before { transform: translateY(calc(var(--hero-scroll, 0px) * .28)); }
   .hero .horizon { transform: translateY(calc(var(--hero-scroll, 0px) * .16)); }
   .hero h1 { transform: translateY(calc(var(--hero-scroll, 0px) * -.10)); }
+  .hero .lede { transform: translateY(calc(var(--hero-scroll, 0px) * -.035)); }
+  .parallax-heading { translate: 0 var(--section-parallax); }
+  .parallax-copy { translate: 0 calc(var(--section-parallax) * .35); }
 }
 
 .about { padding-block: 3rem 5rem; text-align: center; }
@@ -569,6 +572,13 @@ figcaption { margin-top: .45rem; color: var(--muted); font-size: .81rem; }
 .orae-relation-panel figcaption p { margin: .25rem 0 0; }
 .orae-relation-panel.is-linked { grid-template-columns: clamp(12.5rem, 24%, 15rem) minmax(0, 1fr); gap: clamp(1rem, 3vw, 2rem); }
 .is-linked .orae-relation-overview { padding-inline-end: 1.55rem; }
+.relation-focus-layer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: .4rem;
+  pointer-events: none;
+}
 .relation-highlight {
   position: absolute;
   inset-inline: .25rem;
@@ -576,7 +586,11 @@ figcaption { margin-top: .45rem; color: var(--muted); font-size: .81rem; }
   border-radius: .35rem;
   pointer-events: none;
 }
-.relation-highlight[data-active] { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); }
+.relation-highlight[data-active] {
+  z-index: 1;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 100vmax #05030aa0, inset 0 0 .7rem #8962cd45;
+}
 .relation-marker {
   position: absolute;
   inset-inline-end: -1.32rem;
@@ -599,6 +613,8 @@ figcaption { margin-top: .45rem; color: var(--muted); font-size: .81rem; }
 .relation-marker[aria-pressed="true"] { box-shadow: 0 0 0 3px var(--demo-glow); }
 .relation-detail-trigger { min-height: 2rem; padding: 0 .35rem; border: 0; border-radius: .3rem; background: transparent; color: inherit; font: inherit; font-weight: 700; text-align: start; cursor: pointer; }
 .relation-detail-trigger:is(:hover, [aria-pressed="true"]) { background: var(--active-control); }
+.relation-detail-zoom { display: inline-flex; align-items: center; min-height: 2.25rem; margin-top: .25rem; color: var(--accent); font-size: .86rem; }
+.orae-relation-details a[role="button"] img { cursor: pointer; }
 :is(.relation-marker, .relation-detail-trigger):focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
 @container portfolio (max-width: 33rem) {
   .orae-relation-panel, .orae-relation-panel.is-linked { grid-template-columns: minmax(0, 1fr); }

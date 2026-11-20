@@ -20,12 +20,12 @@ for (const demo of document.querySelectorAll('[data-demo]')) {
   demo.dataset.ready = ''
 }
 
-const relationImages = []
-const isStudio = () => document.documentElement.dataset.edition === 'studio'
-
 for (const guide of document.querySelectorAll('[data-relation-guide]')) {
   const markers = guide.querySelector('[data-relation-markers]')
   const hint = guide.querySelector('[data-relation-hint]')
+  const focusLayer = document.createElement('span')
+  focusLayer.className = 'relation-focus-layer'
+  focusLayer.setAttribute('aria-hidden', 'true')
   const points = [...guide.querySelectorAll('[data-relation-detail]')].map((figure, index) => {
     const [top, height] = figure.dataset.relationDetail.split(' ').map(Number)
     const label = figure.querySelector('figcaption strong')
@@ -43,7 +43,7 @@ for (const guide of document.querySelectorAll('[data-relation-guide]')) {
     zoom.setAttribute('aria-label', `放大${label.textContent}`)
     zoom.textContent = '放大'
     figure.querySelector('figcaption').append(zoom)
-    relationImages.push(image)
+    image.setAttribute('role', 'button')
     const marker = document.createElement('button')
     marker.type = 'button'
     marker.className = 'relation-marker'
@@ -69,7 +69,7 @@ for (const guide of document.querySelectorAll('[data-relation-guide]')) {
       item.outline.toggleAttribute('data-active', selected)
       item.button.setAttribute('aria-pressed', String(selected))
       item.marker.setAttribute('aria-pressed', String(selected))
-      if (isStudio()) item.image.setAttribute('aria-pressed', String(selected))
+      item.image.setAttribute('aria-pressed', String(selected))
     }
   }
 
@@ -78,40 +78,74 @@ for (const guide of document.querySelectorAll('[data-relation-guide]')) {
       const link = event.target.closest('a')
       if ((link && link !== point.image) || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
       select(point)
-      if (!isStudio()) return
       if (link) event.preventDefault()
       point.marker.scrollIntoView({ block: 'nearest', inline: 'nearest' })
     })
     point.image.addEventListener('keydown', event => {
-      if (isStudio() && event.key === ' ') {
+      if (event.key === ' ') {
         event.preventDefault()
         point.image.click()
       }
     })
     point.marker.addEventListener('click', () => {
       select(point)
-      if (isStudio()) point.figure.scrollIntoView({ block: 'nearest', inline: 'nearest' })
+      point.figure.scrollIntoView({ block: 'nearest', inline: 'nearest' })
     })
   }
-  markers.append(...points.map(point => point.outline), ...points.map(point => point.marker))
+  focusLayer.append(...points.map(point => point.outline))
+  markers.append(focusLayer, ...points.map(point => point.marker))
   hint.hidden = false
   guide.classList.add('is-linked')
   select(points[0])
 }
 
 const hero = document.querySelector('.hero')
-if (hero) {
+const sections = [...document.querySelectorAll('.profile-intro > div, .profile-skills > article, #experience, .stage-copy, .case-lead-copy, .case-brief > section, .case-track, .chapter, .interaction-demo, .orae-module-copy, .resource-block, .resource-block > .case-page, .contact-section')]
+  .map(section => ({
+    title: section.querySelector(':scope > :is(h2, h3, h4, h5), :scope > .overview-heading > h2'),
+    copy: section.querySelector(':scope > p:not(.eyebrow, .sr-only), :scope > :is(.practice-list, .resource-grid, .case-flow, .evidence-pair, .table-scroll, ul)'),
+    offset: 0,
+  }))
+  .filter(({ title }) => title)
+
+if (hero || sections.length) {
   const motion = window.matchMedia('screen and (prefers-reduced-motion: no-preference)')
   let frame = 0
   let lastOffset = 0
+  const content = document.querySelector('.site-content')
+  const resize = typeof ResizeObserver === 'function' ? new ResizeObserver(scheduleParallax) : null
+
+  for (const { title, copy } of sections) {
+    title.classList.add('parallax-heading')
+    copy?.classList.add('parallax-copy')
+  }
 
   function paintParallax() {
     frame = 0
-    const { top, height } = hero.getBoundingClientRect()
-    const offset = Math.max(0, Math.min(-top, height, 420))
-    if (offset === lastOffset) return
-    lastOffset = offset
-    hero.style.setProperty('--hero-scroll', `${offset}px`)
+    const viewport = window.innerHeight
+    const heroRect = hero?.getBoundingClientRect()
+    const heroOffset = heroRect ? Math.max(0, Math.min(-heroRect.top, heroRect.height, 420)) : 0
+    // Read positions together, then update the layers without changing document flow.
+    const offsets = sections.map(({ title, offset }) => {
+      const rect = title.parentElement.getBoundingClientRect()
+      if (rect.bottom < 0 || rect.top > viewport) return offset
+      const progress = Math.max(0, Math.min(1, (rect.top - viewport * .24) / (viewport * .6)))
+      return Math.round(progress * 120) / 10
+    })
+
+    if (heroOffset !== lastOffset) {
+      lastOffset = heroOffset
+      hero.style.setProperty('--hero-scroll', `${heroOffset}px`)
+    }
+    sections.forEach((section, index) => {
+      const offset = offsets[index]
+      if (section.offset === offset) return
+      section.offset = offset
+      for (const layer of [section.title, section.copy]) {
+        if (offset) layer?.style.setProperty('--section-parallax', `${offset}px`)
+        else layer?.style.removeProperty('--section-parallax')
+      }
+    })
   }
 
   function scheduleParallax() {
@@ -122,16 +156,23 @@ if (hero) {
     if (motion.matches) {
       window.addEventListener('scroll', scheduleParallax, { passive: true })
       window.addEventListener('resize', scheduleParallax)
+      if (content) resize?.observe(content)
       scheduleParallax()
       return
     }
 
     window.removeEventListener('scroll', scheduleParallax)
     window.removeEventListener('resize', scheduleParallax)
+    resize?.disconnect()
     if (frame) window.cancelAnimationFrame(frame)
     frame = 0
     lastOffset = 0
-    hero.style.removeProperty('--hero-scroll')
+    hero?.style.removeProperty('--hero-scroll')
+    for (const section of sections) {
+      section.offset = 0
+      section.title.style.removeProperty('--section-parallax')
+      section.copy?.style.removeProperty('--section-parallax')
+    }
   }
 
   motion.addEventListener('change', syncParallax)
@@ -378,81 +419,6 @@ if (viewer?.showModal) {
   })
 }
 
-const editionSwitch = document.querySelector('[data-edition-switch]')
-if (editionSwitch) {
-  const root = document.documentElement
-  const choices = [...editionSwitch.querySelectorAll('[data-edition-choice]')]
-  const revealBlocks = document.querySelectorAll('.profile-intro, .profile-skills, .project-card, .case-lead, .case-brief > section, .case-track .chapter, .resource-block > header, .resource-block > article')
-  const observer = typeof IntersectionObserver === 'function' ? new IntersectionObserver(entries => {
-    for (const entry of entries) {
-      if (!entry.isIntersecting || !isStudio()) continue
-      entry.target.classList.add('studio-entered')
-      observer.unobserve(entry.target)
-    }
-  }, { rootMargin: '0px 0px -36px 0px' }) : null
-
-  function updateEdition(edition) {
-    const studio = edition === 'studio'
-    root.dataset.edition = edition
-    for (const choice of choices) {
-      choice.setAttribute('aria-pressed', String(choice.dataset.editionChoice === edition))
-    }
-    for (const image of relationImages) {
-      if (studio) {
-        image.setAttribute('role', 'button')
-        image.setAttribute('aria-pressed', String(image.closest('figure').hasAttribute('data-active')))
-      } else {
-        image.removeAttribute('role')
-        image.removeAttribute('aria-pressed')
-      }
-    }
-    observer?.disconnect()
-    if (studio) {
-      for (const block of revealBlocks) {
-        if (!block.classList.contains('studio-entered')) observer?.observe(block)
-      }
-    }
-  }
-
-  function readEdition() {
-    return new URLSearchParams(location.search).get('edition') === 'studio' ? 'studio' : 'classic'
-  }
-
-  function editionWithPosition(edition) {
-    if (root.dataset.edition === edition) return
-    let anchor
-    let offset
-    if (window.scrollY > window.innerHeight / 2) {
-      const guide = window.innerHeight * .3
-      for (const heading of document.querySelectorAll('main h2, main h3, main h4')) {
-        if (!heading.getClientRects().length) continue
-        const { top } = heading.getBoundingClientRect()
-        if (!anchor || Math.abs(top - guide) < Math.abs(offset - guide)) {
-          anchor = heading
-          offset = top
-        }
-      }
-    }
-    updateEdition(edition)
-    if (anchor) window.scrollBy(0, anchor.getBoundingClientRect().top - offset)
-  }
-
-  updateEdition(readEdition())
-  editionSwitch.hidden = false
-  for (const choice of choices) {
-    choice.addEventListener('click', () => {
-      const edition = choice.dataset.editionChoice
-      if (root.dataset.edition === edition) return
-      const url = new URL(location.href)
-      if (edition === 'studio') url.searchParams.set('edition', 'studio')
-      else url.searchParams.delete('edition')
-      history.pushState(null, '', url)
-      editionWithPosition(edition)
-    })
-  }
-  window.addEventListener('popstate', () => editionWithPosition(readEdition()))
-}
-
 const directory = document.querySelector('#site-directory')
 if (directory) {
   const trigger = document.querySelector('[data-directory-trigger]')
@@ -581,6 +547,11 @@ if (directory) {
   trigger.hidden = false
   trigger.addEventListener('click', toggleDirectory)
   close.addEventListener('click', toggleDirectory)
+  document.addEventListener('click', event => {
+    if (!directory.hidden && !directory.contains(event.target) && !trigger.contains(event.target)) {
+      setDirectoryOpen(false)
+    }
+  })
   query.addEventListener('input', renderDirectory)
   query.addEventListener('keydown', event => {
     if (event.key !== 'Enter' || event.isComposing || !query.value.trim()) return
