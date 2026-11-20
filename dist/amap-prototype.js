@@ -196,6 +196,9 @@ for (const guide of document.querySelectorAll('[data-amap-merchant-guide]')) {
   let pointer
   let touch
   let skipTap = false
+  let opened = false
+  let pullOffset
+  let settling = false
 
   function highlight(key) {
     if (active === key) return
@@ -214,29 +217,65 @@ for (const guide of document.querySelectorAll('[data-amap-merchant-guide]')) {
     }
   }
 
-  function openGuide() {
-    if (!detail.hidden) return
-    preview.inert = true
-    detail.hidden = false
-    enter.disabled = true
-    returnButton.disabled = false
-    scroll.scrollTop = 0
-    highlight(parts[0].dataset.guidePart)
+  function revealSheet() {
+    if (detail.hidden) {
+      detail.hidden = false
+      scroll.scrollTop = 0
+    }
+  }
+
+  function settleSheet(nextOpen, focus = false) {
+    if (settling) return
+    const height = stage.clientHeight
+    const start = pullOffset ?? (opened ? 0 : height)
+    const end = nextOpen ? 0 : height
+    const changing = opened !== nextOpen
+    pullOffset = undefined
+    if (detail.hidden && !nextOpen) return
+
+    revealSheet()
+    settling = true
+    preview.inert = opened || nextOpen
+    detail.inert = !opened || !nextOpen
+    detail.style.setProperty('--guide-pull', `${end}px`)
+    if (changing && nextOpen) highlight(parts[0].dataset.guidePart)
+
+    function finish() {
+      opened = nextOpen
+      detail.hidden = !opened
+      detail.style.removeProperty('--guide-pull')
+      detail.inert = !opened
+      preview.inert = opened
+      enter.disabled = opened
+      returnButton.disabled = !opened
+      settling = false
+      if (opened) synchronize()
+      else {
+        highlight('')
+        status.textContent = ''
+      }
+      if (focus) (opened ? scroll : entry).focus({ preventScroll: true })
+    }
+
+    if (reducedMotion.matches || Math.abs(start - end) < 1) {
+      finish()
+      return
+    }
+    const animation = detail.animate(
+      [{ translate: `0 ${start}px` }, { translate: `0 ${end}px` }],
+      { duration: changing ? 560 : 340, easing: 'cubic-bezier(.22,.72,.26,1)' }
+    )
+    animation.onfinish = finish
+    animation.oncancel = finish
   }
 
   function closeGuide() {
-    detail.hidden = true
-    preview.inert = false
-    enter.disabled = false
-    returnButton.disabled = true
-    highlight('')
-    status.textContent = ''
-    entry.focus({ preventScroll: true })
+    if (opened && pullOffset === undefined) settleSheet(false, true)
   }
 
   function synchronize() {
     frame = 0
-    if (detail.hidden) return
+    if (!opened || settling) return
     const { scrollTop, scrollHeight, clientHeight } = scroll
     const readingLine = scrollTop + clientHeight * .32
     const atEnd = scrollTop > 1 && scrollTop + clientHeight >= scrollHeight - 2
@@ -251,8 +290,7 @@ for (const guide of document.querySelectorAll('[data-amap-merchant-guide]')) {
   }
 
   function enterDetail() {
-    openGuide()
-    scroll.focus({ preventScroll: true })
+    if (!opened && pullOffset === undefined) settleSheet(true, true)
   }
 
   entry.addEventListener('click', event => {
@@ -268,20 +306,25 @@ for (const guide of document.querySelectorAll('[data-amap-merchant-guide]')) {
     closeGuide()
   })
 
-  function drawPull(element, distance) {
-    element.dataset.pulling = ''
-    element.style.setProperty('--guide-pull', `${distance}px`)
+  function drawPull(distance, opening) {
+    const height = stage.clientHeight
+    const travel = Math.min(height, distance)
+    pullOffset = opening ? height - travel : travel
+    revealSheet()
+    detail.style.setProperty('--guide-pull', `${pullOffset}px`)
   }
 
-  function resetPull(element) {
-    delete element.dataset.pulling
-    element.style.removeProperty('--guide-pull')
+  function releasePull(distance, opening, completed) {
+    if (pullOffset === undefined) return
+    const threshold = Math.min(100, Math.max(52, stage.clientHeight * .15))
+    const shouldSwitch = completed && distance >= threshold
+    settleSheet(shouldSwitch ? opening : opened, shouldSwitch)
   }
 
   stage.addEventListener('pointerdown', event => {
-    if (!event.isPrimary || event.button !== 0) return
-    const opening = detail.hidden && entry.contains(event.target)
-    const browsing = !detail.hidden && event.pointerType !== 'touch' && scroll.contains(event.target)
+    if (settling || !event.isPrimary || event.button !== 0) return
+    const opening = !opened && entry.contains(event.target)
+    const browsing = opened && event.pointerType !== 'touch' && scroll.contains(event.target)
     if (!opening && !browsing) return
     skipTap = false
     pointer = { id: event.pointerId, x: event.clientX, y: event.clientY, top: scroll.scrollTop, delta: 0, opening }
@@ -303,19 +346,16 @@ for (const guide of document.querySelectorAll('[data-amap-merchant-guide]')) {
       scroll.scrollTop = pointer.top - y
     } else {
       pointer.delta = pointer.opening ? Math.min(0, y) : Math.max(0, y)
-      drawPull(pointer.opening ? entry : detail, Math.max(-110, Math.min(110, pointer.delta * .75)))
+      drawPull(Math.abs(pointer.delta), pointer.opening)
     }
   })
   function releasePointer(event) {
     if (pointer?.id !== event.pointerId) return
-    const { opening, delta } = pointer
+    const { opening, delta, action } = pointer
     pointer = undefined
     delete stage.dataset.dragging
-    resetPull(opening ? entry : detail)
-    if (opening) skipTap = Math.abs(delta) >= 7
-    if (event.type !== 'pointerup' || Math.abs(delta) < 42) return
-    if (opening) enterDetail()
-    else closeGuide()
+    if (opening) skipTap = action === 'open'
+    releasePull(Math.abs(delta), opening, event.type === 'pointerup')
   }
   for (const event of ['pointerup', 'pointercancel', 'lostpointercapture']) stage.addEventListener(event, releasePointer)
   stage.addEventListener('pointerleave', () => {
@@ -324,7 +364,7 @@ for (const guide of document.querySelectorAll('[data-amap-merchant-guide]')) {
   stage.addEventListener('dragstart', event => event.preventDefault())
 
   scroll.addEventListener('touchstart', event => {
-    touch = scroll.scrollTop <= 1 && event.touches.length === 1
+    touch = !settling && opened && scroll.scrollTop <= 1 && event.touches.length === 1
       ? { x: event.touches[0].clientX, y: event.touches[0].clientY, delta: 0 }
       : undefined
   }, { passive: true })
@@ -333,7 +373,7 @@ for (const guide of document.querySelectorAll('[data-amap-merchant-guide]')) {
     const point = event.touches[0]
     if (event.touches.length !== 1 || !event.cancelable || scroll.scrollTop > 1) {
       touch = undefined
-      resetPull(detail)
+      releasePull(0, false, false)
       return
     }
     const delta = point.clientY - touch.y
@@ -343,14 +383,13 @@ for (const guide of document.querySelectorAll('[data-amap-merchant-guide]')) {
     }
     event.preventDefault()
     touch.delta = Math.max(delta, 0)
-    drawPull(detail, Math.min(110, touch.delta * .75))
+    drawPull(touch.delta, false)
   }, { passive: false })
   for (const type of ['touchend', 'touchcancel']) {
     scroll.addEventListener(type, event => {
       const pull = touch?.delta ?? 0
       touch = undefined
-      resetPull(detail)
-      if (event.type === 'touchend' && pull >= 42) closeGuide()
+      releasePull(pull, false, event.type === 'touchend')
     }, { passive: true })
   }
   scroll.addEventListener('scroll', () => {
@@ -358,7 +397,8 @@ for (const guide of document.querySelectorAll('[data-amap-merchant-guide]')) {
   }, { passive: true })
   for (const button of jumps) {
     button.addEventListener('click', () => {
-      if (detail.hidden) openGuide()
+      if (settling || pullOffset !== undefined) return
+      if (!opened) settleSheet(true)
       const key = button.dataset.guideJump
       const part = parts.find(item => item.dataset.guidePart === key)
       const top = part === parts[0] ? 0 : Math.max(0, positionInGuide(part) - scroll.clientHeight * .32 + 2)

@@ -180,8 +180,7 @@
 .amap-merchant-guide { display: grid; grid-template-columns: minmax(0, 18rem) minmax(0, 1fr); align-items: start; gap: clamp(.75rem, 2.5cqw, 1.4rem); margin-block-start: .85rem; }
 .amap-guide-phone { position: relative; display: flex; flex-direction: column; width: 100%; max-width: 18rem; aspect-ratio: 430 / 932; overflow: hidden; border: .25rem solid #211a2b; border-radius: 1.3rem; background: #edf4f6; color: #17263b; }
 .amap-guide-phone [hidden] { display: none; }
-.amap-guide-statusbar { display: none; position: relative; z-index: 2; flex: none; background: #fff; }
-.amap-guide-phone:has([data-guide-detail]:not([hidden])) :is(.amap-guide-statusbar, .amap-guide-header-pin) { display: block; }
+.amap-guide-statusbar { position: relative; z-index: 2; flex: none; background: #fff; }
 .amap-guide-detail-status { display: block; width: 100%; height: auto; }
 .amap-guide-search-row { display: grid; grid-template-columns: 8.8% 67.2% 1fr; align-items: center; aspect-ratio: 860 / 96; container-type: inline-size; }
 .amap-guide-header-back { display: grid; place-items: center; align-self: stretch; border: 0; background: transparent; cursor: pointer; }
@@ -190,7 +189,7 @@
 .amap-guide-search-label::before { content: ""; width: 3.2cqi; aspect-ratio: 1; box-sizing: border-box; border: .45cqi solid; border-radius: 50%; }
 .amap-guide-search-label::after { content: ""; position: absolute; width: 1.45cqi; height: .45cqi; inset-inline-start: 5.15cqi; inset-block-start: calc(50% + 1.25cqi); border-radius: .2rem; background: currentColor; rotate: 45deg; }
 /* Keep the pin aligned with its bounds in the 1720 × 3728 map preview. */
-.amap-guide-header-pin { display: none; position: absolute; z-index: 3; inset-inline-start: calc(1462 / 1720 * 100%); inset-block-start: calc(238 / 3728 * 100%); width: calc(156 / 1720 * 100%); height: calc(156 / 3728 * 100%); }
+.amap-guide-header-pin { position: absolute; z-index: 3; inset-inline-start: calc(1462 / 1720 * 100%); inset-block-start: calc(238 / 3728 * 100%); width: calc(156 / 1720 * 100%); height: calc(156 / 3728 * 100%); }
 .amap-guide-stage { position: relative; flex: 1; min-height: 0; overflow: hidden; isolation: isolate; }
 .amap-guide-preview, .amap-guide-detail { position: absolute; inset: 0; }
 .amap-guide-preview { --guide-place-start: calc(1932 / 3728 * 100%); }
@@ -198,8 +197,7 @@
 .amap-guide-place { position: absolute; inset: var(--guide-place-start) 0 0; width: 100%; padding: 0; border: 0; background: #fff; cursor: pointer; touch-action: none; user-select: none; }
 .amap-guide-place img { width: 100%; height: 100%; }
 .amap-guide-map, .amap-guide-place img { object-fit: fill; }
-.amap-guide-place, .amap-guide-detail { translate: 0 var(--guide-pull, 0px); }
-.amap-guide-detail { z-index: 1; display: flex; flex-direction: column; background: #fff; }
+.amap-guide-detail { z-index: 1; display: flex; flex-direction: column; background: #fff; translate: 0 var(--guide-pull, 0px); }
 .amap-guide-scroll { position: relative; flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior-y: contain; touch-action: pan-y; scrollbar-width: none; background: #fff; user-select: none; }
 .amap-guide-scroll img { width: 100%; height: auto; }
 .amap-guide-long-art { position: relative; margin-block-start: -14.4%; }
@@ -219,7 +217,7 @@
 .amap-guide-tile { min-width: 0; margin-top: .6rem; padding: .6rem; border: 1px solid var(--line); border-radius: .55rem; background: var(--surface); }
 .amap-guide-tile[hidden] { display: none; }
 .amap-guide-tile > a { display: grid; grid-template-rows: minmax(0, 1fr); place-items: center; height: clamp(14rem, 39cqw, 34rem); border-radius: .35rem; background: var(--base); }
-.amap-guide-tile img { width: 100%; height: 100%; min-height: 0; object-fit: contain; }
+.amap-guide-tile img { width: auto; height: auto; max-width: 100%; max-height: 100%; border-radius: .4rem; }
 .amap-guide-tile figcaption { margin-top: .55rem; }
 .amap-guide-tile figcaption p { font-size: .85rem; }
 .amap-guide-actions { display: flex; flex-wrap: wrap; gap: .55rem; margin-top: .75rem; }
@@ -258,10 +256,6 @@
 @media (prefers-reduced-motion: no-preference) {
   .amap-category-icon { transition: scale .22s cubic-bezier(.2,.72,.28,1); }
   [data-ready] .amap-category-panel:not([hidden]) { animation: reveal-demo .2s ease-out; }
-  .amap-guide-place, .amap-guide-detail { transition: translate .24s cubic-bezier(.2,.72,.28,1); }
-  .amap-guide-detail:not([hidden]) { animation: amap-merchant-rise .28s cubic-bezier(.2,.72,.28,1); }
-  .amap-guide-stage [data-pulling] { animation: none; transition: none; }
   .amap-guide-thumbnails button { transition: border-color .2s ease, background-color .2s ease; }
   .amap-guide-tile:not([hidden]) { animation: reveal-demo .2s ease-out; }
 }
-@keyframes amap-merchant-rise { from { translate: 0 100%; } to { translate: 0 0; } }
