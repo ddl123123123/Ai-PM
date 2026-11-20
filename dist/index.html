@@ -7,7 +7,9 @@
   <meta name="description" content="李彤彤的 AI 产品与交互设计作品集，收录 ORAE、高德地图附近与推荐体验设计，以及 Arivo 视频生成团队管理网站。">
   <title>李彤彤 · 产品作品集</title>
   <link rel="stylesheet" href="portfolio.css">
+  <link rel="stylesheet" href="amap-prototype.css">
   <script src="interactions.js" defer></script>
+  <script src="amap-prototype.js" defer></script>
   <script src="delivery.mjs" type="module"></script>
 </head>
 <body id="top">
@@ -88,11 +90,11 @@
       <div class="project-stage">
         <div class="arc" aria-hidden="true">
           <img class="arc-one" src="assets/result.jpg" width="390" height="844" alt="">
-          <img class="arc-two" src="assets/amap-detail.webp" width="1500" height="923" alt="">
+          <img class="arc-two" src="assets/amap-detail-screen.webp" width="413" height="860" alt="">
           <img class="arc-three" src="assets/world.jpg" width="480" height="823" alt="">
-          <img class="arc-four" src="assets/amap-states.webp" width="1500" height="1119" alt="">
+          <img class="arc-four" src="assets/amap-linked.webp" width="273" height="540" alt="">
           <img class="arc-five" src="assets/pick.jpg" width="390" height="844" alt="">
-          <img class="arc-six" src="assets/amap-recommend.webp" width="1500" height="985" alt="">
+          <img class="arc-six" src="assets/amap-immersive.webp" width="273" height="540" alt="">
         </div>
         <div class="center stage-copy">
           <p class="eyebrow">项目</p>
@@ -387,9 +389,10 @@
             <dl class="contribution"><div><dt>我负责</dt><dd>附近与推荐的体验重构和信息架构。</dd></div><div><dt>交付</dt><dd>用户行为分群，高保真原型与地图、列表四态联动。</dd></div><div><dt>证据</dt><dd><a href="assets/amap-research.webp" data-image-preview>262 人问卷分群研究样本</a> · <a href="#amap-pde-demo">四态原型</a></dd></div></dl>
             <div class="case-links"><a class="button ghost" href="#amap-ai-pm">项目分析</a><a class="button ghost" href="#amap-pde">交互展示</a></div>
           </div>
-          <figure class="case-preview">
-            <a href="assets/amap-states.webp" data-image-preview><img loading="lazy" src="assets/amap-states.webp" width="1500" height="1119" alt="高德附近与推荐的四种地图和列表联动界面"></a>
-            <figcaption>设计原稿 · 地图与列表的四级面板状态</figcaption>
+          <figure class="case-preview amap-case-preview">
+            <a href="assets/amap-immersive.webp" data-image-preview><img loading="lazy" src="assets/amap-immersive.webp" width="273" height="540" alt="高德推荐页原型"></a>
+            <a href="assets/amap-detail-screen.webp" data-image-preview><img loading="lazy" src="assets/amap-detail-screen.webp" width="413" height="860" alt="高德商家详情原型"></a>
+            <figcaption>原稿界面 · 从推荐浏览到商家详情</figcaption>
           </figure>
         </header>
         <div class="case-brief">
@@ -464,7 +467,43 @@
             </section>
             <section class="chapter case-page" id="amap-ai-pm-solution" aria-labelledby="amap-ai-pm-solution-title">
               <h4 id="amap-ai-pm-solution-title">05 · 方案设计</h4>
-              <ol class="case-flow"><li><strong>用户 · 说出需求</strong><span>周末探店或酒店附近晚餐</span></li><li><strong>系统 · 空间筛选</strong><span>用规则检索地点与硬约束</span></li><li><strong>模型 · 候选解释</strong><span>拟把多重偏好转成可编辑条件</span></li><li><strong>用户 · 确认地点</strong><span>半屏对比，点图钉或进入详情</span></li></ol><figure class="case-figure case-doc-figure"><a href="assets/amap-states.webp" data-image-preview><img loading="lazy" src="assets/amap-states.webp" width="1500" height="1119" alt="高德地图列表面板的四种状态"></a><figcaption>原稿交付的四态高保真，AI 候选流程为后续构想。</figcaption></figure><div class="table-scroll" role="region" aria-label="高德规则与 AI 方案对比" tabindex="0"><table><thead><tr><th scope="col">路径</th><th scope="col">适用场景</th><th scope="col">取舍</th></tr></thead><tbody><tr><th scope="row">规则筛选</th><td>目标明确，按距离、类别和营业筛选</td><td>可控且便宜。作为原型主路径及异常回退。</td></tr><tr><th scope="row">AI 解释</th><td>条件较多或说法模糊</td><td>拟只将候选 ID、字段出处和理由交给输出层。字段缺失走列表，模型参数和评测待验证。</td></tr></tbody></table></div>
+
+              <p>方案沿着「推荐发现 → 附近定位 → 商家决策」展开。点击任一设计图可放大查看。</p>
+              <div class="amap-design-modules">
+                <section class="amap-design-module" aria-labelledby="amap-design-recommend">
+                  <h5 id="amap-design-recommend">推荐 · 从情境找到想去的地方</h5>
+                  <p>用场景卡帮助还没有明确目标的用户开始浏览，再通过带地点信息的内容卡把兴趣接到找店动作上。</p>
+                  <div class="amap-design-grid">
+                    <figure class="amap-design-figure"><a href="assets/amap-scene-cards.webp" data-image-preview><img loading="lazy" src="assets/amap-scene-cards.webp" width="1362" height="346" alt="情境式探索卡片"></a><figcaption><strong>情境式探索卡片</strong><p>按探店、休闲等氛围组织入口。</p></figcaption></figure>
+                    <figure class="amap-design-figure"><a href="assets/amap-scene-stories.webp" data-image-preview><img loading="lazy" src="assets/amap-scene-stories.webp" width="485" height="730" alt="内容卡与地点信息"></a><figcaption><strong>内容卡与地点信息</strong><p>在封面和标题后保留地点与距离。</p></figcaption></figure>
+                  </div>
+                </section>
+                <section class="amap-design-module" aria-labelledby="amap-design-nearby">
+                  <h5 id="amap-design-nearby">附近 · 把列表与地图点位对上</h5>
+                  <p>用分类带用户进入合适的商圈或品类，再用距离、评分与图文摘要缩小候选。全屏读列表，半屏对照位置，全图看分布，点选后聚焦单店。</p>
+                  <div class="amap-design-grid">
+                    <figure class="amap-design-figure"><a href="assets/amap-nearby-icons.webp" data-image-preview><img loading="lazy" src="assets/amap-nearby-icons.webp" width="471" height="271" alt="品类入口"></a><figcaption><strong>品类入口</strong><p>美食、旅行、酒店等采用图标和文字并列。</p></figcaption></figure>
+                    <figure class="amap-design-figure"><a href="assets/amap-nearby-cards.webp" data-image-preview><img loading="lazy" src="assets/amap-nearby-cards.webp" width="527" height="356" alt="附近商家卡片"></a><figcaption><strong>附近商家卡片</strong><p>前置商家名、距离和口碑，减少进入详情前的来回确认。</p></figcaption></figure>
+                  </div>
+                  <p><a class="text-link" href="#amap-pde-demo">在交互原型里试四态联动</a></p>
+                </section>
+                <section class="amap-design-module" aria-labelledby="amap-design-merchant">
+                  <h5 id="amap-design-merchant">商家详情 · 按决策顺序组织信息</h5>
+                  <p>先给出地点判断所需的基本信息，再把优惠、菜品、笔记和评价分开，便于按需查看。</p>
+                  <div class="amap-design-grid merchant">
+                    <figure class="amap-design-figure"><a href="assets/amap-detail-header.webp" data-image-preview><img loading="lazy" src="assets/amap-detail-header.webp" width="416" height="376" alt="决策头部"></a><figcaption><strong>决策头部</strong><p>优先显示照片、店名、评分和营业信息，方便用户快速判断是否继续看。</p></figcaption></figure>
+                    <figure class="amap-design-figure"><a href="assets/amap-detail-offers.webp" data-image-preview><img loading="lazy" src="assets/amap-detail-offers.webp" width="523" height="625" alt="优惠与套餐"></a><figcaption><strong>优惠与套餐</strong><p>让价格、套餐份量和购买入口集中在同一区域，便于比较到店选项。</p></figcaption></figure>
+                    <figure class="amap-design-figure"><a href="assets/amap-detail-menu.webp" data-image-preview><img loading="lazy" src="assets/amap-detail-menu.webp" width="537" height="246" alt="点单辅助"></a><figcaption><strong>点单辅助</strong><p>用菜品图片、价格和推荐信息帮用户判断菜单是否合适。</p></figcaption></figure>
+                    <figure class="amap-design-figure"><a href="assets/amap-detail-notes.webp" data-image-preview><img loading="lazy" src="assets/amap-detail-notes.webp" width="399" height="356" alt="社区笔记"></a><figcaption><strong>社区笔记</strong><p>把实拍图片和探店内容放到一起，补充店内环境和用餐体验。</p></figcaption></figure>
+                    <figure class="amap-design-figure"><a href="assets/amap-detail-reviews.webp" data-image-preview><img loading="lazy" src="assets/amap-detail-reviews.webp" width="458" height="367" alt="评价"></a><figcaption><strong>评价</strong><p>评分、标签、评价正文和实拍图分层呈现，方便检查口碑。</p></figcaption></figure>
+                  </div>
+                </section>
+                <section class="amap-design-module" aria-labelledby="amap-design-ai">
+                  <h5 id="amap-design-ai">AI 辅助筛选 · 扩展构想</h5>
+                  <p>用户表达多项条件时，拟用模型提取可编辑偏好，再按真实地点字段筛选并解释推荐理由。</p>
+                  <div class="table-scroll" role="region" aria-label="高德规则与 AI 方案对比" tabindex="0"><table><thead><tr><th scope="col">路径</th><th scope="col">适用场景</th><th scope="col">取舍</th></tr></thead><tbody><tr><th scope="row">规则筛选</th><td>目标明确，按距离、类别和营业筛选</td><td>可控且便宜。作为原型主路径及异常回退。</td></tr><tr><th scope="row">AI 解释</th><td>条件较多或说法模糊</td><td>拟只将候选 ID、字段出处和理由交给输出层。字段缺失走列表，模型参数和评测待验证。</td></tr></tbody></table></div>
+                </section>
+              </div>
             </section>
             <section class="chapter case-page" id="amap-ai-pm-result" aria-labelledby="amap-ai-pm-result-title">
               <h4 id="amap-ai-pm-result-title">06 · 落地、验证与结果</h4>
@@ -486,24 +525,76 @@
         <section id="amap-pde" class="case-track" aria-labelledby="amap-pde-title">
           <p class="eyebrow">交互展示</p>
           <h3 id="amap-pde-title">让地图和列表在四种状态间衔接</h3>
-          <section class="interaction-demo demo-phone" id="amap-pde-demo" data-demo aria-labelledby="amap-pde-demo-title">
-            <h4 id="amap-pde-demo-title">切换地图与列表状态</h4>
-            <p>点击状态查看原型中的四种布局。</p>
-            <div class="demo-controls" role="group" aria-label="切换地图与列表状态步骤"><button type="button" data-demo-step aria-pressed="true" aria-controls="amap-pde-step-1">全屏</button><button type="button" data-demo-step aria-pressed="false" aria-controls="amap-pde-step-2">半屏</button><button type="button" data-demo-step aria-pressed="false" aria-controls="amap-pde-step-3">全图</button><button type="button" data-demo-step aria-pressed="false" aria-controls="amap-pde-step-4">单点</button></div>
-            <p class="sr-only" role="status" data-demo-status></p>
-            <div class="demo-panel" id="amap-pde-step-1"><img class="demo-image" src="assets/amap-immersive.webp" width="273" height="540" alt="全屏内容面板" loading="lazy"><div class="demo-copy"><h4>全屏</h4><p>列表优先，适合连续浏览推荐内容。</p></div></div><div class="demo-panel" id="amap-pde-step-2" hidden><img class="demo-image" src="assets/amap-linked.webp" width="273" height="540" alt="半屏列表与地图联动" loading="lazy"><div class="demo-copy"><h4>半屏</h4><p>列表与地图同时可见，方便边看边定位。</p></div></div><div class="demo-panel" id="amap-pde-step-3" hidden><img class="demo-image" src="assets/amap-map.webp" width="274" height="540" alt="全图状态与底部面板入口" loading="lazy"><div class="demo-copy"><h4>全图</h4><p>收起列表，把可视范围让给地图和点位。</p></div></div><div class="demo-panel" id="amap-pde-step-4" hidden><img class="demo-image" src="assets/amap-focused.webp" width="273" height="540" alt="单点聚焦地点卡片" loading="lazy"><div class="demo-copy"><h4>单点</h4><p>选中地点后，显示这家店的聚焦卡片。</p></div></div>
+          <section class="interaction-demo amap-demo" id="amap-pde-demo" aria-labelledby="amap-pde-demo-title">
+            <h4 id="amap-pde-demo-title">从发现地点到查看商家详情</h4>
+            <p>在手机界面内切换推荐与附近、拖动列表顶部，或点选图钉和商家卡片。点「肉本家」还能继续查看详情。</p>
+            <div class="amap-demo-layout" data-map-prototype>
+              <div class="amap-phone">
+                <header class="amap-phone-header">
+                  <span>高德附近与推荐原型</span>
+                  <div class="amap-phone-tabs" role="group" aria-label="手机原型页面">
+                    <button type="button" data-map-screen="recommend" aria-pressed="false" aria-controls="amap-screen-recommend">推荐</button>
+                    <button type="button" data-map-screen="nearby" aria-pressed="true" aria-controls="amap-screen-nearby">附近</button>
+                  </div>
+                </header>
+                <div class="amap-screen amap-recommend-screen" id="amap-screen-recommend" data-map-view="recommend" hidden>
+                  <h5>周末想去哪儿？</h5>
+                  <button type="button" class="amap-scene-action" data-map-action="nearby"><img loading="lazy" src="assets/amap-scene-cards.webp" width="1362" height="346" alt="探店、休闲等情境卡"><span>去地图看附近商家</span></button>
+                  <img loading="lazy" src="assets/amap-scene-stories.webp" width="485" height="730" alt="带有地点信息的推荐内容卡片">
+                </div>
+                <div class="amap-screen amap-nearby-screen" id="amap-screen-nearby" data-map-view="nearby" data-mode="linked">
+                  <div class="amap-map-canvas" aria-label="示意地图" role="group">
+                    <span class="amap-map-label">示意点位</span>
+                    <button type="button" class="amap-pin amap-pin-bbq" data-map-store="bbq" aria-label="在地图上选择肉本家炭烤肉" aria-pressed="false">烤肉</button>
+                    <button type="button" class="amap-pin amap-pin-dumplings" data-map-store="dumplings" aria-label="在地图上选择袁记云饺" aria-pressed="false">云饺</button>
+                  </div>
+                  <div class="amap-sheet">
+                    <button type="button" class="amap-sheet-handle" data-map-handle aria-label="调整列表高度，可用向上或向下方向键"><span></span><strong>附近列表</strong></button>
+                    <div class="amap-store-list">
+                      <button type="button" class="amap-store-row" data-map-store="bbq" aria-pressed="false"><img loading="lazy" src="assets/amap-store-bbq.webp" width="73" height="82" alt=""><span><strong>肉本家 · 炭烤肉</strong><small>滨江东和时代店</small></span></button>
+                      <button type="button" class="amap-store-row" data-map-store="dumplings" aria-pressed="false"><img loading="lazy" src="assets/amap-store-dumplings.webp" width="74" height="70" alt=""><span><strong>袁记云饺</strong><small>未来之光店</small></span></button>
+                    </div>
+                    <div class="amap-focus-card" hidden>
+                      <h5 data-map-focus-name></h5><p data-map-focus-meta></p>
+                      <button type="button" data-map-action="details">查看详情</button>
+                      <button type="button" data-map-action="clear">清除选中</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="amap-screen amap-detail-screen" data-map-view="detail" hidden>
+                  <button type="button" class="amap-back" data-map-action="back">返回地图</button>
+                  <img loading="lazy" src="assets/amap-store-food.webp" width="379" height="110" alt="肉本家店铺与菜品照片">
+                  <h5>肉本家 · 炭烤肉</h5>
+                  <p>滨江东和时代店</p>
+                  <div class="amap-detail-tabs" role="group" aria-label="商家详情模块"><button type="button" data-map-detail="header" aria-pressed="true">决策头部</button><button type="button" data-map-detail="offers" aria-pressed="false">优惠与套餐</button><button type="button" data-map-detail="menu" aria-pressed="false">点单辅助</button><button type="button" data-map-detail="notes" aria-pressed="false">社区笔记</button><button type="button" data-map-detail="reviews" aria-pressed="false">评价</button></div>
+                  <figure data-map-detail-view="header"><img loading="lazy" src="assets/amap-detail-header.webp" width="416" height="376" alt="决策头部"><figcaption>优先显示照片、店名、评分和营业信息，方便用户快速判断是否继续看。</figcaption></figure><figure data-map-detail-view="offers" hidden><img loading="lazy" src="assets/amap-detail-offers.webp" width="523" height="625" alt="优惠与套餐"><figcaption>让价格、套餐份量和购买入口集中在同一区域，便于比较到店选项。</figcaption></figure><figure data-map-detail-view="menu" hidden><img loading="lazy" src="assets/amap-detail-menu.webp" width="537" height="246" alt="点单辅助"><figcaption>用菜品图片、价格和推荐信息帮用户判断菜单是否合适。</figcaption></figure><figure data-map-detail-view="notes" hidden><img loading="lazy" src="assets/amap-detail-notes.webp" width="399" height="356" alt="社区笔记"><figcaption>把实拍图片和探店内容放到一起，补充店内环境和用餐体验。</figcaption></figure><figure data-map-detail-view="reviews" hidden><img loading="lazy" src="assets/amap-detail-reviews.webp" width="458" height="367" alt="评价"><figcaption>评分、标签、评价正文和实拍图分层呈现，方便检查口碑。</figcaption></figure>
+                </div>
+              </div>
+              <div class="amap-demo-note">
+                <p class="evidence-source">网页交互原型 · 使用原稿界面素材和示意点位</p>
+                <h5 data-map-mode-title>半屏 · 对照位置</h5>
+                <p data-map-mode-copy>列表和地图同时可见。点击图钉或商家卡片，可以聚焦对应地点。</p>
+                <div class="demo-controls" role="group" aria-label="直接选择地图与列表状态">
+                  <button type="button" data-map-mode="list" aria-pressed="false">全屏</button>
+                  <button type="button" data-map-mode="linked" aria-pressed="true">半屏</button>
+                  <button type="button" data-map-mode="map" aria-pressed="false">全图</button>
+                  <button type="button" data-map-mode="focused" aria-pressed="false">单点</button>
+                </div>
+                <p>所有商家示例用于演示联动。地图为静态底图，未接入定位、路线或实时商家数据。</p>
+                <p class="sr-only" role="status" data-map-status></p>
+              </div>
+            </div>
           </section>
           <div class="chapters">
             <section class="chapter">
-              <h4>1. 成品预览</h4><p>高保真原型覆盖推荐、附近和商家详情。下面是「附近」的四级面板状态设计稿。</p>
-              <figure class="case-figure"><a href="assets/amap-states.webp" data-image-preview aria-label="放大查看附近地图与列表四级状态"><img loading="lazy" src="assets/amap-states.webp" width="1500" height="1119" alt="四个手机画面展示地图与列表的四种联动状态"></a><figcaption>沉浸漫游、空间映射、宏观探索与决策转化</figcaption></figure>
+              <h4>1. 成品预览</h4><p>试着把列表向下拖到全图，点一个图钉进入单点，再从商家卡片查看详情。想从内容开始，可以先点「推荐」。</p>
             </section>
             <section class="chapter">
-              <h4>2. 交互与视觉探索</h4><p>从交互线框到高保真，探索了全屏内容与半屏地图联动。前者突出连续浏览，后者把图钉和卡片放在同一视野，方便核对位置。全图适合查看更大范围，点选地点后聚焦单店。</p><p><a href="assets/amap-wireframes.webp" data-image-preview>放大查看交互线框</a>。</p>
-              <div class="figure-grid"><figure class="case-figure"><a href="assets/amap-recommend.webp" data-image-preview><img loading="lazy" src="assets/amap-recommend.webp" width="1500" height="985" alt="推荐 Tab 四种探索面板状态"></a><figcaption>推荐 Tab 面板</figcaption></figure><figure class="case-figure"><a href="assets/amap-detail.webp" data-image-preview><img loading="lazy" src="assets/amap-detail.webp" width="1500" height="923" alt="有优惠、推荐菜和评价入口的商家详情原型"></a><figcaption>商家详情</figcaption></figure></div>
+              <h4>2. 交互与视觉探索</h4><p>全屏突出连续浏览，半屏把图钉和卡片放在同一视野，全图留出探索范围。选中单个位置后，聚焦卡只展示当前商家。各模块的原稿截图可在方案设计中分别查看。</p>
+              <p><a class="text-link" href="#amap-ai-pm-solution">查看拆分后的设计稿</a></p>
             </section>
             <section class="chapter">
-              <h4>3. 设计到代码</h4><p>设计交付可以用两项状态描述：面板高度和当前选中的地点。拖动面板调整可见地图范围；点卡片或图钉共享同一个选中地点；清除选择后回到地图浏览。原稿给出了四态与联动规则，代码和线上实现证据待补。</p>
+              <h4>3. 设计到代码</h4><p>设计交付可以用两项状态描述：面板高度和当前选中的地点。拖动面板调整可见地图范围；点卡片或图钉共享同一个选中地点；清除选择后回到地图浏览。上方的网页原型实现了四态、选中态与详情跳转，线上实现证据待补。</p>
             </section>
             <section class="chapter">
               <h4>4. 真实使用条件</h4><p>原型采用手机竖屏。半屏要同时显示地图与可扫读的距离、评分；全图将列表折叠到底部，避免遮挡主要点位。设备实测、长列表与屏幕阅读器验证待补。</p>
@@ -745,7 +836,7 @@ v4 | 00:12 | 待确认 | 检查人物动作与字幕是否同步。</template>
         <header class="overview-heading"><h2 id="demos-title">项目展示</h2><a class="text-link" href="#delivery">查看交付与验收</a></header>
         <div class="resource-grid">
           <article><h3>ORAE</h3><p><a href="#pde-demo">站内抽牌试玩</a><br><a href="https://tarot.anois.site/" target="_blank" rel="noopener">在线抽牌与关系管理</a><br><a href="#ai-pm-solution">关系管理分屏设计</a><br><a href="#comparison">同题解读与失败样例</a></p></article>
-          <article><h3>高德地图</h3><p><a href="#amap-pde-demo">站内四态切换</a><br><a href="assets/amap-wireframes.webp" data-image-preview>线框原型</a><br><a href="assets/amap-states.webp" data-image-preview>地图与列表四态</a><br><a href="assets/amap-research.webp" data-image-preview>调研原稿</a></p></article>
+          <article><h3>高德地图</h3><p><a href="#amap-pde-demo">站内四态切换</a><br><a href="#amap-design-recommend">推荐与附近设计</a><br><a href="#amap-design-merchant">商家详情设计</a><br><a href="assets/amap-research.webp" data-image-preview>调研原稿</a></p></article>
           <article><h3>Arivo</h3><p><a href="#arivo-pde-demo">站内任务与审片演示</a><br><a href="https://arivo-studio-demo.anois-zhao208786.chatgpt.site/#/screens" target="_blank" rel="noopener">交互演示索引</a><br><a href="https://www.figma.com/design/oiZlD8DxTSVisTWEqwMarI/Arivo-ux-ui%E8%AE%BE%E8%AE%A1?node-id=591-604" target="_blank" rel="noopener">Figma 设计稿</a><br><a href="#arivo-ai-pm-solution">Schema 示例</a></p></article>
         </div>
       </section>
