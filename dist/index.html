@@ -563,7 +563,7 @@
                         <img src="assets/amap-story-date.webp" loading="lazy" width="1016" height="451" alt="Top Lounge 天空海岸，西餐厅，19.5km。推荐理由：吃饭打卡必去，约会圣地！" draggable="false">
                       </article>
                       <article class="amap-story-slide" data-amap-slide="小众买手" id="amap-story-boutique">
-                        <img src="assets/amap-story-boutique.webp" loading="lazy" width="1016" height="472" alt="Studio Doherty，服装店，13.5km。推荐理由：主理人穿搭审美超绝，全都是不容易撞衫的精致孤品！" draggable="false">
+                        <img loading="lazy" src="assets/amap-story-boutique.webp" width="1016" height="484" alt="Studio Doherty，服装店，13.5km。推荐理由：主理人穿搭审美超绝，全都是不容易撞衫的精致孤品！" draggable="false">
                       </article>
                       <article class="amap-story-slide" data-amap-slide="沉浸桌游" id="amap-story-boardgame">
                         <img src="assets/amap-story-boardgame.webp" loading="lazy" width="1016" height="447" alt="酸黄瓜俱乐部，桌游店，7.4km。推荐理由：店内实景搭建非常带感，周末和朋友开黑面基的首选去处。" draggable="false">
@@ -584,6 +584,7 @@
                 <section class="amap-design-module" aria-labelledby="amap-design-merchant">
                   <h5 id="amap-design-merchant">商家详情 · 按决策顺序组织信息</h5>
                   <p>先给出地点判断所需的基本信息，再把优惠、菜品、笔记和评价分开，便于按需查看。</p>
+                  <a class="amap-merchant-entry" href="#amap-merchant-demo" data-map-merchant-entry><img loading="lazy" src="assets/amap-merchant-thumbnail.webp" width="269" height="584" alt="地图上的肉本家商家缩略预览"><span><strong>从地图打开商家详情</strong><span>点击缩略图，进入优惠页，再切换推荐菜与评价。</span></span></a>
                   <div class="amap-design-grid merchant">
                     <figure class="amap-design-figure"><a href="assets/amap-detail-header.webp" data-image-preview><img loading="lazy" src="assets/amap-detail-header.webp" width="416" height="376" alt="决策头部"></a><figcaption><strong>决策头部</strong><p>优先显示照片、店名、评分和营业信息，方便用户快速判断是否继续看。</p></figcaption></figure>
                     <figure class="amap-design-figure"><a href="assets/amap-detail-offers.webp" data-image-preview><img loading="lazy" src="assets/amap-detail-offers.webp" width="523" height="625" alt="优惠与套餐"></a><figcaption><strong>优惠与套餐</strong><p>让价格、套餐份量和购买入口集中在同一区域，便于比较到店选项。</p></figcaption></figure>
@@ -650,18 +651,25 @@
                     </div>
                     <div class="amap-focus-card" hidden>
                       <h5 data-map-focus-name></h5><p data-map-focus-meta></p>
-                      <button type="button" data-map-action="details">查看详情</button>
+                      <button type="button" class="amap-focus-entry" data-map-action="details"><img loading="lazy" src="assets/amap-store-food.webp" width="379" height="110" alt=""><span>查看详情</span></button>
                       <button type="button" data-map-action="clear">清除选中</button>
                     </div>
                   </div>
                 </div>
-                <div class="amap-screen amap-detail-screen" data-map-view="detail" hidden>
+                <div class="amap-screen amap-detail-screen" id="amap-merchant-demo" data-map-view="detail" hidden>
                   <button type="button" class="amap-back" data-map-action="back">返回地图</button>
-                  <img loading="lazy" src="assets/amap-store-food.webp" width="379" height="110" alt="肉本家店铺与菜品照片">
-                  <h5>肉本家 · 炭烤肉</h5>
-                  <p>滨江东和时代店</p>
-                  <div class="amap-detail-tabs" role="group" aria-label="商家详情模块"><button type="button" data-map-detail="header" aria-pressed="true">决策头部</button><button type="button" data-map-detail="offers" aria-pressed="false">优惠与套餐</button><button type="button" data-map-detail="menu" aria-pressed="false">点单辅助</button><button type="button" data-map-detail="notes" aria-pressed="false">社区笔记</button><button type="button" data-map-detail="reviews" aria-pressed="false">评价</button></div>
-                  <figure data-map-detail-view="header"><img loading="lazy" src="assets/amap-detail-header.webp" width="416" height="376" alt="决策头部"><figcaption>优先显示照片、店名、评分和营业信息，方便用户快速判断是否继续看。</figcaption></figure><figure data-map-detail-view="offers" hidden><img loading="lazy" src="assets/amap-detail-offers.webp" width="523" height="625" alt="优惠与套餐"><figcaption>让价格、套餐份量和购买入口集中在同一区域，便于比较到店选项。</figcaption></figure><figure data-map-detail-view="menu" hidden><img loading="lazy" src="assets/amap-detail-menu.webp" width="537" height="246" alt="点单辅助"><figcaption>用菜品图片、价格和推荐信息帮用户判断菜单是否合适。</figcaption></figure><figure data-map-detail-view="notes" hidden><img loading="lazy" src="assets/amap-detail-notes.webp" width="399" height="356" alt="社区笔记"><figcaption>把实拍图片和探店内容放到一起，补充店内环境和用餐体验。</figcaption></figure><figure data-map-detail-view="reviews" hidden><img loading="lazy" src="assets/amap-detail-reviews.webp" width="458" height="367" alt="评价"><figcaption>评分、标签、评价正文和实拍图分层呈现，方便检查口碑。</figcaption></figure>
+                  <div class="amap-detail-tabs" role="group" aria-label="商家详情页">
+                    <button type="button" data-map-detail="offers" aria-pressed="true" aria-controls="amap-merchant-offers">优惠</button>
+                    <button type="button" data-map-detail="menu" aria-pressed="false" aria-controls="amap-merchant-menu">推荐菜</button>
+                    <button type="button" data-map-detail="reviews" aria-pressed="false" aria-controls="amap-merchant-reviews">评价</button>
+                  </div>
+                  <div class="amap-merchant-page" id="amap-merchant-offers" data-map-detail-view="offers"><img loading="lazy" src="assets/amap-detail-screen.webp" width="413" height="860" alt="肉本家·炭烤肉商家详情，优惠与到店套餐"></div>
+                  <div class="amap-merchant-page" id="amap-merchant-menu" data-map-detail-view="menu" hidden>
+                    <h5>推荐菜</h5><img loading="lazy" src="assets/amap-detail-menu.webp" width="537" height="246" alt="网友推荐菜与价格"><h5>探店笔记</h5><img loading="lazy" src="assets/amap-detail-notes.webp" width="399" height="356" alt="商家实拍与探店笔记">
+                  </div>
+                  <div class="amap-merchant-page" id="amap-merchant-reviews" data-map-detail-view="reviews" hidden>
+                    <h5>探店笔记</h5><img loading="lazy" src="assets/amap-detail-notes.webp" width="399" height="356" alt="商家实拍与探店笔记"><h5>评价</h5><img loading="lazy" src="assets/amap-detail-reviews.webp" width="458" height="367" alt="评分、口碑标签和用户评价">
+                  </div>
                 </div>
               </div>
               <div class="amap-demo-note">

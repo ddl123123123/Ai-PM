@@ -7,6 +7,7 @@ if (prototype) {
   const storeButtons = [...prototype.querySelectorAll('[data-map-store]')]
   const detailButtons = [...prototype.querySelectorAll('[data-map-detail]')]
   const detailViews = [...prototype.querySelectorAll('[data-map-detail-view]')]
+  const detailScreen = prototype.querySelector('[data-map-view="detail"]')
   const controller = prototype.querySelector('[data-map-handle]')
   const nearby = prototype.querySelector('#amap-screen-nearby')
   const sheet = controller.parentElement
@@ -51,7 +52,7 @@ if (prototype) {
     const message = screen === 'recommend'
       ? ['推荐 · 从情境开始', '通过场景卡浏览内容，再进入附近地图。']
       : screen === 'detail'
-        ? ['商家详情 · 按需查看', '切换头部、套餐、菜品、笔记和评价，查看原稿的独立设计区。']
+        ? ['商家详情 · 按需查看', '在优惠、推荐菜和评价三页之间切换。']
         : modes[mode]
     title.textContent = message[0]
     copy.textContent = message[1]
@@ -70,6 +71,28 @@ if (prototype) {
     setMode(levels[Math.max(0, Math.min(levels.length - 1, current + direction))])
   }
 
+  function selectDetail(page) {
+    for (const tab of detailButtons) tab.setAttribute('aria-pressed', String(tab.dataset.mapDetail === page))
+    for (const view of detailViews) view.hidden = view.dataset.mapDetailView !== page
+    detailScreen.scrollTop = 0
+  }
+
+  function openDetails() {
+    selected = 'bbq'
+    mode = 'focused'
+    screen = 'detail'
+    selectDetail('offers')
+    render()
+  }
+
+  for (const entry of document.querySelectorAll('[data-map-merchant-entry]')) {
+    entry.addEventListener('click', event => {
+      if (!event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) openDetails()
+    })
+  }
+  window.addEventListener('hashchange', () => {
+    if (location.hash === '#amap-merchant-demo' && screen !== 'detail') openDetails()
+  })
   for (const button of screenButtons) {
     button.addEventListener('click', () => {
       screen = button.dataset.mapScreen
@@ -98,8 +121,7 @@ if (prototype) {
           break
         case 'details':
           if (selected === 'bbq') {
-            screen = 'detail'
-            render()
+            openDetails()
             prototype.querySelector('[data-map-action="back"]').focus({ preventScroll: true })
           }
           break
@@ -117,10 +139,7 @@ if (prototype) {
   }
 
   for (const button of detailButtons) {
-    button.addEventListener('click', () => {
-      for (const tab of detailButtons) tab.setAttribute('aria-pressed', String(tab === button))
-      for (const view of detailViews) view.hidden = view.dataset.mapDetailView !== button.dataset.mapDetail
-    })
+    button.addEventListener('click', () => selectDetail(button.dataset.mapDetail))
   }
 
   controller.addEventListener('keydown', event => {
@@ -158,7 +177,8 @@ if (prototype) {
     dragged = false
   })
 
-  render()
+  if (location.hash === '#amap-merchant-demo') openDetails()
+  else render()
 }
 
 for (const carousel of document.querySelectorAll('[data-amap-carousel]')) {

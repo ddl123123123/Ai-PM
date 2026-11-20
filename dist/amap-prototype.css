@@ -155,3 +155,12 @@
   .amap-carousel-track:not([data-dragging]) .amap-scene-slide { transition: opacity .24s ease, background-color .24s ease, translate .24s ease; }
   .amap-scene-slide[aria-pressed="true"] { translate: 0 -.16rem; }
 }
+
+.amap-merchant-entry { display: grid; grid-template-columns: minmax(0, 6rem) minmax(0, 1fr); align-items: center; gap: .9rem; width: fit-content; max-width: 100%; margin-block: .75rem; padding: .6rem; border: 1px solid var(--line); border-radius: .6rem; background: var(--surface); text-decoration: none; }
+.amap-merchant-entry:hover { border-color: var(--accent); }
+.amap-merchant-entry > img { width: 100%; border-radius: .45rem; }
+.amap-merchant-entry > span > span { display: block; margin-top: .3rem; color: var(--muted); font-size: .88rem; }
+.amap-phone .amap-focus-entry { display: inline-flex; align-items: center; gap: .4rem; margin-inline-end: .2rem; }
+.amap-focus-entry > img { width: 2.35rem; height: 1.45rem; object-fit: cover; border-radius: .25rem; }
+.amap-detail-screen .amap-detail-tabs { position: sticky; inset-block-start: 0; z-index: 2; padding-block: .35rem; background: #f5f7f9; }
+.amap-merchant-page > img { margin-block-end: .55rem; }
