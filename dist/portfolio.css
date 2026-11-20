@@ -739,6 +739,13 @@ body:has(.image-viewer[open]) { overflow: hidden; }
 .orae-ops-composition ul { display: flex; flex-wrap: wrap; gap: .35rem 1.15rem; margin: .35rem 0 0; padding: 0; list-style: none; color: var(--muted); font-size: .84rem; }
 .orae-ops-composition li::before { content: ""; display: inline-block; width: .5rem; height: .5rem; margin-inline-end: .3rem; border-radius: 50%; background: #7bd6ee; }
 .orae-ops-composition li:last-child::before { background: var(--accent-bar); }
+.orae-result-evidence { display: grid; grid-template-columns: minmax(0, 1fr); align-items: start; gap: 1rem; margin-block-start: 1.3rem; }
+.orae-result-findings { min-width: 0; }
+.orae-result-findings > * + * { margin-block-start: .65rem; }
+.orae-result-capture { width: min(100%, 14rem); justify-self: center; }
+@container portfolio (min-width: 57rem) {
+  .orae-result-evidence { grid-template-columns: minmax(0, 1fr) minmax(0, 12.5rem); gap: 1.2rem; }
+}
 @container portfolio (max-width: 53rem) {
   .orae-ops-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
