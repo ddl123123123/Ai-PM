@@ -233,7 +233,7 @@ for (const guide of document.querySelectorAll('[data-amap-merchant-guide]')) {
     const distance = Math.max(1, scroll.clientWidth * .2)
     const progress = Math.min(1, Math.max(0, scroll.scrollTop) / distance)
     const tabProgress = Math.min(1, Math.max(0, (scroll.scrollTop - scroll.clientWidth * .64) / (distance * .28)))
-    detail.style.setProperty('--guide-header-progress', progress)
+    stage.style.setProperty('--guide-header-progress', progress)
     detail.style.setProperty('--guide-header-travel', reducedMotion.matches ? '0px' : `${-distance * .32 * (1 - progress)}px`)
     detail.style.setProperty('--guide-tabs-progress', tabProgress)
     headerTabs.inert = tabProgress < .55

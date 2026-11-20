@@ -180,8 +180,8 @@
 .amap-merchant-guide { display: grid; grid-template-columns: minmax(0, 18rem) minmax(0, 1fr); align-items: start; gap: clamp(.75rem, 2.5cqw, 1.4rem); margin-block-start: .85rem; }
 .amap-guide-phone { position: relative; display: flex; flex-direction: column; width: 100%; max-width: 18rem; aspect-ratio: 430 / 932; overflow: hidden; border: .25rem solid #211a2b; border-radius: 1.3rem; background: #edf4f6; color: #17263b; }
 .amap-guide-phone [hidden] { display: none; }
-.amap-guide-statusbar { position: absolute; z-index: 2; inset: 0 0 auto; opacity: var(--guide-hero-opacity); pointer-events: none; container-type: inline-size; }
-.amap-guide-detail-status { position: relative; z-index: 1; display: block; width: 100%; height: auto; background-color: rgb(255 255 255 / var(--guide-header-progress, 0)); }
+.amap-guide-statusbar { position: absolute; z-index: 2; inset: 0 0 auto; padding-block-start: calc(104 / 860 * 100%); opacity: var(--guide-hero-opacity); pointer-events: none; container-type: inline-size; }
+.amap-guide-fixed-status { position: absolute; z-index: 3; inset: 0 0 auto; display: block; width: 100%; height: auto; background-color: rgb(255 255 255 / calc(var(--guide-header-progress, 0) * var(--guide-hero-opacity))); }
 .amap-guide-search-row { display: grid; grid-template-columns: 8.8% 67.2% 1fr; align-items: center; aspect-ratio: 860 / 96; container-type: inline-size; }
 .amap-guide-search-row, .amap-guide-header-pin { opacity: var(--guide-header-progress, 0); translate: 0 var(--guide-header-travel, -1rem); }
 .amap-guide-search-row { background: #fff; }
@@ -202,6 +202,7 @@
 .amap-guide-stage {
   --guide-card-top: calc(1932 / 3728 * 100%);
   --guide-hero-opacity: clamp(0, calc((var(--guide-sheet-progress) - .78) / .22), 1);
+  --guide-hero-top-opacity: clamp(0, calc((var(--guide-sheet-progress) - .97) / .03), 1);
   position: relative;
   flex: 1;
   min-height: 0;
@@ -219,7 +220,7 @@
 .amap-guide-scroll { position: relative; flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior-y: contain; touch-action: pan-y; scrollbar-width: none; user-select: none; }
 .amap-guide-scroll img { display: block; width: 100%; height: auto; border-radius: .5rem .5rem 0 0; }
 .amap-guide-long-art { position: relative; padding-block-start: calc(169 / 860 * 100%); }
-.amap-guide-long-art::before { content: ""; position: absolute; inset: 0 0 auto; aspect-ratio: 860 / 169; background: linear-gradient(180deg, #ffc17b40, transparent), url("assets/amap-guide-detail-hero.webp") center / cover; opacity: var(--guide-hero-opacity); pointer-events: none; }
+.amap-guide-long-art::before { content: ""; position: absolute; inset: 0 0 auto; aspect-ratio: 860 / 169; background: linear-gradient(180deg, #ffc17b40, transparent), url("assets/amap-guide-detail-hero.webp") center / cover; opacity: var(--guide-hero-opacity); mask-image: linear-gradient(to bottom, rgb(0 0 0 / var(--guide-hero-top-opacity)), #000 34%); pointer-events: none; }
 .amap-guide-section-marker { position: absolute; inset-block-start: var(--guide-section-top); inset-inline-start: 0; }
 .amap-guide-phone img { pointer-events: none; -webkit-user-drag: none; user-select: none; }
 .amap-guide-scroll { cursor: grab; }
