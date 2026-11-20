@@ -83,7 +83,7 @@ h1 span { color: var(--text-highlight); }
   .hero h1 { transform: translateY(calc(var(--hero-scroll, 0px) * -.10)); }
   .hero .lede { transform: translateY(calc(var(--hero-scroll, 0px) * -.035)); }
   .parallax-heading { translate: 0 var(--section-parallax); }
-  .parallax-copy { translate: 0 calc(var(--section-parallax) * .32); }
+  .parallax-copy { translate: 0 calc(var(--section-parallax) * .35); }
 }
 
 .about { padding-block: 3rem 5rem; text-align: center; }

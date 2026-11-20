@@ -138,7 +138,6 @@ if (hero || sections.length) {
   function paintParallax() {
     frame = 0
     const viewport = window.innerHeight
-    const travel = Math.min(26, viewport * .04)
     const heroRect = hero?.getBoundingClientRect()
     const heroOffset = heroRect ? Math.max(0, Math.min(-heroRect.top, heroRect.height, 420)) : 0
     // Read positions together, then update the layers without changing document flow.
@@ -146,7 +145,7 @@ if (hero || sections.length) {
       const rect = title.parentElement.getBoundingClientRect()
       if (rect.bottom < 0 || rect.top > viewport) return offset
       const progress = Math.max(0, Math.min(1, (rect.top - viewport * .24) / (viewport * .6)))
-      return Math.round(progress * travel * 10) / 10
+      return Math.round(progress * 120) / 10
     })
 
     if (heroOffset !== lastOffset) {
