@@ -178,7 +178,8 @@ if (prototype) {
 
 for (const guide of document.querySelectorAll('[data-amap-merchant-guide]')) {
   const entry = guide.querySelector('[data-guide-open]')
-  const back = guide.querySelector('[data-guide-back]')
+  const stage = guide.querySelector('[data-guide-stage]')
+  const preview = guide.querySelector('[data-guide-preview]')
   const detail = guide.querySelector('[data-guide-detail]')
   const scroll = guide.querySelector('[data-guide-scroll]')
   const status = guide.querySelector('[data-guide-status]')
@@ -188,6 +189,9 @@ for (const guide of document.querySelectorAll('[data-amap-merchant-guide]')) {
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
   let frame = 0
   let active = ''
+  let pointer
+  let touch
+  let skipTap = false
 
   function highlight(key) {
     if (active === key) return
@@ -201,10 +205,19 @@ for (const guide of document.querySelectorAll('[data-amap-merchant-guide]')) {
   }
 
   function openGuide() {
-    entry.hidden = true
+    if (!detail.hidden) return
+    preview.inert = true
     detail.hidden = false
     scroll.scrollTop = 0
     highlight(parts[0].dataset.guidePart)
+  }
+
+  function closeGuide() {
+    detail.hidden = true
+    preview.inert = false
+    highlight('')
+    status.textContent = ''
+    entry.focus({ preventScroll: true })
   }
 
   function synchronize() {
@@ -219,19 +232,96 @@ for (const guide of document.querySelectorAll('[data-amap-merchant-guide]')) {
     highlight(current.dataset.guidePart)
   }
 
-  entry.addEventListener('click', event => {
-    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
-    event.preventDefault()
+  function enterDetail() {
     openGuide()
     scroll.focus({ preventScroll: true })
+  }
+
+  entry.addEventListener('click', event => {
+    if (!skipTap || event.detail === 0) enterDetail()
+    skipTap = false
   })
-  back.addEventListener('click', () => {
-    detail.hidden = true
-    entry.hidden = false
-    highlight('')
-    status.textContent = ''
-    entry.focus({ preventScroll: true })
+  scroll.addEventListener('keydown', event => {
+    if (event.key !== 'Escape') return
+    event.preventDefault()
+    closeGuide()
   })
+
+  function drawPull(element, distance) {
+    element.dataset.pulling = ''
+    element.style.setProperty('--guide-pull', `${distance}px`)
+  }
+
+  function resetPull(element) {
+    delete element.dataset.pulling
+    element.style.removeProperty('--guide-pull')
+  }
+
+  stage.addEventListener('pointerdown', event => {
+    if (!event.isPrimary || event.button !== 0) return
+    const opening = detail.hidden && entry.contains(event.target)
+    const closing = !detail.hidden && event.pointerType === 'mouse' && scroll.scrollTop <= 1
+    if (!opening && !closing) return
+    skipTap = false
+    pointer = { id: event.pointerId, x: event.clientX, y: event.clientY, delta: 0, opening, element: opening ? entry : detail }
+  })
+  stage.addEventListener('pointermove', event => {
+    if (pointer?.id !== event.pointerId) return
+    const y = event.clientY - pointer.y
+    if (Math.abs(y) < 7 && !pointer.delta) return
+    if (!pointer.delta && (Math.abs(event.clientX - pointer.x) > Math.abs(y) || (pointer.opening ? y > 0 : y < 0))) {
+      pointer = undefined
+      return
+    }
+    if (!pointer.delta) stage.setPointerCapture(event.pointerId)
+    pointer.delta = pointer.opening ? Math.min(0, y) : Math.max(0, y)
+    drawPull(pointer.element, Math.max(-110, Math.min(110, pointer.delta * .75)))
+  })
+  function releasePointer(event) {
+    if (pointer?.id !== event.pointerId) return
+    const { opening, delta, element } = pointer
+    pointer = undefined
+    resetPull(element)
+    if (opening) skipTap = Math.abs(delta) >= 7
+    if (event.type !== 'pointerup' || Math.abs(delta) < 42) return
+    if (opening) enterDetail()
+    else closeGuide()
+  }
+  for (const event of ['pointerup', 'pointercancel', 'lostpointercapture']) stage.addEventListener(event, releasePointer)
+  stage.addEventListener('pointerleave', () => {
+    if (pointer && !pointer.element.hasAttribute('data-pulling')) pointer = undefined
+  })
+
+  scroll.addEventListener('touchstart', event => {
+    touch = scroll.scrollTop <= 1 && event.touches.length === 1
+      ? { x: event.touches[0].clientX, y: event.touches[0].clientY, delta: 0 }
+      : undefined
+  }, { passive: true })
+  scroll.addEventListener('touchmove', event => {
+    if (!touch) return
+    const point = event.touches[0]
+    if (event.touches.length !== 1 || !event.cancelable || scroll.scrollTop > 1) {
+      touch = undefined
+      resetPull(detail)
+      return
+    }
+    const delta = point.clientY - touch.y
+    if (!touch.delta && (delta < 0 || Math.abs(point.clientX - touch.x) > delta)) {
+      touch = undefined
+      return
+    }
+    event.preventDefault()
+    touch.delta = Math.max(delta, 0)
+    drawPull(detail, Math.min(110, touch.delta * .75))
+  }, { passive: false })
+  for (const type of ['touchend', 'touchcancel']) {
+    scroll.addEventListener(type, event => {
+      const pull = touch?.delta ?? 0
+      touch = undefined
+      resetPull(detail)
+      if (event.type === 'touchend' && pull >= 42) closeGuide()
+    }, { passive: true })
+  }
   scroll.addEventListener('scroll', () => {
     if (!frame) frame = window.requestAnimationFrame(synchronize)
   }, { passive: true })
@@ -250,7 +340,6 @@ for (const guide of document.querySelectorAll('[data-amap-merchant-guide]')) {
 for (const carousel of document.querySelectorAll('[data-amap-carousel]')) {
   const track = carousel.querySelector('[data-amap-track]')
   const slides = [...track.querySelectorAll('[data-amap-slide]')]
-  const jumps = [...carousel.querySelectorAll('[data-amap-jump]')]
   const steps = [...carousel.querySelectorAll('[data-amap-step]')]
   const status = carousel.querySelector('[data-amap-carousel-status]')
   const motion = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -274,14 +363,13 @@ for (const carousel of document.querySelectorAll('[data-amap-carousel]')) {
     active = index
     slides.forEach((slide, i) => {
       slide.toggleAttribute('data-active', i === index)
-      if (slide.tagName === 'BUTTON') slide.setAttribute('aria-pressed', String(i === index))
+      slide.setAttribute('aria-pressed', String(i === index))
     })
-    jumps.forEach((button, i) => button.setAttribute('aria-pressed', String(i === index)))
     for (const button of steps) {
       const next = index + Number(button.dataset.amapStep)
       button.setAttribute('aria-disabled', String(next < 0 || next >= slides.length))
     }
-    const label = slides[index].dataset.amapSlide || slides[index].getAttribute('aria-label')
+    const label = slides[index].getAttribute('aria-label')
     const message = `${label}，第 ${index + 1} 张，共 ${slides.length} 张`
     if (status.textContent !== message) status.textContent = message
   }
@@ -309,9 +397,8 @@ for (const carousel of document.querySelectorAll('[data-amap-carousel]')) {
   for (const button of steps) {
     button.addEventListener('click', () => go(active + Number(button.dataset.amapStep)))
   }
-  jumps.forEach((button, index) => button.addEventListener('click', () => go(index)))
   slides.forEach((slide, index) => {
-    if (slide.tagName === 'BUTTON') slide.addEventListener('click', () => go(index))
+    slide.addEventListener('click', () => go(index))
   })
 
   track.addEventListener('pointerdown', event => {

@@ -147,9 +147,9 @@
 .amap-scene-face { display: block; }
 .amap-scene-face img { width: 100%; aspect-ratio: 1.7; object-fit: cover; border-radius: .68rem; }
 .amap-scene-face > span { display: block; padding: .42rem .25rem; font-size: clamp(.86rem, 3.7cqi, 1rem); }
-.amap-story-carousel .amap-carousel-track { --amap-card-width: min(88cqi, 34rem); align-items: stretch; padding-bottom: .6rem; }
-.amap-story-tabs { margin: .45rem 0 0; }
-.amap-story-slide > img { width: 100%; height: auto; }
+.amap-story-panel { margin-top: 1rem; padding: .75rem; border: 1px solid var(--line); border-radius: .65rem; background: var(--surface); }
+.amap-story-panel h6 { margin: 0 0 .6rem; font-size: 1rem; }
+.amap-story-panel img { width: 100%; border-radius: .6rem; }
 @media screen and (prefers-reduced-motion: no-preference) {
   .amap-scene-slide { transition: opacity .24s ease, background-color .24s ease; }
   .amap-carousel-track:not([data-dragging]) .amap-scene-slide { transition: opacity .24s ease, background-color .24s ease, translate .24s ease; }
@@ -163,16 +163,22 @@
 
 .amap-nearby-entries img { height: auto; padding: .65rem; }
 .amap-nearby-results img { height: auto; max-height: 27rem; }
+.amap-nearby-entries > a { min-height: 0; }
+.amap-nearby-labels { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); align-items: start; padding: 0 .65rem; margin: .18rem 0 .55rem; list-style: none; color: #fff; font-size: clamp(.65rem, 1.75cqw, .9rem); font-weight: 650; text-align: center; }
 .amap-merchant-guide { display: grid; grid-template-columns: minmax(0, 18rem) minmax(0, 1fr); align-items: start; gap: clamp(.75rem, 2.5cqw, 1.4rem); margin-block-start: .85rem; }
-.amap-guide-phone { display: flex; flex-direction: column; height: clamp(24rem, 64dvh, 33rem); overflow: hidden; border: .32rem solid #211a2b; border-radius: 1.3rem; background: #f5f7f9; color: #17263b; }
+.amap-guide-phone { display: flex; flex-direction: column; width: 100%; max-width: 18rem; aspect-ratio: 430 / 932; overflow: hidden; border: .25rem solid #211a2b; border-radius: 1.3rem; background: #edf4f6; color: #17263b; }
 .amap-guide-phone [hidden] { display: none; }
-.amap-guide-start { position: relative; display: grid; place-items: center; flex: 1; min-height: 0; background: #edf4f6; }
-.amap-guide-start img { width: 100%; height: 100%; min-height: 0; object-fit: contain; }
-.amap-guide-start > span { position: absolute; inset: auto .65rem .65rem; width: fit-content; max-width: calc(100% - 1.3rem); margin-inline: auto; padding: .4rem .75rem; border-radius: 1.3rem; background: #1556aa; color: #fff; font-size: .87rem; font-weight: 650; text-align: center; }
-.amap-guide-detail { display: flex; flex-direction: column; height: 100%; }
-.amap-guide-bar { display: flex; align-items: center; flex-wrap: wrap; gap: .45rem; padding: .45rem; border-bottom: 1px solid #dce3eb; background: #fff; font-size: .83rem; }
-.amap-guide-bar button { min-height: 2.15rem; padding-inline: .45rem; border: 1px solid #bfd6f2; border-radius: .35rem; background: #edf5ff; color: #154b88; font: inherit; cursor: pointer; }
-.amap-guide-scroll { position: relative; flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior-y: contain; scrollbar-width: thin; background: #fff; }
+.amap-guide-statusbar { position: relative; z-index: 2; flex: 0 0 4.1%; min-height: 0; background: #edf4f6; }
+.amap-guide-statusbar img { width: 100%; height: 100%; object-fit: fill; }
+.amap-guide-stage { position: relative; flex: 1; min-height: 0; overflow: hidden; isolation: isolate; }
+.amap-guide-preview, .amap-guide-detail { position: absolute; inset: 0; }
+.amap-guide-map { width: 100%; height: 51%; }
+.amap-guide-place { position: absolute; inset: 50.35% 0 0; width: 100%; padding: 0; border: 0; background: #fff; cursor: pointer; touch-action: none; user-select: none; }
+.amap-guide-place img { width: 100%; height: 100%; }
+.amap-guide-map, .amap-guide-place img { object-fit: fill; }
+.amap-guide-place, .amap-guide-detail { translate: 0 var(--guide-pull, 0px); }
+.amap-guide-detail { z-index: 1; display: flex; flex-direction: column; background: #fff; }
+.amap-guide-scroll { position: relative; flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior-y: contain; touch-action: pan-y; scrollbar-width: none; background: #fff; user-select: none; }
 .amap-guide-scroll img { width: 100%; height: auto; }
 .amap-guide-phone :focus-visible { outline: 2px solid #1556aa; outline-offset: -3px; }
 .amap-guide-details { min-width: 0; }
@@ -190,5 +196,9 @@
   .amap-guide-phone { width: min(100%, 18rem); justify-self: center; }
 }
 @media (prefers-reduced-motion: no-preference) {
+  .amap-guide-place, .amap-guide-detail { transition: translate .24s cubic-bezier(.2,.72,.28,1); }
+  .amap-guide-detail:not([hidden]) { animation: amap-merchant-rise .28s cubic-bezier(.2,.72,.28,1); }
+  .amap-guide-stage [data-pulling] { animation: none; transition: none; }
   .amap-guide-tile { transition: border-color .2s ease, background-color .2s ease, box-shadow .2s ease; }
 }
+@keyframes amap-merchant-rise { from { translate: 0 100%; } to { translate: 0 0; } }
