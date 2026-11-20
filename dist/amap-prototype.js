@@ -188,6 +188,7 @@ for (const guide of document.querySelectorAll('[data-amap-merchant-guide]')) {
   const parts = [...guide.querySelectorAll('[data-guide-part]')]
   const tiles = [...guide.querySelectorAll('[data-guide-card]')]
   const jumps = [...guide.querySelectorAll('[data-guide-jump]')]
+  const thumbnails = guide.querySelector('[data-guide-thumbnails]')
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
   let frame = 0
   let active = ''
@@ -198,11 +199,17 @@ for (const guide of document.querySelectorAll('[data-amap-merchant-guide]')) {
   function highlight(key) {
     if (active === key) return
     active = key
-    for (const tile of tiles) tile.toggleAttribute('data-active', tile.dataset.guideCard === key)
+    for (const tile of tiles) tile.hidden = tile.dataset.guideCard !== key
     for (const button of jumps) {
       const selected = button.dataset.guideJump === key
       button.setAttribute('aria-pressed', String(selected))
-      if (selected) status.textContent = button.textContent
+      if (selected) {
+        status.textContent = button.textContent
+        const viewport = thumbnails.getBoundingClientRect()
+        const thumb = button.getBoundingClientRect()
+        if (thumb.left < viewport.left) thumbnails.scrollLeft += thumb.left - viewport.left
+        else if (thumb.right > viewport.right) thumbnails.scrollLeft += thumb.right - viewport.right
+      }
     }
   }
 

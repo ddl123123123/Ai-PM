@@ -631,27 +631,34 @@
                     </div>
                     <div class="amap-guide-details">
                       <h6>商家详情 · 细节展示</h6>
-                      <p>点按或上拉商家卡片打开详情。在手机内滑动时，右侧会高亮对应细节。回到详情顶部后，再向下拉即可收起。也可以用下方按钮切换。</p>
-                      <div class="amap-guide-grid">
-                        <figure class="amap-guide-tile" data-guide-card="identity">
+                      <p>点按或上拉商家卡片打开详情。在手机内上下滑动，右侧会亮起对应的缩略图，并在下方展开大图。回到详情顶部后，再向下拉即可收起。也可以用下方按钮切换。</p>
+                      <div class="amap-guide-thumbnails" data-guide-thumbnails role="group" aria-label="详情缩略图">
+                        <button type="button" data-guide-jump="identity" aria-controls="amap-guide-preview-identity" aria-pressed="false"><img loading="lazy" src="assets/amap-merchant-guide-body.webp" width="850" height="625" alt=""><span>店铺信息</span></button>
+                        <button type="button" data-guide-jump="offers" aria-controls="amap-guide-preview-offers" aria-pressed="false"><img loading="lazy" src="assets/amap-merchant-guide-offers.webp" width="850" height="956" alt=""><span>优惠与套餐</span></button>
+                        <button type="button" data-guide-jump="menu" aria-controls="amap-guide-preview-menu" aria-pressed="false"><img loading="lazy" src="assets/amap-merchant-guide-menu.webp" width="850" height="495" alt=""><span>推荐菜</span></button>
+                        <button type="button" data-guide-jump="notes" aria-controls="amap-guide-preview-notes" aria-pressed="false"><img loading="lazy" src="assets/amap-merchant-guide-notes.webp" width="850" height="652" alt=""><span>探店笔记</span></button>
+                        <button type="button" data-guide-jump="reviews" aria-controls="amap-guide-preview-reviews" aria-pressed="false"><img loading="lazy" src="assets/amap-merchant-guide-reviews-clean.webp" width="850" height="717" alt=""><span>评价</span></button>
+                      </div>
+                      <div class="amap-guide-previews">
+                        <figure class="amap-guide-tile" id="amap-guide-preview-identity" data-guide-card="identity" hidden>
                           <a href="assets/amap-merchant-guide-body.webp" data-image-preview><img loading="lazy" src="assets/amap-merchant-guide-body.webp" width="850" height="625" alt="店铺信息细节图"></a>
-                          <figcaption><button type="button" data-guide-jump="identity" aria-controls="amap-guide-identity" aria-pressed="false">店铺信息</button><p>先看店铺照片、评分、营业状态和距离。</p></figcaption>
+                          <figcaption><strong>店铺信息</strong><p>先看店铺照片、评分、营业状态和距离。</p></figcaption>
                         </figure>
-                        <figure class="amap-guide-tile" data-guide-card="offers">
+                        <figure class="amap-guide-tile" id="amap-guide-preview-offers" data-guide-card="offers" hidden>
                           <a href="assets/amap-merchant-guide-offers.webp" data-image-preview><img loading="lazy" src="assets/amap-merchant-guide-offers.webp" width="850" height="956" alt="优惠与套餐细节图"></a>
-                          <figcaption><button type="button" data-guide-jump="offers" aria-controls="amap-guide-offers" aria-pressed="false">优惠与套餐</button><p>比较套餐价格、份量和购买入口。</p></figcaption>
+                          <figcaption><strong>优惠与套餐</strong><p>比较套餐价格、份量和购买入口。</p></figcaption>
                         </figure>
-                        <figure class="amap-guide-tile" data-guide-card="menu">
+                        <figure class="amap-guide-tile" id="amap-guide-preview-menu" data-guide-card="menu" hidden>
                           <a href="assets/amap-merchant-guide-menu.webp" data-image-preview><img loading="lazy" src="assets/amap-merchant-guide-menu.webp" width="850" height="495" alt="推荐菜细节图"></a>
-                          <figcaption><button type="button" data-guide-jump="menu" aria-controls="amap-guide-menu" aria-pressed="false">推荐菜</button><p>通过菜品图、价格和推荐人数辅助点单。</p></figcaption>
+                          <figcaption><strong>推荐菜</strong><p>通过菜品图、价格和推荐人数辅助点单。</p></figcaption>
                         </figure>
-                        <figure class="amap-guide-tile" data-guide-card="notes">
+                        <figure class="amap-guide-tile" id="amap-guide-preview-notes" data-guide-card="notes" hidden>
                           <a href="assets/amap-merchant-guide-notes.webp" data-image-preview><img loading="lazy" src="assets/amap-merchant-guide-notes.webp" width="850" height="652" alt="探店笔记细节图"></a>
-                          <figcaption><button type="button" data-guide-jump="notes" aria-controls="amap-guide-notes" aria-pressed="false">探店笔记</button><p>查看实拍内容，了解就餐氛围。</p></figcaption>
+                          <figcaption><strong>探店笔记</strong><p>查看实拍内容，了解就餐氛围。</p></figcaption>
                         </figure>
-                        <figure class="amap-guide-tile" data-guide-card="reviews">
+                        <figure class="amap-guide-tile" id="amap-guide-preview-reviews" data-guide-card="reviews" hidden>
                           <a href="assets/amap-merchant-guide-reviews-clean.webp" data-image-preview><img loading="lazy" src="assets/amap-merchant-guide-reviews-clean.webp" width="850" height="717" alt="评价细节图"></a>
-                          <figcaption><button type="button" data-guide-jump="reviews" aria-controls="amap-guide-reviews" aria-pressed="false">评价</button><p>对照评分、口碑标签与评价正文。</p></figcaption>
+                          <figcaption><strong>评价</strong><p>对照评分、口碑标签与评价正文。</p></figcaption>
                         </figure>
                       </div>
                       <div class="amap-guide-actions" role="group" aria-label="商家演示操作">
