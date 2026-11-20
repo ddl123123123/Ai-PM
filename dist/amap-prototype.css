@@ -13,77 +13,69 @@
 .amap-design-figure figcaption { padding: .5rem .25rem 0; }
 .amap-design-figure p { margin-top: .2rem; font-size: .9rem; }
 
-.amap-demo-layout { display: grid; grid-template-columns: minmax(0, 21rem) minmax(0, 1fr); align-items: center; gap: clamp(.75rem, 3cqw, 2rem); margin-top: 1rem; }
-.amap-demo-note > * + * { margin-block-start: .5rem; }
-.amap-demo-note h5 { font-size: 1.3rem; }
+.amap-demo-layout { display: grid; grid-template-columns: minmax(0, 20rem) minmax(0, 1fr); align-items: center; gap: clamp(.85rem, 4cqw, 2.5rem); }
+.amap-demo-note { max-width: 25rem; }
+.amap-browse-controls button { min-width: 6.5rem; }
 .amap-phone {
-  display: flex;
-  flex-direction: column;
-  height: clamp(28rem, 70vw, 33rem);
+  --amap-sheet-top: 11.5%;
+  --amap-sheet-half: 51.7%;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 430 / 932;
   overflow: hidden;
   isolation: isolate;
-  border: .35rem solid #151520;
+  container-type: inline-size;
+  border: .25rem solid #211a2b;
   border-radius: 1.45rem;
-  background: #f5f7f9;
-  color: #17263b;
+  background: #e9f3fa;
+  color: #141414;
   color-scheme: light;
 }
-.amap-phone :is(p, figcaption) { color: #47566a; }
-.amap-phone button { min-height: 2.2rem; color: inherit; font: inherit; cursor: pointer; }
-.amap-phone button:focus-visible { position: relative; z-index: 4; outline: 2px solid #1959b9; outline-offset: -2px; }
-.amap-phone-header { position: relative; z-index: 2; flex: 0 0 auto; padding: .55rem .65rem 0; background: white; border-bottom: 1px solid #dce3eb; }
-.amap-phone-header > span { font-size: .76rem; color: #47566a; }
-.amap-phone-tabs { display: flex; gap: .75rem; }
-.amap-phone-tabs button { padding: .25rem .5rem; border: 0; border-bottom: 2px solid transparent; background: transparent; }
-.amap-phone-tabs [aria-pressed="true"] { color: #1556aa; border-color: #1959b9; font-weight: 700; }
-.amap-screen { position: relative; flex: 1 1 auto; min-height: 0; }
-.amap-screen[hidden], .amap-phone [hidden] { display: none; }
-.amap-recommend-screen, .amap-detail-screen { overflow-y: auto; padding: .7rem; }
-.amap-recommend-screen h5, .amap-detail-screen h5 { margin-block: .35rem; font-size: 1.1rem; }
-.amap-recommend-screen img, .amap-detail-screen img { width: 100%; border-radius: .45rem; }
-.amap-phone .amap-scene-action { display: grid; gap: .45rem; width: 100%; margin: .6rem 0; padding: .45rem; border: 1px solid #bfd6f2; border-radius: .55rem; background: #e6f2ff; color: #154b88; font-weight: 650; }
-.amap-nearby-screen { overflow: hidden; --amap-sheet-top: 45%; }
-.amap-nearby-screen[data-mode="list"] { --amap-sheet-top: 0%; }
-.amap-nearby-screen[data-mode="map"] { --amap-sheet-top: calc(100% - 3.1rem); }
-.amap-nearby-screen[data-mode="focused"] { --amap-sheet-top: calc(100% - 10.4rem); }
-.amap-map-canvas { position: absolute; inset: 0; background: #deedeb url('assets/amap-map-background.webp') center / cover no-repeat; }
-.amap-map-label { position: absolute; inset: .4rem .45rem auto auto; padding: .12rem .42rem; border-radius: .4rem; background: #ffffffea; font-size: .72rem; }
-.amap-phone .amap-pin { position: absolute; z-index: 1; padding: 0 .6rem; border: 2px solid white; border-radius: 1rem; background: #a7470d; color: white; box-shadow: 0 .15rem .4rem #40536f55; font-size: .85rem; font-weight: 700; }
-.amap-phone .amap-pin:focus-visible { position: absolute; outline-offset: 1px; }
-.amap-phone .amap-pin[aria-pressed="true"] { background: #1556aa; }
-.amap-pin-bbq { inset: 17% auto auto 31%; }
-.amap-pin-dumplings { inset: 32% auto auto 58%; }
-.amap-sheet { position: absolute; z-index: 2; inset: calc(var(--amap-sheet-top) + var(--amap-drag, 0px)) 0 0; background: white; border-radius: .95rem .95rem 0 0; box-shadow: 0 -.22rem .7rem #283d5c35; display: flex; flex-direction: column; }
-.amap-phone .amap-sheet-handle { display: grid; place-content: center; justify-items: center; gap: .22rem; flex: 0 0 3.1rem; width: 100%; border: 0; border-radius: inherit; background: #f8fafc; touch-action: none; user-select: none; cursor: ns-resize; }
-.amap-sheet-handle span { display: block; width: 2rem; height: .22rem; border-radius: 1rem; background: #708198; }
-.amap-sheet-handle strong { font-size: .85rem; }
-.amap-store-list { display: grid; gap: .45rem; min-height: 0; overflow-y: auto; padding: .45rem; }
-.amap-phone .amap-store-row { display: grid; grid-template-columns: 2.55rem minmax(0, 1fr); align-items: center; gap: .55rem; padding: .4rem; text-align: start; border: 1px solid #dce3eb; border-radius: .55rem; background: #f9fafb; }
-.amap-store-row img { width: 2.55rem; height: 2.55rem; object-fit: cover; border-radius: .33rem; }
-.amap-store-row strong, .amap-store-row small { display: block; line-height: 1.3; }
-.amap-store-row strong { font-size: .91rem; }
-.amap-store-row small { color: #47566a; }
-.amap-phone .amap-store-row[aria-pressed="true"] { border-color: #1959b9; background: #e6f2ff; }
-.amap-nearby-screen[data-mode="map"] .amap-sheet:not(.is-dragging) .amap-store-list,
-.amap-nearby-screen[data-mode="focused"] .amap-store-list { display: none; }
-.amap-focus-card { padding: .4rem .65rem; }
-.amap-focus-card h5 { font-size: 1rem; }
-.amap-focus-card p { font-size: .82rem; margin: .2rem 0 .4rem; }
-.amap-phone :is(.amap-focus-card button, .amap-detail-tabs button, .amap-back) { padding: .15rem .48rem; border: 1px solid #bfd6f2; border-radius: .4rem; background: #edf5ff; color: #154b88; font-size: .83rem; }
-.amap-back { margin-bottom: .45rem; }
-.amap-detail-tabs { display: flex; flex-wrap: wrap; gap: .35rem; margin: .65rem 0; }
-.amap-phone .amap-detail-tabs [aria-pressed="true"] { background: #1556aa; color: white; border-color: #1556aa; }
-.amap-detail-screen figure { padding: .45rem; border: 1px solid #dce3eb; border-radius: .4rem; }
-.amap-detail-screen figure img { max-height: 15rem; object-fit: contain; }
-.amap-detail-screen figcaption { margin-top: .35rem; font-size: .83rem; }
+.amap-phone[data-map-height="half"] { --amap-sheet-top: var(--amap-sheet-half); }
+.amap-phone [hidden] { display: none; }
+.amap-phone button:focus-visible, .amap-browse-panel:focus-visible { outline: 2px solid #2169cf; outline-offset: -2px; }
+.amap-browse-map { position: absolute; inset: 0 0 auto; height: calc(var(--amap-sheet-half) + 3.5cqi); }
+.amap-browse-map img { display: block; width: 100%; height: 100%; object-fit: fill; }
+.amap-browse-nav { position: absolute; z-index: 2; inset: auto 0 0; height: 18cqi; padding: 1.2cqi 4cqi 0; background: #fff; }
+.amap-browse-nav img { display: block; width: 100%; height: auto; }
+.amap-sheet {
+  position: absolute;
+  z-index: 1;
+  inset: var(--amap-sheet-position, var(--amap-sheet-top)) 0 17.9cqi;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 4cqi 4cqi 0 0;
+  background: #fff;
+  box-shadow: 0 -.18rem .7rem #1b27331a;
+}
+.amap-sheet-handle { display: grid; flex: 0 0 4.7cqi; width: 100%; place-items: center; padding: 0; border: 0; background: #fff; touch-action: none; user-select: none; cursor: ns-resize; }
+.amap-sheet-handle span { width: 5.4cqi; height: max(2px, .55cqi); border-radius: 1rem; background: #d8dadd; }
+.amap-phone-tabs { display: flex; flex: none; align-items: stretch; gap: 5cqi; height: 9.4cqi; padding-inline: 3cqi; background: #fff; }
+.amap-phone-tabs button { position: relative; padding: 0 .2cqi; border: 0; background: transparent; color: #222; font: inherit; font-size: 4.05cqi; font-weight: 600; cursor: pointer; }
+.amap-phone-tabs [aria-selected="true"] { color: #101010; font-weight: 750; }
+.amap-phone-tabs [aria-selected="true"]::after { content: ""; position: absolute; inset: auto 12% .65cqi; height: 1cqi; border-radius: 1rem; background: #168cfa; }
+.amap-browse-panel { flex: 1 1 auto; min-height: 0; overflow: auto; overscroll-behavior: contain; scrollbar-width: none; background: #f7f7f7; }
+.amap-browse-panel img { display: block; width: 100%; height: auto; }
+.amap-browse-more { display: grid; gap: 2.5cqi; padding: 0 3cqi 3cqi; }
+.amap-phone[data-map-height="half"] .amap-browse-feature,
+.amap-phone[data-map-height="half"] .amap-browse-nearby-full,
+.amap-phone[data-map-height="full"] .amap-browse-filters { display: none; }
+.amap-browse-location { display: flex; align-items: center; gap: 2.2cqi; padding: 1.9cqi 3cqi; background: #fff; color: #62666d; font-size: 2.5cqi; white-space: nowrap; }
+.amap-browse-location span:first-child { overflow: hidden; text-overflow: ellipsis; }
+.amap-browse-categories { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: .45cqi; padding: 1.5cqi 2cqi 2.1cqi; border-radius: 0 0 3.8cqi 3.8cqi; background: #fff; }
+.amap-browse-categories div { display: grid; justify-items: center; gap: .9cqi; white-space: nowrap; font-size: 2.65cqi; font-weight: 600; }
+.amap-browse-categories .amap-category-icon { width: 11.6cqi; }
+.amap-browse-filters { display: flex; align-items: center; justify-content: space-between; gap: 2cqi; padding: 1.8cqi 3.3cqi 2.2cqi; background: #fff; font-size: 2.85cqi; white-space: nowrap; }
+.amap-browse-filters span { padding: .7cqi 1.25cqi; border-radius: 1.2cqi; background: #f8f8f8; }
+.amap-browse-results { margin-block-start: .75cqi; }
 @container portfolio (max-width: 34rem) {
   .amap-demo-layout { grid-template-columns: minmax(0, 1fr); }
-  .amap-phone { width: min(100%, 21rem); justify-self: center; }
+  .amap-phone { width: min(100%, 20rem); justify-self: center; }
 }
-@media screen and (prefers-reduced-motion: no-preference) {
-  .amap-sheet { transition: inset-block-start .34s cubic-bezier(.24,.72,.28,1); }
+@media (prefers-reduced-motion: no-preference) {
+  .amap-sheet { transition: inset-block-start .36s cubic-bezier(.24,.72,.28,1); }
   .amap-sheet.is-dragging { transition: none; }
-  .amap-focus-card:not([hidden]), .amap-detail-screen figure:not([hidden]) { animation: reveal-demo .25s ease-out; }
 }
 
 .amap-carousel {
@@ -156,11 +148,6 @@
   .amap-carousel-track:not([data-dragging]) .amap-scene-slide { transition: opacity .24s ease, background-color .24s ease, translate .24s ease; }
   .amap-scene-slide[aria-pressed="true"] { translate: 0 -.16rem; }
 }
-
-.amap-phone .amap-focus-entry { display: inline-flex; align-items: center; gap: .4rem; margin-inline-end: .2rem; }
-.amap-focus-entry > img { width: 2.35rem; height: 1.45rem; object-fit: cover; border-radius: .25rem; }
-.amap-detail-screen .amap-detail-tabs { position: sticky; inset-block-start: 0; z-index: 2; padding-block: .35rem; background: #f5f7f9; }
-.amap-merchant-page > img { margin-block-end: .55rem; }
 
 .amap-nearby-results img { height: auto; max-height: 27rem; }
 .amap-nearby-entries { align-self: start; padding: .75rem; }
