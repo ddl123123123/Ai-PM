@@ -740,27 +740,9 @@ body:has(.image-viewer[open]) { overflow: hidden; }
 .orae-console-brand { display: flex; align-items: center; gap: .5rem; padding-inline: 1rem; font-size: .88rem; letter-spacing: .06em; }
 .orae-console-brand::before { content: ""; width: .4rem; height: .4rem; border-radius: 50%; background: var(--console-cyan); box-shadow: 0 0 .65rem #4cc9f080; }
 .orae-console-rail ul { display: flex; flex-wrap: wrap; gap: .1rem .2rem; margin: .55rem 0 0; padding: 0 .8rem; list-style: none; }
-.orae-console-rail li { min-width: 0; }
-.orae-console-rail button {
-  display: block;
-  width: 100%;
-  min-height: 2.2rem;
-  padding: .3rem .5rem;
-  border: 0;
-  border-block-end: 2px solid transparent;
-  background: transparent;
-  color: var(--console-muted);
-  font: inherit;
-  font-size: .875rem;
-  text-align: start;
-  cursor: pointer;
-}
-.orae-console-rail button:hover:enabled { background: #789fff12; color: #eaeef8; }
-.orae-console-rail button[aria-pressed="true"] { color: #eaeef8; border-block-end-color: var(--console-cyan); }
-.orae-console-rail button:disabled { cursor: default; }
-.orae-console-rail button:focus-visible, .orae-console-table:focus-visible { outline: 2px solid var(--console-cyan); outline-offset: -2px; }
+.orae-console-rail li { padding: .3rem .4rem; color: var(--console-muted); font-size: .78rem; }
+.orae-console-rail [aria-current="page"] { color: #eaeef8; border-block-end: 2px solid var(--console-cyan); }
 .orae-console-main { min-width: 0; padding: .8rem clamp(.65rem, 2.8cqi, 1.4rem) 1.1rem; }
-.orae-console-page[hidden] { display: none; }
 .orae-console-readout { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .25rem .85rem; padding-block-end: .55rem; border-bottom: 1px solid var(--console-rule); }
 .orae-console-readout h6 { margin: 0; font-size: 1rem; }
 .orae-console-readout p { margin: 0; color: var(--console-muted); font-size: .75rem; font-variant-numeric: tabular-nums; }
@@ -779,16 +761,6 @@ body:has(.image-viewer[open]) { overflow: hidden; }
 .orae-ops-metrics small { color: var(--console-muted); }
 .orae-ops-notes dd { color: var(--muted); }
 .orae-console-readout h6, .orae-ops-metrics dt { color: #eaeef8; }
-.orae-console-intro, .orae-console-page .evidence-source { margin-block-start: .7rem; color: var(--console-muted); font-size: .875rem; }
-.orae-console-table { margin-block-start: .85rem; overflow-x: auto; border-block: 1px solid var(--console-rule); }
-.orae-console-table table { width: 100%; border-collapse: collapse; font-size: .875rem; }
-.orae-console-table :is(th, td) { padding: .55rem .7rem; border-bottom: 1px solid var(--console-rule); text-align: start; white-space: nowrap; }
-.orae-console-table thead th { background: #0d0d14; color: var(--console-muted); }
-.orae-console-table tbody tr:last-child > * { border-bottom: 0; }
-.orae-console-fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.5rem), 1fr)); gap: .55rem; margin: .85rem 0 0; }
-.orae-console-fields > div { min-width: 0; padding: .65rem .7rem; border: 1px solid var(--console-rule); border-radius: .35rem; background: #0d0d14; }
-.orae-console-fields dt { color: var(--console-muted); font-size: .85rem; }
-.orae-console-fields dd { margin: .2rem 0 0; overflow-wrap: anywhere; }
 .orae-ops-composition { margin-top: .8rem; }
 .orae-ops-composition figcaption { font-size: .88rem; }
 .orae-ops-bar { display: flex; height: .45rem; margin-top: .35rem; overflow: hidden; border-radius: .3rem; }
@@ -801,9 +773,8 @@ body:has(.image-viewer[open]) { overflow: hidden; }
   .orae-console { grid-template-columns: minmax(9rem, 17%) minmax(0, 1fr); }
   .orae-console-rail { padding-top: 1.2rem; border-right: 1px solid var(--console-rule); border-bottom: 0; }
   .orae-console-rail ul { display: grid; gap: .1rem; padding: 0; }
-  .orae-console-rail button { padding: .38rem 1rem; border-block-end: 0; border-inline-start: 2px solid transparent; }
-  .orae-console-rail button[aria-pressed="true"] { border-inline-start-color: var(--console-cyan); }
-  .orae-console-main { min-height: 24rem; }
+  .orae-console-rail li { padding: .38rem 1rem; }
+  .orae-console-rail [aria-current="page"] { padding-inline-start: calc(1rem - 2px); border-block-end: 0; border-inline-start: 2px solid var(--console-cyan); }
   .orae-ops-metrics { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
 @container portfolio (max-width: 30rem) {
