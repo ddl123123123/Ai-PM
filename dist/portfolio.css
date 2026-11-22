@@ -184,6 +184,12 @@ a.text-link:hover, .project-card:hover .text-link { text-decoration: underline; 
 .case-page > p { margin-top: .65rem; }
 .case-page .success-metrics { max-width: none; }
 .case-page .success-metrics > div { background: var(--base); }
+.arivo-review-decision { margin-block-start: 1.35rem; padding-block-start: 1.25rem; border-block-start: 1px solid var(--line); }
+.arivo-review-decision h5 { font-size: clamp(1.05rem, 2.6vw, 1.3rem); }
+.arivo-review-decision > :is(p, figure, h6) { margin-block-start: .8rem; }
+.arivo-review-decision h6 { font-size: .95rem; }
+.arivo-review-decision figcaption { font-size: .875rem; }
+.arivo-review-decision .case-flow { margin-block-start: .5rem; }
 .case-doc-figure { max-width: 47rem; }
 .case-doc-figure img { background: var(--base); }
 .table-scroll { overflow-x: auto; margin-top: .95rem; border: 1px solid var(--line); border-radius: .55rem; }

@@ -878,6 +878,35 @@
                   <tr><th scope="row">生成完成但内容不可用</th><td>拟拆分执行状态和独立质检</td><td><span class="matrix-state pending">使用本地模拟</span></td><td>模型盲评与字段自动校验</td></tr>
                 </tbody></table>
               </div><p><a href="https://arivo-studio-demo.anois-zhao208786.chatgpt.site/#/tasks/72f0c241" target="_blank" rel="noopener">体验失败任务</a>。目前没有真实生成结果或团队使用指标。</p>
+              <section class="arivo-review-decision" id="arivo-review-decision" aria-labelledby="arivo-review-decision-title">
+                <h5 id="arivo-review-decision-title">产品取舍 · 自动整理审片意见，人工确认交接</h5>
+                <p>我与 Codex 一起做了作品集里的审片清单整理器。直接把所有意见汇成清单很快，但编辑可能重复修改旧版已经处理的问题，或按不完整的时间点找错镜头。因此我把原文与定位信息保留到交接环节，由规则筛出需要核对的记录，再由人逐条决定是否导出。</p>
+                <figure aria-labelledby="arivo-review-flow-caption">
+                  <figcaption id="arivo-review-flow-caption">审片意见从原文到交接清单 · 合成示例</figcaption>
+                  <ol class="case-flow">
+                    <li><strong>收集原文</strong><span>保留原文行号、版本、时间点和处理状态。</span></li>
+                    <li><strong>校验与分流</strong><span>缺项、格式错误和重复意见标出原文行，留待核对。已处理项留作回看。</span></li>
+                    <li><strong>逐条确认</strong><span>编辑核对意见对应的版本和画面，再勾选要交接的记录。</span></li>
+                    <li><strong>导出 CSV</strong><span>只导出已勾选的待办，保留版本、时间点和原文，方便接手人定位。</span></li>
+                  </ol>
+                </figure>
+                <h6>怎么验收</h6>
+                <div class="table-scroll comparison-matrix" role="region" aria-label="审片清单整理器验收示例" tabindex="0">
+                  <table>
+                    <thead><tr><th scope="col">测试输入</th><th scope="col">通过条件</th><th scope="col">回放结果</th></tr></thead>
+                    <tbody>
+                      <tr><th scope="row">两条已处理的 v3 意见，一条待确认的 v4 意见</th><td>旧版意见可回看。确认前无导出行，确认后只导出 v4 的一条待办。</td><td>通过 · 固定演示样例</td></tr>
+                      <tr><th scope="row">缺版本、时间格式错误或同版本同时间点的重复意见</th><td>提示对应的原文行。重复的两条均待核对，异常记录全部留在导出清单之外。</td><td>通过 · 异常样例</td></tr>
+                      <tr><th scope="row">两个版本在同一时间点有相同意见</th><td>两条分别保留。只确认其中一个版本时，CSV 只含该版本及对应原文。</td><td>通过 · 跨版本样例</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p class="evidence-source">以上结果是对站内整理器的程序回放。团队实际节省的时间仍待用同一批意见做手工整理与自动整理加复核的对照。</p>
+                <div class="case-links">
+                  <a class="button ghost" href="#review-workflow">试用审片清单整理器</a>
+                  <a class="text-link" href="#prd-acceptance">查看验收记录</a>
+                </div>
+              </section>
             </section>
             <section class="chapter case-page" id="arivo-ai-pm-reflection" aria-labelledby="arivo-ai-pm-reflection-title">
               <h4 id="arivo-ai-pm-reflection-title">07 · 复盘与迭代思考</h4>
