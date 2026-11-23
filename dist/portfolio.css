@@ -184,6 +184,9 @@ a.text-link:hover, .project-card:hover .text-link { text-decoration: underline; 
 .case-page > p { margin-top: .65rem; }
 .case-page .success-metrics { max-width: none; }
 .case-page .success-metrics > div { background: var(--base); }
+.case-validation { margin-block: .9rem 1.15rem; }
+.case-validation h5 { font-size: clamp(1.05rem, 2.6vw, 1.3rem); }
+.case-validation > :is(p, .case-flow, .table-scroll) { margin-block-start: .65rem; }
 .arivo-review-decision { margin-block-start: 1.35rem; padding-block-start: 1.25rem; border-block-start: 1px solid var(--line); }
 .arivo-review-decision h5 { font-size: clamp(1.05rem, 2.6vw, 1.3rem); }
 .arivo-review-decision > :is(p, figure, h6) { margin-block-start: .8rem; }

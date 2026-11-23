@@ -291,6 +291,16 @@
             </section>
             <section class="chapter case-page" id="ai-pm-result" aria-labelledby="ai-pm-result-title">
               <h4 id="ai-pm-result-title">06 · 落地、验证与结果</h4>
+              <section class="case-validation" id="orae-android-regression" aria-labelledby="orae-android-regression-title">
+                <h5 id="orae-android-regression-title">一次用户反馈如何变成回归用例</h5>
+                <ol class="case-flow">
+                  <li><strong>用户反馈</strong><span>Android 用户在选完牌阵后反馈，「继续」要点好几次。</span></li>
+                  <li><strong>复现与定位</strong><span>牌阵加载后按钮已经变亮。点击文字能进入洗牌，点击胶囊两端无响应。原因是原生控件仍处在禁用态。</span></li>
+                  <li><strong>修复</strong><span>按钮启用状态切换时重新挂载点击控件，让视觉状态和可点击区域一起更新。</span></li>
+                  <li><strong>复验与纳入清单</strong><span>Android 模拟器上，分别点击「继续」的左、右端，单次点击即可进入洗牌。QA 清单加入边缘点按。</span></li>
+                </ol>
+                <p class="evidence-source">这次复验覆盖按钮从禁用变为可用的场景。修复后真实用户的重复点按率待采集。<a href="https://github.com/anois/tarot-v2/commit/834105e" target="_blank" rel="noopener">修复与复验记录（需仓库权限）</a></p>
+              </section>
               <section class="orae-ops" id="orae-ops" aria-labelledby="orae-ops-title" data-demo>
                 <header class="orae-ops-header">
                   <h5 id="orae-ops-title">ORAE 运营控制台</h5>
@@ -715,6 +725,21 @@
             </section>
             <section class="chapter case-page" id="amap-ai-pm-result" aria-labelledby="amap-ai-pm-result-title">
               <h4 id="amap-ai-pm-result-title">06 · 落地、验证与结果</h4>
+              <section class="case-validation" id="amap-dining-walkthrough" aria-labelledby="amap-dining-walkthrough-title">
+                <h5 id="amap-dining-walkthrough-title">同一任务，走查两条找店路径</h5>
+                <p>用同一家店核对探索到决策的交接。任务是从示例位置附近选一家 3.5 公里内、人均不超过 ¥120，且页面标注 20:00 营业的餐厅。地点信息以演示素材为准。</p>
+                <div class="table-scroll comparison-matrix" role="region" aria-label="找店任务前后路径对照" tabindex="0">
+                  <table>
+                    <thead><tr><th scope="col">对照项</th><th scope="col">调研中的跨 App 路径</th><th scope="col">高保真方案路径</th></tr></thead>
+                    <tbody>
+                      <tr><th scope="row">操作路径</th><td>在内容页发现候选 → 到地图重新输入店名 → 核对同名门店与营业信息。</td><td>在附近列表核对距离和人均 → 在商家详情核对同名门店和营业时间。</td></tr>
+                      <tr><th scope="row">重新输入店名</th><td>路径要求 1 次。</td><td>路径要求 0 次，依靠原型里可见的商家名称对应两段演示。</td></tr>
+                      <tr><th scope="row">任务结论</th><td>把重新检索与分店核对列为交接成本，供后续对照实测。</td><td>素材中的肉本家（滨江东和时代店）人均 ¥113。列表显示 3.0 公里，详情显示 2.9 公里，两处都在任务距离内。详情营业时间为 09:00–22:00，覆盖 20:00。</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p class="evidence-source">这是基于调研路径和现有界面的设计走查。附近列表和商家详情分别展示，站内演示通过同名门店核对两段信息。用户任务完成率、实际返回次数和总耗时待同任务实测。<a href="#amap-pde-demo">查看附近列表</a> · <a href="#amap-design-merchant">查看商家详情</a></p>
+              </section>
               <p>现有方案以推荐、附近、详情三个原型模块交付。下一步用同一组地点和需求先测四态联动，再对照加入 AI 解释。标注地点硬条件，自动核验地点 ID 和引用字段，人工检查理由。</p><div class="table-scroll comparison-matrix" role="region" aria-label="高德实施与验证" tabindex="0">
                 <table><thead><tr><th scope="col">设计场景</th><th scope="col">方案</th><th scope="col">现有证据</th><th scope="col">待补</th></tr></thead><tbody>
                   <tr><th scope="row">跨界面核对地点</th><td>点位与列表卡片双向关联</td><td><span class="matrix-state verified">四态高保真</span></td><td>后测返回次数和定位错误</td></tr>
