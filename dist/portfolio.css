@@ -354,7 +354,10 @@ figcaption { margin-top: .45rem; color: var(--muted); font-size: .81rem; }
 .avalon-design-detail h5 { font-size: .98rem; }
 .avalon-design-detail p { margin: .35rem 0 .5rem; font-size: .86rem; }
 .avalon-design-detail a[aria-current] { color: var(--text-highlight); font-weight: 700; }
-.avalon-markers-frame { display: block; width: 100%; height: 9.5rem; border: 1px solid #383248; border-radius: .45rem; background: #101322; }
+.avalon-detail-visual { display: grid; justify-items: center; gap: .55rem; margin-top: .65rem; padding: .55rem; border-radius: .45rem; background: #101322; }
+.avalon-detail-visual img { width: auto; max-width: 100%; max-height: 25rem; height: auto; border-radius: .35rem; }
+.avalon-marker-visual img { width: 100%; }
+.avalon-marker-visual figcaption { justify-self: start; color: var(--muted); font-size: .8rem; }
 .avalon-showcase-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 26rem); align-items: start; gap: clamp(.8rem, 3cqi, 2rem); margin-top: .9rem; }
 .avalon-showcase-controls { min-width: 0; }
 .avalon-showcase-controls nav { display: flex; flex-wrap: wrap; gap: .45rem; }
@@ -363,7 +366,7 @@ figcaption { margin-top: .45rem; color: var(--muted); font-size: .81rem; }
 .avalon-showcase-controls p { margin-top: .8rem; }
 .avalon-showcase-controls button { color: var(--text); cursor: pointer; }
 .avalon-showcase-controls button[hidden] { display: none; }
-.avalon-showcase-phone { display: block; width: 100%; max-width: 26rem; height: clamp(34rem, 86svh, 49rem); margin-inline: auto; border: 4px solid #30283e; border-radius: 1.45rem; background: #101322; }
+.avalon-showcase-phone { display: block; width: 100%; max-width: 26rem; height: clamp(42rem, 90svh, 55rem); margin-inline: auto; border: 4px solid #30283e; border-radius: 1.45rem; background: #101322; }
 @container portfolio (max-width: 46rem) {
   .avalon-showcase-layout { grid-template-columns: minmax(0, 1fr); }
 }

@@ -28,6 +28,22 @@ if (avalonShowcase) {
   const restart = avalonShowcase.querySelector('[data-avalon-restart]')
   const links = [...avalonShowcase.querySelectorAll('[data-avalon-scene]')]
   const detail = avalonShowcase.querySelector('[data-avalon-detail]')
+  const detailImage = avalonShowcase.querySelector('[data-avalon-detail-image]')
+  const imageLabels = {
+    room: '开局大厅的圆桌座位和待补人数',
+    identity: '翻牌后展示梅林身份、阵营和确认按钮',
+    notebook: '笔记面板中的座位与身份预判选项',
+    assassin: '匕首、翻开的梅林身份牌和刺杀成功反馈',
+    speech: '机器人发言按任务和组队轮次显示',
+    manual: '发言计时和开始计时按钮',
+  }
+
+  window.addEventListener('message', event => {
+    if (event.origin !== location.origin || event.source !== frame.contentWindow) return
+    if (event.data?.type !== 'avalon-showcase-height') return
+    const { height } = event.data
+    frame.style.height = Number.isFinite(height) && height > 0 ? `${height + 10}px` : ''
+  })
   const scenes = {
     room: {
       hint: '选择桌游，填好昵称后开房。进房后可以换座、选择人数和阵容，添加机器人补位。',
@@ -64,6 +80,9 @@ if (avalonShowcase) {
       const scene = scenes[link.dataset.avalonScene]
       instructions.textContent = scene.hint
       detail.textContent = scene.detail
+      detailImage.src = `assets/avalon-details/${link.dataset.avalonScene}.webp`
+      detailImage.alt = imageLabels[link.dataset.avalonScene]
+      frame.style.height = ''
       full.href = link.href
       frame.src = link.href
     })

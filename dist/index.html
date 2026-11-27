@@ -1120,6 +1120,7 @@
                   <a href="avalon-mobile/index.html?scene=notebook" target="avalon-phone" data-avalon-scene="notebook">记笔记</a>
                   <a href="avalon-mobile/index.html?scene=assassin" target="avalon-phone" data-avalon-scene="assassin">刺杀梅林</a>
                   <a href="avalon-mobile/index.html?scene=speech" target="avalon-phone" data-avalon-scene="speech">机器人发言</a>
+                  <a href="avalon-mobile/index.html?scene=manual" target="avalon-phone" data-avalon-scene="manual">线下计时</a>
                 </nav>
                 <p data-avalon-instructions aria-live="polite">选择桌游，填好昵称后开房。进房后可以换座、选择人数和阵容，添加机器人补位。</p>
                 <div class="case-links">
@@ -1129,12 +1130,16 @@
                 <section class="avalon-design-detail" aria-labelledby="avalon-design-title">
                   <h5 id="avalon-design-title">交互细节</h5>
                   <p data-avalon-detail>房间人数和空位放在圆桌中央。换座和补位直接反馈到座位上，房主可一眼看出还差几人。</p>
-                  <a class="text-link" href="avalon-mobile/index.html?scene=manual" target="avalon-phone" data-avalon-scene="manual">体验线下面桌计时</a>
+                  <figure class="avalon-detail-visual">
+                    <img data-avalon-detail-image src="assets/avalon-details/room.webp" alt="开局大厅的圆桌座位和待补人数" loading="lazy">
+                  </figure>
                 </section>
                 <section class="avalon-design-detail" aria-labelledby="avalon-markers-title">
                   <h5 id="avalon-markers-title">任务进度徽章</h5>
-                  <p>数字表示上车人数，剑徽表示任务结果。点选徽章查看含义。</p>
-                  <iframe class="avalon-markers-frame" src="avalon-mobile/index.html?scene=progress" title="可点选的阿瓦隆任务进度徽章" loading="lazy"></iframe>
+                  <figure class="avalon-detail-visual avalon-marker-visual">
+                    <img src="assets/avalon-details/progress.webp" width="772" height="170" alt="任务成功、任务失败、当前任务、两张失败牌和待开始的五种徽章状态" loading="lazy">
+                    <figcaption>数字表示上车人数，剑徽表示任务结果。双牌标记表示至少两张失败牌才会使任务失败。</figcaption>
+                  </figure>
                 </section>
               </div>
               <iframe class="avalon-showcase-phone" name="avalon-phone" title="阿瓦隆手机端互动演示" src="avalon-mobile/index.html?scene=room" loading="lazy"></iframe>
