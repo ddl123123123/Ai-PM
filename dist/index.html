@@ -1104,96 +1104,24 @@
               <div class="demo-copy"><h5>琉璃工坊牌桌</h5><p>公开区摆放委托、窗片与玻璃料，玩家在自己的操作区选择取料、描样或烧制。</p></div>
             </div>
           </section>
-          <section class="avalon-demo" data-avalon-demo aria-labelledby="avalon-demo-title">
-            <header class="avalon-demo-heading">
-              <div>
-                <p class="eyebrow">可交互规则演示</p>
-                <h4 id="avalon-demo-title">阿瓦隆 · 从夜幕到终局</h4>
-                <p>点击步骤推进一局七人示意牌局。身份、投票和任务结果均为虚拟演示，重点展示隐藏信息与回合反馈。</p>
+          <section class="avalon-showcase interaction-demo" id="avalon-mobile-demo" data-avalon-showcase aria-labelledby="avalon-demo-title">
+            <h4 id="avalon-demo-title">阿瓦隆 · 手机端交互</h4>
+            <p>使用桌游厅原有的手机界面和动画，在演示房间里亲手操作。</p>
+            <div class="avalon-showcase-layout">
+              <div class="avalon-showcase-controls">
+                <nav aria-label="选择手机端演示">
+                  <a href="avalon-mobile/index.html?scene=room" target="avalon-phone" data-avalon-scene aria-current="true">创建房间</a>
+                  <a href="avalon-mobile/index.html?scene=identity" target="avalon-phone" data-avalon-scene>获得身份牌</a>
+                  <a href="avalon-mobile/index.html?scene=notebook" target="avalon-phone" data-avalon-scene>记笔记</a>
+                  <a href="avalon-mobile/index.html?scene=assassin" target="avalon-phone" data-avalon-scene>刺杀梅林</a>
+                </nav>
+                <p data-avalon-instructions aria-live="polite">选择桌游，填好昵称后开房。进房后可以换座、选择人数和阵容，添加机器人补位。</p>
+                <div class="case-links">
+                  <a class="text-link" data-avalon-full href="avalon-mobile/index.html?scene=room" target="_blank" rel="noopener">单独打开</a>
+                  <button type="button" class="button ghost" data-avalon-restart hidden>重播当前场景</button>
+                </div>
               </div>
-              <button class="avalon-button avalon-reset" type="button" data-avalon-reset disabled>重置演示</button>
-            </header>
-            <div class="avalon-tabs" role="group" aria-label="阿瓦隆演示步骤" hidden>
-              <button type="button" data-avalon-tab="identity" aria-pressed="true" aria-controls="avalon-panel-identity" disabled>身份翻牌</button>
-              <button type="button" data-avalon-tab="night" aria-pressed="false" aria-controls="avalon-panel-night" disabled>夜晚行动</button>
-              <button type="button" data-avalon-tab="vote" aria-pressed="false" aria-controls="avalon-panel-vote" disabled>组队投票</button>
-              <button type="button" data-avalon-tab="mission" aria-pressed="false" aria-controls="avalon-panel-mission" disabled>任务结算</button>
-              <button type="button" data-avalon-tab="assassin" aria-pressed="false" aria-controls="avalon-panel-assassin" disabled>刺客找梅林</button>
-            </div>
-            <p class="avalon-live" data-avalon-status role="status" aria-live="polite">演示尚未启动。</p>
-            <div class="avalon-play-area">
-              <div class="avalon-table" data-avalon-table data-mode="identity" role="group" aria-label="七名玩家座位">
-                <div class="avalon-table-core" aria-hidden="true"><span>7 人局</span><strong data-avalon-table-state>身份暗置</strong></div>
-                <button class="avalon-player" type="button" data-player="A" aria-pressed="false" aria-label="玩家 A" disabled><span class="avalon-avatar">A</span><span class="avalon-player-label">玩家 A</span><span class="avalon-seat-state" data-seat-state></span></button>
-                <button class="avalon-player" type="button" data-player="B" aria-pressed="false" aria-label="玩家 B" disabled><span class="avalon-avatar">B</span><span class="avalon-player-label">玩家 B</span><span class="avalon-seat-state" data-seat-state></span></button>
-                <button class="avalon-player" type="button" data-player="C" aria-pressed="false" aria-label="玩家 C" disabled><span class="avalon-avatar">C</span><span class="avalon-player-label">玩家 C</span><span class="avalon-seat-state" data-seat-state></span></button>
-                <button class="avalon-player" type="button" data-player="D" aria-pressed="false" aria-label="玩家 D" disabled><span class="avalon-avatar">D</span><span class="avalon-player-label">玩家 D</span><span class="avalon-seat-state" data-seat-state></span></button>
-                <button class="avalon-player" type="button" data-player="E" aria-pressed="false" aria-label="玩家 E" disabled><span class="avalon-avatar">E</span><span class="avalon-player-label">玩家 E</span><span class="avalon-seat-state" data-seat-state></span></button>
-                <button class="avalon-player" type="button" data-player="F" aria-pressed="false" aria-label="玩家 F" disabled><span class="avalon-avatar">F</span><span class="avalon-player-label">玩家 F</span><span class="avalon-seat-state" data-seat-state></span></button>
-                <button class="avalon-player" type="button" data-player="G" aria-pressed="false" aria-label="玩家 G" disabled><span class="avalon-avatar">G</span><span class="avalon-player-label">玩家 G</span><span class="avalon-seat-state" data-seat-state></span></button>
-              </div>
-              <div class="avalon-panels">
-                <article class="avalon-panel" id="avalon-panel-identity" data-avalon-panel="identity">
-                  <span class="avalon-step-label">01 / 身份分配</span>
-                  <h5>只有你能查看自己的身份</h5>
-                  <p>玩家 A 是本次演示视角。点击身份牌翻开，再点一次收起，其他玩家的身份始终隐藏。</p>
-                  <button class="avalon-role-card" type="button" data-avalon-role aria-expanded="false" disabled>
-                    <span class="avalon-role-back"><span aria-hidden="true">✦</span><strong>点击查看身份</strong><small>仅本人可见</small></span>
-                    <span class="avalon-role-front"><span>正义阵营</span><strong>梅林</strong><small>你已获得身份</small></span>
-                  </button>
-                  <p class="avalon-role-note" data-avalon-role-note hidden>你能在夜晚观察部分邪恶玩家，但莫德雷德会隐藏身份。</p>
-                </article>
-                <article class="avalon-panel" id="avalon-panel-night" data-avalon-panel="night" hidden>
-                  <span class="avalon-step-label" data-avalon-night-count>02 / 夜晚行动 · 1 / 4</span>
-                  <h5 data-avalon-night-title>全员闭眼</h5>
-                  <p data-avalon-night-copy>夜晚开始，所有玩家闭眼等待主持流程。</p>
-                  <div class="avalon-night-track" aria-hidden="true"><span data-avalon-night-progress></span></div>
-                  <div class="avalon-controls" role="group" aria-label="推进夜晚">
-                    <button class="avalon-button" type="button" data-avalon-night-prev disabled>上一步</button>
-                    <button class="avalon-button avalon-button-primary" type="button" data-avalon-night-next>下一幕</button>
-                  </div>
-                </article>
-                <article class="avalon-panel" id="avalon-panel-vote" data-avalon-panel="vote" hidden>
-                  <span class="avalon-step-label">03 / 提案与投票</span>
-                  <h5 data-avalon-vote-title>队长选择本轮任务队伍</h5>
-                  <p data-avalon-vote-copy>七人局首个任务派出 2 人。点选座位组成队伍。</p>
-                  <p class="avalon-selection-count" data-avalon-selection-count>已选 0 / 2 人</p>
-                  <button class="avalon-button avalon-button-primary" type="button" data-avalon-submit-team disabled>提交队伍</button>
-                  <div class="avalon-ballot" data-avalon-ballot hidden>
-                    <p>其余 6 票按演示结果补齐，你可以切换自己的票。</p>
-                    <div class="avalon-controls" role="group" aria-label="选择你的投票">
-                      <button class="avalon-button" type="button" data-avalon-vote="approve" aria-pressed="false">赞成</button>
-                      <button class="avalon-button" type="button" data-avalon-vote="reject" aria-pressed="false">反对</button>
-                      <button class="avalon-button avalon-button-primary" type="button" data-avalon-confirm-vote disabled>确认投票</button>
-                    </div>
-                    <p class="avalon-vote-result" data-avalon-vote-result aria-live="polite"></p>
-                    <button class="avalon-button" type="button" data-avalon-reproposal hidden>重新组队</button>
-                    <button class="avalon-button avalon-button-primary" type="button" data-avalon-to-mission hidden>进入任务结算</button>
-                  </div>
-                </article>
-                <article class="avalon-panel" id="avalon-panel-mission" data-avalon-panel="mission" hidden>
-                  <span class="avalon-step-label">04 / 任务结算</span>
-                  <h5 data-avalon-mission-title>任务牌仍在暗置</h5>
-                  <p data-avalon-mission-copy>队伍通过后，任务成员各自提交成功或失败牌。点击按钮观看翻牌反馈。</p>
-                  <div class="avalon-mission-cards" data-avalon-mission-cards aria-live="polite">
-                    <span class="avalon-mission-card" data-mission-card>?</span>
-                    <span class="avalon-mission-card" data-mission-card>?</span>
-                  </div>
-                  <div class="avalon-controls" role="group" aria-label="模拟任务结算">
-                    <button class="avalon-button avalon-button-primary" type="button" data-avalon-mission="success" disabled>模拟任务成功</button>
-                    <button class="avalon-button avalon-button-danger" type="button" data-avalon-mission="fail" disabled>模拟任务失败</button>
-                    <button class="avalon-button" type="button" data-avalon-back-vote>返回组队投票</button>
-                  </div>
-                  <p class="avalon-rule-note" data-avalon-mission-rule>先通过队伍投票，再进行任务结算。</p>
-                </article>
-                <article class="avalon-panel" id="avalon-panel-assassin" data-avalon-panel="assassin" hidden>
-                  <span class="avalon-step-label">05 / 终局示意</span>
-                  <h5>正义完成三次任务后，刺客猜测梅林</h5>
-                  <p>点选一名玩家进行刺杀。此处使用固定虚拟身份，帮助理解终局胜负反馈。</p>
-                  <p class="avalon-selection-count">请选择刺客认为的梅林</p>
-                  <p class="avalon-assassin-result" data-avalon-assassin-result aria-live="polite">选择玩家座位查看结果。</p>
-                </article>
-              </div>
+              <iframe class="avalon-showcase-phone" name="avalon-phone" title="阿瓦隆手机端互动演示" src="avalon-mobile/index.html?scene=room" loading="lazy"></iframe>
             </div>
           </section>
           <div class="case-links"><a class="button ghost" href="https://games.anois.site/" target="_blank" rel="noopener">线上试玩</a><a class="text-link" href="#boardgame-admin">查看管理台字段</a></div>
