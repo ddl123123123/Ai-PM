@@ -27,20 +27,43 @@ if (avalonShowcase) {
   const full = avalonShowcase.querySelector('[data-avalon-full]')
   const restart = avalonShowcase.querySelector('[data-avalon-restart]')
   const links = [...avalonShowcase.querySelectorAll('[data-avalon-scene]')]
-  const hints = [
-    '选择桌游，填好昵称后开房。进房后可以换座、选择人数和阵容，添加机器人补位。',
-    '点一下身份牌，观看原版翻牌动效。揭晓后可确认身份。',
-    '打开「工具 → 笔记」，给座位标记身份，或输入「2 号赞成」并保存笔记。',
-    '你是刺客。点选一名玩家后确认刺杀，观看匕首落下、身份翻牌和胜负揭晓。选 2 号可重现刺杀成功。',
-  ]
+  const detail = avalonShowcase.querySelector('[data-avalon-detail]')
+  const scenes = {
+    room: {
+      hint: '选择桌游，填好昵称后开房。进房后可以换座、选择人数和阵容，添加机器人补位。',
+      detail: '房间人数和空位放在圆桌中央。换座和补位直接反馈到座位上，房主可一眼看出还差几人。',
+    },
+    identity: {
+      hint: '点一下身份牌，观看原版翻牌动效。揭晓后可确认身份。',
+      detail: '发牌镜头聚焦个人卡牌。先让玩家看清角色与阵营，再用确认按钮回到圆桌。',
+    },
+    notebook: {
+      hint: '打开「工具 → 笔记」，给座位标记身份，或输入「2 号赞成」并保存笔记。',
+      detail: '笔记从屏幕底部展开，保留圆桌上下文。输入座号后可以按座位和任务轮次查找。',
+    },
+    assassin: {
+      hint: '点选一名玩家后确认刺杀。选 2 号可重现刺杀成功。',
+      detail: '先选目标，再显示带目标名字的刺杀按钮。结果按匕首落下、身份翻开、胜负公布的顺序揭晓。',
+    },
+    speech: {
+      hint: '观看机器人依次发言。轮到你时可以输入文字或跳过，也可以按玩家、任务轮次回看。',
+      detail: '线上人机局的发言会进入公开记录。演示用预置文本重放机器人发言，保留原版发言面板和座位高亮。',
+    },
+    manual: {
+      hint: '点「开始计时」，也可以停止或重新计时。真人在桌边当面发言。',
+      detail: '线下面桌的房主控制计时，玩家可以边讨论边选队伍。任务前进仍由牌桌操作决定。',
+    },
+  }
 
-  for (const [index, link] of links.entries()) {
+  for (const link of links) {
     link.addEventListener('click', event => {
       if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
       event.preventDefault()
       for (const item of links) item.removeAttribute('aria-current')
       link.setAttribute('aria-current', 'true')
-      instructions.textContent = hints[index]
+      const scene = scenes[link.dataset.avalonScene]
+      instructions.textContent = scene.hint
+      detail.textContent = scene.detail
       full.href = link.href
       frame.src = link.href
     })

@@ -4,6 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="robots" content="noindex">
+  <style>
+    .portfolio-markers { padding: .65rem; background: #101322; }
+    .portfolio-marker-row { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: .2rem; }
+    .portfolio-marker-row button { display: grid; justify-items: center; align-content: start; gap: .25rem; min-width: 0; padding: .22rem .1rem; border: 1px solid transparent; border-radius: .4rem; background: transparent; color: #e5e1f0; font: inherit; font-size: .68rem; cursor: pointer; }
+    .portfolio-marker-row button[aria-pressed="true"] { border-color: #aa93d8; background: #242036; }
+    .portfolio-marker-row .roundel { display: block; width: min(100%, 3.35rem); }
+    .portfolio-markers p { margin: .55rem 0 0; color: #ddd4ee; font-size: .78rem; }
+  </style>
   <title>桌游厅 · 手机交互</title>
 </head>
 <body>

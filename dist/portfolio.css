@@ -346,6 +346,15 @@ figcaption { margin-top: .45rem; color: var(--muted); font-size: .81rem; }
 .demo-queue span { color: var(--accent); font-size: .82rem; }
 .demo-queue strong { font-size: 1.3rem; }
 
+.boardgame-modes { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: .7rem; margin: .9rem 0 0; }
+.boardgame-modes > div { padding: .85rem 1rem; border: 1px solid var(--line); border-radius: .6rem; background: var(--surface); }
+.boardgame-modes dt { color: var(--text-highlight); font-weight: 700; }
+.boardgame-modes dd { margin: .35rem 0 0; color: var(--muted); }
+.avalon-design-detail { margin-top: 1rem; padding: .85rem; border: 1px solid var(--line); border-radius: .65rem; background: var(--base); }
+.avalon-design-detail h5 { font-size: .98rem; }
+.avalon-design-detail p { margin: .35rem 0 .5rem; font-size: .86rem; }
+.avalon-design-detail a[aria-current] { color: var(--text-highlight); font-weight: 700; }
+.avalon-markers-frame { display: block; width: 100%; height: 9.5rem; border: 1px solid #383248; border-radius: .45rem; background: #101322; }
 .avalon-showcase-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 26rem); align-items: start; gap: clamp(.8rem, 3cqi, 2rem); margin-top: .9rem; }
 .avalon-showcase-controls { min-width: 0; }
 .avalon-showcase-controls nav { display: flex; flex-wrap: wrap; gap: .45rem; }

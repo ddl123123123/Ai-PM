@@ -11,6 +11,7 @@ let name = '访客';
 let noticeTimer = 0;
 let sequence = 0;
 let botSequence = 0;
+let speechTimer = 0;
 let match: Avalon.AvalonState | null = null;
 let state: NetState = {
   link: 'offline', playerId: visitor, account: null, seats: [], lastRoomCode: null,
@@ -68,6 +69,32 @@ function newRoom(gameId: string, targetPlayers?: number): RoomSnapshot {
   };
 }
 
+const sampleSpeeches = [
+  '首轮我建议先看 1 号和 3 号的组队理由，再决定投票。',
+  '我同意让 1 号上车。2 号提到的票型，等这一轮结束再一起看。',
+  '我想听听 1 号为什么选 3 号，这轮先留意大家的发言。',
+  '我会对照这一轮的发言和亮票结果，再判断下一轮的队伍。',
+];
+
+function scheduleBotSpeech(room: RoomSnapshot) {
+  window.clearTimeout(speechTimer);
+  if (match?.phase !== 'discussion' || match.speechMode !== 'text' || !match.discussion) return;
+  const speaker = match.discussion.order[match.discussion.currentIndex];
+  const bot = room.players.find(({ id, isBot }) => id === speaker && isBot);
+  if (!bot) return;
+  const turn = Avalon.speechTurn(match);
+  speechTimer = window.setTimeout(() => {
+    if (!match?.discussion || state.room?.gameSeq !== room.gameSeq || Avalon.speechTurn(match) !== turn) return;
+    const now = Date.now();
+    const expired = match.discussion.timerSeconds !== 0 && now >= match.discussion.deadline;
+    const action: Avalon.AvalonAction = expired
+      ? { type: 'timeout_speech', now }
+      : { type: 'submit_speech', turn, now, text: sampleSpeeches[(bot.seatIndex - 1) % sampleSpeeches.length]! };
+    match = game.reduce(match, bot.id, action, Math.random);
+    publishMatch(room);
+  }, 2600);
+}
+
 function publishMatch(room: RoomSnapshot) {
   if (!match) return;
   update({
@@ -76,9 +103,10 @@ function publishMatch(room: RoomSnapshot) {
       options: match.options, view: game.view(match, visitor),
     },
   });
+  scheduleBotSpeech(room);
 }
 
-function startScene(scene: 'identity' | 'notebook' | 'assassin') {
+function startScene(scene: 'identity' | 'notebook' | 'assassin' | 'speech' | 'manual') {
   const room = newRoom(game.id, 5);
   room.players = [player(0, false), ...[1, 2, 3, 4].map((index) => player(index))];
   const ids = room.players.map(({ id }) => id);
@@ -93,6 +121,22 @@ function startScene(scene: 'identity' | 'notebook' | 'assassin') {
   if (scene === 'notebook') {
     match.phase = 'team';
     match.leaderIndex = 0;
+  }
+  if (scene === 'manual') {
+    match.phase = 'team';
+    match.leaderIndex = 0;
+    match.speechMode = 'manual';
+    match.options = { ...match.options, discussionMode: 'manual', speechSeconds: 60 };
+    room.players = room.players.map((person) => ({ ...person, isBot: false }));
+  }
+  if (scene === 'speech') {
+    match.phase = 'team';
+    match.leaderIndex = 0;
+    match.options = { ...match.options, discussionMode: 'turns', speechSeconds: 0 };
+    match.speechMode = 'text';
+    match = game.reduce(match, visitor, {
+      type: 'start_discussion', leaderFirst: false, direction: 'left', preselectedTeam: false,
+    }, () => 0);
   }
   if (scene === 'assassin') {
     match.phase = 'assassin';
@@ -115,6 +159,7 @@ function inLobby(change: (room: RoomSnapshot) => void) {
 }
 
 function leaveRoom() {
+  window.clearTimeout(speechTimer);
   match = null;
   update({ room: null });
 }
@@ -127,6 +172,8 @@ export const net = {
   },
   leaveRoom,
   backToLobby() {
+    window.clearTimeout(speechTimer);
+    match = null;
     if (state.room) updateRoom(newRoom(state.room.gameId, state.room.targetPlayers ?? undefined));
   },
   addBot() {
@@ -162,6 +209,7 @@ export const net = {
     if (!room || room.startBlocker !== null) return;
     if (room.gameId !== game.id) { notify('本案例的开局演示使用阿瓦隆。'); return; }
     match = game.setup(room.players.map(({ id }) => id), game.normalizeOptions(room.options), Math.random);
+    if (match.speechMode !== 'manual' && room.players.some(({ isBot }) => isBot)) match.speechMode = 'text';
     match.confirmedRoles = room.players.filter(({ isBot }) => isBot).map(({ id }) => id);
     publishMatch(room);
     window.scrollTo(0, 0);
@@ -192,4 +240,4 @@ export const roomPath = (code: string) => `/room/${code}`;
 export const roomUrl = () => location.href;
 
 const scene = new URLSearchParams(location.search).get('scene');
-if (scene === 'identity' || scene === 'notebook' || scene === 'assassin') startScene(scene);
+if (scene === 'identity' || scene === 'notebook' || scene === 'assassin' || scene === 'speech' || scene === 'manual') startScene(scene);

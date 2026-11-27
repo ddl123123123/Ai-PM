@@ -1022,11 +1022,15 @@
           <div class="chapters">
             <section class="chapter case-page" id="boardgame-overview" aria-labelledby="boardgame-overview-title">
               <h4 id="boardgame-overview-title">01 · 项目概览</h4>
-              <p>桌游厅面向想远程同桌的朋友。阿瓦隆和富饶之城是线上规则改编，《琉璃工坊》是平台上的原创游戏。玩家在手机或电脑上共用同一套开房与回座流程。</p>
+              <p>桌游厅服务于线下同桌和远程开局两种场景。阿瓦隆和富饶之城是线上规则改编，《琉璃工坊》是平台上的原创游戏。玩家在手机或电脑上共用同一套开房与回座流程。</p>
             </section>
             <section class="chapter case-page" id="boardgame-problem" aria-labelledby="boardgame-problem-title">
               <h4 id="boardgame-problem-title">02 · 背景与用户痛点</h4>
               <p>开局前，房主要凑齐人数、同步规则并确认座位。开局后，玩家要知道轮到谁、哪些信息已经公开，以及切回浏览器后怎么继续。隐藏身份游戏还要求系统只发放当前玩家有权限看到的信息。</p>
+              <dl class="boardgame-modes">
+                <div><dt>线下面桌 · 手机辅助</dt><dd>朋友已经围坐在一起，可以直接当面讨论。房主按需开始、停止或重开计时，手机负责发身份、计时和记录任务结果。</dd></div>
+                <div><dt>线上人机局 · 文字轮流发言</dt><dd>远程约局人数不齐时，用机器人补位。系统按座位推进发言，真人和机器人的发言都能按玩家、任务轮次回看。</dd></div>
+              </dl>
             </section>
             <section class="chapter case-page" id="boardgame-research" aria-labelledby="boardgame-research-title">
               <h4 id="boardgame-research-title">03 · 调研与方案对照</h4>
@@ -1045,6 +1049,7 @@
             <section class="chapter case-page" id="boardgame-solution" aria-labelledby="boardgame-solution-title">
               <h4 id="boardgame-solution-title">05 · 方案设计</h4>
               <p><strong>共用大厅。</strong>房间、座位、重连和机器人调度可以跨游戏复用，开局选项与牌桌由每款游戏独立定义。</p>
+              <p><strong>阿瓦隆发言方式。</strong>房主在大厅配置发言方式。线下手动计时由房主控制节奏。线上逐位发言有机器人参与时进入文字桌，记录按任务和提案归档，方便讨论后回看票型。</p>
               <p><strong>原创玩法。</strong>《琉璃工坊》每回合只选取料、描样、烧制之一。烧制完成会降低以后同色造价，让玩家在眼前得分与长期积累之间取舍。</p>
               <section class="boardgame-console" id="boardgame-admin" aria-labelledby="boardgame-admin-title">
                 <header class="boardgame-console-header">
@@ -1110,16 +1115,27 @@
             <div class="avalon-showcase-layout">
               <div class="avalon-showcase-controls">
                 <nav aria-label="选择手机端演示">
-                  <a href="avalon-mobile/index.html?scene=room" target="avalon-phone" data-avalon-scene aria-current="true">创建房间</a>
-                  <a href="avalon-mobile/index.html?scene=identity" target="avalon-phone" data-avalon-scene>获得身份牌</a>
-                  <a href="avalon-mobile/index.html?scene=notebook" target="avalon-phone" data-avalon-scene>记笔记</a>
-                  <a href="avalon-mobile/index.html?scene=assassin" target="avalon-phone" data-avalon-scene>刺杀梅林</a>
+                  <a href="avalon-mobile/index.html?scene=room" target="avalon-phone" data-avalon-scene="room" aria-current="true">创建房间</a>
+                  <a href="avalon-mobile/index.html?scene=identity" target="avalon-phone" data-avalon-scene="identity">获得身份牌</a>
+                  <a href="avalon-mobile/index.html?scene=notebook" target="avalon-phone" data-avalon-scene="notebook">记笔记</a>
+                  <a href="avalon-mobile/index.html?scene=assassin" target="avalon-phone" data-avalon-scene="assassin">刺杀梅林</a>
+                  <a href="avalon-mobile/index.html?scene=speech" target="avalon-phone" data-avalon-scene="speech">机器人发言</a>
                 </nav>
                 <p data-avalon-instructions aria-live="polite">选择桌游，填好昵称后开房。进房后可以换座、选择人数和阵容，添加机器人补位。</p>
                 <div class="case-links">
                   <a class="text-link" data-avalon-full href="avalon-mobile/index.html?scene=room" target="_blank" rel="noopener">单独打开</a>
                   <button type="button" class="button ghost" data-avalon-restart hidden>重播当前场景</button>
                 </div>
+                <section class="avalon-design-detail" aria-labelledby="avalon-design-title">
+                  <h5 id="avalon-design-title">交互细节</h5>
+                  <p data-avalon-detail>房间人数和空位放在圆桌中央。换座和补位直接反馈到座位上，房主可一眼看出还差几人。</p>
+                  <a class="text-link" href="avalon-mobile/index.html?scene=manual" target="avalon-phone" data-avalon-scene="manual">体验线下面桌计时</a>
+                </section>
+                <section class="avalon-design-detail" aria-labelledby="avalon-markers-title">
+                  <h5 id="avalon-markers-title">任务进度徽章</h5>
+                  <p>数字表示上车人数，剑徽表示任务结果。点选徽章查看含义。</p>
+                  <iframe class="avalon-markers-frame" src="avalon-mobile/index.html?scene=progress" title="可点选的阿瓦隆任务进度徽章" loading="lazy"></iframe>
+                </section>
               </div>
               <iframe class="avalon-showcase-phone" name="avalon-phone" title="阿瓦隆手机端互动演示" src="avalon-mobile/index.html?scene=room" loading="lazy"></iframe>
             </div>
