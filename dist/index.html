@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#08070b">
-  <meta name="description" content="李彤彤的 AI 产品与交互设计作品集，收录 ORAE、高德地图附近与推荐体验设计，以及 Arivo 视频生成团队管理网站。">
+  <meta name="description" content="李彤彤的 AI 产品与交互设计作品集，收录 ORAE、高德地图附近与推荐、Arivo 视频团队工具和浏览器多人桌游厅。">
   <title>李彤彤 · 产品作品集</title>
   <link rel="stylesheet" href="portfolio.css">
   <link rel="stylesheet" href="amap-prototype.css">
@@ -83,6 +83,7 @@
         <li><a href="#orae"><strong>ORAE</strong><span>个人项目 · 已上线</span></a><p>实现扇面选牌、流式解读与关系管理，并以同题对照检验 AI 回答。</p></li>
         <li><a href="#amap"><strong>高德地图附近与推荐</strong><span>体验设计 · 研究与原型</span></a><p>根据问卷、访谈和走查梳理找店断点，用地图与列表联动的四态设计回应定位和比较需求。</p></li>
         <li><a href="#arivo"><strong>Arivo</strong><span>视频团队工具 · 交互演示</span></a><p>把生成状态、失败重试和时间点审片做进浏览器，演示团队交接流程。</p></li>
+        <li><a href="#boardgame"><strong>桌游厅</strong><span>多人联机产品 · 已上线</span></a><p>把开房邀请、回合规则、断线回座和运营统计接进同一个浏览器桌游平台。</p></li>
       </ol>
     </section>
 
@@ -99,7 +100,7 @@
         <div class="center stage-copy">
           <p class="eyebrow">项目</p>
           <h2 id="projects-title">精选作品</h2>
-          <p>AI 解读、地图探索与视频团队协作。</p>
+          <p>AI 解读、地图探索、视频团队协作与多人桌游。</p>
         </div>
       </div>
       <div class="project-grid" data-project-grid>
@@ -114,6 +115,10 @@
         <article class="project-card">
           <button type="button" class="project-image project-select" data-project-select aria-label="选中Arivo项目" aria-pressed="false"><img loading="lazy" src="assets/arivo-review.webp" width="1280" height="800" alt=""></button>
           <div class="project-content"><h3><a href="#arivo">Arivo 视频生成团队管理</a></h3><p>串联生成队列、失败任务恢复和带时间点的版本审片。</p><div class="project-jumps"><a class="text-link" href="#arivo-ai-pm" aria-label="阅读 Arivo 的 项目分析">项目分析</a><a class="text-link" href="#arivo-pde" aria-label="阅读 Arivo 的 交互展示">交互展示</a></div><a class="button ghost project-cta" href="#arivo" aria-label="查看Arivo案例">查看案例</a></div>
+        </article>
+        <article class="project-card">
+          <button type="button" class="project-image project-select" data-project-select aria-label="选中桌游厅项目" aria-pressed="false"><img loading="lazy" src="assets/boardgame-home.webp" width="2880" height="1800" alt=""></button>
+          <div class="project-content"><h3><a href="#boardgame">桌游厅 · 多人联机</a></h3><p>浏览器开桌、好友入座、机器人补位与运营管理台。</p><div class="project-jumps"><a class="text-link" href="#boardgame-ai-pm" aria-label="阅读桌游厅的项目分析">项目分析</a><a class="text-link" href="#boardgame-pde" aria-label="阅读桌游厅的交互展示">交互展示</a></div><a class="button ghost project-cta" href="#boardgame" aria-label="查看桌游厅案例">查看案例</a></div>
         </article>
       </div>
     </section>
@@ -970,6 +975,139 @@
         </section>
       </article>
 
+      <article id="boardgame" aria-labelledby="boardgame-title">
+        <header class="case-header case-lead">
+          <div class="case-lead-copy">
+            <p class="eyebrow">桌游厅 · 浏览器多人桌游 · 已上线</p>
+            <h2 id="boardgame-title">从发出邀请到打完一局</h2>
+            <p>朋友用昵称和房间号就能入座。房主可以用机器人补位，浏览器断线重连后能回到原座。不同桌游共用房间，牌桌按各自的回合和信息规则运行。</p>
+            <dl class="contribution">
+              <div><dt>项目范围</dt><dd>联机大厅、回合与隐藏信息、原创桌游和运营管理台。</dd></div>
+              <div><dt>展示样本</dt><dd>用阿瓦隆大厅说明开桌流程，用原创《琉璃工坊》说明回合设计。</dd></div>
+              <div><dt>反馈</dt><dd><a href="#boardgame-feedback">运营数据与试玩反馈</a>留待更新。</dd></div>
+            </dl>
+            <div class="case-links">
+              <a class="button light" href="https://games.anois.site/" target="_blank" rel="noopener">打开桌游厅</a>
+              <a class="button ghost" href="#boardgame-ai-pm">项目分析</a>
+              <a class="button ghost" href="#boardgame-pde">交互展示</a>
+            </div>
+          </div>
+          <figure class="case-preview">
+            <a href="assets/boardgame-home.webp" data-image-preview><img src="assets/boardgame-home.webp" width="2880" height="1800" alt="桌游厅首页，支持选择桌游、填写昵称开桌或凭房间号加入" loading="lazy"></a>
+            <figcaption>项目仓库公开界面记录 · 选游戏、开新桌或加入房间</figcaption>
+          </figure>
+        </header>
+        <div class="case-brief">
+          <section aria-labelledby="boardgame-flow">
+            <h3 id="boardgame-flow">玩家流程</h3>
+            <ol class="case-flow">
+              <li><strong>选桌游</strong><span>查看玩法与人数要求。</span></li>
+              <li><strong>开房邀请</strong><span>发房间号或邀请链接。</span></li>
+              <li><strong>入座开局</strong><span>房主确认设置，人少时补机器人。</span></li>
+              <li><strong>按回合行动</strong><span>按牌桌提示完成操作，断线后重连回座。</span></li>
+            </ol>
+          </section>
+          <section class="case-evidence" aria-labelledby="boardgame-decision">
+            <h3 id="boardgame-decision">把登录放在需要找回座位时</h3>
+            <p>第一次来玩，填昵称就能入房。需要换设备找回座位时，再用账号续玩。这样，好友只需约定房间，愿意登录的玩家也能跨设备找回进行中的对局。</p>
+            <p class="evidence-source"><a href="https://github.com/ddl123123123/avalon#怎么玩" target="_blank" rel="noopener">查看入房与回座说明</a></p>
+          </section>
+        </div>
+        <section id="boardgame-ai-pm" class="case-track" aria-labelledby="boardgame-pm-title">
+          <p class="eyebrow">项目分析</p>
+          <h3 id="boardgame-pm-title">让第一次入房和掉线回来都容易</h3>
+          <nav class="case-index" aria-label="桌游厅案例目录">
+            <a href="#boardgame-overview">项目概览</a><a href="#boardgame-problem">背景与用户痛点</a><a href="#boardgame-research">调研与方案对照</a><a href="#boardgame-goals">需求目标与约束边界</a><a href="#boardgame-solution">方案设计</a><a href="#boardgame-result">落地、验证与结果</a><a href="#boardgame-reflection">复盘与迭代思考</a>
+          </nav>
+          <div class="chapters">
+            <section class="chapter case-page" id="boardgame-overview" aria-labelledby="boardgame-overview-title">
+              <h4 id="boardgame-overview-title">01 · 项目概览</h4>
+              <p>桌游厅面向想远程同桌的朋友。阿瓦隆和富饶之城是线上规则改编，《琉璃工坊》是平台上的原创游戏。玩家在手机或电脑上共用同一套开房与回座流程。</p>
+            </section>
+            <section class="chapter case-page" id="boardgame-problem" aria-labelledby="boardgame-problem-title">
+              <h4 id="boardgame-problem-title">02 · 背景与用户痛点</h4>
+              <p>开局前，房主要凑齐人数、同步规则并确认座位。开局后，玩家要知道轮到谁、哪些信息已经公开，以及切回浏览器后怎么继续。隐藏身份游戏还要求系统只发放当前玩家有权限看到的信息。</p>
+            </section>
+            <section class="chapter case-page" id="boardgame-research" aria-labelledby="boardgame-research-title">
+              <h4 id="boardgame-research-title">03 · 调研与方案对照</h4>
+              <p>把线下同桌的分牌、记轮次和临时离座作为设计参照。联机时保留朋友协商的空间，把发身份、推进回合和记公开结果交给系统。规则对照采用已有规则书和项目自己的实现说明。</p>
+              <p class="evidence-source"><a href="https://github.com/ddl123123123/avalon/blob/main/docs/rules.md" target="_blank" rel="noopener">查看规则实现范围</a></p>
+            </section>
+            <section class="chapter case-page" id="boardgame-goals" aria-labelledby="boardgame-goals-title">
+              <h4 id="boardgame-goals-title">04 · 需求目标与约束边界</h4>
+              <dl class="success-metrics">
+                <div><dt>降低开桌门槛</dt><dd>游客可凭昵称入房，邀请链接与房间号并行，房主可补机器人。</dd></div>
+                <div><dt>保证牌局信息边界</dt><dd>服务端裁定规则，每个座位收到对应的玩家视图。</dd></div>
+                <div><dt>恢复进行中的对局</dt><dd>浏览器断线时自动尝试回原座。当前房间保存在进程内，服务重启会中断对局。</dd></div>
+                <div><dt>辅助决策</dt><dd>阿瓦隆的 AI 助手由玩家主动使用，支持规则问答、队伍对比与对局复盘。核心牌局由规则引擎推进。</dd></div>
+              </dl>
+            </section>
+            <section class="chapter case-page" id="boardgame-solution" aria-labelledby="boardgame-solution-title">
+              <h4 id="boardgame-solution-title">05 · 方案设计</h4>
+              <p><strong>共用大厅。</strong>房间、座位、重连和机器人调度可以跨游戏复用，开局选项与牌桌由每款游戏独立定义。</p>
+              <p><strong>原创玩法。</strong>《琉璃工坊》每回合只选取料、描样、烧制之一。烧制完成会降低以后同色造价，让玩家在眼前得分与长期积累之间取舍。</p>
+              <section class="boardgame-console" id="boardgame-admin" aria-labelledby="boardgame-admin-title">
+                <header class="boardgame-console-header">
+                  <h5 id="boardgame-admin-title">运营管理台</h5>
+                  <p>字段预览 · 数据待补</p>
+                </header>
+                <dl class="boardgame-console-metrics">
+                  <div><dt>注册用户</dt><dd>—</dd></div>
+                  <div><dt>近 7 天活跃账号</dt><dd>—</dd></div>
+                  <div><dt>近 7 天开局</dt><dd>—</dd></div>
+                  <div><dt>当前在线</dt><dd>—</dd></div>
+                  <div><dt>有效登录会话</dt><dd>—</dd></div>
+                </dl>
+                <p>管理台可按 7、30、90 或 180 天查看运营数据，包括每日活跃、注册累计、开局趋势、按桌游统计及用户列表。真实用户明细需要管理员权限。</p>
+              </section>
+            </section>
+            <section class="chapter case-page" id="boardgame-result" aria-labelledby="boardgame-result-title">
+              <h4 id="boardgame-result-title">06 · 落地、验证与结果</h4>
+              <p>线上版本提供开房、入座和在线对局。本次核对仓库时，107 项规则测试与 10 项服务端测试通过，覆盖机器人走完《琉璃工坊》、登录后换设备回原座，以及重连去重与开局登记等统计场景。</p>
+              <p class="evidence-source"><a href="https://github.com/ddl123123123/avalon/tree/13317d5c9e6a497bcaed13b4d925a89ef23d1748" target="_blank" rel="noopener">查看本次核对的源码版本</a></p>
+              <section class="case-validation" id="boardgame-feedback" aria-labelledby="boardgame-feedback-title">
+                <h5 id="boardgame-feedback-title">数据与反馈</h5>
+                <div class="table-scroll comparison-matrix" role="region" aria-label="桌游厅待补的数据与反馈" tabindex="0">
+                  <table>
+                    <thead><tr><th scope="col">观察项</th><th scope="col">待补内容</th><th scope="col">状态</th></tr></thead>
+                    <tbody>
+                      <tr><th scope="row">用户活跃</th><td>统计日期、活跃登录账号与活跃游客，分别注明去重口径。</td><td>待补</td></tr>
+                      <tr><th scope="row">开局与打完</th><td>同一时间窗的开局、打完及按桌游的分布，区分真人与机器人座位。</td><td>待补</td></tr>
+                      <tr><th scope="row">试玩反馈</th><td>记录一处入房、回合提示或原创规则理解的卡点，补上改动与下一轮反馈。</td><td>待补</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+            </section>
+            <section class="chapter case-page" id="boardgame-reflection" aria-labelledby="boardgame-reflection-title">
+              <h4 id="boardgame-reflection-title">07 · 复盘与迭代思考</h4>
+              <p>后续把开桌与牌局分开观察。开桌看发邀请后能否顺利凑齐并开始。牌局看首回合能否独立完成，以及断线回来后能否识别当前行动。原创规则的理解与平衡，优先用真人试玩反馈复验。</p>
+            </section>
+          </div>
+        </section>
+        <section id="boardgame-pde" class="case-track" aria-labelledby="boardgame-pde-title">
+          <p class="eyebrow">交互展示</p>
+          <h3 id="boardgame-pde-title">从大厅到原创牌桌</h3>
+          <section class="interaction-demo" data-demo aria-labelledby="boardgame-demo-title">
+            <h4 id="boardgame-demo-title">桌游厅界面回看</h4>
+            <div class="demo-controls" role="group" aria-label="桌游厅界面">
+              <button type="button" data-demo-step aria-pressed="true" aria-controls="boardgame-demo-lobby">开局大厅</button>
+              <button type="button" data-demo-step aria-pressed="false" aria-controls="boardgame-demo-table">琉璃工坊牌桌</button>
+            </div>
+            <p class="sr-only" role="status" data-demo-status></p>
+            <div class="demo-panel" id="boardgame-demo-lobby">
+              <a href="assets/boardgame-lobby.webp" data-image-preview><img class="demo-image" src="assets/boardgame-lobby.webp" width="2880" height="1800" alt="阿瓦隆开局大厅显示座次与房主的开局设置" loading="lazy"></a>
+              <div class="demo-copy"><h5>开局大厅</h5><p>座位与开局条件在同一页显示。房主在设置区调整人数和阵容，确认后开局。</p></div>
+            </div>
+            <div class="demo-panel" id="boardgame-demo-table" hidden>
+              <a href="assets/boardgame-glassworks-board.webp" data-image-preview><img class="demo-image" src="assets/boardgame-glassworks-board.webp" width="2880" height="1800" alt="琉璃工坊牌桌显示委托、窗片、玻璃料晾架与各家炉色" loading="lazy"></a>
+              <div class="demo-copy"><h5>琉璃工坊牌桌</h5><p>公开区摆放委托、窗片与玻璃料，玩家在自己的操作区选择取料、描样或烧制。</p></div>
+            </div>
+          </section>
+          <div class="case-links"><a class="button ghost" href="https://games.anois.site/" target="_blank" rel="noopener">线上试玩</a><a class="text-link" href="#boardgame-admin">查看管理台字段</a></div>
+        </section>
+      </article>
+
       <section id="delivery" class="overview resource-block" aria-labelledby="delivery-title">
         <header class="overview-heading"><h2 id="delivery-title">交付与验收</h2></header>
 
@@ -1073,10 +1211,11 @@ v4 | 00:12 | 待确认 | 检查人物动作与字幕是否同步。</template>
 
       <section id="demos" class="overview resource-block" aria-labelledby="demos-title">
         <header class="overview-heading"><h2 id="demos-title">项目展示</h2><a class="text-link" href="#delivery">查看交付与验收</a></header>
-        <div class="resource-grid">
+        <div class="resource-grid project-demos-grid">
           <article><h3>ORAE</h3><p><a href="#pde-demo">站内抽牌试玩</a><br><a href="https://tarot.anois.site/" target="_blank" rel="noopener">在线抽牌与关系管理</a><br><a href="#ai-pm-solution">关系管理分屏设计</a><br><a href="#comparison">同题解读与失败样例</a></p></article>
           <article><h3>高德地图</h3><p><a href="#amap-pde-demo">站内四态切换</a><br><a href="#amap-design-recommend">推荐与附近设计</a><br><a href="#amap-design-merchant">商家详情设计</a><br><a href="assets/amap-research.webp" data-image-preview>调研原稿</a></p></article>
           <article><h3>Arivo</h3><p><a href="#arivo-pde-demo">站内任务与审片演示</a><br><a href="https://arivo-studio-demo.anois-zhao208786.chatgpt.site/#/screens" target="_blank" rel="noopener">交互演示索引</a><br><a href="https://www.figma.com/design/oiZlD8DxTSVisTWEqwMarI/Arivo-ux-ui%E8%AE%BE%E8%AE%A1?node-id=591-604" target="_blank" rel="noopener">Figma 设计稿</a><br><a href="#arivo-ai-pm-solution">Schema 示例</a></p></article>
+          <article><h3>桌游厅</h3><p><a href="https://games.anois.site/" target="_blank" rel="noopener">在线开桌</a><br><a href="#boardgame-pde">大厅与原创牌桌</a><br><a href="#boardgame-admin">运营管理台</a><br><a href="#boardgame-feedback">数据与反馈</a></p></article>
         </div>
       </section>
 

@@ -134,7 +134,7 @@ h2 { font-size: clamp(2rem, 4.6vw, 3.35rem); letter-spacing: -.055em; }
 .practice-list a:hover strong { text-decoration: underline; }
 .practice-list a span { color: var(--accent); font-size: .8rem; }
 .practice-list p { margin-top: .22rem; }
-.project-grid { margin-top: 1rem; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.project-grid { margin-top: 1rem; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
 .project-card { display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--line); border-radius: .82rem; background: var(--surface); text-decoration: none; }
 .project-card:hover { border-color: var(--accent); }
 .project-image { display: grid; place-items: center; overflow: hidden; aspect-ratio: 1.72; background: var(--cover-shade); }
@@ -187,6 +187,14 @@ a.text-link:hover, .project-card:hover .text-link { text-decoration: underline; 
 .case-validation { margin-block: .9rem 1.15rem; }
 .case-validation h5 { font-size: clamp(1.05rem, 2.6vw, 1.3rem); }
 .case-validation > :is(p, .case-flow, .table-scroll) { margin-block-start: .65rem; }
+.boardgame-console { margin-block-start: 1.15rem; padding: clamp(.8rem, 2cqw, 1.25rem); border: 1px solid var(--line); border-radius: .65rem; background: var(--base); }
+.boardgame-console-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: .3rem 1rem; }
+.boardgame-console-header h5 { font-size: 1.1rem; }
+.boardgame-console-header p { font-size: .875rem; }
+.boardgame-console-metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr)); gap: .55rem; margin: .75rem 0; }
+.boardgame-console-metrics > div { padding: .65rem .7rem; border: 1px solid var(--line); border-radius: .4rem; background: var(--surface); }
+.boardgame-console-metrics dt { color: var(--muted); font-size: .875rem; }
+.boardgame-console-metrics dd { margin: .2rem 0 0; font-size: 1.3rem; }
 .arivo-review-decision { margin-block-start: 1.35rem; padding-block-start: 1.25rem; border-block-start: 1px solid var(--line); }
 .arivo-review-decision h5 { font-size: clamp(1.05rem, 2.6vw, 1.3rem); }
 .arivo-review-decision > :is(p, figure, h6) { margin-block-start: .8rem; }
@@ -206,6 +214,7 @@ a.text-link:hover, .project-card:hover .text-link { text-decoration: underline; 
 .case-code { max-width: 54rem; margin: .72rem 0 0; padding: .9rem; overflow-x: auto; border: 1px solid var(--line); border-radius: .55rem; background: var(--base); color: var(--text); font-size: .82rem; line-height: 1.55; }
 .resource-block { margin-top: 2rem; }
 .resource-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .75rem; }
+.project-demos-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .resource-grid p { margin-top: .6rem; }
 .resource-grid a { color: var(--accent); }
 
@@ -250,6 +259,9 @@ figcaption { margin-top: .45rem; color: var(--muted); font-size: .81rem; }
 .footer { display: flex; justify-content: flex-end; align-items: center; gap: 1rem; padding-block: 1.5rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .85rem; }
 .footer span { margin-right: auto; }
 
+@container portfolio (min-width: 64rem) {
+  .project-grid, .project-demos-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
 @container portfolio (max-width: 48rem) {
   .shell { width: calc(100% - 2rem); }
   .hero { min-height: 470px; }
